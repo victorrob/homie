@@ -101,13 +101,14 @@ section div p
 
 #roue img
 {
-	position: absolute;
+    position: absolute;
 	right: 0px;
 }
 
+
 #menu
 {
-	position: absolute;
+    position: absolute;
 	border: solid 3px;
 	background: #505050;
 	width: 100px;
@@ -115,3 +116,13 @@ section div p
 	padding: 4px 4px; 
 	border-radius: 5px;
 }
+
+.menu_tete{
+    display: grid;
+    width: 100%;
+    max-width: 85%;
+    margin: 30px auto;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 400px));
+    grid-gap: 20px;
+}
+

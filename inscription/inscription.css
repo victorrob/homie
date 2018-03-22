@@ -1,0 +1,31 @@
+body
+{
+	background: url('../image/fond5.png');
+	color: white;
+}
+
+header
+{
+	display: flex;
+	justify-content: space-around;
+}
+
+div
+{
+	display: flex;
+	margin-left: 42%;
+}
+
+form
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#explication
+{
+	width: 40%;
+	margin-left: 20%;
+	margin-top: 30%;
+}

@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<header>
-			<img src="../image/LogoHOMIEweb.png" alt="Logo Homie" />
+			<?php include("../Header/header.php"); ?>
 		</header>
 		<div id="tete" class="menu_tete">
 				<form class="form" method="post" action="hello%20world.php">
@@ -17,14 +17,6 @@
 						<option value="appartement_paris">Appartement Paris</option>
 					</select>
 				</form>
-			<div id="roue">
-				<img src="../image/parametre.png" alt="Bouton paramètre" id="parametre" />
-					<ul id="menu">
-						<li><a href="#">Paramètres</a></li>
-						<li><a href="#">Nous contacter</a></li>
-						<li><a href="#">Déconnexion</a></li>
-					</ul>
-			</div>
 		</div>
 		<div class="entete">
 			<hr />

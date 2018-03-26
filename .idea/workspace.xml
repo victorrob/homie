@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c0744bc-fd88-4ec4-89a3-f950f4e32680" name="Default" comment="mvc !">
-      <change beforePath="" afterPath="$PROJECT_DIR$/view/php/contact.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/view/php/logOut.php" />
+    <list default="true" id="0c0744bc-fd88-4ec4-89a3-f950f4e32680" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change beforePath="$PROJECT_DIR$/view/phtml/forgottenPswd.phtml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/view/phtml/header.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/view/phtml/home.phtml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/view/phtml/login.phtml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/view/phtml/signup.phtml" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -294,11 +286,25 @@
       <option name="project" value="LOCAL" />
       <updated>1522073653235</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="mvc !">
+      <created>1522076002253</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1522076002253</updated>
+    </task>
+    <task id="LOCAL-00006" summary="mvc !">
+      <created>1522076116273</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1522076116273</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7044000" />
+    <option name="totallyTimeSpent" value="7168000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />

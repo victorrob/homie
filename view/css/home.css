@@ -127,3 +127,18 @@ section div p
     grid-gap: 20px;
 }
 
+#piece
+{
+	display: flex;
+	flex-direction: column;
+}
+
+#piece div
+{
+    border: solid 1px;
+}
+
+#ligne
+{
+	display: flex;
+}

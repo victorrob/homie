@@ -7,22 +7,22 @@
 <body>
 	<form>
 		<div id="name" class="categoryForm">
-			<label for="name">Nom : Alessandro<!--PHP--></label>
+			<label for="name">Nom : Alessandro<!-- PHP $name--></label>
 			<input type="button" value="Modifier"/>
 			<input id="nameModif" type="text" placeholder="Nouvau nom"/>
 		</div>
 		<div id="fullname" class="categoryForm">
-			<label for="fullname">Prénom : ROSSI<!--PHP--></label>
+			<label for="fullname">Prénom : ROSSI<!--PHP $fullname--></label>
 			<input type="button" value="Modifier"/>
 			<input id="fullnameModif" type="text" placeholder="Nouvau prénom"/>
 		</div>
 		<div id="mail" class="categoryForm">
-			<label for="mail">Mail : alessandro.rossi@isep.fr<!--PHP--></label>
+			<label for="email">Email : alessandro.rossi@isep.fr<!--PHP $email--></label>
 			<input type="button" value="Modifier"/>
 			<input id="mailModif" type="text" placeholder="Nouvau mail"/>
 		</div>
 		<div id="phone" class="categoryForm">
-			<label for="phone">Téléphone : 06.03.XX.XX.XX<!--PHP--></label>
+			<label for="phone">Téléphone : 06.03.XX.XX.XX<!--PHP $phone--></label>
 			<input type="button" value="Modifier"/>
 			<input id="phoneModif" type="text" placeholder="Nouvau téléphone"/>
 		</div>

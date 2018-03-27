@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<header>
-			<img src="image/LogoHOMIEweb.png" alt="Logo Homie" />
+			<a href="index.php?p=home" <img src="image/LogoHOMIEweb.png" alt="Logo Homie" />
 		</header>
 		<div id="tete" class="menu_tete">
 				<form class="form" method="post" action="index.php">
@@ -20,9 +20,9 @@
 			<div id="roue">
 				<img src="image/parametre.png" alt="Bouton paramètre" id="parametre" />
 					<ul id="menu">
-						<li><a href="#">Paramètres</a></li>
-						<li><a href="#">Nous contacter</a></li>
-						<li><a href="#">Déconnexion</a></li>
+						<li><a href="index.php?p=profile">Paramètres</a></li>
+						<li><a href="index.php?p=contact">Nous contacter</a></li>
+						<li><a href="index.php?p=logOut">Déconnexion</a></li>
 					</ul>
 			</div>
 		</div>

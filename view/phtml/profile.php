@@ -1,41 +1,76 @@
 <!DOCTYPE html>
+<?php
+if(!$name){$name = 'undefined';}
+if(!$firstName){$firstName = 'undefined';}
+if(!$email){$email = 'undefined';}
+if(!$phone){$phone = 'undefined';}
+if(!$password){$password = 'undefined';}
+if(!$birthDate){$birthDate = 'undefined';
+if(!$address){$address = 'undefined';}
+}
+?>
 <html>
 <header>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="profile.css">
+	<link rel="stylesheet" type="text/css" href="../css/profile.css">
+	<script type="text/javascript" src="../js/profile.js"></script>
 </header>
 <body>
 	<form>
 		<div id="name" class="categoryForm">
-			<label for="name">Nom : Alessandro<!-- PHP $name--></label>
-			<input type="button" value="Modifier"/>
+			<div>
+				<label for="name">Nom : <?php echo($name); ?></label>
+				<input class="button" type="button" value="Modifier"/>
+			</div>
 			<input id="nameModif" type="text" placeholder="Nouvau nom"/>
 		</div>
-		<div id="fullname" class="categoryForm">
-			<label for="fullname">Prénom : ROSSI<!--PHP $fullname--></label>
-			<input type="button" value="Modifier"/>
-			<input id="fullnameModif" type="text" placeholder="Nouvau prénom"/>
+		<div id="firstName" class="categoryForm">
+			<div>
+				<label for="firstName">Prénom : <?php echo($firstName); ?></label>
+				<input class="button" type="button" value="Modifier"/>
+			</div>
+			<input id="firstNameModif" type="text" placeholder="Nouvau prénom"/>
 		</div>
-		<div id="mail" class="categoryForm">
-			<label for="email">Email : alessandro.rossi@isep.fr<!--PHP $email--></label>
-			<input type="button" value="Modifier"/>
-			<input id="mailModif" type="text" placeholder="Nouvau mail"/>
+		<div id="birth" class="categoryForm">
+			<div>
+				<label for="birth">Date d'aniversaire : <?php echo($birthDate); ?></label>
+				<input class="button" type="button" value="Modifier"/>
+			</div>
+			<input id="birthModif" type="text" placeholder="Nouvelle date d'anniversair"/>
+		</div>
+		<div id="email" class="categoryForm">
+			<div>
+				<label for="email">Email : <?php echo($email); ?></label>
+				<input class="button" type="button" value="Modifier"/>
+			</div>
+			<input id="emailModif" type="text" placeholder="Nouvelle email"/>
+		</div>
+		<div id="address" class="categoryForm">
+			<div>
+				<label for="address">Adresse : <?php echo($address); ?></label>
+				<input class="button" type="button" value="Modifier"/>
+			</div>
+			<input id="addressModif" type="text" placeholder="Nouvelle adresse"/>
 		</div>
 		<div id="phone" class="categoryForm">
-			<label for="phone">Téléphone : 06.03.XX.XX.XX<!--PHP $phone--></label>
-			<input type="button" value="Modifier"/>
+			<div>
+				<label for="phone">Téléphone : <?php echo($phone); ?></label>
+				<input class="button" type="button" value="Modifier"/>
+			</div>
 			<input id="phoneModif" type="text" placeholder="Nouvau téléphone"/>
 		</div>
 		<div id="password" class="categoryForm">
-			<label for="password">mot de passe : ••••••••••</label>
-			<input type="button" value="Modifier"/>
+			<div>
+				<label for="password">mot de passe : ••••••••••</label>
+				<input class="button" type="button" value="Modifier"/>
+			</div>
 			<input id="passwordModif1" type="password" placeholder="Nouvau mot de passe"/>
 			<input id="passwordModif2" type="password" placeholder="Confirmer mot de passe"/>
 		</div>
 		<div id="validate" class="categoryForm">
 			<label>mot de passe :</label>
 			<input id="passwordValidation" type="password" placeholder="Mot de passe"/>
-			<input type="button" value="Valider"/>
+			<input class="button" type="button" value="Valider"/>
 		</div>
 	</form>
 

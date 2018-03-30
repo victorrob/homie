@@ -1,3 +1,10 @@
-.categoryForm{
-	margin: 50px;
+#nameModif,#firstNameModif,#birthModif,#emailModif,#addressModif,#phoneModif,#passwordModif1,#passwordModif2{
+	display: none;
+	margin-top: 13px;
+}
+#name,#firstName,#birth,#email,#address,#phone,#password,#validate{
+	margin: 22px;
+}
+.button{
+	margin right: 10px;
 }

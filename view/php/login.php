@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" href="view/css/login.css" />
+		<link rel="stylesheet" href="../css/login.css" />
 		<title>login</title>
 	</head>
 	<body>

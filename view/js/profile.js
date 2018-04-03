@@ -15,8 +15,8 @@ function display(id){
 	console.log("moddifiquation du display de : " + id);
 }
 function button(element){
-	id = element;
-	buttonName = element + "Button";
+	var id = element;
+	var buttonName = element + "Button";
 	var btn = document.getElementById(buttonName);
 	btn.onclick = function(){display(id);};
 	console.log("bouton "+element +" crée");

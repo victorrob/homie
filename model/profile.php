@@ -4,11 +4,11 @@
 	while($userData = $data->fetch()){}
 	$name = $userData['name'];		//$userData['name'] 
 	$firstName = $userData['firstName'];
+	$birthDate = $userData['birthDate'];
 	$email = $userData['email'];
+	$address = $userData['address'];
 	$phone = $userData['phone'];
 	$password = $userData['password'];
-	$birthDate = $userData['birthDate'];
-	$address = $userData['address'];
 
 
 ?>

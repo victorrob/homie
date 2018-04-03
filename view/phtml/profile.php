@@ -13,56 +13,55 @@ if(!$address){$address = 'undefined';}
 <header>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="../css/profile.css">
-	<script type="text/javascript" src="../js/profile.js"></script>
 </header>
 <body>
 	<form>
 		<div id="name" class="categoryForm">
 			<div>
 				<label for="name">Nom : <?php echo($name); ?></label>
-				<input class="button" type="button" value="Modifier"/>
+				<input class="button" type="button" value="Modifier" id="nameButton"/>
 			</div>
 			<input id="nameModif" type="text" placeholder="Nouvau nom"/>
 		</div>
 		<div id="firstName" class="categoryForm">
 			<div>
 				<label for="firstName">Prénom : <?php echo($firstName); ?></label>
-				<input class="button" type="button" value="Modifier"/>
+				<input class="button" type="button" value="Modifier" id="firstNameButton"/>
 			</div>
 			<input id="firstNameModif" type="text" placeholder="Nouvau prénom"/>
 		</div>
 		<div id="birth" class="categoryForm">
 			<div>
 				<label for="birth">Date d'aniversaire : <?php echo($birthDate); ?></label>
-				<input class="button" type="button" value="Modifier"/>
+				<input class="button" type="button" value="Modifier" id="birthButton"/>
 			</div>
 			<input id="birthModif" type="text" placeholder="Nouvelle date d'anniversair"/>
 		</div>
 		<div id="email" class="categoryForm">
 			<div>
 				<label for="email">Email : <?php echo($email); ?></label>
-				<input class="button" type="button" value="Modifier"/>
+				<input class="button" type="button" value="Modifier" id="emailButton"/>
 			</div>
 			<input id="emailModif" type="text" placeholder="Nouvelle email"/>
 		</div>
 		<div id="address" class="categoryForm">
 			<div>
 				<label for="address">Adresse : <?php echo($address); ?></label>
-				<input class="button" type="button" value="Modifier"/>
+				<input class="button" type="button" value="Modifier" id="addressButton"/>
 			</div>
 			<input id="addressModif" type="text" placeholder="Nouvelle adresse"/>
 		</div>
 		<div id="phone" class="categoryForm">
 			<div>
 				<label for="phone">Téléphone : <?php echo($phone); ?></label>
-				<input class="button" type="button" value="Modifier"/>
+				<input class="button" type="button" value="Modifier" id="phoneButton"/>
 			</div>
 			<input id="phoneModif" type="text" placeholder="Nouvau téléphone"/>
 		</div>
 		<div id="password" class="categoryForm">
 			<div>
 				<label for="password">mot de passe : ••••••••••</label>
-				<input class="button" type="button" value="Modifier"/>
+				<input class="button" type="button" value="Modifier" id="passwordButton"/>
 			</div>
 			<input id="passwordModif1" type="password" placeholder="Nouvau mot de passe"/>
 			<input id="passwordModif2" type="password" placeholder="Confirmer mot de passe"/>
@@ -70,7 +69,7 @@ if(!$address){$address = 'undefined';}
 		<div id="validate" class="categoryForm">
 			<label>mot de passe :</label>
 			<input id="passwordValidation" type="password" placeholder="Mot de passe"/>
-			<input class="button" type="button" value="Valider"/>
+			<input class="button" type="button" value="Valider" id="validateButton"/>
 		</div>
 	</form>
 
@@ -85,4 +84,5 @@ if(!$address){$address = 'undefined';}
 	</div>
 
 </body>
+<script type="text/javascript" src="../js/profile.js"></script>
 </html>

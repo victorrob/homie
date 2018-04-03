@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c0744bc-fd88-4ec4-89a3-f950f4e32680" name="Default" comment="mvc !">
-      <change beforePath="" afterPath="$PROJECT_DIR$/view/css/header.css" />
+    <list default="true" id="0c0744bc-fd88-4ec4-89a3-f950f4e32680" name="Default" comment="ajout de la page header et actualisation de la page home">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change beforePath="$PROJECT_DIR$/view/css/home.css" afterPath="$PROJECT_DIR$/view/css/home.css" />
-      <change beforePath="$PROJECT_DIR$/view/js/home.js" afterPath="$PROJECT_DIR$/view/js/header.js" />
-      <change beforePath="$PROJECT_DIR$/view/php/header.php" afterPath="$PROJECT_DIR$/view/php/header.php" />
-      <change beforePath="$PROJECT_DIR$/view/php/home.php" afterPath="$PROJECT_DIR$/view/php/home.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -194,7 +188,7 @@
       <workItem from="1522097078284" duration="670000" />
       <workItem from="1522141048923" duration="6095000" />
       <workItem from="1522410597248" duration="1943000" />
-      <workItem from="1522745370805" duration="4472000" />
+      <workItem from="1522745370805" duration="4534000" />
     </task>
     <task id="LOCAL-00001" summary="mvc !">
       <created>1522073095822</created>
@@ -245,18 +239,24 @@
       <option name="project" value="LOCAL" />
       <updated>1522076125003</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="ajout de la page header et actualisation de la page home">
+      <created>1522749881598</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1522749881598</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20668000" />
+    <option name="totallyTimeSpent" value="20730000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12447917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12447917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -307,7 +307,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="mvc !" />
-    <option name="LAST_COMMIT_MESSAGE" value="mvc !" />
+    <MESSAGE value="ajout de la page header et actualisation de la page home" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout de la page header et actualisation de la page home" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

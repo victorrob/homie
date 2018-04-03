@@ -1,3 +1,25 @@
-.categoryForm{
-	margin: 50px;
+#nameModif,#firstNameModif,#birthModif,#emailModif,#addressModif,#phoneModif,#password1Modif,#password2Modif{
+	display: none;
+	margin-top: 13px;
+	margin-left: 35px;
+}
+#name,#firstName,#birth,#email,#address,#phone,#password,#validate{
+	margin: 22px;
+}
+.button{
+	margin right: 10px;
+}
+#formAndCharter{
+	display: grid;
+}
+#formProfile{
+	grid-row: 1;
+	grid-column: 1/2;
+	width: 400px;
+	margin-left: 50px;
+}
+#charter{
+	grid-row: 1;
+	grid-column: 2/2;
+	margin-right: 50px;
 }

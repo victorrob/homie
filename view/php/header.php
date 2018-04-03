@@ -1,5 +1,8 @@
+<head>
+    <link rel="stylesheet" href="view/css/header.css" />
+</head>
 <header>
-    <a href="../accueil/accueil.php"> <img src="../image/LogoHOMIEweb.png" alt="Logo Homie" /> </a>
+    <a div id="homielogo" href="../accueil/accueil.php"> <img src="../image/LogoHOMIEweb.png" alt="Logo Homie" /> </a>
     <div id="roue">
         <img src="../image/parametre.png" alt="Bouton paramètre" id="parametre" />
             <ul id="menu">
@@ -9,4 +12,3 @@
             </ul>
     </div>
     </header>
-</html>

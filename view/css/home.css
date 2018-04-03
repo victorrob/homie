@@ -5,12 +5,6 @@ body
 	color: white;
 }
 
-header
-{
-	display: flex;
-	justify-content: space-around;
-}
-
 #parametre
 {
 	width: 30px;
@@ -74,56 +68,5 @@ section div p
 	margin: auto;
 }
 
-#roue ul{
-	visibility: hidden;
-	position: absolute;
-	flex-direction: column;
-	list-style-type:none;
-	margin-top: 35px;
-	right: 10px;
-}
 
-#roue ul a{
-	text-decoration: none;
-	color: white;
-}
-
-#roue ul a:hover{
-	text-decoration: underline;
-}
-
-#roue
-{
-	margin-right: 20px;
-	display: flex;
-	flex-direction: column;
-	position: relative;
-}
-
-#roue img
-{
-    position: absolute;
-	right: 0px;
-}
-
-
-#menu
-{
-    position: absolute;
-	border: solid 3px;
-	background: #505050;
-	width: 100px;
-	text-align: center;
-	padding: 4px 4px; 
-	border-radius: 5px;
-}
-
-.menu_tete{
-    display: grid;
-    width: 100%;
-    max-width: 85%;
-    margin: 30px auto;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 400px));
-    grid-gap: 20px;
-}
 

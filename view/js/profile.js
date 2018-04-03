@@ -1,18 +1,23 @@
-var parametre = ["name","firstName","birth","email","address","phone","password","validate"];
+var parametre = ["name","firstName","birth","email","address","phone","password"];
 for (var i = parametre.length - 1; i >= 0; i--) {
 	console.log("création du bouton : " + parametre[i]);
 	button(parametre[i]);
 }
 
 function display(id){
-	id = id + "Modif"
-	var doc = document.getElementById(id);
-	if (doc.style.display == "block"){
-		doc.style.display = ""
+	if (id =="password"){
+		display(id+"1");
+		display(id+"2");
 	}else{
-		doc.style.display = "block"	
+		var id = id + "Modif";
+		var doc = document.getElementById(id);
+		if (doc.style.display == "block"){
+			doc.style.display = "";
+		}else{
+			doc.style.display = "block";
+		}
+		console.log("moddifiquation du display de : " + id);
 	}
-	console.log("moddifiquation du display de : " + id);
 }
 function button(element){
 	var id = element;

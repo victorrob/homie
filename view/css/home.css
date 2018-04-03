@@ -2,7 +2,7 @@ body
 
 {
 	background: url('../../image/fond5.png');
-	color: white;
+	color: black;
 }
 
 header
@@ -85,7 +85,7 @@ section div p
 
 #roue ul a{
 	text-decoration: none;
-	color: white;
+	color: black;
 }
 
 #roue ul a:hover{

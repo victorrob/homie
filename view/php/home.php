@@ -2,29 +2,18 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" href="view/css/home.css" />
+		<link rel="stylesheet" href="/view/css/home.css" />
 		<title>accueil</title>
 	</head>
 	<body>
-		<header>
-			<a href="index.php?p=home" <img src="image/LogoHOMIEweb.png" alt="Logo Homie" />
-		</header>
 		<div id="tete" class="menu_tete">
-				<form class="form" method="post" action="index.php">
-					<label for="habitation">Habitation :</label><br />
-					<select name="habitation" id="habitation">
-						<option value="maison_brest">Maison Brest</option>
-						<option value="appartement_paris">Appartement Paris</option>
-					</select>
-				</form>
-			<div id="roue">
-				<img src="image/parametre.png" alt="Bouton paramètre" id="parametre" />
-					<ul id="menu">
-						<li><a href="index.php?p=profile">Paramètres</a></li>
-						<li><a href="index.php?p=contact">Nous contacter</a></li>
-						<li><a href="index.php?p=logOut">Déconnexion</a></li>
-					</ul>
-			</div>
+            <form class="form" method="post" action="index.php">
+                <label for="habitation">Habitation :</label><br />
+                <select name="habitation" id="habitation">
+                    <option value="maison_brest">Maison Brest</option>
+                    <option value="appartement_paris">Appartement Paris</option>
+                </select>
+            </form>
 		</div>
 		<div class="entete">
 			<hr />
@@ -60,7 +49,7 @@
 			<div><p>Absent</p></div>
 		</section>
 
-		<script type="text/javascript" src="view/js/home.js"></script>
+		<script type="text/javascript" src="/view/js/home.js"></script>
 
 	</body>
 </html>

@@ -1,8 +1,7 @@
 body
-
 {
-	background: url('../../image/fond5.png');
-	color: black;
+	background: url('/image/fond5.png');
+	color: white;
 }
 
 header
@@ -85,7 +84,7 @@ section div p
 
 #roue ul a{
 	text-decoration: none;
-	color: black;
+	color: white;
 }
 
 #roue ul a:hover{
@@ -133,12 +132,20 @@ section div p
 	flex-direction: column;
 }
 
-#piece div
-{
-    border: solid 1px;
-}
-
 #ligne
 {
 	display: flex;
+	flex-direction: row;
+	width: 90%;
+	justify-content: start;
+}
+
+#piece divleft: 0px;
+{
+	height: 50px;
+}
+
+#ligne div
+{
+	justify-content: start;
 }

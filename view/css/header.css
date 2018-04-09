@@ -1,7 +1,7 @@
 #menuHead{
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(auto-fill, minmax(33.33%, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(33.333%, 1fr));
     grid-gap: 0px;
 }
 #img{
@@ -15,6 +15,7 @@
     height: 30px;
     margin-right: 95px;
 }
+
 
 #roue ul{
     visibility: hidden;
@@ -37,9 +38,8 @@
 #roue
 {
     margin-top: 40%;
-    margin-right: 50px;
+    margin-left: 80%;
     display: flex;
-    justify-content: right;
     position: relative;
 }
 
@@ -51,13 +51,21 @@
 
 #menu
 {
-    position: relative;
+    visibility: hidden;
+    position: absolute;
     border: solid 3px;
     background: #505050;
     width: 100px;
     text-align: center;
     padding: 4px 4px;
     border-radius: 5px;
-    margin-left: 200px;
+    margin-right: 200px;
+    right: -20% ;
 }
 
+body
+
+{
+    background: url('/image/fond5.png');
+    color: white;
+}

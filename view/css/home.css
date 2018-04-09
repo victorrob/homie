@@ -1,9 +1,3 @@
-body
-
-{
-	background: url('/image/fond5.png');
-	color: white;
-}
 #tete
 {
 	display: flex;
@@ -67,4 +61,3 @@ h1
     grid-template-columns: repeat(auto-fill, minmax(200px, 400px));
     grid-gap: 20px;
 }
-

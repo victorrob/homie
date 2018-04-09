@@ -134,18 +134,8 @@ section div p
 
 #ligne
 {
-	display: flex;
 	flex-direction: row;
-	width: 90%;
-	justify-content: start;
-}
-
-#piece divleft: 0px;
-{
-	height: 50px;
-}
-
-#ligne div
-{
-	justify-content: start;
+	justify-content: space-around;
+	align-items: ;
+	border: ;
 }

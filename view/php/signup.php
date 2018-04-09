@@ -17,10 +17,10 @@
                         <p><input type="text" name="name" id="name" placeholder="Nom" /></p>
 
                         <p><label for="prenom">Prénom :</label></p>
-                        <p><input type="text" name="prenom" id="prenom" placeholder="Prénom" /></p>
+                        <p><input type="text" name="firstName" id="prenom" placeholder="Prénom" /></p>
 
                         <p><label for="email">Adresse mail :</label></p>
-                        <p><input type="email" name="email" id="email" placeholder="Adresse email" /></p>
+                        <p><input type="email" name="mail" id="email" placeholder="Adresse email" /></p>
 
                         <p><label for="password">Mot de passe :</label></p>
                         <p><input type="password" name="password" id="password" placeholder="Mot de passe" /></p>
@@ -29,7 +29,7 @@
                         <p><input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmation"></p>
 
                         <p><label for="phone">Numéro de téléphone</label></p>
-                        <p><input type="tel" name="tel" id="phone" placeholder="+33 X XX XX XX XX" /></p>
+                        <p><input type="tel" name="phone" id="phone" placeholder="+33 X XX XX XX XX" /></p>
 
                         <p><label for="productNumber">Numéro de produit :</label></p>
                         <p><input type="text" name="productNumber" id="productNumber" placeholder="XXX-XXX-XXX" /></p>

@@ -10,10 +10,6 @@ if(!$address){$address = 'undefined';}
 }
 ?>
 <html>
-<header>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../css/profile.css">
-</header>
 <body id="bodyProfile">
 	<div id="formAndCharter">
 		<form id="formProfile">

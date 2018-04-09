@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="view/css/forgottenPswd.css" />
-		<title>Mot de passe oublié</title>
-	</head>
+
 	<body>
 		<header>
 			<img src="image/LogoHOMIEweb.png" alt="Logo Homie" />

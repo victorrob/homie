@@ -1,4 +1,5 @@
-		<div id="tete" class="menu_tete">
+<body>
+        <div id="tete" class="menu_tete">
 				<form class="form" method="post" action="/index.php">
 					<label for="habitation">Habitation :</label><br />
 					<select name="habitation" id="habitation">
@@ -42,5 +43,4 @@
 		</section>
 
 		<script type="text/javascript" src="/view/js/header.js"></script>
-
-	</body>
+        </body>

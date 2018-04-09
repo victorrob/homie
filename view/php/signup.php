@@ -6,9 +6,6 @@
 		<title>Inscription</title>
 	</head>
 	<body>
-		<header>
-            <a href="login.php"><img src="../../image/LogoHOMIEweb.png"/></a>
-		</header>
         <div class="container">
                 <form method="post" action="../../model/php/traitement.php">
                         <h1>Inscription</h1>

@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="../css/login.css" />
-		<title>login</title>
-	</head>
+
 	<body>
 		<form method="post" action="index.php">
 			<p><label for="identifiant">Identifiant :</label></p>

@@ -3,13 +3,6 @@ body
 	background: url('../../image/fond5.png');
 	color: white;
 }
-
-header
-{
-	display: flex;
-	justify-content: center;
-}
-
 form
 {
 	margin-top: 50px;

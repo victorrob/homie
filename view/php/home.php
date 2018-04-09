@@ -19,6 +19,17 @@
 			<div><p>Chambre 2</p></div>
 			<div><p>Bureau</p></div>
 		</section>
+        <section id="piece">
+            <div><p>Cuisine</p></div>
+            <div id="ligne">
+                <div><p>Lumière :</p></div>
+                <div><p>Chauffage :</p></div>
+                <div><p>Ventilation :</p></div>
+            </div>
+            <div><p>Volets :</p></div>
+            <div><p>Plage horaire :</p></div>
+            <div><p>Statistiques</p></div>
+        </section>
 		<div class="entete">
 			<hr />
 			<h1>Habitation</h1>

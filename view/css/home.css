@@ -53,11 +53,18 @@ h1
 {
 	margin: auto;
 }
-.menu_tete{
-    display: grid;
-    width: 100%;
-    max-width: 85%;
-    margin: 30px auto;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 400px));
-    grid-gap: 20px;
+#piece
+{
+	display: flex;
+	flex-direction: column;
+}
+
+#piece div
+{
+    border: solid 1px;
+}
+
+#ligne
+{
+	display: flex;
 }

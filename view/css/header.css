@@ -1,3 +1,7 @@
+body{
+    background-image: url("/image/fond5.png");
+    color: white;
+}
 #menuHead{
     display: grid;
     width: 100%;
@@ -16,16 +20,14 @@
     margin-right: 95px;
 }
 
-
-#roue ul{
+#roue ul {
     visibility: hidden;
     position: absolute;
     flex-direction: column;
-    list-style-type:none;
+    list-style-type: none;
     margin-top: 35px;
     margin-right: 50px;
 }
-
 #roue ul a{
     text-decoration: none;
     color: white;
@@ -61,11 +63,4 @@
     border-radius: 5px;
     margin-right: 200px;
     right: -20% ;
-}
-
-body
-
-{
-    background: url('/image/fond5.png');
-    color: white;
 }

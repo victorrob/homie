@@ -1,6 +1,3 @@
-    <link rel="stylesheet" href="/view/css/header.css" />
-    </head>
-    <body>
     <header>
     <section id="menuHead">
         <div></div>

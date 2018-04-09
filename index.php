@@ -3,8 +3,9 @@
     <head>
 <?php
 $php = isset($_GET['p']) ? $_GET['p'] : 'login';
-echo '<link rel="stylesheet" href="/view/css/'.$php.'.css" />';
 ?>
+<link rel="stylesheet" href="/view/css/header.css" />
+<link rel="stylesheet" href="/view/css/<?php echo $php ?>.css" />
 <title>
     <?php echo $php ?>
 </title>

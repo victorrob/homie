@@ -1,26 +1,18 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="/view/css/home.css" />
-		<title>accueil</title>
-	</head>
-	<body>
 		<div id="tete" class="menu_tete">
-            <form class="form" method="post" action="index.php">
-                <label for="habitation">Habitation :</label><br />
-                <select name="habitation" id="habitation">
-                    <option value="maison_brest">Maison Brest</option>
-                    <option value="appartement_paris">Appartement Paris</option>
-                </select>
-            </form>
-		</div>
+				<form class="form" method="post" action="/index.php">
+					<label for="habitation">Habitation :</label><br />
+					<select name="habitation" id="habitation">
+						<option value="maison_brest">Maison Brest</option>
+						<option value="appartement_paris">Appartement Paris</option>
+					</select>
+				</form>
+        </div>
 		<div class="entete">
 			<hr />
 			<h1>Pièces</h1>
 			<hr />
 		</div>
-		<section>
+		<section id="roomSection">
 			<div><p>Cuisine</p></div>
 			<div><p>Chambre 1</p></div>
 			<div><p>Salon</p></div>
@@ -43,13 +35,12 @@
 			<h1>Habitation</h1>
 			<hr />
 		</div>
-		<section>
+		<section id="habitationSection">
 			<div><p>Lumières</p></div>
 			<div><p>Volets</p></div>
 			<div><p>Absent</p></div>
 		</section>
 
-		<script type="text/javascript" src="/view/js/home.js"></script>
+		<script type="text/javascript" src="/view/js/header.js"></script>
 
 	</body>
-</html>

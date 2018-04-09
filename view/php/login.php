@@ -6,9 +6,6 @@
 		<title>login</title>
 	</head>
 	<body>
-		<header>
-			<img src="image/LogoHOMIEweb.png" alt="Logo Homie" />
-		</header>
 		<form method="post" action="index.php">
 			<p><label for="identifiant">Identifiant :</label></p>
 			<p><input type="text" name="identifiant" id="identifiant" placeholder="Nom d'utilisateur" /></p>

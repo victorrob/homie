@@ -1,41 +1,33 @@
-#roue img
-{
-    position: absolute;
-    right: 0px;
+body{
+    background-image: url("/image/fond5.png");
+    color: white;
 }
-
-
-/*#menu
-{
-    position: absolute;
-    border: solid 3px;
-    background: #505050;
-    width: 100px;
-    text-align: center;
-    padding: 4px 4px;
-    border-radius: 5px;
-}
-*/
-
-/*.menu_tete{
+#menuHead{
     display: grid;
     width: 100%;
-    max-width: 85%;
-    margin: 30px auto;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 400px));
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(33.333%, 1fr));
+    grid-gap: 0px;
 }
-*/
+#img{
+    display: flex;
+    justify-content: center;
+}
 
-#roue ul{
+#parametre
+{
+    width: 30px;
+    height: 30px;
+    margin-right: 95px;
+}
+
+#roue ul {
     visibility: hidden;
     position: absolute;
     flex-direction: column;
-    list-style-type:none;
+    list-style-type: none;
     margin-top: 35px;
-    right: 10px;
+    margin-right: 50px;
 }
-
 #roue ul a{
     text-decoration: none;
     color: white;
@@ -47,21 +39,28 @@
 
 #roue
 {
-    margin-right: 20px;
+    margin-top: 40%;
+    margin-left: 80%;
     display: flex;
-    flex-direction: column;
     position: relative;
 }
 
-#homielogo
+#roue img
 {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+    position: relative;
 }
-/*header
+
+
+#menu
 {
-    display: flex;
-    justify-content: space-around;
+    visibility: hidden;
+    position: absolute;
+    border: solid 3px;
+    background: #505050;
+    width: 100px;
+    text-align: center;
+    padding: 4px 4px;
+    border-radius: 5px;
+    margin-right: 200px;
+    right: -20% ;
 }

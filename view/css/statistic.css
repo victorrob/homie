@@ -1,0 +1,19 @@
+#statisticSection > h1{
+
+    border: 1px solid white;
+    padding: 0 10px;
+
+}
+#statisticSection > div {
+    height: 300px;
+    visibility: hidden;
+    position: absolute;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 0 60px;
+}
+#statisticSection > div > div{
+    margin : 2px;
+    background-color: #2196F3;
+}

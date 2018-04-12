@@ -1,6 +1,5 @@
     <header>
     <section id="menuHead">
-        <div></div>
         <div id="img">
             <a href="index.php?p=home"> <img src="/image/LogoHOMIEweb.png" alt="Logo Homie" /> </a>
         </div>

@@ -46,3 +46,61 @@ function getHistoric($roomId, $PDO){
     }
     return $sensorHistoric;
 }
+
+//add user
+if (isset($_POST['name']))
+    $name=$_POST['name'];
+else
+    $nom="";
+
+if (isset($_POST['firstName']))
+    $firstName=$_POST['firstName'];
+else
+    $firstName="";
+
+if (isset($_POST['mail']))
+    $mail=$_POST['mail'];
+else
+    $mail="";
+
+if (isset($_POST['phone']))
+    $phone=$_POST['phone'];
+else
+    $phone="";
+
+if (isset($_POST['password']))
+    $password=$_POST['password'];
+else
+    $password="";
+
+if (isset($_POST['type']))
+    $type=$_POST['type'];
+else
+    $type="";
+
+if (isset($_POST['birthDate']))
+    $birthDate=$_POST['birthDate'];
+else
+    $birthDate="";
+
+if (isset($_POST['address']))
+    $address=$_POST['address'];
+else
+    $address="";
+
+if (isset($_POST['zipCode']))
+    $zipCode=$_POST['zipCode'];
+else
+    $zipCode="";
+
+if (isset($_POST['city']))
+    $city=$_POST['city'];
+else
+    $city="";
+
+if (isset($_POST['country']))
+    $country=$_POST['country'];
+else
+    $country="";
+
+$PDO->exec('INSERT INTO user(idUser,name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) VALUES('','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')';

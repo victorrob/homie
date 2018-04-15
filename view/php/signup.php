@@ -7,7 +7,7 @@
 	</head>
 	<body>
         <div class="container">
-                <form method="post" action="../../model/php/traitement.php">
+                <form method="post" action="/index.php?p=treatmentSignup">
                         <h1>Inscription</h1>
 
                         <p><label for="name">Nom :</label></p>
@@ -25,8 +25,18 @@
                         <p><label for="confirmPassword">Confirmé votre mot de passe :</label></p>
                         <p><input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmation"></p>
 
-                        <p><label for="phone">Numéro de téléphone</label></p>
+                        <p><label for="type"Type d'utilisateur :</label>
+                            <select name="country" id="country"></p>
+                                <option value="owner">Propriétaire</option>
+                                <option value="guest">Invité</option>
+                            </select>
+                        </p>
+
+                        <p><label for="phone">Numéro de téléphone :</label></p>
                         <p><input type="tel" name="phone" id="phone" placeholder="+33 X XX XX XX XX" /></p>
+
+                        <p><label for="birthDate">Date de naissance :</label></p>
+                        <input type="date" name="birthDate" id="birthDate">
 
                         <p><label for="productNumber">Numéro de produit :</label></p>
                         <p><input type="text" name="productNumber" id="productNumber" placeholder="XXX-XXX-XXX" /></p>

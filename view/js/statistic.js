@@ -22,13 +22,13 @@ for(j = 0; j < sensorHistoric.length; j++) {
     max = 0;
     for (i = 0; i < historicMax; i++) {
         document.getElementsByClassName('graph' + j)[i].style.width = (width / historicMax) + '%';
-        if (sensorHistoric[j][i] > max) {
+        if (sensorHistoric[j][i] > max && sensorHistoric[j][i]>9) {
             max = sensorHistoric[j][i];
         }
     }
+    alert('numbre de val = ' + historicMax + 'max = ' + max);
     for (i = 0; i < historicMax; i++) {
         document.getElementById("sensorHistoric" + j + i).style.height = Math.floor(heigth * (sensorHistoric[j][i] / max)) + "px";
-        alert("done");
         document.getElementById("sensorHistoric" + j + i).style.marginTop = Math.floor(heigth - heigth * (sensorHistoric[j][i] / max)) + "px";
 
     }

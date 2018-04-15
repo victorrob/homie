@@ -2,6 +2,10 @@
 <html>
     <head>
 <?php
+include('model/treatment.php');
+$t = getHistoric(10, $PDO);
+$sensorHistoric1 = $t[1]['value'];
+echo print_r($t).'<br\><br\><br\><br\><br\><br\>';
 $php = isset($_GET['p']) ? $_GET['p'] : 'login';
 ?>
 <link rel="stylesheet" href="/view/css/header.css" />

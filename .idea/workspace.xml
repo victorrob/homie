@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cdd3b45-a150-40a0-ba7d-8df7bfce4625" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/model/treatment.php" afterPath="$PROJECT_DIR$/model/treatment.php" />
-      <change beforePath="$PROJECT_DIR$/view/php/signup.php" afterPath="$PROJECT_DIR$/view/php/signup.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -90,13 +88,15 @@
         <entry file="file://$PROJECT_DIR$/model/treatment.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="663">
-              <caret line="105" column="130" lean-forward="false" selection-start-line="105" selection-start-column="130" selection-end-line="105" selection-end-column="130" />
+              <caret line="105" column="12" lean-forward="false" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="12" />
               <folding>
-                <marker date="1523801313773" expanded="true" signature="547:604" ph="INSERT INTO historic... " />
-                <marker date="1523801313773" expanded="true" signature="547:660" ph="INSERT INTO historic... " />
-                <marker date="1523801313773" expanded="true" signature="547:662" ph="INSERT INTO historic... " />
-                <marker date="1523801313773" expanded="true" signature="788:848" ph="SELECT value... " />
-                <marker date="1523801313773" expanded="true" signature="2273:2384" ph="INSERT INTO user... " />
+                <marker date="1523802221739" expanded="true" signature="547:604" ph="INSERT INTO historic... " />
+                <marker date="1523802221739" expanded="true" signature="547:660" ph="INSERT INTO historic... " />
+                <marker date="1523802221739" expanded="true" signature="547:662" ph="INSERT INTO historic... " />
+                <marker date="1523802221739" expanded="true" signature="788:848" ph="SELECT value... " />
+                <marker date="1523802221739" expanded="true" signature="2273:2384" ph="INSERT INTO user... " />
+                <marker date="1523802221739" expanded="true" signature="2273:2499" ph="INSERT INTO user... " />
+                <marker date="1523802221739" expanded="true" signature="2273:2502" ph="INSERT INTO user... " />
               </folding>
             </state>
           </provider>
@@ -130,8 +130,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/model/treatment.php" />
         <option value="$PROJECT_DIR$/view/php/signup.php" />
+        <option value="$PROJECT_DIR$/model/treatment.php" />
       </list>
     </option>
   </component>
@@ -341,12 +341,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1523797754269</updated>
-      <workItem from="1523797757260" duration="4313000" />
+      <workItem from="1523797757260" duration="4532000" />
     </task>
+    <task id="LOCAL-00001" summary="add birthDate,type in signup.php + add user in treatment.php">
+      <created>1523802145807</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1523802145807</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4313000" />
+    <option name="totallyTimeSpent" value="4532000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -378,6 +386,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add birthDate,type in signup.php + add user in treatment.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="add birthDate,type in signup.php + add user in treatment.php" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -459,13 +471,15 @@
     <entry file="file://$PROJECT_DIR$/model/treatment.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
-          <caret line="105" column="130" lean-forward="false" selection-start-line="105" selection-start-column="130" selection-end-line="105" selection-end-column="130" />
+          <caret line="105" column="12" lean-forward="false" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="12" />
           <folding>
-            <marker date="1523801313773" expanded="true" signature="547:604" ph="INSERT INTO historic... " />
-            <marker date="1523801313773" expanded="true" signature="547:660" ph="INSERT INTO historic... " />
-            <marker date="1523801313773" expanded="true" signature="547:662" ph="INSERT INTO historic... " />
-            <marker date="1523801313773" expanded="true" signature="788:848" ph="SELECT value... " />
-            <marker date="1523801313773" expanded="true" signature="2273:2384" ph="INSERT INTO user... " />
+            <marker date="1523802221739" expanded="true" signature="547:604" ph="INSERT INTO historic... " />
+            <marker date="1523802221739" expanded="true" signature="547:660" ph="INSERT INTO historic... " />
+            <marker date="1523802221739" expanded="true" signature="547:662" ph="INSERT INTO historic... " />
+            <marker date="1523802221739" expanded="true" signature="788:848" ph="SELECT value... " />
+            <marker date="1523802221739" expanded="true" signature="2273:2384" ph="INSERT INTO user... " />
+            <marker date="1523802221739" expanded="true" signature="2273:2499" ph="INSERT INTO user... " />
+            <marker date="1523802221739" expanded="true" signature="2273:2502" ph="INSERT INTO user... " />
           </folding>
         </state>
       </provider>

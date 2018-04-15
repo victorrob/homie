@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3cdd3b45-a150-40a0-ba7d-8df7bfce4625" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/model/treatment.php" afterPath="$PROJECT_DIR$/model/treatment.php" />
+      <change beforePath="$PROJECT_DIR$/view/php/signup.php" afterPath="$PROJECT_DIR$/view/php/signup.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signup.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="signup.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/view/php/signup.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+            <state relative-caret-position="-1785">
+              <caret line="29" column="32" lean-forward="false" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -84,7 +84,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="treatment.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="treatment.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/treatment.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="663">
@@ -130,8 +130,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/view/php/signup.php" />
         <option value="$PROJECT_DIR$/model/treatment.php" />
+        <option value="$PROJECT_DIR$/view/php/signup.php" />
       </list>
     </option>
   </component>
@@ -341,7 +341,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1523797754269</updated>
-      <workItem from="1523797757260" duration="4532000" />
+      <workItem from="1523797757260" duration="5149000" />
     </task>
     <task id="LOCAL-00001" summary="add birthDate,type in signup.php + add user in treatment.php">
       <created>1523802145807</created>
@@ -350,11 +350,18 @@
       <option name="project" value="LOCAL" />
       <updated>1523802145807</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="replace '' by &quot;&quot; before INSERT INTO in add user">
+      <created>1523802357699</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1523802357699</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4532000" />
+    <option name="totallyTimeSpent" value="5149000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -389,7 +396,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add birthDate,type in signup.php + add user in treatment.php" />
-    <option name="LAST_COMMIT_MESSAGE" value="add birthDate,type in signup.php + add user in treatment.php" />
+    <MESSAGE value="replace '' by &quot;&quot; before INSERT INTO in add user" />
+    <option name="LAST_COMMIT_MESSAGE" value="replace '' by &quot;&quot; before INSERT INTO in add user" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -436,14 +444,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/css/statistic.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -456,14 +456,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/php/signup.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -481,6 +473,22 @@
             <marker date="1523802221739" expanded="true" signature="2273:2499" ph="INSERT INTO user... " />
             <marker date="1523802221739" expanded="true" signature="2273:2502" ph="INSERT INTO user... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/php/signup.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1785">
+          <caret line="29" column="32" lean-forward="false" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>

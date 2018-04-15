@@ -22,13 +22,12 @@ function adjustDate($year, $month, $day){
     return $year.'-'.$month.'-'.$day;
 }
 
-//add value to the sensor historic's table
-for($i = 0; $i<10; $i++){
-    $PDO->exec('INSERT INTO historic(sensor_id,room_id,value,day) VALUES(1,10,'.mt_rand(0,50).',\''.adjustDate(2018,4,13+$i).'\')');
-}
-
 //get all value and date of historic of one specific room
-function getHistoric($roomId, $PDO){
+function getHistoric($homeId, $roomName, $PDO){
+    $getRoomId = $PDO->prepare('SELECT room_id FROM room WHERE home_id = :homeId AND roomName = :roomName');
+    $getRoomId->execute(array(':homeId' => $homeId, ':roomName' => $roomName));
+    $roomId = $getRoomId->fetch()['room_id'];
+    $getRoomId->closeCursor();
     $req = $PDO->prepare('SELECT value, day, sensor_id FROM historic WHERE room_id = ? ');
     $req->execute([$roomId]);
     $sensorHistoric = [];
@@ -41,10 +40,23 @@ function getHistoric($roomId, $PDO){
         }
         else{
             array_push($sensorType, $sensorId);
-            array_push($sensorHistoric, 1);
+            array_push($sensorHistoric, [['value'], ['day']]);
         }
     }
-    return $sensorHistoric;
+    $req->closeCursor();
+    $req = $PDO->prepare('SELECT type, sensor_id FROM sensor');
+    $req->execute();
+    $sensorName = [];
+    for($i = 0; $i<count($sensorType); $i++){
+        while ($data = $req->fetch()){
+            if($data['sensor_id'] == $sensorType[$i]){
+                array_push($sensorName, $data['type']);
+                break;
+            }
+        $req->closeCursor();
+    }
+    }
+    return [$sensorType,$sensorName, $sensorHistoric];
 }
 
 //add user
@@ -103,4 +115,4 @@ if (isset($_POST['country']))
 else
     $country="";
 
-$PDO->exec('INSERT INTO user(idUser,name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) VALUES('','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')';
+//$PDO->exec('INSERT INTO user(idUser,name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) VALUES('','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')';

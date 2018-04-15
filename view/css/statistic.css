@@ -4,7 +4,7 @@
     padding: 0 10px;
 
 }
-#statisticSection > div {
+.graphSection {
     height: 300px;
     visibility: hidden;
     position: absolute;
@@ -13,7 +13,7 @@
     flex-direction: row;
     padding: 0 60px;
 }
-#statisticSection > div > div{
+.graphSection > div{
     margin : 2px;
     background-color: #2196F3;
 }

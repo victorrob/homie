@@ -1,34 +1,33 @@
 <body>
     <section id="statisticSection" class="abc def">
         <?php
-            $sensorHistoric0 = array(80, 62, 12, 30, 87, 70, 51, 96, 89, 82, 2, 8, 74, 61, 1, 42, 4, 27);
+            $sensorNumber = count($sensorHistoric);
+            $i = 0;
+        foreach($sensorHistoric as $sensor){
 
-            $sensorHistoric2 = array(22, 62, 12, 30, 87, 70, 51, 96, 89, 82, 2, 8, 74, 61, 1, 42, 4, 27);
-            $sensorHistoric = array($sensorHistoric0, $sensorHistoric1, $sensorHistoric2);
-            $sensorNumber = 3;
-            echo print_r($sensorHistoric1);
-        for($sensor = 0; $sensor<$sensorNumber; $sensor++)
-                {
                     ?>
-            <h1 id=<?php echo 'sensorTitle'.$sensor; ?>
-                onclick=<?php echo 'onOff('.$sensor.','.$sensorNumber.')';?>>
-                <?php echo 'sensor'.$sensor; ?>
+
+            <h1 id=<?php echo 'sensorTitle'.$i; ?>
+                onclick=<?php echo 'onOff('.$i.','.$sensorNumber.')';?>>
+                <?php echo $sensorName[$i]; ?>
             </h1>
-            <div class=<?php echo "grapSection$sensor"; ?> id=<?php echo 'sensorValue'.$sensor; ?>>
+            <div class='graphSection' id=<?php echo 'sensorValue'.$i; ?>>
                 <?php
-                    for($i = 0; $i < count($sensorHistoric[$sensor]); $i++){
+                    for($j = 0; $j < count($sensor['value']); $j++){
                         ?>
-                        <div class=<?php echo 'graph'.$sensor; ?>  id=<?php echo 'sensorHistoric'.$sensor.$i; ?>>
+                        <div class=<?php echo 'graph'.$i; ?>  id=<?php echo 'sensorHistoric'.$i.$j; ?>>
                         </div>
                      <?php
                     }
                      ?>
             </div>
         <?php
-                }
+            $i++;
+        }
         ?>
     </section>
     <script>
+        var sensorType = <?php echo json_encode($sensorType); ?>;
         var sensorHistoric = <?php echo json_encode($sensorHistoric); ?>;
     </script>
     <script type="text/javascript" src="/view/js/statistic.js"></script>

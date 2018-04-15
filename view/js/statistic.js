@@ -1,7 +1,6 @@
 function onOff(numberSelected, numberMax) {
-
     var i = 0;
-    for (i; i < numberMax; i++) {
+    for (i = 0; i < numberMax; i++) {
 
         if (i === numberSelected) {
 
@@ -17,6 +16,29 @@ function onOff(numberSelected, numberMax) {
 }
 
 var width = 80, heigth = 300, max = 0, historicMax = 0;
+
+var i=0,j=0;
+
+for(i = 0; i < sensorType.length; i++){
+    historicMax = sensorHistoric[sensorType[i]]['value'].length;
+    max = 0;
+    for(j = 0; j<sensorHistoric[sensorType[i]]['value'].length; j++){
+        var value = sensorHistoric[sensorType[i]]['value'][j];
+        document.getElementsByClassName('graph' + i)[j].style.width = (width / historicMax) + '%';
+        if (value > max && value>9) {
+            max = value;
+        }
+    }
+
+    for(j = 0; j<sensorHistoric[sensorType[i]]['value'].length; j++){
+        value = sensorHistoric[sensorType[i]]['value'][j];
+        document.getElementById("sensorHistoric" + i + j).style.height = Math.floor(heigth * (value / max)) + "px";
+        document.getElementById("sensorHistoric" + i + j).style.marginTop = Math.floor(heigth - heigth * (value / max)) + "px";
+    }
+}
+
+
+/*
 for(j = 0; j < sensorHistoric.length; j++) {
     historicMax = sensorHistoric[j].length;
     max = 0;
@@ -33,3 +55,4 @@ for(j = 0; j < sensorHistoric.length; j++) {
 
     }
 }
+ */

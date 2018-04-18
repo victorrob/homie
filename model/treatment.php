@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: victo
- * Date: 09/04/2018
- * Time: 16:55
- */
 
 $PDO = new PDO('mysql:host=localhost:3306;dbname=homie;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-
 
 //statistic
 function adjustDate($year, $month, $day){
@@ -23,11 +16,11 @@ function adjustDate($year, $month, $day){
 }
 
 //get all value and date of historic of one specific room
-function getHistoric($homeId, $roomName, $PDO){
-    $getRoomId = $PDO->prepare('SELECT room_id FROM room WHERE home_id = :homeId AND roomName = :roomName');
+function getHistoric($roomId, $PDO){
+    /*$getRoomId = $PDO->prepare('SELECT room_id FROM room WHERE home_id = :homeId AND roomName = :roomName');
     $getRoomId->execute(array(':homeId' => $homeId, ':roomName' => $roomName));
     $roomId = $getRoomId->fetch()['room_id'];
-    $getRoomId->closeCursor();
+    $getRoomId->closeCursor();*/
     $req = $PDO->prepare('SELECT value, day, sensor_id FROM historic WHERE room_id = ? ');
     $req->execute([$roomId]);
     $sensorHistoric = [];
@@ -60,59 +53,62 @@ function getHistoric($homeId, $roomName, $PDO){
 }
 
 //add user
-if (isset($_POST['name']))
-    $name=$_POST['name'];
-else
-    $nom="";
+function signUp($PDO){
+    if (isset($_POST['name']))
+        $name=$_POST['name'];
+    else
+        $name="";
 
-if (isset($_POST['firstName']))
-    $firstName=$_POST['firstName'];
-else
-    $firstName="";
+    if (isset($_POST['firstName']))
+        $firstName=$_POST['firstName'];
+    else
+        $firstName="";
 
-if (isset($_POST['mail']))
-    $mail=$_POST['mail'];
-else
-    $mail="";
+    if (isset($_POST['mail']))
+        $mail=$_POST['mail'];
+    else
+        $mail="";
 
-if (isset($_POST['phone']))
-    $phone=$_POST['phone'];
-else
-    $phone="";
+    if (isset($_POST['phone']))
+        $phone=$_POST['phone'];
+    else
+        $phone="";
 
-if (isset($_POST['password']))
-    $password=$_POST['password'];
-else
-    $password="";
+    if (isset($_POST['password']))
+        $password=$_POST['password'];
+    else
+        $password="";
 
-if (isset($_POST['type']))
-    $type=$_POST['type'];
-else
-    $type="";
+    if (isset($_POST['type']))
+        $type=$_POST['type'];
+    else
+        $type="";
 
-if (isset($_POST['birthDate']))
-    $birthDate=$_POST['birthDate'];
-else
-    $birthDate="";
+    if (isset($_POST['birthDate']))
+        $birthDate=$_POST['birthDate'];
+    else
+        $birthDate="";
 
-if (isset($_POST['address']))
-    $address=$_POST['address'];
-else
-    $address="";
+    if (isset($_POST['address']))
+        $address=$_POST['address'];
+    else
+        $address="";
 
-if (isset($_POST['zipCode']))
-    $zipCode=$_POST['zipCode'];
-else
-    $zipCode="";
+    if (isset($_POST['zipCode']))
+        $zipCode=$_POST['zipCode'];
+    else
+        $zipCode="";
 
-if (isset($_POST['city']))
-    $city=$_POST['city'];
-else
-    $city="";
+    if (isset($_POST['city']))
+        $city=$_POST['city'];
+    else
+        $city="";
 
-if (isset($_POST['country']))
-    $country=$_POST['country'];
-else
-    $country="";
+    if (isset($_POST['country']))
+        $country=$_POST['country'];
+    else
+        $country="";
 
-//$PDO->exec('INSERT INTO user(idUser,name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) VALUES('','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')';
+    $PDO->exec("INSERT INTO user(idUser,name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) 
+                VALUES('','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
+}

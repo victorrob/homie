@@ -15,7 +15,9 @@
                 <?php
                     for($j = 0; $j < count($sensor['value']); $j++){
                         ?>
-                        <div class=<?php echo 'graph'.$i; ?>  id=<?php echo 'sensorHistoric'.$i.$j; ?>>
+                        <div onmouseout="showValue(null, null,null, false)"
+                             onmouseover="showValue(<?php echo $i; ?>,<?php echo $j; ?>,event, true)"
+                             class=<?php echo 'graph'.$i; ?>  id=<?php echo 'sensorHistoric'.$i.'+'.$j; ?>>
                         </div>
                      <?php
                     }

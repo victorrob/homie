@@ -5,7 +5,7 @@
 
 }
 .graphSection {
-    height: 300px;
+    height: 340px;
     visibility: hidden;
     position: absolute;
     margin: 0 auto;
@@ -16,4 +16,13 @@
 .graphSection > div{
     margin : 2px;
     background-color: #2196F3;
+}
+#idValue{
+    position: fixed;
+    border-radius: 4px;
+    padding: 0 4px;
+    border: 1px solid #505050;
+    background-color: #cccccc;
+    color: #000;
+
 }

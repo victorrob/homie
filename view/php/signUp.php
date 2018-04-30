@@ -7,7 +7,7 @@
 	</head>
 	<body>
         <div class="container">
-                <form method="post" action="/index.php?p=signUp">
+                <form method="post" action="index.php?p=signUp">
                         <h1>Inscription</h1>
 
                         <p><label for="name">Nom :</label></p>

@@ -1,6 +1,10 @@
 <?php
-
-$PDO = new PDO('mysql:host=localhost:3306;dbname=homie;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+try {
+    $PDO = new PDO('mysql:host=localhost:3306;dbname=homie;charset=utf8', 'root', '', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+}
+catch (Exception $e){
+    $PDO = new PDO('mysql:host=victorropttest.mysql.db;dbname=victorropttest;charset=utf8', 'victorropttest', 'Homie2018', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+}
 
 //statistic
 function adjustDate($year, $month, $day){
@@ -17,10 +21,6 @@ function adjustDate($year, $month, $day){
 
 //get all value and date of historic of one specific room
 function getHistoric($roomId, $PDO){
-    /*$getRoomId = $PDO->prepare('SELECT room_id FROM room WHERE home_id = :homeId AND roomName = :roomName');
-    $getRoomId->execute(array(':homeId' => $homeId, ':roomName' => $roomName));
-    $roomId = $getRoomId->fetch()['room_id'];
-    $getRoomId->closeCursor();*/
     $req = $PDO->prepare('SELECT value, day, sensor_id FROM historic WHERE room_id = ? ');
     $req->execute([$roomId]);
     $sensorHistoric = [];
@@ -33,7 +33,8 @@ function getHistoric($roomId, $PDO){
         }
         else{
             array_push($sensorType, $sensorId);
-            array_push($sensorHistoric, [['value'], ['day']]);
+            $sensorHistoric[$sensorId]['value'][] = $data ['value'];
+            $sensorHistoric[$sensorId]['day'][] = $data ['day'];
         }
     }
     $req->closeCursor();

@@ -13,13 +13,13 @@
                             while ($habitation = mysqli_fetch_assoc($habitations)) {
                                 ?>
                                 <option><?php echo $habitation["name"] ?></option>
-                     <?php  }
+                            <?php  }
                         }
                         mysqli_close($connection);
                         ?>
 
 
-					</select>
+                    </select>
 				</form>
         </div>
 		<div class="entete">

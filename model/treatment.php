@@ -54,63 +54,73 @@ function getHistoric($roomId, $PDO){
 }
 
 //add user
-function signUp($PDO){
+function signUp($PDO)
+{
     if (isset($_POST['name']))
-        $name= strip_tags($_POST['name']);
+        $name = strip_tags($_POST['name']);
     else
-        $name="";
+        $name = "";
 
     if (isset($_POST['firstName']))
-        $firstName=strip_tags($_POST['firstName']);
+        $firstName = strip_tags($_POST['firstName']);
     else
-        $firstName="";
+        $firstName = "";
 
     if (isset($_POST['mail']))
-        $mail=strip_tags($_POST['mail']);
+        $mail = strip_tags($_POST['mail']);
     else
-        $mail="";
+        $mail = "";
 
     if (isset($_POST['phone']))
-        $phone= strip_tags($_POST['phone']);
+        $phone = strip_tags($_POST['phone']);
     else
-        $phone="";
+        $phone = "";
 
     if (isset($_POST['password']))
-        $password= strip_tags($_POST['password']);
+        $password = strip_tags($_POST['password']);
     else
-        $password="";
+        $password = "";
 
     if (isset($_POST['type']))
-        $type=strip_tags($_POST['type']);
+        $type = strip_tags($_POST['type']);
     else
-        $type="";
+        $type = "";
 
     if (isset($_POST['birthDate']))
-        $birthDate= strip_tags($_POST['birthDate']);
+        $birthDate = strip_tags($_POST['birthDate']);
     else
-        $birthDate="";
+        $birthDate = "";
 
     if (isset($_POST['address']))
-        $address= strip_tags($_POST['address']);
+        $address = strip_tags($_POST['address']);
     else
-        $address="";
+        $address = "";
 
     if (isset($_POST['zipCode']))
-        $zipCode= strip_tags($_POST['zipCode']);
+        $zipCode = strip_tags($_POST['zipCode']);
     else
-        $zipCode="";
+        $zipCode = "";
 
     if (isset($_POST['city']))
-        $city= strip_tags($_POST['city']);
+        $city = strip_tags($_POST['city']);
     else
-        $city="";
+        $city = "";
 
     if (isset($_POST['country']))
-        $country= strip_tags($_POST['country']);
+        $country = strip_tags($_POST['country']);
     else
-        $country="";
-
+        $country = "";
     $PDO->exec("INSERT INTO user(idUser,name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) 
                 VALUES('','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
+}
 
+function homes($PDO, $idUser)
+{
+    $req = $PDO->prepare('SELECT name FROM residence JOIN user-residence WHERE user-residence.idUser = ?');
+    $req->execute($idUser);
+    $homes = [];
+    while ($home = $req->fetch()) {
+        array_push($homes, $home['name']);
+    }
+    return $homes;
 }

@@ -10,9 +10,7 @@ $dataNeeded = isset($dataNeeded) ? strip_tags($dataNeeded) : "";
 
 $GLOBALS['homeId'] = 1;
 $GLOBALS['roomId'] = 10;
-
 include("control/request.php");
-
 ?>
 <link rel="stylesheet" href="view/css/header.css" />
 <link rel="stylesheet" href="view/css/<?php echo $php ?>.css" />

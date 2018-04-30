@@ -109,7 +109,8 @@ function signUp($PDO){
         $country= strip_tags($_POST['country']);
     else
         $country="";
-echo "tre   atment";
-    $PDO->exec('INSERT INTO user(idUser,name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) 
-                VALUES('.','.$name.','.$firstName.','.$mail.','.$phone.','.$password.','.$type.','.$birthDate.','.$address.','.$zipCode.','.$city.','.$country.')');
+
+    $PDO->exec("INSERT INTO user(idUser,name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) 
+                VALUES('','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
+
 }

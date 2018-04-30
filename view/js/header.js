@@ -11,4 +11,4 @@ window.onload = function header() {
             document.getElementById('menu').style.visibility = "visible";
         }
     }
-}
+};

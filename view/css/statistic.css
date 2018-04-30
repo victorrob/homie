@@ -4,25 +4,82 @@
     padding: 0 10px;
 
 }
+
 .graphSection {
-    height: 340px;
+    height: 300px;
     visibility: hidden;
     position: absolute;
-    margin: 0 auto;
+    margin: 50px 0 50px 50px;
     display: flex;
     flex-direction: row;
-    padding: 0 60px;
+    padding: 0 30px 0 0;
+    width: 0;
+}
+
+#timeRange{
+    left: 50%;
+    transform: translate(-58%,-130%);
+    display: grid;
+
+    position: absolute;
+}
+.timeRangeButton{
+    border-radius: 4px;
+    color: white;
+    margin: 1%;
+    padding: 0 5px;
+    min-width: 4em;
+    text-align: center;
+}
+
+#verticalLine{
+    width: 2px;
+    border-left: 1px solid white;
+    height: 300px;
+    transform: translate(0px, -16px);
 }
 .graphSection > div{
-    margin : 2px;
+    margin : 0.5%;
     background-color: #2196F3;
 }
-#idValue{
-    position: fixed;
-    border-radius: 4px;
-    padding: 0 4px;
-    border: 1px solid #505050;
-    background-color: #cccccc;
-    color: #000;
 
+#valuesSection{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    transform: translate(-150%,-60px);
+}
+
+.values{
+    margin: 60px 0;
+}
+
+.idValue{
+    position: absolute;
+    border-radius: 4px;
+    min-width: 5.5em;
+    text-align: center;
+    padding: 0 4px;
+    background-color: sandybrown;
+    color: #000;
+    transform: translate(-50%,-100%);
+    visibility: hidden;
+
+}
+.triangle {
+
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+
+
+    border-top: 10px solid sandybrown;
+    transform: translate(-50%,-100%);
+    visibility: hidden;
+}
+.graphSection > div > div{
+    text-align: center;
+    transform: rotate(-45deg);
 }

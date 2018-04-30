@@ -1,22 +1,8 @@
 body{
-    background-image: url("/image/fond5.png");
+    background-image: url("../../image/fond5.png");
     color: white;
 }
 
-@media screen and (min-width: 550px){
-    #roue
-    {
-        position: absolute;
-        top: 85px;
-    }
-}
-
-@media screen and (max-width: 550px){
-    #roue
-    {
-        position: relative;
-    }
-}
 
 #roue{
     margin-left: 60%;
@@ -28,8 +14,8 @@ body{
 }
 
 #img{
-    width: 340px;
-    height: 142px;
+    width: 260px;
+    height: 118px;
     position: relative;
     left: 50%;
     transform: translate(-50%);
@@ -37,7 +23,6 @@ body{
 
 #parametre{
     margin-right: 95px;
-    width: 30px;
     height: 30px;
 }
 
@@ -73,4 +58,24 @@ body{
     text-align: center;
     padding: 4px 4px;
     border-radius: 5px;
+}
+@media screen and (min-width: 550px){
+    #roue
+    {
+        position: absolute;
+        top: 85px;
+    }
+
+}
+
+@media screen and (max-width: 550px){
+    #roue
+    {
+        position: relative;
+        margin-left: 55%;
+    }
+
+    body{
+        width : 550px;
+    }
 }

@@ -1,4 +1,3 @@
-<?php echo "test" ?>
 <form method="post" action="index.php">
 			<p><label for="identifiant">Identifiant :</label></p>
 			<p><input type="text" name="identifiant" id="identifiant" placeholder="Nom d'utilisateur" /></p>

@@ -7,4 +7,7 @@ switch ($php){
     case "signUp":
         signUp($PDO);
         break;
+    default:
+
 }
+

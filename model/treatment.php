@@ -38,12 +38,12 @@ function getHistoric($roomId, $PDO){
         }
     }
     $req->closeCursor();
-    $req = $PDO->prepare('SELECT type, sensor_id FROM sensor');
+    $req = $PDO->prepare('SELECT type, idSensor FROM sensor');
     $req->execute();
     $sensorName = [];
     for($i = 0; $i<count($sensorType); $i++){
         while ($data = $req->fetch()){
-            if($data['sensor_id'] == $sensorType[$i]){
+            if($data['idSensor'] == $sensorType[$i]){
                 array_push($sensorName, $data['type']);
                 break;
             }

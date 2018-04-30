@@ -4,8 +4,8 @@
     padding: 0 10px;
 
 }
-#statisticSection > div {
-    height: 300px;
+.graphSection {
+    height: 340px;
     visibility: hidden;
     position: absolute;
     margin: 0 auto;
@@ -13,7 +13,16 @@
     flex-direction: row;
     padding: 0 60px;
 }
-#statisticSection > div > div{
+.graphSection > div{
     margin : 2px;
     background-color: #2196F3;
+}
+#idValue{
+    position: fixed;
+    border-radius: 4px;
+    padding: 0 4px;
+    border: 1px solid #505050;
+    background-color: #cccccc;
+    color: #000;
+
 }

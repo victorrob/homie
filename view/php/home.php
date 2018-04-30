@@ -3,8 +3,22 @@
 				<form class="form" method="post" action="/index.php">
 					<label for="habitation">Habitation :</label><br />
 					<select name="habitation" id="habitation">
-						<option value="maison_brest">Maison Brest</option>
-						<option value="appartement_paris">Appartement Paris</option>
+
+                        <?php
+                        $connection = mysqli_connect("localhost","root","","homie");
+                        $sql = "SELECT name FROM residence";
+                        $habitations = mysqli_query($connection, $sql);
+
+                        if (mysqli_num_rows($habitations) > 0) {
+                            while ($habitation = mysqli_fetch_assoc($habitations)) {
+                                ?>
+                                <option><?php echo $habitation["name"] ?></option>
+                     <?php  }
+                        }
+                        mysqli_close($connection);
+                        ?>
+
+
 					</select>
 				</form>
         </div>
@@ -14,22 +28,24 @@
 			<hr />
 		</div>
 		<section id="roomSection">
-			<div><p>Cuisine</p></div>
-			<div><p>Chambre 1</p></div>
-			<div><p>Salon</p></div>
-			<div><p>Chambre 2</p></div>
-			<div><p>Bureau</p></div>
+
+            <?php
+            $connection = mysqli_connect("localhost","root","","homie");
+            $sql = "SELECT name FROM room";
+            $pieces = mysqli_query($connection, $sql);
+
+            if (mysqli_num_rows($pieces) > 0) {
+            while ($piece = mysqli_fetch_assoc($pieces)) {
+            ?>
+            <div onclick="home();"><p><?php echo $piece["name"] ?></p></div>
+                    <?php  }
+                    }
+                    mysqli_close($connection)
+                    ?>
+
 		</section>
-        <section id="piece">
-            <div><p>Cuisine</p></div>
-            <div id="ligne">
-                <div><p>Lumière :</p></div>
-                <div><p>Chauffage :</p></div>
-                <div><p>Ventilation :</p></div>
-            </div>
-            <div><p>Volets :</p></div>
-            <div><p>Plage horaire :</p></div>
-            <div><p>Statistiques</p></div>
+        <section id="roomFactors">
+            <?php include("roomFactors.php");?>
         </section>
 		<div class="entete">
 			<hr />
@@ -42,5 +58,4 @@
 			<div><p>Absent</p></div>
 		</section>
 
-		<script type="text/javascript" src="/view/js/header.js"></script>
-        </body>
+</body>

@@ -2,11 +2,17 @@
 <html>
     <head>
 <?php
+
 include('model/treatment.php');
-$t = getHistoric(10, $PDO);
-$sensorHistoric1 = $t[1]['value'];
-echo print_r($t).'<br\><br\><br\><br\><br\><br\>';
-$php = isset($_GET['p']) ? $_GET['p'] : 'login';
+$php = isset($_GET['p']) ? strip_tags($_GET['p']) : "login";
+$doSmth = (isset($_GET['d'])  and is_bool($_GET['d'])) ? strip_tags($_GET['d']) : false;
+$dataNeeded = isset($dataNeeded) ? strip_tags($dataNeeded) : "";
+$GLOBALS['homeId'] = 1;
+$GLOBALS['roomId'] = 10;
+$doSmth = true;
+if($doSmth){
+    include("control/request.php");
+}
 ?>
 <link rel="stylesheet" href="/view/css/header.css" />
 <link rel="stylesheet" href="/view/css/<?php echo $php ?>.css" />

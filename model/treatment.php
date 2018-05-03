@@ -111,6 +111,6 @@ function signUp($PDO){
         $country="";
 
     $PDO->exec("INSERT INTO user(idUser,name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) 
-                VALUES('','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
+                VALUES('NULL','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
 
 }

@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="../css/signup.css" />
-		<title>Inscription</title>
-	</head>
+
 	<body>
         <div class="container">
                 <form method="post" action="index.php?p=signUp">
@@ -197,7 +191,5 @@
                         Éventuellement
                     </p>
                 </div>
-            <div/>
-        <div/>
+        </div>
     </body>
-</html>

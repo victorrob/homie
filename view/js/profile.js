@@ -1,7 +1,9 @@
-var parametre = ["name","firstName","birth","email","address","phone","password"];
-for (var i = parametre.length - 1; i >= 0; i--) {
-	console.log("création du bouton : " + parametre[i]);
-	button(parametre[i]);
+function start(){
+	var parametre = ["name","firstName","birth","email","address","phone","password"];
+	for (var i = parametre.length - 1; i >= 0; i--) {
+		console.log("création du bouton : " + parametre[i]);
+		button(parametre[i]);
+	}
 }
 
 function display(id){

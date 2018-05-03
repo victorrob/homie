@@ -115,21 +115,91 @@ function signUp($PDO)
                 VALUES('','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
 }
 
-function homes($PDO, $idUser)
+function home($PDO, $idUser)
 {
-    $req = $PDO->prepare('SELECT name FROM residence JOIN user-residence WHERE user-residence.idUser = ?');
-    $req->execute($idUser);
-    $homes = [];
-    while ($home = $req->fetch()) {
-        array_push($homes, $home['name']);
+    $req = $PDO->prepare('SELECT name, residence.idResidence FROM residence JOIN user_residence WHERE residence.idResidence = user_residence.idResidence AND user_residence.idUser = ?');
+    $req->execute([$idUser]);
+    $residences = [];
+    $select = [];
+    while ($residence = $req->fetch()){
+        array_push($residences, $residence);
+        $select[$residence['idResidence']] = '';
     }
-    return $homes;
+    $req->closeCursor();
+
+    if (isset($_POST['habitation'])){
+        $idResidence = $_POST['habitation'];
+        $select[$idResidence] = 'selected';
+    }
+    else{
+        $idResidence = $residences[0]['idResidence'];
+    }
+
+    $req = $PDO->prepare('SELECT name, idRoom FROM room WHERE idResidence = ?');
+    $req->execute([$idResidence]);
+    $rooms = [];
+    while ($room = $req->fetch()){
+        array_push($rooms, $room);
+    }
+    $req->closeCursor();
+
+    $light = [];
+    $shutter = [];
+    $auto = [];
+    $opening = [];
+    $closing = [];
+    $temperature = [];
+    $ventilation = [];
+    foreach ($rooms as $room){
+        $req = $PDO->prepare('SELECT type, state, auto, opening, closing FROM actuator WHERE idRoom = ?');
+        $req->execute([$room['idRoom']]);
+        while ($actuator = $req->fetch()){
+            if ($actuator['type'] == 'light'){
+                if ($actuator['state'] == 1){
+                    $light[$room['idRoom']] = 'checked';
+                }
+                else{
+                    $light[$room['idRoom']] = '';
+                }
+            }
+            elseif ($actuator['type'] == 'shutter'){
+                if ($actuator['state'] == 1){
+                    $shutter[$room['idRoom']] = 'checked';
+                }
+                else{
+                    $shutter[$room['idRoom']] = '';
+                }
+                if ($actuator['auto'] == 1){
+                    $auto[$room['idRoom']] = 'checked';
+                }
+                else{
+                    $auto[$room['idRoom']] = '';
+                }
+                $opening[$room['idRoom']] = $actuator['opening'];
+                $closing[$room['idRoom']] = $actuator['closing'];
+            }
+        }
+        $req->closeCursor();
+        $req = $PDO->prepare('SELECT type, value FROM sensor WHERE idRoom = ?');
+        $req->execute([$room['idRoom']]);
+        while ($sensor = $req->fetch()){
+            if ($sensor['type'] == 'temperature'){
+                $temperature[$room['idRoom']] = $sensor['value'];
+            }
+            elseif ($sensor['type'] == 'ventilation'){
+                $ventilation[$room['idRoom']] = $sensor['value'];
+            }
+        }
+        $req->closeCursor();
+    }
+
+    return [$residences, $select, $rooms, $light, $shutter, $auto, $opening, $closing, $temperature, $ventilation];
 }
 
 
 function profileGet(){
     $req = $PDO->prepare('FROM "user" SELECT * WHERE id=?');
-    $data = $req->execute([$_SESSION['id']])
+    $data = $req->execute([$_SESSION['id']]);
     while($userData = $data->fetch()){}
 
     $name = htmlspecialchars($userData['name']);        //$userData['name'] 
@@ -175,7 +245,7 @@ function profilePut($namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,$phon
 function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (dans les else) !
     if (isset($_POST['name'])|| isset($_POST['firstName'])||isset($_POST['birth'])|| isset($_POST['email'])||isset($_POST['address'])|| isset($_POST['phone'])||isset($_POST['password1'])){
         $_POST['password']=$_POST['password'];  // mdp a cripte !!!!!
-        if($_POST['password']=$password;){
+        if($_POST['password']=$password){
             if (isset($_POST['name'])){
                 $nameModif=$_POST['name'];
             }else{
@@ -207,7 +277,7 @@ function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (
                 $phoneModif=0;
             }
             if (isset($_POST['password1']) && ($_POST['password1'] == $_POST['password2'])){
-                $password1Modif=$_POST['password1']
+                $password1Modif=$_POST['password1'];
             }else{
                 $password1Modif=0;
             }
@@ -215,6 +285,6 @@ function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (
         }
 
     }
->>>>>>> 278cd02ef14c1698332522c020d656f85b9403e9
+
 
 }

@@ -4,9 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/view/js/statistic.js" line="91" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="408e3613-b943-4a21-923d-a7b2216bc7b0" name="Default" comment="maj css signUp responsive.">
-      <change beforePath="$PROJECT_DIR$/view/js/statistic.js" beforeDir="false" afterPath="$PROJECT_DIR$/view/js/statistic.js" afterDir="false" />
-    </list>
+    <list default="true" id="408e3613-b943-4a21-923d-a7b2216bc7b0" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -142,7 +140,7 @@
     <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="405" />
     <option name="y" value="-20" />
     <option name="width" value="980" />
@@ -274,7 +272,7 @@
       <workItem from="1525250973948" duration="4467000" />
       <workItem from="1525257777281" duration="50000" />
       <workItem from="1525275680800" duration="4460000" />
-      <workItem from="1525331349540" duration="4226000" />
+      <workItem from="1525331349540" duration="4588000" />
     </task>
     <task id="LOCAL-00001" summary="add hello world.php">
       <created>1520863012197</created>
@@ -388,11 +386,25 @@
       <option name="project" value="LOCAL" />
       <updated>1525335528675</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="maj css signUp responsive.">
+      <created>1525335656969</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1525335656970</updated>
+    </task>
+    <task id="LOCAL-00018" summary="maj css signUp responsive.">
+      <created>1525335763755</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1525335763755</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165901000" />
+    <option name="totallyTimeSpent" value="166263000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />

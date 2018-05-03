@@ -196,7 +196,7 @@ function home($PDO, $idUser)
     return [$residences, $select, $rooms, $light, $shutter, $auto, $opening, $closing, $temperature, $ventilation];
 }
 
-
+/*
 function profileGet(){
     $req = $PDO->prepare('FROM "user" SELECT * WHERE id=?');
     $data = $req->execute([$_SESSION['id']]);
@@ -285,6 +285,7 @@ function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (
         }
 
     }
-
+>>>>>>> 278cd02ef14c1698332522c020d656f85b9403e9
 
 }
+*/

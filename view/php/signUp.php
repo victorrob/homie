@@ -7,7 +7,7 @@
 	</head>
 	<body>
         <div class="container">
-                <form method="post" action="/index.php?p=treatmentSignup">
+                <form method="post" action="index.php?p=signUp">
                         <h1>Inscription</h1>
 
                         <p><label for="name">Nom :</label></p>
@@ -25,12 +25,13 @@
                         <p><label for="confirmPassword">Confirmé votre mot de passe :</label></p>
                         <p><input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmation"></p>
 
-                        <p><label for="type"Type d'utilisateur :</label>
-                            <select name="country" id="country"></p>
+                        <p><label for="type">Type d'utilisateur :</label></p>
+                            <p>
+                                <select name="type" id="type">
                                 <option value="owner">Propriétaire</option>
                                 <option value="guest">Invité</option>
-                            </select>
-                        </p>
+                                </select>
+                            </p>
 
                         <p><label for="phone">Numéro de téléphone :</label></p>
                         <p><input type="tel" name="phone" id="phone" placeholder="+33 X XX XX XX XX" /></p>

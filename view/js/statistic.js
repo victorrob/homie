@@ -3,7 +3,7 @@ var j = 0;
 var i = 0;
 var timeRangeSelected;
 for(i = 0; i <sensorType.length; i++){
-    selectTimeRange(3,i);
+    selectTimeRange(4,i);
 }
 //onmouse function
 function showValue(i, j, set){

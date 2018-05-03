@@ -19,7 +19,8 @@
 #timeRange{
     left: 50%;
     transform: translate(-58%,-130%);
-    display: grid;
+    display: flex;
+    flex-direction: row;
 
     position: absolute;
 }

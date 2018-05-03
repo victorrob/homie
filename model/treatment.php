@@ -38,12 +38,12 @@ function getHistoric($roomId, $PDO){
         }
     }
     $req->closeCursor();
-    $req = $PDO->prepare('SELECT type, sensor_id FROM sensor');
+    $req = $PDO->prepare('SELECT type, idSensor FROM sensor');
     $req->execute();
     $sensorName = [];
     for($i = 0; $i<count($sensorType); $i++){
         while ($data = $req->fetch()){
-            if($data['sensor_id'] == $sensorType[$i]){
+            if($data['idSensor'] == $sensorType[$i]){
                 array_push($sensorName, $data['type']);
                 break;
             }
@@ -111,6 +111,7 @@ function signUp($PDO)
     else
         $country = "";
     $PDO->exec("INSERT INTO user(idUser,name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) 
+
                 VALUES('','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
 }
 
@@ -170,6 +171,7 @@ function profilePut($namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,$phon
         $req->execute([$passwordPut,$_SESSION['id']]);
     }
 }
+
 function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (dans les else) !
     if (isset($_POST['name'])|| isset($_POST['firstName'])||isset($_POST['birth'])|| isset($_POST['email'])||isset($_POST['address'])|| isset($_POST['phone'])||isset($_POST['password1'])){
         $_POST['password']=$_POST['password'];  // mdp a cripte !!!!!
@@ -213,5 +215,6 @@ function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (
         }
 
     }
+>>>>>>> 278cd02ef14c1698332522c020d656f85b9403e9
 
 }

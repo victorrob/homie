@@ -30,6 +30,7 @@ h1
 
 #roomSection, #habitationSection
 {
+
 	display: grid;
     width: 100%;
     max-width: 85%;

@@ -2,8 +2,13 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="a3d1cdab-b0e8-4d7a-a759-2e88ab5ed089" name="Homie" url="http://Homie">
-        <fileTransfer port="0" mountedRoot="C:\wamp64\bin\apache\apache2.4.27\htdocs" accessType="MOUNT" />
+      <webServer id="584bcee0-168d-49ae-a7a8-176ed128af52" name="ovh" url="http://victor-robert.fr/">
+        <fileTransfer host="victorropt@ftp.cluster021.hosting.ovh.net" port="21" rootFolder="/www">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
       </webServer>
     </option>
   </component>

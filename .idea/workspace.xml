@@ -4,14 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/view/js/statistic.js" line="91" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="408e3613-b943-4a21-923d-a7b2216bc7b0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/request.php" beforeDir="false" afterPath="$PROJECT_DIR$/control/request.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/treatment.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/treatment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/css/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/view/css/signUp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/css/statistic.css" beforeDir="false" afterPath="$PROJECT_DIR$/view/css/statistic.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/php/signUp.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/php/signUp.php" afterDir="false" />
+    <list default="true" id="408e3613-b943-4a21-923d-a7b2216bc7b0" name="Default" comment="maj css signUp responsive.">
+      <change beforePath="$PROJECT_DIR$/view/js/statistic.js" beforeDir="false" afterPath="$PROJECT_DIR$/view/js/statistic.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,11 +32,15 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="signUp.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/view/php/signUp.php">
+          <file leaf-file-name="statistic.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/view/js/statistic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="296">
-                  <caret line="171" lean-forward="true" selection-start-line="171" selection-end-line="171" />
+                <state relative-caret-position="85">
+                  <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+                  <folding>
+                    <element signature="n#!!block;n#setDate#0" />
+                    <element signature="n#!!block;n#getDate#0" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -51,11 +49,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="signUp.css" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/view/css/signUp.css">
+          <file leaf-file-name="statistic.css" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/view/css/statistic.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="208">
-                  <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+                <state relative-caret-position="374">
+                  <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -118,7 +116,6 @@
         <option value="$PROJECT_DIR$/view/php/statistic.php" />
         <option value="$PROJECT_DIR$/view/php/header.php" />
         <option value="$PROJECT_DIR$/view/js/header.js" />
-        <option value="$PROJECT_DIR$/view/js/statistic.js" />
         <option value="$PROJECT_DIR$/view/css/header.css" />
         <option value="$PROJECT_DIR$/view/php/home.php" />
         <option value="$PROJECT_DIR$/view/php/login.php" />
@@ -128,6 +125,7 @@
         <option value="$PROJECT_DIR$/view/css/statistic.css" />
         <option value="$PROJECT_DIR$/view/php/signUp.php" />
         <option value="$PROJECT_DIR$/view/css/signUp.css" />
+        <option value="$PROJECT_DIR$/view/js/statistic.js" />
       </list>
     </option>
   </component>
@@ -188,6 +186,12 @@
               <item name="homie" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="homie" type="b2602c69:ProjectViewProjectNode" />
+              <item name="homie" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="homie" type="b2602c69:ProjectViewProjectNode" />
@@ -270,7 +274,7 @@
       <workItem from="1525250973948" duration="4467000" />
       <workItem from="1525257777281" duration="50000" />
       <workItem from="1525275680800" duration="4460000" />
-      <workItem from="1525331349540" duration="4035000" />
+      <workItem from="1525331349540" duration="4226000" />
     </task>
     <task id="LOCAL-00001" summary="add hello world.php">
       <created>1520863012197</created>
@@ -377,11 +381,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525099740199</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="maj css signUp responsive.">
+      <created>1525335528675</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1525335528675</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165710000" />
+    <option name="totallyTimeSpent" value="165901000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -484,7 +495,8 @@
     <MESSAGE value="page statistique 100% fonctionnelle." />
     <MESSAGE value="divers changements signUp.php et treatment.php" />
     <MESSAGE value="signUp fonctionne." />
-    <option name="LAST_COMMIT_MESSAGE" value="signUp fonctionne." />
+    <MESSAGE value="maj css signUp responsive." />
+    <option name="LAST_COMMIT_MESSAGE" value="maj css signUp responsive." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -616,17 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/js/statistic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!block;n#setDate#0" />
-            <element signature="n#!!block;n#getDate#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/css/home.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -672,10 +673,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/php/statistic.php">
+    <entry file="file://$PROJECT_DIR$/view/css/header.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        <state relative-caret-position="-353">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/css/signUp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="28" column="20" lean-forward="true" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -686,24 +694,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/css/header.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-353">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/php/signUp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="171" lean-forward="true" selection-start-line="171" selection-end-line="171" />
+        <state relative-caret-position="262">
+          <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/css/signUp.css">
+    <entry file="file://$PROJECT_DIR$/view/php/statistic.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+        <state relative-caret-position="119">
+          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/js/statistic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!block;n#setDate#0" />
+            <element signature="n#!!block;n#getDate#0" />
+          </folding>
         </state>
       </provider>
     </entry>

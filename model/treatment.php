@@ -60,7 +60,7 @@ function signUp($PDO)
     if (isset($_POST['password']))
         $password = strip_tags($_POST['password']);
     else
-        return('Erreur, veuillez rentrer un mot de passe')
+        return('Erreur, veuillez rentrer un mot de passe');
 
     if (isset($_POST['confirmPassword'])) {
         $confirmPassword = strip_tags($_POST['confirmPassword']);
@@ -103,9 +103,9 @@ function signUp($PDO)
     else
         return('Erreur, veuillez entrer votre pays');
 
-    $PDO->exec("INSERT INTO user(idUser,name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) 
+    $PDO->exec("INSERT INTO user(name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) 
 
-                VALUES('','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
+                VALUES('$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
 }
 
 function home($PDO, $idUser)
@@ -193,6 +193,30 @@ function home($PDO, $idUser)
     }
 
     return [$residences, $select, $rooms, $light, $shutter, $auto, $opening, $closing, $temperature, $ventilation];
+}
+
+function verify()
+{
+
+    if (isset($_POST['connect']))
+    {
+        $mail = htmlspecialchars($_POST['identifiant']);
+        $password = hash('sha512',$_POST['mot_de_passe']);
+        if(!empty($password) AND !empty($mail)){
+            $requser= $PDO->prepare("SELECT * FROM users WHERE identifiant = ? AND mot_de_passe = ?");
+            $requser->execute(array($mail,$password));
+            $userexist = $requser->rowCount();
+            if($userexist==1){
+
+            }
+            else {
+                echo 'lauvais identifiant ou mot de passe ';
+            }
+        }
+        else{
+            echo "un des champs n'est pas rempli";
+        }
+    }
 }
 
 /*

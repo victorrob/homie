@@ -24,8 +24,11 @@ function adjustDate($year, $month, $day){
 function getHistoric($roomId, $PDO){
     $req = $PDO->prepare("SELECT type, date, value FROM sensor INNER JOIN data ON sensor.idSensor = data.idSensor WHERE idRoom = ?");
     $req->execute([$roomId]);
+    $sensorName = [];
     while($data = $req->fetch()){
-       $sensorName[count($sensorName)] = $data['type'];
+        if(!in_array($data['type'],$sensorName)) {
+            $sensorName[count($sensorName)] = $data['type'];
+        }
         $sensorHistoric[$data['type']]['value'][count($sensorHistoric[$data['type']]['value'])] = $data['value'];
         $sensorHistoric[$data['type']]['day'][count($sensorHistoric[$data['type']]['day'])] = explode(" ",$data['date'])[0];
     }
@@ -60,7 +63,7 @@ function signUp($PDO)
     if (isset($_POST['password']))
         $password = strip_tags($_POST['password']);
     else
-        return('Erreur, veuillez rentrer un mot de passe')
+        return('Erreur, veuillez rentrer un mot de passe');
 
     if (isset($_POST['confirmPassword'])) {
         $confirmPassword = strip_tags($_POST['confirmPassword']);

@@ -1,14 +1,73 @@
 #sensorForm{
-background-color: #0015f7;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%);
+    margin-top: 40px;
 }
 
-.sensorButton{
-    display: flex;
-    flex-direction: row;
+
+
+
+
+/* Customize the label (the sensorButton) */
+.sensorButton {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-.sensorCheckbox{
-    background-color: #0015f7;
-    border: none;
-    margin: 10px;
+/* Hide the browser's default radio button */
+.sensorButton input {
+    position: absolute;
+    opacity: 0;
 }
+
+/* Create a custom radio button */
+.sensorCheckbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+
+}
+
+/* On mouse-over, add a grey background color */
+.sensorButton:hover input ~ .sensorCheckbox {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.sensorButton input:checked ~ .sensorCheckbox {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.sensorCheckbox:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.sensorButton input:checked ~ .sensorCheckbox:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.sensorButton .sensorCheckbox:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    background: white;
+}
+

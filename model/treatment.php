@@ -22,7 +22,7 @@ function adjustDate($year, $month, $day){
 //get all value and date of historic of one specific room
 
 function getHistoric($roomId, $PDO){
-    $req = $PDO->prepare("SELECT type, date, value FROM sensor INNER JOIN data ON sensor.idSensor = data.idSensor WHERE idPiece = ?");
+    $req = $PDO->prepare("SELECT type, date, value FROM sensor INNER JOIN data ON sensor.idSensor = data.idSensor WHERE idRoom = ?");
     $req->execute([$roomId]);
     while($data = $req->fetch()){
        $sensorName[count($sensorName)] = $data['type'];

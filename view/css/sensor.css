@@ -1,0 +1,14 @@
+#sensorForm{
+background-color: #0015f7;
+}
+
+.sensorButton{
+    display: flex;
+    flex-direction: row;
+}
+
+.sensorCheckbox{
+    background-color: #0015f7;
+    border: none;
+    margin: 10px;
+}

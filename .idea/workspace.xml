@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="408e3613-b943-4a21-923d-a7b2216bc7b0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/request.php" beforeDir="false" afterPath="$PROJECT_DIR$/control/request.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/treatment.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/treatment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/view/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/view/css/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/css/statistic.css" beforeDir="false" afterPath="$PROJECT_DIR$/view/css/statistic.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/js/statistic.js" beforeDir="false" afterPath="$PROJECT_DIR$/view/js/statistic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/php/statistic.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/php/statistic.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,34 +35,24 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="header.css" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/view/css/header.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1343">
-                  <caret line="79" column="5" lean-forward="true" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="statistic.css" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/view/css/statistic.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="616">
-                  <caret line="104" column="32" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="treatment.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/model/treatment.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="64" column="89" selection-start-line="64" selection-start-column="89" selection-end-line="64" selection-end-column="89" />
+              <folding>
+                <element signature="e#356#578#0#PHP" />
+                <element signature="e#638#1778#0#PHP" />
+                <element signature="e#2306#3845#0#PHP" />
+                <element signature="e#3845#4135#0#PHP" />
+                <element signature="e#4137#7573#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -87,6 +77,8 @@
       <find>alert</find>
       <find>aler</find>
       <find>$doSmth</find>
+      <find>sensortype</find>
+      <find>$sensor</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -114,20 +106,20 @@
         <option value="$PROJECT_DIR$/view/css/forgottenPswd.css" />
         <option value="$PROJECT_DIR$/view/php/test.php" />
         <option value="$PROJECT_DIR$/.htaccess.txt" />
-        <option value="$PROJECT_DIR$/view/php/statistic.php" />
         <option value="$PROJECT_DIR$/view/php/header.php" />
         <option value="$PROJECT_DIR$/view/js/header.js" />
         <option value="$PROJECT_DIR$/view/php/home.php" />
         <option value="$PROJECT_DIR$/view/php/login.php" />
-        <option value="$PROJECT_DIR$/control/request.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/view/php/signUp.php" />
         <option value="$PROJECT_DIR$/view/css/signUp.css" />
-        <option value="$PROJECT_DIR$/view/js/statistic.js" />
-        <option value="$PROJECT_DIR$/model/treatment.php" />
         <option value="$PROJECT_DIR$/view/css/home.css" />
         <option value="$PROJECT_DIR$/view/css/header.css" />
+        <option value="$PROJECT_DIR$/view/js/statistic.js" />
         <option value="$PROJECT_DIR$/view/css/statistic.css" />
+        <option value="$PROJECT_DIR$/view/php/statistic.php" />
+        <option value="$PROJECT_DIR$/control/request.php" />
+        <option value="$PROJECT_DIR$/model/treatment.php" />
       </list>
     </option>
   </component>
@@ -276,7 +268,10 @@
       <workItem from="1525250973948" duration="4467000" />
       <workItem from="1525257777281" duration="50000" />
       <workItem from="1525275680800" duration="4460000" />
-      <workItem from="1525331349540" duration="9586000" />
+      <workItem from="1525331349540" duration="9918000" />
+      <workItem from="1525347374379" duration="1750000" />
+      <workItem from="1525371019656" duration="4206000" />
+      <workItem from="1525423140169" duration="5810000" />
     </task>
     <task id="LOCAL-00001" summary="add hello world.php">
       <created>1520863012197</created>
@@ -404,11 +399,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525335763755</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="header responsive et statistic responsive">
+      <created>1525341023626</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1525341023626</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171261000" />
+    <option name="totallyTimeSpent" value="183359000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -417,7 +419,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32965517" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="9" weight="0.32965517" />
+      <window_info anchor="bottom" id="File Transfer" order="9" visible="true" weight="0.32965517" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32928178" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" />
@@ -439,18 +441,18 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25256222" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.28209192" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.28209192" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -512,7 +514,8 @@
     <MESSAGE value="divers changements signUp.php et treatment.php" />
     <MESSAGE value="signUp fonctionne." />
     <MESSAGE value="maj css signUp responsive." />
-    <option name="LAST_COMMIT_MESSAGE" value="maj css signUp responsive." />
+    <MESSAGE value="header responsive et statistic responsive" />
+    <option name="LAST_COMMIT_MESSAGE" value="header responsive et statistic responsive" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -546,7 +549,11 @@
         <state relative-caret-position="1751">
           <caret line="113" column="28" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
           <folding>
-            <element signature="n#adjustDate#0;n#!!top" />
+            <element signature="e#356#578#0#PHP" />
+            <element signature="e#638#1778#0#PHP" />
+            <element signature="e#2306#3845#0#PHP" />
+            <element signature="e#3845#4135#0#PHP" />
+            <element signature="e#4137#7573#0#PHP" />
           </folding>
         </state>
       </provider>
@@ -679,59 +686,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/treatment.php">
+    <entry file="file://$PROJECT_DIR$/view/css/statistic.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="52" column="53" lean-forward="true" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
-          <folding>
-            <element signature="e#1797#3336#0#PHP" />
-          </folding>
+        <state relative-caret-position="289">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
+    <entry file="file://$PROJECT_DIR$/view/css/header.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/control/request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        <state relative-caret-position="170">
+          <caret line="22" selection-start-line="22" selection-end-line="24" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/view/js/statistic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="48" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="48" />
+        <state relative-caret-position="4">
+          <caret line="130" column="25" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
           <folding>
             <element signature="n#!!block;n#setDate#0" />
             <element signature="n#!!block;n#getDate#0" />
+            <element signature="n#!!block;n#onOff#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/view/php/statistic.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="45" column="18" lean-forward="true" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+        <state relative-caret-position="190">
+          <caret line="47" column="10" lean-forward="true" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/css/header.css">
+    <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
-          <caret line="79" column="5" lean-forward="true" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
+        <state relative-caret-position="173">
+          <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/css/statistic.css">
+    <entry file="file://$PROJECT_DIR$/control/request.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="104" column="32" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
+        <state relative-caret-position="187">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/treatment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="64" column="89" selection-start-line="64" selection-start-column="89" selection-end-line="64" selection-end-column="89" />
+          <folding>
+            <element signature="e#356#578#0#PHP" />
+            <element signature="e#638#1778#0#PHP" />
+            <element signature="e#2306#3845#0#PHP" />
+            <element signature="e#3845#4135#0#PHP" />
+            <element signature="e#4137#7573#0#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>

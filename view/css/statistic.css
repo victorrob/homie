@@ -3,6 +3,7 @@
     width: 95%;
     left: 50%;
     transform: translate(-50%);
+    z-index: -1;
 }
 
 #statisticSection > h1{
@@ -14,10 +15,10 @@
 
 .graphSection {
     height: 300px;
-    visibility: hidden;
-    position: absolute;
+
+    position: relative;
     margin: 50px 0 50px 50px;
-    display: flex;
+    display: none;
     flex-direction: row;
     padding: 0 30px 0 0;
     width: 0;

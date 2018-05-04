@@ -1,7 +1,7 @@
 <?php
 
 // Action to perform when leaving the page
-if($php === $_SESSION['lastPage']) {
+if(isset($_SESSION['lastPage']) && $php === $_SESSION['lastPage']) {
     switch ($_SESSION['lastPage']) {
         case "signUp":
             signUp($PDO);
@@ -14,7 +14,9 @@ if($php === $_SESSION['lastPage']) {
 switch ($php) {
     case "statistic":
         global $sensorType, $sensorName, $sensorHistoric;
-        [$sensorType, $sensorName, $sensorHistoric] = getHistoric($GLOBALS['roomId'], $PDO);
+        [$sensorName, $sensorHistoric] =getHistoric($GLOBALS['roomId'], $PDO);
+        echo print_r($sensorHistoric['temperature']['day']).'<br/>';
+        echo print_r($sensorName);
         break;
 }
 

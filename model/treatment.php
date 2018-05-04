@@ -20,40 +20,21 @@ function adjustDate($year, $month, $day){
 }
 
 //get all value and date of historic of one specific room
+
 function getHistoric($roomId, $PDO){
-    $req = $PDO->prepare('SELECT value, day, sensor_id FROM historic WHERE room_id = ? ');
+    $req = $PDO->prepare("SELECT type, date, value FROM sensor INNER JOIN data ON sensor.idSensor = data.idSensor WHERE idPiece = ?");
     $req->execute([$roomId]);
-    $sensorHistoric = [];
-    $sensorType = [1];
-    while ($data = $req->fetch()) {
-        $sensorId = $data['sensor_id'];
-        if(in_array($sensorId, $sensorType)) {
-            $sensorHistoric[$sensorId]['value'][] = $data ['value'];
-            $sensorHistoric[$sensorId]['day'][] = $data ['day'];
-        }
-        else{
-            array_push($sensorType, $sensorId);
-            $sensorHistoric[$sensorId]['value'][] = $data ['value'];
-            $sensorHistoric[$sensorId]['day'][] = $data ['day'];
-        }
+    while($data = $req->fetch()){
+       $sensorName[count($sensorName)] = $data['type'];
+        $sensorHistoric[$data['type']]['value'][count($sensorHistoric[$data['type']]['value'])] = $data['value'];
+        $sensorHistoric[$data['type']]['day'][count($sensorHistoric[$data['type']]['day'])] = explode(" ",$data['date'])[0];
     }
     $req->closeCursor();
-    $req = $PDO->prepare('SELECT type, idSensor FROM sensor');
-    $req->execute();
-    $sensorName = [];
-    for($i = 0; $i<count($sensorType); $i++){
-        while ($data = $req->fetch()){
-            if($data['idSensor'] == $sensorType[$i]){
-                array_push($sensorName, $data['type']);
-                break;
-            }
-        $req->closeCursor();
-    }
-    }
-    return [$sensorType,$sensorName, $sensorHistoric];
+    return [$sensorName, $sensorHistoric];
 }
 
 //add user
+
 function signUp($PDO)
 {
     if (isset($_POST['name']))

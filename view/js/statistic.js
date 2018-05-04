@@ -175,13 +175,13 @@ function onOff(numberSelected, numberMax) {
         var div = document.getElementById('sensorValue' + i);
         if (i === numberSelected) {
             document.getElementsByClassName('graphSection')[i].style.width = (getComputedStyle(document.getElementsByClassName('graphSection')[i], null).width === "0px") ? "auto" : "0";
-            div.style.visibility = (getComputedStyle(div, null).visibility === "hidden") ? "visible" : "hidden";
-            div.style.position = (getComputedStyle(div, null).position === "relative") ? "fixed" : "relative";
+            /*div.style.visibility = (getComputedStyle(div, null).visibility === "hidden") ? "visible" : "hidden";
+            div.style.position = (getComputedStyle(div, null).position === "relative") ? "fixed" : "relative";*/
+            div.style.display = (getComputedStyle(div, null).display === "flex") ? "none" : "flex";
         }
         else {
             document.getElementsByClassName('graphSection')[i].style.width = "0px";
-            div.style.visibility = "hidden";
-            div.style.position = "fixed";
+            div.style.display = "none";
         }
     }
 }

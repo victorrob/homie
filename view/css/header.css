@@ -1,6 +1,7 @@
 body{
     background-image: url("../../image/fond5.png");
     color: white;
+    background-attachment: fixed;
 }
 
 header{

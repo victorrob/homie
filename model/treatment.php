@@ -20,96 +20,89 @@ function adjustDate($year, $month, $day){
 }
 
 //get all value and date of historic of one specific room
+
 function getHistoric($roomId, $PDO){
-    $req = $PDO->prepare('SELECT value, day, sensor_id FROM historic WHERE room_id = ? ');
+    $req = $PDO->prepare("SELECT type, date, value FROM sensor INNER JOIN data ON sensor.idSensor = data.idSensor WHERE idPiece = ?");
     $req->execute([$roomId]);
-    $sensorHistoric = [];
-    $sensorType = [1];
-    while ($data = $req->fetch()) {
-        $sensorId = $data['sensor_id'];
-        if(in_array($sensorId, $sensorType)) {
-            $sensorHistoric[$sensorId]['value'][] = $data ['value'];
-            $sensorHistoric[$sensorId]['day'][] = $data ['day'];
-        }
-        else{
-            array_push($sensorType, $sensorId);
-            $sensorHistoric[$sensorId]['value'][] = $data ['value'];
-            $sensorHistoric[$sensorId]['day'][] = $data ['day'];
-        }
+    while($data = $req->fetch()){
+       $sensorName[count($sensorName)] = $data['type'];
+        $sensorHistoric[$data['type']]['value'][count($sensorHistoric[$data['type']]['value'])] = $data['value'];
+        $sensorHistoric[$data['type']]['day'][count($sensorHistoric[$data['type']]['day'])] = explode(" ",$data['date'])[0];
     }
     $req->closeCursor();
-    $req = $PDO->prepare('SELECT type, idSensor FROM sensor');
-    $req->execute();
-    $sensorName = [];
-    for($i = 0; $i<count($sensorType); $i++){
-        while ($data = $req->fetch()){
-            if($data['idSensor'] == $sensorType[$i]){
-                array_push($sensorName, $data['type']);
-                break;
-            }
-        $req->closeCursor();
-    }
-    }
-    return [$sensorType,$sensorName, $sensorHistoric];
+    return [$sensorName, $sensorHistoric];
 }
 
 //add user
+
 function signUp($PDO)
 {
     if (isset($_POST['name']))
         $name = strip_tags($_POST['name']);
     else
-        $name = "";
+        return('Erreur, veuillez rentrer un nom');
 
     if (isset($_POST['firstName']))
         $firstName = strip_tags($_POST['firstName']);
     else
-        $firstName = "";
+        return ('Erreur, veuillez rentrer un prénom');
 
     if (isset($_POST['mail']))
         $mail = strip_tags($_POST['mail']);
     else
-        $mail = "";
+        return ('Erreur, veuillez rentrer une adresse e-mail');
 
     if (isset($_POST['phone']))
         $phone = strip_tags($_POST['phone']);
     else
-        $phone = "";
+        return ('Erreur, veuillez rentrer un numéro de téléphone');
 
     if (isset($_POST['password']))
         $password = strip_tags($_POST['password']);
     else
-        $password = "";
+        return('Erreur, veuillez rentrer un mot de passe')
+
+    if (isset($_POST['confirmPassword'])) {
+        $confirmPassword = strip_tags($_POST['confirmPassword']);
+        if ($confirmPassword == $password)
+            $password = hash('sha512', $password);
+        else
+            return ('Erreur, les mots de passes ne sont pas identiques');
+        }
+    else
+        return('Erreur, veuillez confirmer votre mot de passe');
 
     if (isset($_POST['type']))
         $type = strip_tags($_POST['type']);
-    else
-        $type = "";
 
-    if (isset($_POST['birthDate']))
+
+    if (isset($_POST['birthDate'])) {
         $birthDate = strip_tags($_POST['birthDate']);
-    else
-        $birthDate = "";
+        if ($birthDate == "0000-00-00")
+            return ('Erreur, veuillez entrer votre date de naissance');
+    }
 
     if (isset($_POST['address']))
         $address = strip_tags($_POST['address']);
     else
-        $address = "";
+        return ('Erreur, veuillez entrer votre adresse');
 
-    if (isset($_POST['zipCode']))
+    if (isset($_POST['zipCode'])) {
         $zipCode = strip_tags($_POST['zipCode']);
-    else
-        $zipCode = "";
+        if ($zipCode == 0)
+            return ('Erreur, veuillez entrer votre code postal');
+    }
 
     if (isset($_POST['city']))
         $city = strip_tags($_POST['city']);
     else
-        $city = "";
+        return ('Erreur, veuillez entrer votre ville');
 
     if (isset($_POST['country']))
         $country = strip_tags($_POST['country']);
     else
-        $country = "";
+        return('Erreur, veuillez entrer votre pays');
+
     $PDO->exec("INSERT INTO user(idUser,name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) 
 
                 VALUES('','$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");

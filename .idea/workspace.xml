@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f596d23e-e93a-4938-b3d4-ce638587d2dc" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/view/js/signUp.js" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+    <list default="true" id="567e19fc-8be6-4696-b739-9fd0dc008f86" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/control/request.php" afterPath="$PROJECT_DIR$/control/request.php" />
+      <change beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
       <change beforePath="$PROJECT_DIR$/model/treatment.php" afterPath="$PROJECT_DIR$/model/treatment.php" />
-      <change beforePath="$PROJECT_DIR$/view/css/signUp.css" afterPath="$PROJECT_DIR$/view/css/signUp.css" />
-      <change beforePath="$PROJECT_DIR$/view/php/signUp.php" afterPath="$PROJECT_DIR$/view/php/signUp.php" />
+      <change beforePath="$PROJECT_DIR$/view/css/header.css" afterPath="$PROJECT_DIR$/view/css/header.css" />
+      <change beforePath="$PROJECT_DIR$/view/css/home.css" afterPath="$PROJECT_DIR$/view/css/home.css" />
+      <change beforePath="$PROJECT_DIR$/view/css/roomFactors.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/view/css/statistic.css" afterPath="$PROJECT_DIR$/view/css/statistic.css" />
+      <change beforePath="$PROJECT_DIR$/view/js/home.js" afterPath="$PROJECT_DIR$/view/js/home.js" />
+      <change beforePath="$PROJECT_DIR$/view/js/roomFactors.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/view/js/statistic.js" afterPath="$PROJECT_DIR$/view/js/statistic.js" />
+      <change beforePath="$PROJECT_DIR$/view/php/home.php" afterPath="$PROJECT_DIR$/view/php/home.php" />
+      <change beforePath="$PROJECT_DIR$/view/php/roomFactors.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/view/php/statistic.php" afterPath="$PROJECT_DIR$/view/php/statistic.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="signUp.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/php/signUp.php">
+      <file leaf-file-name="request.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/control/request.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2583">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="336">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -32,40 +42,25 @@
       <file leaf-file-name="treatment.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/treatment.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="151" column="50" lean-forward="true" selection-start-line="151" selection-start-column="50" selection-end-line="151" selection-end-column="50" />
+            <state relative-caret-position="462">
+              <caret line="67" column="32" lean-forward="false" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
               <folding>
-                <marker date="1525437576853" expanded="true" signature="701:761" ph="SELECT value... " />
-                <marker date="1525437576853" expanded="true" signature="1375:1408" ph="SELECT type,... sensor" />
-                <marker date="1525437576853" expanded="true" signature="3880:4124" ph="INSERT INTO user... " />
-                <marker date="1525437576853" expanded="true" signature="4189:4267" ph="SELECT name residence" />
-                <marker date="1525437576853" expanded="true" signature="5140:5177" ph="UPDATE &quot;user&quot;... " />
-                <marker date="1525437576853" expanded="true" signature="5295:5337" ph="UPDATE &quot;user&quot;... " />
-                <marker date="1525437576853" expanded="true" signature="5456:5494" ph="UPDATE &quot;user&quot;... " />
-                <marker date="1525437576853" expanded="true" signature="5609:5647" ph="UPDATE &quot;user&quot;... " />
-                <marker date="1525437576853" expanded="true" signature="5764:5804" ph="UPDATE &quot;user&quot;... " />
-                <marker date="1525437576853" expanded="true" signature="5921:5959" ph="UPDATE &quot;user&quot;... " />
-                <marker date="1525437576853" expanded="true" signature="6077:6118" ph="UPDATE &quot;user&quot;... " />
+                <marker date="1525439019642" expanded="true" signature="702:807" ph="SELECT type,... " />
+                <marker date="1525439019642" expanded="true" signature="3343:3587" ph="INSERT INTO user... " />
+                <marker date="1525439019642" expanded="true" signature="3651:3807" ph="SELECT name,... residence" />
+                <marker date="1525439019642" expanded="true" signature="4277:4328" ph="SELECT name,... room" />
+                <marker date="1525439019642" expanded="true" signature="4683:4756" ph="SELECT type,... actuator" />
+                <marker date="1525439019642" expanded="true" signature="5808:5855" ph="SELECT type,... sensor" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signUp.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/view/css/signUp.css">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="request.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/control/request.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+            <state relative-caret-position="294">
+              <caret line="14" column="15" lean-forward="true" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -79,8 +74,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/control/request.php" />
         <option value="$PROJECT_DIR$/model/treatment.php" />
+        <option value="$PROJECT_DIR$/control/request.php" />
       </list>
     </option>
   </component>
@@ -90,7 +85,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP">
+    <include_path>
+      <path value="C:\wamp64\bin\php\php7.1.9" />
+    </include_path>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="976" />
@@ -126,18 +125,17 @@
             <path>
               <item name="homie" type="b2602c69:ProjectViewProjectNode" />
               <item name="homie" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="image" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="homie" type="b2602c69:ProjectViewProjectNode" />
+              <item name="homie" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="homie" type="b2602c69:ProjectViewProjectNode" />
               <item name="homie" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="homie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="homie" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="homie" type="b2602c69:ProjectViewProjectNode" />
@@ -155,6 +153,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="C:/wamp64/bin/php/php7.1.9" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -176,17 +175,17 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f596d23e-e93a-4938-b3d4-ce638587d2dc" name="Default" comment="" />
-      <created>1525436847320</created>
+      <changelist id="567e19fc-8be6-4696-b739-9fd0dc008f86" name="Default" comment="" />
+      <created>1525438936401</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1525436847320</updated>
-      <workItem from="1525436850108" duration="1690000" />
+      <updated>1525438936401</updated>
+      <workItem from="1525438938820" duration="1749000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1690000" />
+    <option name="totallyTimeSpent" value="1749000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -195,7 +194,8 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -223,46 +223,33 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/view/php/signUp.php">
+    <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2583">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/control/request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+        <state relative-caret-position="294">
+          <caret line="14" column="15" lean-forward="true" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/treatment.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="151" column="50" lean-forward="true" selection-start-line="151" selection-start-column="50" selection-end-line="151" selection-end-column="50" />
+        <state relative-caret-position="462">
+          <caret line="67" column="32" lean-forward="false" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
           <folding>
-            <marker date="1525437576853" expanded="true" signature="701:761" ph="SELECT value... " />
-            <marker date="1525437576853" expanded="true" signature="1375:1408" ph="SELECT type,... sensor" />
-            <marker date="1525437576853" expanded="true" signature="3880:4124" ph="INSERT INTO user... " />
-            <marker date="1525437576853" expanded="true" signature="4189:4267" ph="SELECT name residence" />
-            <marker date="1525437576853" expanded="true" signature="5140:5177" ph="UPDATE &quot;user&quot;... " />
-            <marker date="1525437576853" expanded="true" signature="5295:5337" ph="UPDATE &quot;user&quot;... " />
-            <marker date="1525437576853" expanded="true" signature="5456:5494" ph="UPDATE &quot;user&quot;... " />
-            <marker date="1525437576853" expanded="true" signature="5609:5647" ph="UPDATE &quot;user&quot;... " />
-            <marker date="1525437576853" expanded="true" signature="5764:5804" ph="UPDATE &quot;user&quot;... " />
-            <marker date="1525437576853" expanded="true" signature="5921:5959" ph="UPDATE &quot;user&quot;... " />
-            <marker date="1525437576853" expanded="true" signature="6077:6118" ph="UPDATE &quot;user&quot;... " />
+            <marker date="1525439019642" expanded="true" signature="702:807" ph="SELECT type,... " />
+            <marker date="1525439019642" expanded="true" signature="3343:3587" ph="INSERT INTO user... " />
+            <marker date="1525439019642" expanded="true" signature="3651:3807" ph="SELECT name,... residence" />
+            <marker date="1525439019642" expanded="true" signature="4277:4328" ph="SELECT name,... room" />
+            <marker date="1525439019642" expanded="true" signature="4683:4756" ph="SELECT type,... actuator" />
+            <marker date="1525439019642" expanded="true" signature="5808:5855" ph="SELECT type,... sensor" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/css/signUp.css">
+    <entry file="file://$PROJECT_DIR$/control/request.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="336">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>

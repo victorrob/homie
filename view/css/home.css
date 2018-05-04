@@ -30,6 +30,7 @@ h1
 
 #roomSection, #habitationSection
 {
+
 	display: grid;
     width: 100%;
     max-width: 85%;
@@ -53,16 +54,16 @@ h1
 	margin: auto;
 }
 
-#roomFactors {
+.roomFactors {
 	width: 60%;
 	display: none;
 }
 
-#roomFactors div {
+.roomFactors div {
 	display: flex;
 }
 
-#ligne {
+.ligne {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;

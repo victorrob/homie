@@ -13,6 +13,7 @@ $dataNeeded = isset($dataNeeded) ? strip_tags($dataNeeded) : "";
 
 $GLOBALS['homeId'] = 1;
 $GLOBALS['roomId'] = 10;
+$GLOBALS['idUser'] = 1;
 include("control/request.php");
 $_POST = array();
 $_SESSION['lastPage'] = $php;

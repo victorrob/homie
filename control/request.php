@@ -18,6 +18,8 @@ switch ($php) {
         echo print_r($sensorHistoric['temperature']['day']).'<br/>';
         echo print_r($sensorName);
         break;
+    case "home":
+        [$residences, $select, $rooms, $light, $shutter, $auto, $opening, $closing, $temperature, $ventilation] = home($PDO, $GLOBALS['idUser']);
 }
 
 

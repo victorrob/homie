@@ -195,7 +195,7 @@ function home($PDO, $idUser)
     return [$residences, $select, $rooms, $light, $shutter, $auto, $opening, $closing, $temperature, $ventilation];
 }
 
-function verify()
+function verify($PDO)
 {
 
     if (isset($_POST['connect']))

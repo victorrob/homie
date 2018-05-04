@@ -15,6 +15,9 @@ form
 {
     width: 60%;
     margin: 5%;
+}
+
+.rigthColumn p {
     text-align: justify;
 }
 

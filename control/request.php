@@ -1,10 +1,15 @@
 <?php
 
 // Action to perform when leaving the page
-if($php === $_SESSION['lastPage']) {
+if(isset($_SESSION['lastPage']) && $php === $_SESSION['lastPage']) {
     switch ($_SESSION['lastPage']) {
         case "signUp":
-            signUp($PDO);
+
+            //mettre alert
+            $signUp == signUp($PDO);
+            if ($signUp == true){
+            }
+            $php = 'login';
             break;
         case 'addRoom':
 
@@ -14,8 +19,10 @@ if($php === $_SESSION['lastPage']) {
 switch ($php) {
     case "statistic":
         global $sensorType, $sensorName, $sensorHistoric;
-        [$sensorType, $sensorName, $sensorHistoric] = getHistoric($GLOBALS['roomId'], $PDO);
+        [$sensorName, $sensorHistoric] =getHistoric($GLOBALS['roomId'], $PDO);
+        echo print_r($sensorHistoric['temperature']['day']).'<br/>';
+        echo print_r($sensorName);
         break;
+    case "home":
+        [$residences, $select, $rooms, $light, $shutter, $auto, $opening, $closing, $temperature, $ventilation] = home($PDO, $GLOBALS['idUser']);
 }
-
-

@@ -1,8 +1,12 @@
 body{
     background-image: url("../../image/fond5.png");
     color: white;
+    background-attachment: fixed;
 }
 
+header{
+    height: 140px;
+}
 
 #roue{
     margin-left: 60%;
@@ -16,7 +20,7 @@ body{
 #img{
     width: 260px;
     height: 118px;
-    position: relative;
+    position: absolute;
     left: 50%;
     transform: translate(-50%);
 }
@@ -71,7 +75,8 @@ body{
 @media screen and (max-width: 550px){
     #roue
     {
-        position: relative;
+        position: absolute;
+        top: 130px;
         margin-left: 55%;
     }
 

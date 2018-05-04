@@ -48,9 +48,11 @@
         ?>
     </section>
     <script>
-        var sensorType = <?php echo json_encode($sensorType); ?>;
+        var sensorType = <?php echo json_encode($sensorName); ?>;
         var sensorHistoricOriginal = <?php echo json_encode($sensorHistoric); ?>;
         var sensorHistoric = [].concat(sensorHistoricOriginal);
+        alert(JSON.stringify(sensorHistoric));
+        alert(JSON.stringify(sensorType));
     </script>
     <script type="text/javascript" src="view/js/statistic.js"></script>
 </body>

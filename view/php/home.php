@@ -1,4 +1,5 @@
 <body>
+
         <div id="tete" class="menu_tete">
 				<form class="form" method="post" action="/index.php?p=home">
 					<label for="habitation">Habitation :</label><br />
@@ -24,7 +25,7 @@
             <?php
                 foreach ($rooms as $room){
                 ?>
-                <div onclick="home()"><p><?php echo $room['name'] ?></p></div>
+                <div onclick="home(<?php echo $room['idRoom'] ?>)"><p><?php echo $room['name'] ?></p></div>
                 <?php  }
             ?>
 

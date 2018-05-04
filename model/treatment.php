@@ -180,15 +180,21 @@ function home($PDO, $idUser)
             }
         }
         $req->closeCursor();
-        $req = $PDO->prepare('SELECT type, value FROM sensor WHERE idRoom = ?');
+        $req = $PDO->prepare('SELECT idSensor, type FROM sensor WHERE idRoom = ?');
         $req->execute([$room['idRoom']]);
+        $req->closeCursor();
         while ($sensor = $req->fetch()){
             if ($sensor['type'] == 'temperature'){
-                $temperature[$room['idRoom']] = $sensor['value'];
+                $req = $PDO->prepare('SELECT date, value FROM data WHERE idSensor = ? SORT BY date DESC');
+                $req->execute([$sensor['idSensor']]);
+                $temperature[$room['idRoom']] = $req->fetch();
             }
             elseif ($sensor['type'] == 'ventilation'){
-                $ventilation[$room['idRoom']] = $sensor['value'];
+                $req = $PDO->prepare('SELECT date, value FROM data WHERE idSensor = ? SORT BY date DESC');
+                $req->execute([$sensor['idSensor']]);
+                $ventilation[$room['idRoom']] = $req->fetch();
             }
+            $req->closeCursor();
         }
         $req->closeCursor();
     }

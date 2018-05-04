@@ -4,7 +4,12 @@
 if($php === $_SESSION['lastPage']) {
     switch ($_SESSION['lastPage']) {
         case "signUp":
-            signUp($PDO);
+
+            //mettre alert
+            $signUp == signUp($PDO);
+            if ($signUp == true){
+            }
+            $php = 'login';
             break;
         case 'addRoom':
 

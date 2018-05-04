@@ -16,7 +16,7 @@
                         <p><label for="password">Mot de passe :</label></p>
                         <p><input type="password" name="password" id="password" placeholder="Mot de passe" /></p>
 
-                        <p><label for="confirmPassword">Confirmé votre mot de passe :</label></p>
+                        <p><label for="confirmPassword">Confirmer votre mot de passe :</label></p>
                         <p><input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmation"></p>
 
                         <p><label for="type">Type d'utilisateur :</label></p>

@@ -22,5 +22,3 @@ switch ($php) {
     case "home":
         [$residences, $select, $rooms, $light, $shutter, $auto, $opening, $closing, $temperature, $ventilation] = home($PDO, $GLOBALS['idUser']);
 }
-
-

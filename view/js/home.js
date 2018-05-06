@@ -1,5 +1,6 @@
-function home() {
-    var section = document.getElementById('roomFactors');
+function home(idRoom) {
+
+    var section = document.getElementById(idRoom);
 
     if (section.style.display == "none") {
         section.style.display = "block";

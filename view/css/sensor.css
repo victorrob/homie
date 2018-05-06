@@ -3,14 +3,45 @@
     position: absolute;
     transform: translate(-50%);
     margin-top: 40px;
+    width: 40%;
 }
 
+.checkboxSection{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+    grid-gap: 10px;
+    border-radius: 10px;
+    border: #F4A460 solid;
+}
 
+#textfield{
 
+    border-radius: 10px;
+    border: #F4A460 solid;
+    text-align: center;
+}
+.inputText{
+    margin-bottom: 10px;
+}
 
+legend{
+    font-size: 20px;
+    text-align: center;
+}
 
-/* Customize the label (the sensorButton) */
-.sensorButton {
+#submit{
+    margin: 10px;
+    color: white;
+    background-color: transparent;
+    border: 3px solid sandybrown;
+    border-radius: 5px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    font-size: 20px;
+}
+
+/* Customize the label (the button) */
+.button {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -23,51 +54,62 @@
     user-select: none;
 }
 
+.inputText{
+    background-color: #eee;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+
 /* Hide the browser's default radio button */
-.sensorButton input {
+.button input {
     position: absolute;
     opacity: 0;
 }
 
 /* Create a custom radio button */
-.sensorCheckbox {
+.checkbox {
     position: absolute;
     top: 0;
     left: 0;
     height: 25px;
     width: 25px;
     background-color: #eee;
+    border-radius: 10%;
 
 }
 
 /* On mouse-over, add a grey background color */
-.sensorButton:hover input ~ .sensorCheckbox {
+.button:hover input ~ .checkbox {
     background-color: #ccc;
 }
 
 /* When the radio button is checked, add a blue background */
-.sensorButton input:checked ~ .sensorCheckbox {
+.button input:checked ~ .checkbox {
     background-color: #2196F3;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
-.sensorCheckbox:after {
+.checkbox:after {
     content: "";
     position: absolute;
     display: none;
 }
 
 /* Show the indicator (dot/circle) when checked */
-.sensorButton input:checked ~ .sensorCheckbox:after {
+.button input:checked ~ .checkbox:after {
     display: block;
 }
 
 /* Style the indicator (dot/circle) */
-.sensorButton .sensorCheckbox:after {
+.button .checkbox:after {
     top: 9px;
     left: 9px;
     width: 8px;
     height: 8px;
     background: white;
+    border-radius: 5%;
 }
 

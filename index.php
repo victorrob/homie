@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -12,8 +13,9 @@ $php = isset($_GET['p']) ? strip_tags($_GET['p']) : "login";
 $dataNeeded = isset($dataNeeded) ? strip_tags($dataNeeded) : "";
 
 $GLOBALS['homeId'] = 1;
-$GLOBALS['roomId'] = 10;
+$GLOBALS['roomId'] = 1;
 $GLOBALS['idUser'] = 1;
+
 include("control/request.php");
 $_POST = array();
 $_SESSION['lastPage'] = $php;

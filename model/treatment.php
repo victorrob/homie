@@ -38,8 +38,7 @@ function getHistoric($roomId, $PDO){
 
 //add user
 
-function signUp($PDO)
-{
+function signUp($PDO){
     if (isset($_POST['name']))
         $name = strip_tags($_POST['name']);
     else
@@ -200,7 +199,7 @@ function home($PDO, $idUser)
     return [$residences, $select, $rooms, $light, $shutter, $auto, $opening, $closing, $temperature, $ventilation];
 }
 
-function verify()
+function verify($PDO)
 {
 
     if (isset($_POST['connect']))

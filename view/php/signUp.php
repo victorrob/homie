@@ -5,19 +5,19 @@
                         <h1>Inscription</h1>
 
                         <p><label for="name">Nom :</label></p>
-                        <p><input type="text" name="name" id="name" placeholder="Nom" /></p>
+                        <p><input type="text" name="name" id="name" placeholder="Exemple : Pierre" required /></p>
 
                         <p><label for="prenom">Prénom :</label></p>
-                        <p><input type="text" name="firstName" id="prenom" placeholder="Prénom" /></p>
+                        <p><input type="text" name="firstName" id="prenom" placeholder="Exemple : Dupond" required /></p>
 
                         <p><label for="email">Adresse mail :</label></p>
-                        <p><input type="email" name="mail" id="email" placeholder="Adresse email" /></p>
+                        <p><input type="email" name="mail" id="email" placeholder="Exemple : homie@gmail.com" required /></p>
 
                         <p><label for="password">Mot de passe :</label></p>
-                        <p><input type="password" name="password" id="password" placeholder="Mot de passe" /></p>
+                        <p><input type="password" name="password" id="password" placeholder="Mot de passe" required /></p>
 
                         <p><label for="confirmPassword">Confirmer votre mot de passe :</label></p>
-                        <p><input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmation"></p>
+                        <p><input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmation" required /></p>
 
                         <p><label for="type">Type d'utilisateur :</label></p>
                             <p>
@@ -28,28 +28,29 @@
                             </p>
 
                         <p><label for="phone">Numéro de téléphone :</label></p>
-                        <p><input type="tel" name="phone" id="phone" placeholder="+33 X XX XX XX XX" /></p>
+                        <p><input type="tel" name="phone" id="phone" placeholder="Exemple : 0601020304" required /></p>
 
                         <p><label for="birthDate">Date de naissance :</label></p>
-                        <input type="date" name="birthDate" id="birthDate">
+                        <input type="date" name="birthDate" id="birthDate" required>
 
                         <p><label for="productNumber">Numéro de produit :</label></p>
-                        <p><input type="text" name="productNumber" id="productNumber" placeholder="XXX-XXX-XXX" /></p>
+                        <p><input type="text" name="productNumber" id="productNumber" placeholder="123456789" required/></p>
 
                         <p><label for="address">Adresse :</label></p>
-                        <p><input type="text" name="address" id="address" placeholder="Adresse" /></p>
+                        <p><input type="text" name="address" id="address" placeholder="Exemple 10 rue de Vanves" required /></p>
 
                         <p><label for="zipCode">Code postal :</label></p>
-                        <p><input type="text" name="zipCode" id="zipCode" placeholder="Code postal" /></p>
+                        <p><input type="text" name="zipCode" id="zipCode" placeholder="Exemple : 92130" required/></p>
 
                         <p><label for="city">Ville :</label></p>
-                        <p><input type="text" name="city" id="city" placeholder="Ville" /></p>
+                        <p><input type="textarea" name="city" id="city" placeholder="Exemple : Issy-les-Moulineaux" required /></p>
 
                         <p><label for="country">Pays :</label></p>
-                        <p><input type="text" name="country" id="country" placeholder="Pays" /></p>
+                        <p><input type="text" name="country" id="country" placeholder="Exemple : France" required/></p>
 
-                        <p><label for="termOfUse">J'accepte les C.G.U : </label></p>
-                        <p><input type="checkbox" name="termOfUse" id="termOfUse" /></p>
+                        <p><label for="termOfUse" class="button">J'accepte les C.G.U :
+                                <input type="checkbox" name="termOfUse" id="termOfUse" required /><span class="checkbox"></span> </label></p>
+
 
                         <p><input type="submit" value="S'enregistrer" /></p>
                 </form>

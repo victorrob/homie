@@ -28,6 +28,7 @@ switch ($php) {
         break;
     case "sensor":
         [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($GLOBALS['roomId'], $PDO);
-
+        break;
+    case "login":
         break;
 }

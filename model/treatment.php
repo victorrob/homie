@@ -38,8 +38,7 @@ function getHistoric($roomId, $PDO){
 
 //add user
 
-function signUp($PDO)
-{
+function signUp($PDO){
     if (isset($_POST['name']))
         $name = strip_tags($_POST['name']);
     else

@@ -6,7 +6,11 @@ if(isset($_SESSION['lastPage']) && $php === $_SESSION['lastPage']) {
         case "signUp":
 
             //mettre alert
-            $signUp == signUp($PDO);
+            /*$signUp == signUp($PDO);
+            if ($signUp == true){
+                echo $signUp;
+            }
+           */
             $php = 'login';
             break;
         case 'addRoom':

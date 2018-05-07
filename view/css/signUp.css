@@ -11,6 +11,18 @@ form
     margin: 5%;
 }
 
+#address {
+    width: 40%;
+}
+
+#city {
+    width: 45%;
+}
+
+#email {
+    width: 40%;
+}
+
 .rigthColumn
 {
     width: 60%;
@@ -19,6 +31,10 @@ form
 
 .rigthColumn p {
     text-align: justify;
+}
+
+input:invalid {
+    border: 2px solid red;
 }
 
 @media screen and (max-width: 700px){

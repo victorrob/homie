@@ -36,7 +36,17 @@ form
 input:invalid {
     border: 2px solid red;
 }
-
+.checkbox{
+    height: 16px;
+    width: 16px;
+}
+.button .checkbox:after {
+    width: 6px;
+    height: 6px;
+}
+body{
+    color: #2196F3;
+}
 @media screen and (max-width: 700px){
     .container{
         flex-direction: column;

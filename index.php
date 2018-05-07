@@ -20,9 +20,9 @@ include("control/request.php");
 $_POST = array();
 $_SESSION['lastPage'] = $php;
 ?>
+<link rel="stylesheet" href="view/css/<?php echo $php ?>.css" />
 <link rel="stylesheet" href="view/css/header.css" />
 <link rel="stylesheet" href="view/css/form.css" />
-<link rel="stylesheet" href="view/css/<?php echo $php ?>.css" />
 <title>
     <?php echo $php ?>
 </title>

@@ -1,7 +1,7 @@
 <body>
 
         <div id="tete" class="menu_tete">
-				<form class="form" method="post" action="/index.php?p=home">
+				<form class="form" method="post" action="index.php?p=home">
 					<label for="habitation">Habitation :</label><br />
 					<select name="habitation" id="habitation" onchange="this.form.submit();">
 
@@ -9,7 +9,8 @@
                         echo $light;
                             foreach ($residences as $residence){
                             ?>
-                            <option value="<?php echo $residence["idResidence"] ?>" <?php echo $select[$residence["idResidence"]] ?>><?php echo $residence["name"] ?></option>
+                            <option value="<?php echo $residence["idResidence"] ?>"
+                                <?php echo $select[$residence["idResidence"]] ?>><?php echo $residence["name"] ?></option>
                             <?php  }
                         ?>
 

@@ -48,7 +48,7 @@
                         <p><label for="country">Pays :</label></p>
                         <p><input type="text" name="country" id="country" placeholder="Exemple : France" required/></p>
 
-                        <p><label for="termOfUse" class="button">J'accepte les C.G.U :
+                        <p><label for="termOfUse" class="button">J'accepte les C.G.U
                                 <input type="checkbox" name="termOfUse" id="termOfUse" required /><span class="checkbox"></span> </label></p>
 
 

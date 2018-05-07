@@ -21,6 +21,7 @@ $_POST = array();
 $_SESSION['lastPage'] = $php;
 ?>
 <link rel="stylesheet" href="view/css/header.css" />
+<link rel="stylesheet" href="view/css/form.css" />
 <link rel="stylesheet" href="view/css/<?php echo $php ?>.css" />
 <title>
     <?php echo $php ?>
@@ -30,6 +31,8 @@ $_SESSION['lastPage'] = $php;
 
 include('view/php/header.php');
 
-include('view/php/'. $php . '.php');
+if(FALSE == (include 'view/php/' . $php . '.php')){
+    include 'view/php/404.php';
+}
 ?>
 </html>

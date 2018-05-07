@@ -1,16 +1,5 @@
 <body>
-    <?php
-    $sensorList = ["temperature", "humidite", "CO2", "pression", "lumière"];
-    $actuatorList = ["chauffage", "lumière", "ventilation"];
-
-    $sensorCheck = ["checked", "", "checked", "", "checked"];
-    $actuatorCheck = ["", "checked", ""];
-
-    $roomName = "";
-    $roomSize = "";
-    ?>
-
-    <form id="sensorForm" method="post" action="index.php?p=home">
+    <form id="customForm" method="post" action="index.php?p=home">
         <fieldset class="checkboxSection">
             <legend>capteurs</legend>
         <?php
@@ -46,12 +35,17 @@
             <legend>caracteristique</legend>
             <label>
                 Nom de la pièce : <br/>
-                <input class="inputText" type="text" value=<?php echo $roomName; ?>>
+                <input name="name" class="inputText" type="text" value=<?php echo $roomName; ?> required>
+            </label>
+            <br/>
+            <label>
+                Type de pièce : <br/>
+                <input class="inputText" type="text" value=<?php echo $roomType; ?> required>
             </label>
             <br/>
             <label>
                 Taille de la pièce (en m²) : <br/>
-                <input class="inputText" type="text" value=<?php echo $roomSize; ?>>
+                <input class="inputText" type="text" value=<?php echo $roomSize; ?> required>
             </label>
         </fieldset>
         <input id="submit" type="submit">

@@ -178,19 +178,21 @@ function home($PDO, $idUser)
         $req->closeCursor();
         $req = $PDO->prepare('SELECT idSensor, type FROM sensor WHERE idRoom = ?');
         $req->execute([$room['idRoom']]);
-        $req->closeCursor();
         while ($sensor = $req->fetch()){
-            if ($sensor['type'] == 'temperature'){
-                $req = $PDO->prepare('SELECT date, value FROM data WHERE idSensor = ? SORT BY date DESC');
-                $req->execute([$sensor['idSensor']]);
-                $temperature[$room['idRoom']] = $req->fetch();
+            if ($sensor['type'] == 'Temperature'){
+                $req1 = $PDO->prepare('SELECT date, value FROM data WHERE idSensor = ? ORDER BY date DESC');
+                $req1->execute([$sensor['idSensor']]);
+                $data = $req1->fetch();
+                $temperature[$room['idRoom']] = $data['value'];
+                $req1->closeCursor();
             }
-            elseif ($sensor['type'] == 'ventilation'){
-                $req = $PDO->prepare('SELECT date, value FROM data WHERE idSensor = ? SORT BY date DESC');
-                $req->execute([$sensor['idSensor']]);
-                $ventilation[$room['idRoom']] = $req->fetch();
+            elseif ($sensor['type'] == 'Ventilation'){
+                $req1 = $PDO->prepare('SELECT date, value FROM data WHERE idSensor = ? ORDER BY date DESC');
+                $req1->execute([$sensor['idSensor']]);
+                $data = $req1->fetch();
+                $ventilation[$room['idRoom']] = $data['value'];
+                $req1->closeCursor();
             }
-            $req->closeCursor();
         }
         $req->closeCursor();
     }

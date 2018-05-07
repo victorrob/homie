@@ -1,5 +1,4 @@
 function home(idRoom) {
-
     var section = document.getElementById(idRoom);
     var rooms = document.getElementsByClassName('roomFactors');
 

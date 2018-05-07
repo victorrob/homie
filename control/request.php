@@ -20,9 +20,14 @@ if(isset($_SESSION['lastPage']) && $php === $_SESSION['lastPage']) {
 // Action to perform when loading the page
 switch ($php) {
     case "statistic":
-        global $sensorName, $sensorHistoric;
         [$sensorName, $sensorHistoric] =getHistoric($GLOBALS['roomId'], $PDO);
+        echo print_r($sensorHistoric);
         break;
     case "home":
         [$residences, $select, $rooms, $light, $shutter, $auto, $opening, $closing, $temperature, $ventilation] = home($PDO, $GLOBALS['idUser']);
+        break;
+    case "sensor":
+        [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($GLOBALS['roomId'], $PDO);
+
+        break;
 }

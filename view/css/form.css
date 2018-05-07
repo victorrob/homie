@@ -1,0 +1,116 @@
+/*form*/
+#customForm{
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%);
+    margin-top: 40px;
+    width: 40%;
+}
+
+/*field*/
+fieldset{
+
+    border-radius: 10px;
+    border: #F4A460 solid;
+}
+
+
+/*legend*/
+
+legend{
+    font-size: 20px;
+    text-align: center;
+}
+
+/* input */
+.inputText{
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    border: 1px solid transparent;
+}
+input:invalid{
+    border: 2px solid red;
+}
+input{
+    border: 1px solid transparent;
+}
+input:hover{
+    background-color: #ccc;
+    border: 1px solid blue;
+}
+input:focus{
+    border: 1px solid blue;
+}
+
+
+
+/* checkbox
+/* Customize the label (the button) */
+.button {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* Hide the browser's default radio button */
+.button input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Create a custom radio button */
+.checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 10%;
+    border: 1px solid transparent;
+
+}
+
+/* On mouse-over, add a grey background color */
+.button:hover input ~ .checkbox {
+    background-color: #ccc;
+    border: 1px solid blue;
+}
+
+/* When the radio button is checked, add a blue background */
+.button input:checked ~ .checkbox {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkbox:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.button input:checked ~ .checkbox:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.button .checkbox:after {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 5%;
+
+}

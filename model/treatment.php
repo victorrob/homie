@@ -149,7 +149,7 @@ function home($PDO, $idUser)
         $req = $PDO->prepare('SELECT type, state, auto, opening, closing FROM actuator WHERE idRoom = ?');
         $req->execute([$room['idRoom']]);
         while ($actuator = $req->fetch()){
-            if ($actuator['type'] == 'light'){
+            if ($actuator['type'] == 'Light'){
                 if ($actuator['state'] == 1){
                     $light[$room['idRoom']] = 'checked';
                 }
@@ -157,7 +157,7 @@ function home($PDO, $idUser)
                     $light[$room['idRoom']] = '';
                 }
             }
-            elseif ($actuator['type'] == 'shutter'){
+            elseif ($actuator['type'] == 'Shutter'){
                 if ($actuator['state'] == 1){
                     $shutter[$room['idRoom']] = 'checked';
                 }
@@ -316,3 +316,38 @@ function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (
 
 }
 */
+
+function getRoomInfo($idRoom, $PDO){
+    $sensorList = ["Temperature", "humidite", "CO2", "pression", "lumière"];
+    foreach ($sensorList as $i){
+        array_push($sensorCheck, "");
+    }
+    $actuatorList = ["chauffage", "lumière", "ventilation"];
+    foreach ($actuatorList as $i){
+        array_push($actuatorCheck, "");
+    }
+    $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType, actuator.type AS actuatorType 
+                          FROM room INNER JOIN sensor INNER JOIN actuator ON room.idRoom = sensor.idRoom AND 
+                          room.idRoom = actuator.idRoom where room.idroom = ?");
+    $req->execute([$idRoom]);
+    $roomName = "";
+    $roomSize = "";
+    $roomType = "";
+    while($data = $req->fetch()){
+        $roomName = $data['name'];
+        $roomSize = $data['size'];
+        $roomType = $data['roomType'];
+        for($i=0 ; $i<count($sensorList); $i++){
+            if ($data['sensorType'] === $sensorList[$i]){
+                $sensorCheck[$i] = "checked";
+            }
+        }
+        for($i=0 ; $i<count($actuatorList); $i++){
+            if ($data['sensorType'] === $actuatorList[$i]){
+                $actuatorCheck[$i] = "checked";
+            }
+        }
+
+    }
+    return [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName];
+}

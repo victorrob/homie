@@ -5,6 +5,7 @@ var timeRangeSelected;
 for(i = 0; i <sensorType.length; i++){
     selectTimeRange(4,i);
 }
+
 //onmouse function
 function showValue(i, j, set){
     var valueDiv = document.getElementById("showValue" + i);
@@ -140,7 +141,7 @@ function graphDisplay(i) {
         if(j<sensorHistoric[sensorType[i]]['value'].length) {
             value = sensorHistoric[sensorType[i]]['value'][j];
             div.style.width = (width / historicMax) + '%';
-            if (value > max && value > 9) {
+            if (value > max ) {
                 max = value;
             }
             div.style.visibility = "visible";
@@ -162,8 +163,6 @@ function graphDisplay(i) {
         div.style.height = Math.floor(heigth * (value / max)) + "px";
         div.style.marginTop = Math.floor(heigth - heigth * (value / max)) + "px";
         date.style.marginTop = Math.floor(330 - (heigth - heigth * (value / max))) + "px";
-        //date.innerText = 'date : ' + sensorHistoric[sensorType[i]]['day'][j] + '\n' +
-           // 'valeur : ' + sensorHistoric[sensorType[i]]['value'][j];
     }
     document.getElementById("maxValue" + i).innerText = max;
     document.getElementById("meanValue" + i).innerText = "" + Math.floor(max / 2);

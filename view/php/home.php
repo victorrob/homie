@@ -1,14 +1,16 @@
 <body>
 
         <div id="tete" class="menu_tete">
-				<form class="form" method="post" action="/index.php?p=home">
+				<form class="form" method="post" action="index.php?p=home">
 					<label for="habitation">Habitation :</label><br />
 					<select name="habitation" id="habitation" onchange="this.form.submit();">
 
                         <?php
+                        echo $light;
                             foreach ($residences as $residence){
                             ?>
-                            <option value="<?php echo $residence["idResidence"] ?>" <?php echo $select[$residence["idResidence"]] ?>><?php echo $residence["name"] ?></option>
+                            <option value="<?php echo $residence["idResidence"] ?>"
+                                <?php echo $select[$residence["idResidence"]] ?>><?php echo $residence["name"] ?></option>
                             <?php  }
                         ?>
 
@@ -28,7 +30,7 @@
                 <div onclick="home(<?php echo $room['idRoom'] ?>)"><p><?php echo $room['name'] ?></p></div>
                 <?php  }
             ?>
-            <a href="index.php?p=addRoom"><div><p id="plus">+</p></div></a>
+            <a href="index.php?p=sensor"><div><p id="plus">+</p></div></a>
 
 		</section>
 
@@ -109,6 +111,6 @@
 			<div><p>Absent</p></div>
 		</section>
 
-        <script type="text/javascript" src="/view/js/home.js"></script>
+        <script type="text/javascript" src="view/js/home.js"></script>
 
 </body>

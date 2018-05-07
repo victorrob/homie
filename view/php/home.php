@@ -6,7 +6,7 @@
 					<select name="habitation" id="habitation" onchange="this.form.submit();">
 
                         <?php
-                        echo print_r($_REQUEST);
+                        echo $light;
                             foreach ($residences as $residence){
                             ?>
                             <option value="<?php echo $residence["idResidence"] ?>" <?php echo $select[$residence["idResidence"]] ?>><?php echo $residence["name"] ?></option>
@@ -29,7 +29,7 @@
                 <div onclick="home(<?php echo $room['idRoom'] ?>)"><p><?php echo $room['name'] ?></p></div>
                 <?php  }
             ?>
-            <a href="index.php?p=addRoom"><div><p id="plus">+</p></div></a>
+            <a href="index.php?p=sensor"><div><p id="plus">+</p></div></a>
 
 		</section>
 
@@ -110,6 +110,6 @@
 			<div><p>Absent</p></div>
 		</section>
 
-        <script type="text/javascript" src="/view/js/home.js"></script>
+        <script type="text/javascript" src="view/js/home.js"></script>
 
 </body>

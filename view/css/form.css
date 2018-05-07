@@ -34,7 +34,9 @@ legend{
 input:invalid{
     border: 2px solid red;
 }
-
+input{
+    border: 1px solid transparent;
+}
 input:hover{
     background-color: #ccc;
     border: 1px solid blue;

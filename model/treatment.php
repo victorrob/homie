@@ -150,7 +150,7 @@ function home($PDO, $idUser)
         $req = $PDO->prepare('SELECT type, state, auto, opening, closing FROM actuator WHERE idRoom = ?');
         $req->execute([$room['idRoom']]);
         while ($actuator = $req->fetch()){
-            if ($actuator['type'] == 'light'){
+            if ($actuator['type'] == 'Light'){
                 if ($actuator['state'] == 1){
                     $light[$room['idRoom']] = 'checked';
                 }
@@ -158,7 +158,7 @@ function home($PDO, $idUser)
                     $light[$room['idRoom']] = '';
                 }
             }
-            elseif ($actuator['type'] == 'shutter'){
+            elseif ($actuator['type'] == 'Shutter'){
                 if ($actuator['state'] == 1){
                     $shutter[$room['idRoom']] = 'checked';
                 }

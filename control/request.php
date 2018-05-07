@@ -17,6 +17,7 @@ if(isset($_SESSION['lastPage']) && $php === $_SESSION['lastPage']) {
 switch ($php) {
     case "statistic":
         [$sensorName, $sensorHistoric] =getHistoric($GLOBALS['roomId'], $PDO);
+        echo print_r($sensorHistoric);
         break;
     case "home":
         [$residences, $select, $rooms, $light, $shutter, $auto, $opening, $closing, $temperature, $ventilation] = home($PDO, $GLOBALS['idUser']);

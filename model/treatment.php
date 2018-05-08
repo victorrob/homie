@@ -38,8 +38,7 @@ function getHistoric($roomId, $PDO){
 
 //add user
 
-function signUp($PDO)
-{
+function signUp($PDO){
     if (isset($_POST['name']))
         $name = strip_tags($_POST['name']);
     else
@@ -150,7 +149,7 @@ function home($PDO, $idUser)
         $req = $PDO->prepare('SELECT type, state, auto, opening, closing FROM actuator WHERE idRoom = ?');
         $req->execute([$room['idRoom']]);
         while ($actuator = $req->fetch()){
-            if ($actuator['type'] == 'light'){
+            if ($actuator['type'] == 'Light'){
                 if ($actuator['state'] == 1){
                     $light[$room['idRoom']] = 'checked';
                 }
@@ -158,7 +157,7 @@ function home($PDO, $idUser)
                     $light[$room['idRoom']] = '';
                 }
             }
-            elseif ($actuator['type'] == 'shutter'){
+            elseif ($actuator['type'] == 'Shutter'){
                 if ($actuator['state'] == 1){
                     $shutter[$room['idRoom']] = 'checked';
                 }
@@ -178,19 +177,21 @@ function home($PDO, $idUser)
         $req->closeCursor();
         $req = $PDO->prepare('SELECT idSensor, type FROM sensor WHERE idRoom = ?');
         $req->execute([$room['idRoom']]);
-        $req->closeCursor();
         while ($sensor = $req->fetch()){
-            if ($sensor['type'] == 'temperature'){
-                $req = $PDO->prepare('SELECT date, value FROM data WHERE idSensor = ? SORT BY date DESC');
-                $req->execute([$sensor['idSensor']]);
-                $temperature[$room['idRoom']] = $req->fetch();
+            if ($sensor['type'] == 'Temperature'){
+                $req1 = $PDO->prepare('SELECT date, value FROM data WHERE idSensor = ? ORDER BY date DESC');
+                $req1->execute([$sensor['idSensor']]);
+                $data = $req1->fetch();
+                $temperature[$room['idRoom']] = $data['value'];
+                $req1->closeCursor();
             }
-            elseif ($sensor['type'] == 'ventilation'){
-                $req = $PDO->prepare('SELECT date, value FROM data WHERE idSensor = ? SORT BY date DESC');
-                $req->execute([$sensor['idSensor']]);
-                $ventilation[$room['idRoom']] = $req->fetch();
+            elseif ($sensor['type'] == 'Ventilation'){
+                $req1 = $PDO->prepare('SELECT date, value FROM data WHERE idSensor = ? ORDER BY date DESC');
+                $req1->execute([$sensor['idSensor']]);
+                $data = $req1->fetch();
+                $ventilation[$room['idRoom']] = $data['value'];
+                $req1->closeCursor();
             }
-            $req->closeCursor();
         }
         $req->closeCursor();
     }
@@ -315,3 +316,38 @@ function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (
 
 }
 */
+
+function getRoomInfo($idRoom, $PDO){
+    $sensorList = ["Temperature", "humidite", "CO2", "pression", "lumière"];
+    foreach ($sensorList as $i){
+        array_push($sensorCheck, "");
+    }
+    $actuatorList = ["chauffage", "lumière", "ventilation"];
+    foreach ($actuatorList as $i){
+        array_push($actuatorCheck, "");
+    }
+    $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType, actuator.type AS actuatorType 
+                          FROM room INNER JOIN sensor INNER JOIN actuator ON room.idRoom = sensor.idRoom AND 
+                          room.idRoom = actuator.idRoom where room.idroom = ?");
+    $req->execute([$idRoom]);
+    $roomName = "";
+    $roomSize = "";
+    $roomType = "";
+    while($data = $req->fetch()){
+        $roomName = $data['name'];
+        $roomSize = $data['size'];
+        $roomType = $data['roomType'];
+        for($i=0 ; $i<count($sensorList); $i++){
+            if ($data['sensorType'] === $sensorList[$i]){
+                $sensorCheck[$i] = "checked";
+            }
+        }
+        for($i=0 ; $i<count($actuatorList); $i++){
+            if ($data['sensorType'] === $actuatorList[$i]){
+                $actuatorCheck[$i] = "checked";
+            }
+        }
+
+    }
+    return [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName];
+}

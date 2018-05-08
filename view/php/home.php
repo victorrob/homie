@@ -1,14 +1,16 @@
 <body>
 
         <div id="tete" class="menu_tete">
-				<form class="form" method="post" action="/index.php?p=home">
+				<form class="form" method="post" action="index.php?p=home">
 					<label for="habitation">Habitation :</label><br />
 					<select name="habitation" id="habitation" onchange="this.form.submit();">
 
                         <?php
+                        echo $light;
                             foreach ($residences as $residence){
                             ?>
-                            <option value="<?php echo $residence["idResidence"] ?>" <?php echo $select[$residence["idResidence"]] ?>><?php echo $residence["name"] ?></option>
+                            <option value="<?php echo $residence["idResidence"] ?>"
+                                <?php echo $select[$residence["idResidence"]] ?>><?php echo $residence["name"] ?></option>
                             <?php  }
                         ?>
 
@@ -28,6 +30,7 @@
                 <div onclick="home(<?php echo $room['idRoom'] ?>)"><p><?php echo $room['name'] ?></p></div>
                 <?php  }
             ?>
+            <a href="index.php?p=sensor"><div><p id="plus">+</p></div></a>
 
 		</section>
 
@@ -36,61 +39,62 @@
                 ?>
 
                 <section class="roomFactors" id="<?php echo $room['idRoom'] ?>">
-                    <div><?php echo $room['name'] ?></div>
-                    <br/>
+                    <div><p><?php echo $room['name'] ?></p></div>
                     <div class="ligne">
                         <div>
-                            Lumière :
-                            <input class="switch" name="lumiere" id="lumiere"
-                                   type="checkbox" <?php echo $light[$room['idRoom']] ?> />
-                            <label for="lumiere" class="ui-content">
-                                <div class="ui-switch-range">
-                                    <div class="ui-switch-handle">
+                            <p>Lumière :</p>
+                            <div class="switchButton">
+                                <input class="switch" name="lumiere" id="lumiere"
+                                       type="checkbox" <?php echo $light[$room['idRoom']] ?> />
+                                <label for="lumiere" class="label" id="labelLight">
+                                    <div class="forme" id="formeLight">
+                                        <div class="rond" id="rondLight">
+                                        </div>
                                     </div>
-                                </div>
-                            </label>
+                                </label>
+                            </div>
                         </div>
                         <div>
-                            Chauffage :
-                            <form><input type="number" name="chauffage"
+                            <p>Chauffage :</p>
+                            <form><input type="number" name="chauffage" class="input"
                                          value="<?php echo $temperature[$room['idRoom']] ?>"> °C
                             </form>
                         </div>
                         <div>
-                            Ventilation :
-                            <form><input type="number" name="ventilation"
+                            <p>Ventilation :</p>
+                            <form><input type="number" name="ventilation" class="input"
                                          value="<?php echo $ventilation[$room['idRoom']] ?>"></form>
                         </div>
                     </div>
                     <div>
-                        Volets :
-                        <div>
-                            <input class="switch" name="volets1" id="volets1"
+                        <p>Volets :</p>
+                        <div class="switchButton">
+                            <input class="switch" name="shutter" id="shutter"
                                    type="checkbox" <?php echo $shutter[$room['idRoom']] ?> />
-                            <label for="volets1" class="ui-content">
-                                <div class="ui-switch-range">
-                                    <div class="ui-switch-handle">
+                            <label for="shutter" class="label" id="labelShutter">
+                                <div class="forme" id="formeShutter">
+                                    <div class="rond" id="rondShutter">
                                     </div>
                                 </div>
                             </label>
                         </div>
-                        <div>
-                            <input class="switch" name="volets2" id="volets2"
+                        <div class="switchButton">
+                            <input class="switch" name="auto" id="auto"
                                    type="checkbox" <?php echo $auto[$room['idRoom']] ?> />
-                            <label for="volets2" class="ui-content">
-                                <div class="ui-switch-range">
-                                    <div class="ui-switch-handle">
+                            <label for="auto" class="label" id="labelAuto">
+                                <div class="forme" id="formeAuto">
+                                    <div class="rond" id="rondAuto">
                                     </div>
                                 </div>
                             </label>
                         </div>
                     </div>
                     <div>
-                        Plage horaire :
+                        <p>Plage horaire :</p>
                         <form><input type="time" name="ouverture" value="<?php echo $opening[$room['idRoom']] ?>"/> -
                             <input type="time" name="fermeture" value="<?php echo $closing[$room['idRoom']] ?>"/></form>
                     </div>
-                    <div><a href="#"><p>Statistiques</p></a></div>
+                    <div><a href="index.php?p=statistic"><p>Statistiques</p></a></div>
                 </section>
                 <?php
             }
@@ -107,6 +111,6 @@
 			<div><p>Absent</p></div>
 		</section>
 
-        <script type="text/javascript" src="/view/js/home.js"></script>
+        <script type="text/javascript" src="view/js/home.js"></script>
 
 </body>

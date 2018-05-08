@@ -14,8 +14,8 @@ if(!$address){$address = 'undefined';}
 <!-- a modif pout index.php ( NE PAS SUPPRIMER!! )-->
 <!-- j'aimerais modifier quand je serais la -->
 <header>
-	<link rel="stylesheet" href="../css/profile.css" />
-	<script type="text/javascript" src="../js/profile.js"></script>
+	<link rel="stylesheet" href="view/css/profile.css" />
+	<script type="text/javascript" src="view/js/profile.js"></script>
 </header>
 <!-- a modif pout index.php -->
 

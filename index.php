@@ -20,8 +20,9 @@ include("control/request.php");
 $_POST = array();
 $_SESSION['lastPage'] = $php;
 ?>
-<link rel="stylesheet" href="view/css/header.css" />
 <link rel="stylesheet" href="view/css/<?php echo $php ?>.css" />
+<link rel="stylesheet" href="view/css/header.css" />
+<link rel="stylesheet" href="view/css/form.css" />
 <title>
     <?php echo $php ?>
 </title>
@@ -30,6 +31,8 @@ $_SESSION['lastPage'] = $php;
 
 include('view/php/header.php');
 
-include('view/php/'. $php . '.php');
+if(FALSE == (include 'view/php/' . $php . '.php')){
+    include 'view/php/404.php';
+}
 ?>
 </html>

@@ -6,6 +6,6 @@
 			<p><input type="password" name="mot_de_passe" id="mot_de_passe" placeholder="Mot de passe" /></p>
 			<p><input type="submit" name="connect" value="Connexion" /></p>
 			<hr />
-			<p><a href="index.php?p=signup">Créer un compte</a></p>
+			<p><a href="index.php?p=signUp">Créer un compte</a></p>
 			<p><a href="index.php?p=forgottenPswd">Mot de passe oublié</a></p>
 		</form>

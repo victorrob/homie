@@ -20,7 +20,7 @@
 			<h1>Pièces</h1>
 			<hr />
 		</div>
-		<div id="roomSection">
+		<section id="roomSection">
 
             <?php
                 foreach ($rooms as $room){

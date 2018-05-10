@@ -116,10 +116,9 @@ function home($PDO, $idUser)
     $req = $PDO->prepare('SELECT name, residence.idResidence FROM residence JOIN user_residence WHERE residence.idResidence = user_residence.idResidence AND user_residence.idUser = ?');
     $req->execute([$idUser]);
     $residences = [];
-    $select = [];
     while ($residence = $req->fetch()){
+        $residence['select'] = '';
         array_push($residences, $residence);
-        $select[$residence['idResidence']] = '';
     }
     $req->closeCursor();
 

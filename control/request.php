@@ -6,7 +6,11 @@ if(isset($_SESSION['lastPage']) && $php === $_SESSION['lastPage']) {
         case "signUp":
 
             //mettre alert
-            $signUp == signUp($PDO);
+            /*$signUp == signUp($PDO);
+            if ($signUp == true){
+                echo $signUp;
+            }
+           */
             $php = 'login';
             break;
         case 'addRoom':
@@ -16,9 +20,14 @@ if(isset($_SESSION['lastPage']) && $php === $_SESSION['lastPage']) {
 // Action to perform when loading the page
 switch ($php) {
     case "statistic":
-        global $sensorName, $sensorHistoric;
         [$sensorName, $sensorHistoric] =getHistoric($GLOBALS['roomId'], $PDO);
+        echo print_r($sensorHistoric);
         break;
     case "home":
         [$residences, $rooms] = home($PDO, $GLOBALS['idUser']);
+        break;
+    case "sensor":
+        [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($GLOBALS['roomId'], $PDO);
+
+        break;
 }

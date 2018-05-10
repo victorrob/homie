@@ -20,7 +20,7 @@
 			<h1>Pièces</h1>
 			<hr />
 		</div>
-		<section id="roomSection">
+		<div id="roomSection">
 
             <?php
                 foreach ($rooms as $room){
@@ -28,7 +28,7 @@
                 <div onclick="home(<?php echo $room['idRoom'] ?>)"><p><?php echo $room['name'] ?></p></div>
                 <?php  }
             ?>
-            <div id="plus"><a href="index.php?p=addRoom"><p>+</p></a></div>
+            <div id="plus"><a href="index.php?p=sensor"><p>+</p></a></div>
 
 		</section>
 
@@ -109,6 +109,6 @@
 			<div><p>Absent</p></div>
 		</section>
 
-        <script type="text/javascript" src="/view/js/home.js"></script>
+        <script type="text/javascript" src="view/js/home.js"></script>
 
 </body>

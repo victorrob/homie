@@ -30,19 +30,19 @@ h1
 
 #roomSection, #habitationSection
 {
-	display: grid;
-    width: 100%;
-    max-width: 85%;
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 85%;
     margin: 30px auto;
-    grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
-    grid-gap: 20px;
 }
 
 #roomSection div, #habitationSection div
 {
 	width: 150px;
 	height: 150px;
-	margin: 0 10%;
+	margin: 30px;
 	border: solid 2px;
 	border-radius: 10px;
 	display: flex;
@@ -90,6 +90,12 @@ a {
 }
 
 #plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#plus p {
     font-size: 100px;
 }
 
@@ -106,7 +112,7 @@ a {
     padding: 1px;
 }
 
-.forme {
+.formeLight {
     background: #f4ffe6;
     border: 1px #cfc8bc solid;
     border-radius: 15px;
@@ -116,21 +122,35 @@ a {
     margin-bottom: 15px;
     padding: 2px;
     position: relative;
-}
-
-#formeLight {
     width: 70px;
 }
 
-#formeShutter, #formeAuto {
+.formeShutter, .formeAuto {
+    background: #f4ffe6;
+    border: 1px #cfc8bc solid;
+    border-radius: 15px;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 1), 0 1px 1px rgba(0, 0, 0, .15) inset;
+    display: inline-block;
+    height: 20px;
+    margin-bottom: 15px;
+    padding: 2px;
+    position: relative;
     width: 100px;
 }
 
-.switch:checked ~ label .forme {
+.switch:checked ~ label .formeLight {
     background: #006d91;
 }
 
-.rond {
+.switch:checked ~ label .formeShutter {
+    background: #006d91;
+}
+
+.switch:checked ~ label .formeAuto {
+    background: #006d91;
+}
+
+.rondLight {
     background: #e3dde3;
     border-radius: 20px;
     box-shadow: 0 1px 3px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.8) inset;
@@ -140,47 +160,78 @@ a {
     width: 20px;
 }
 
-.switch:checked ~ label .rond {
+.rondShutter {
+    background: #e3dde3;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.8) inset;
+    display: inline-block;
+    height: 20px;
+    position: absolute;
+    width: 20px;
+}
+
+.rondAuto {
+    background: #e3dde3;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.8) inset;
+    display: inline-block;
+    height: 20px;
+    position: absolute;
+    width: 20px;
+}
+
+.switch:checked ~ label .rondLight {
     right: 2px;
 }
 
-.rond:before {
+.switch:checked ~ label .rondShutter {
+    right: 2px;
+}
+
+.switch:checked ~ label .rondAuto {
+    right: 2px;
+}
+
+.rondLight:before {
     line-height: 22px;
     color: #FFF;
-}
-
-.rond:after {
-    position: relative;
-    color: black;
-    top: 2px;
-}
-
-#rondLight:before {
     margin-left: -32px;
     content: "ON";
 }
-
-#rondLight:after {
+.rondLight:after {
+    position: relative;
+    color: black;
+    top: 2px;
     right: -36px;
     content: "OFF";
 }
 
-#rondShutter:before {
+.rondShutter:before {
+    line-height: 22px;
+    color: #FFF;
     margin-left: -64px;
     content: "FERME";
 }
 
-#rondShutter:after {
+.rondShutter:after {
+    position: relative;
+    color: black;
+    top: 2px;
     right: -39px;
     content: "OUVERT";
 }
 
-#rondAuto:before {
+.rondAuto:before {
+    line-height: 22px;
+    color: #FFF;
     margin-left: -57px;
     content: "AUTO";
 }
 
-#rondAuto:after {
+.rondAuto:after {
+    position: relative;
+    color: black;
+    top: 2px;
     right: -38px;
     content: "MANUEL";
 }

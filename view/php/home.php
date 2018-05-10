@@ -1,15 +1,15 @@
 <body>
 
         <div id="tete" class="menu_tete">
-				<form class="form" method="post" action="/index.php?p=home">
-					<label for="habitation">Habitation :</label><br />
-					<select name="habitation" id="habitation" onchange="this.form.submit();">
+				<form class="form" method="post" action="index.php?p=home">
+					<label for="residence">Résidence :</label><br />
+					<select name="residence" id="residence" onchange="this.form.submit();">
 
                         <?php
                             foreach ($residences as $residence){
                             ?>
-                            <option value="<?php echo $residence["idResidence"] ?>" <?php echo $select[$residence["idResidence"]] ?>><?php echo $residence["name"] ?></option>
-                            <?php  }
+                            <option value="<?php echo $residence['idResidence'] ?>" <?php echo $residence['select'] ?>><?php echo $residence['name'] ?></option>
+                            <?php }
                         ?>
 
                     </select>
@@ -28,7 +28,7 @@
                 <div onclick="home(<?php echo $room['idRoom'] ?>)"><p><?php echo $room['name'] ?></p></div>
                 <?php  }
             ?>
-            <a href="index.php?p=addRoom"><div><p id="plus">+</p></div></a>
+            <div id="plus"><a href="index.php?p=addRoom"><p>+</p></a></div>
 
 		</section>
 
@@ -42,11 +42,11 @@
                         <div>
                             <p>Lumière :</p>
                             <div class="switchButton">
-                                <input class="switch" name="lumiere" id="lumiere"
-                                       type="checkbox" <?php echo $light[$room['idRoom']] ?> />
-                                <label for="lumiere" class="label" id="labelLight">
-                                    <div class="forme" id="formeLight">
-                                        <div class="rond" id="rondLight">
+                                <input class="switch" name="<?php echo "light".$room['idRoom'] ?>" id="<?php echo "light".$room['idRoom'] ?>"
+                                       type="checkbox" <?php echo $room['light'] ?> />
+                                <label for="<?php echo "light".$room['idRoom'] ?>" class="label">
+                                    <div class="formeLight">
+                                        <div class="rondLight">
                                         </div>
                                     </div>
                                 </label>
@@ -55,33 +55,33 @@
                         <div>
                             <p>Chauffage :</p>
                             <form><input type="number" name="chauffage" class="input"
-                                         value="<?php echo $temperature[$room['idRoom']] ?>"> °C
+                                         value="<?php echo $room['temperature'] ?>"> °C
                             </form>
                         </div>
                         <div>
                             <p>Ventilation :</p>
                             <form><input type="number" name="ventilation" class="input"
-                                         value="<?php echo $ventilation[$room['idRoom']] ?>"></form>
+                                         value="<?php echo $room['ventilation'] ?>"></form>
                         </div>
                     </div>
                     <div>
                         <p>Volets :</p>
                         <div class="switchButton">
-                            <input class="switch" name="shutter" id="shutter"
-                                   type="checkbox" <?php echo $shutter[$room['idRoom']] ?> />
-                            <label for="shutter" class="label" id="labelShutter">
-                                <div class="forme" id="formeShutter">
-                                    <div class="rond" id="rondShutter">
+                            <input class="switch" name="<?php echo "shutter".$room['idRoom'] ?>" id="<?php echo "shutter".$room['idRoom'] ?>"
+                                   type="checkbox" <?php echo $room['shutter'] ?> />
+                            <label for="<?php echo "shutter".$room['idRoom'] ?>" class="label">
+                                <div class="formeShutter">
+                                    <div class="rondShutter">
                                     </div>
                                 </div>
                             </label>
                         </div>
                         <div class="switchButton">
-                            <input class="switch" name="auto" id="auto"
-                                   type="checkbox" <?php echo $auto[$room['idRoom']] ?> />
-                            <label for="auto" class="label" id="labelAuto">
-                                <div class="forme" id="formeAuto">
-                                    <div class="rond" id="rondAuto">
+                            <input class="switch" name="<?php echo "auto".$room['idRoom'] ?>" id="<?php echo "auto".$room['idRoom'] ?>"
+                                   type="checkbox" <?php echo $room['auto'] ?> />
+                            <label for="<?php echo "auto".$room['idRoom'] ?>" class="label">
+                                <div class="formeAuto">
+                                    <div class="rondAuto">
                                     </div>
                                 </div>
                             </label>
@@ -89,8 +89,8 @@
                     </div>
                     <div>
                         <p>Plage horaire :</p>
-                        <form><input type="time" name="ouverture" value="<?php echo $opening[$room['idRoom']] ?>"/> -
-                            <input type="time" name="fermeture" value="<?php echo $closing[$room['idRoom']] ?>"/></form>
+                        <form><input type="time" name="ouverture" value="<?php echo $room['opening'] ?>"/> -
+                            <input type="time" name="fermeture" value="<?php echo $room['closing'] ?>"/></form>
                     </div>
                     <div><a href="index.php?p=statistic"><p>Statistiques</p></a></div>
                 </section>

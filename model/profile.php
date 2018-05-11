@@ -43,7 +43,7 @@ function profilePut($namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,$phon
 		$req->execute([$passwordPut,$_SESSION['id']]);
 	}
 }
-function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (dans les else) !
+function profilePOST(){ // mdp a cripte et gestion des erreur a faire (dans les else) !
 	if (isset($_POST['name'])|| isset($_POST['firstName'])||isset($_POST['birth'])|| isset($_POST['email'])||isset($_POST['address'])|| isset($_POST['phone'])||isset($_POST['password1'])){
 		$_POST['password']=$_POST['password'];	// mdp a cripte !!!!!
 		if($_POST['password']=$password;){
@@ -89,3 +89,8 @@ function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (
 
 }
 ?>
+
+
+$name $firstName $birthDate $email $address $phone $password
+profilePOST();
+profileGet();

@@ -13,6 +13,9 @@ if(isset($_SESSION['lastPage']) && $php === $_SESSION['lastPage']) {
            */
             $php = 'login';
             break;
+        case "profile":
+            profilePOST();
+            break;
         case 'addRoom':
 
     }
@@ -28,6 +31,9 @@ switch ($php) {
         break;
     case "sensor":
         [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($GLOBALS['roomId'], $PDO);
-
+        break;
+    case "profile":
+        $name; $firstName; $birthDate; $email; $address; $phone; $password;
+        profileGet();
         break;
 }

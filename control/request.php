@@ -1,4 +1,5 @@
 <?php
+
 // Action to perform when leaving the page
 if(isset($_GET['d'])) {
     switch (strip_tags($_GET['d'])) {

@@ -3,7 +3,13 @@ try {
     $PDO = new PDO('mysql:host=localhost:3306;dbname=homie;charset=utf8', 'root', '', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 }
 catch (Exception $e){
-    $PDO = new PDO('mysql:host=victorropttest.mysql.db;dbname=victorropttest;charset=utf8', 'victorropttest', 'Homie2018', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    try{
+        $PDO = new PDO('mysql:host=victorropttest.mysql.db;dbname=victorropttest;charset=utf8', 'victorropttest', 'Homie2018', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    }
+    catch{
+        $PDO = new PDO('mysql:host=localhost.mysql.db;dbname=homie;charset=utf8', 'root', 'bonjour', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    }
+    
 }
 
 //statistic
@@ -111,21 +117,22 @@ function signUp($PDO){
                 VALUES('$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
 }
 
+//HOME
 function home($PDO, $idUser)
 {
     $req = $PDO->prepare('SELECT name, residence.idResidence FROM residence JOIN user_residence WHERE residence.idResidence = user_residence.idResidence AND user_residence.idUser = ?');
     $req->execute([$idUser]);
     $residences = [];
-    $select = [];
     while ($residence = $req->fetch()){
+        $residence['select'] = '';
         array_push($residences, $residence);
-        $select[$residence['idResidence']] = '';
     }
     $req->closeCursor();
 
-    if (isset($_POST['habitation'])){
-        $idResidence = $_POST['habitation'];
-        $select[$idResidence] = 'selected';
+    if (isset($_POST['residence'])){
+        $idResidence = $_POST['residence'];
+        $numberResidence = array_search($idResidence, array_column($residences, 'idResidence'));
+        $residences[$numberResidence]['select'] = 'selected';
     }
     else{
         $idResidence = $residences[0]['idResidence'];
@@ -135,69 +142,59 @@ function home($PDO, $idUser)
     $req->execute([$idResidence]);
     $rooms = [];
     while ($room = $req->fetch()){
-        array_push($rooms, $room);
-    }
-    $req->closeCursor();
-
-    $light = [];
-    $shutter = [];
-    $auto = [];
-    $opening = [];
-    $closing = [];
-    $temperature = [];
-    $ventilation = [];
-    foreach ($rooms as $room){
-        $req = $PDO->prepare('SELECT type, state, auto, opening, closing FROM actuator WHERE idRoom = ?');
-        $req->execute([$room['idRoom']]);
-        while ($actuator = $req->fetch()){
+        $req1 = $PDO->prepare('SELECT type, state, auto, opening, closing FROM actuator WHERE idRoom = ?');
+        $req1->execute([$room['idRoom']]);
+        while ($actuator = $req1->fetch()){
             if ($actuator['type'] == 'Light'){
                 if ($actuator['state'] == 1){
-                    $light[$room['idRoom']] = 'checked';
+                    $room['light'] = 'checked';
                 }
                 else{
-                    $light[$room['idRoom']] = '';
+                    $room['light'] = '';
                 }
             }
             elseif ($actuator['type'] == 'Shutter'){
                 if ($actuator['state'] == 1){
-                    $shutter[$room['idRoom']] = 'checked';
+                    $room['shutter'] = 'checked';
                 }
                 else{
-                    $shutter[$room['idRoom']] = '';
+                    $room['shutter'] = '';
                 }
                 if ($actuator['auto'] == 1){
-                    $auto[$room['idRoom']] = 'checked';
+                    $room['auto'] = 'checked';
                 }
                 else{
-                    $auto[$room['idRoom']] = '';
+                    $room['auto'] = '';
                 }
-                $opening[$room['idRoom']] = $actuator['opening'];
-                $closing[$room['idRoom']] = $actuator['closing'];
+                $room['opening'] = $actuator['opening'];
+                $room['closing'] = $actuator['closing'];
             }
         }
-        $req->closeCursor();
-        $req = $PDO->prepare('SELECT idSensor, type FROM sensor WHERE idRoom = ?');
-        $req->execute([$room['idRoom']]);
-        while ($sensor = $req->fetch()){
+        $req1->closeCursor();
+        $req1 = $PDO->prepare('SELECT idSensor, type FROM sensor WHERE idRoom = ?');
+        $req1->execute([$room['idRoom']]);
+        while ($sensor = $req1->fetch()){
             if ($sensor['type'] == 'Temperature'){
-                $req1 = $PDO->prepare('SELECT date, value FROM data WHERE idSensor = ? ORDER BY date DESC');
-                $req1->execute([$sensor['idSensor']]);
-                $data = $req1->fetch();
-                $temperature[$room['idRoom']] = $data['value'];
-                $req1->closeCursor();
+                $req2 = $PDO->prepare('SELECT value FROM data WHERE idSensor = ? ORDER BY date DESC LIMIT 1');
+                $req2->execute([$sensor['idSensor']]);
+                $data = $req2->fetch();
+                $room['temperature'] = $data['value'];
+                $req2->closeCursor();
             }
             elseif ($sensor['type'] == 'Ventilation'){
-                $req1 = $PDO->prepare('SELECT date, value FROM data WHERE idSensor = ? ORDER BY date DESC');
-                $req1->execute([$sensor['idSensor']]);
-                $data = $req1->fetch();
-                $ventilation[$room['idRoom']] = $data['value'];
-                $req1->closeCursor();
+                $req2 = $PDO->prepare('SELECT value FROM data WHERE idSensor = ? ORDER BY date DESC LIMIT 1');
+                $req2->execute([$sensor['idSensor']]);
+                $data = $req2->fetch();
+                $room['ventilation'] = $data['value'];
+                $req2->closeCursor();
             }
         }
-        $req->closeCursor();
+        $req1->closeCursor();
+        array_push($rooms, $room);
     }
+    $req->closeCursor();
 
-    return [$residences, $select, $rooms, $light, $shutter, $auto, $opening, $closing, $temperature, $ventilation];
+    return [$residences, $rooms];
 }
 
 function verify($PDO)

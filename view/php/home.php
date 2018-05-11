@@ -2,16 +2,15 @@
 
         <div id="tete" class="menu_tete">
 				<form class="form" method="post" action="index.php?p=home">
-					<label for="habitation">Habitation :</label><br />
-					<select name="habitation" id="habitation" onchange="this.form.submit();">
+					<label for="residence">Résidence :</label><br />
+					<select name="residence" id="residence" onchange="this.form.submit();">
 
                         <?php
-
+                        echo $light;
                             foreach ($residences as $residence){
                             ?>
-                            <option value="<?php echo $residence["idResidence"] ?>"
-                                <?php echo $select[$residence["idResidence"]] ?>><?php echo $residence["name"] ?></option>
-                            <?php  }
+                            <option value="<?php echo $residence['idResidence'] ?>" <?php echo $residence['select'] ?>><?php echo $residence['name'] ?></option>
+                            <?php }
                         ?>
 
                     </select>

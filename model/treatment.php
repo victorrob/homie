@@ -3,7 +3,13 @@ try {
     $PDO = new PDO('mysql:host=localhost:3306;dbname=homie;charset=utf8', 'root', '', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 }
 catch (Exception $e){
-    $PDO = new PDO('mysql:host=victorropttest.mysql.db;dbname=victorropttest;charset=utf8', 'victorropttest', 'Homie2018', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    try{
+        $PDO = new PDO('mysql:host=victorropttest.mysql.db;dbname=victorropttest;charset=utf8', 'victorropttest', 'Homie2018', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    }
+    catch{
+        $PDO = new PDO('mysql:host=localhost.mysql.db;dbname=homie;charset=utf8', 'root', 'bonjour', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    }
+    
 }
 
 //statistic

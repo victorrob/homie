@@ -13,6 +13,9 @@ if(isset($_GET['d'])) {
            */
             $php = 'login';
             break;
+        case "profile":
+            profilePOST();
+            break;
         case 'sensor':
             echo "fi";
             $_SESSION['roomId'] = -1;
@@ -33,6 +36,9 @@ switch ($php) {
     case "sensor":
         [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($PDO);
         break;
+    case "profile":
+        $name; $firstName; $birthDate; $email; $address; $phone; $password;
+        profileGet();
     case "login":
         break;
 }

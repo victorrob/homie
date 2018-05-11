@@ -41,12 +41,13 @@
         <br/>
         <label>
             Taille de la pièce (en m²) : <br/>
-            <input name="size" class="inputText" type="text" value=<?php echo $roomSize; ?> required>
+            <input name="size" type="text" value=<?php echo $roomSize; ?> required>
         </label>
     </fieldset>
     <section>
     <input class="lastButton" id="reset" type="reset" value="réinitialiser">
     <input class="lastButton" id="submit" type="submit" value="enregistrer">
-    <input class="lastButton" id="delete" type="submit" value="supprimer">
+    <input class="lastButton" id="delete" type="button" value="supprimer" onclick="this.form.submit()">
+    <input id="hiddenDelete" type="text" value="   ">
     </section>
 </form>

@@ -7,6 +7,10 @@ h1{
     text-align: center;
 }
 
+a{
+    color: #F4A460;
+}
+
 .button{
     display: inline-block;
     margin-left: 50%;
@@ -26,24 +30,58 @@ fieldset{
     margin: 2%;
 }
 
-@media screen and (max-width: 700px){
-    .container{
+fieldset.left {
+    width: 15%;
+}
+
+input{
+    text-align: left;
+    width: 80%;
+}
+
+input#submit{
+    width: initial;
+}
+
+.date{
+    width: initial;
+}
+
+.complete{
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    border: 1px solid transparent;
+}
+.complete:invalid{
+    border: 2px solid red;
+}
+
+.complete:hover{
+    background-color: #ccc;
+    border: 2px solid blue;
+}
+.complete:focus{
+    border: 2px solid blue;
+}
+
+label{
+    text-align: center;
+}
+
+
+@media screen and (max-width: 700px) {
+    .container {
         flex-direction: column;
     }
-    form
-    {
+
+    form {
         position: relative;
         left: 50%;
         transform: translate(-50%);
         text-align: center;
-    }
-
-    .rigthColumn
-    {
-        position: relative;
-        left: 50%;
-        transform: translate(-50%);
-
     }
 }
 

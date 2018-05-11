@@ -4,82 +4,81 @@
     <h1>Inscription</h1>
         <form method="post" action="index.php?p=signUp">
             <span class="container">
-            <fieldset>
+            <fieldset class="left">
                 <legend>Vos coordonnées</legend>
 
-               <p><label for="name">Nom :
+               <label for="name">Nom :<br>
                     <input type="text" name="name" placeholder="Exemple : Pierre" required />
-                </label></p>
+               </label>
 
-                <p><label for="prenom">Prénom :
+                <label for="prenom">Prénom :<br>
                     <input type="text" name="firstName" placeholder="Exemple : Dupond" required />
-                </label></p>
+                </label>
 
-                <p><label for="phone">Numéro de téléphone :
-                    <input type="tel" name="phone" placeholder="Exemple : 0601020304" required />
-                </label></p>
+                <label for="phone">Numéro de téléphone :<br>
+                    <input class="complete" type="tel" name="phone" placeholder="Exemple : 0601020304" required />
+                </label>
 
-                <p><label for="birthDate">Date de naissance :
-                    <input type="date" name="birthDate" required>
-                </label></p>
+                <label for="birthDate">Date de naissance :<br>
+                    <input class="complete date" type="date" name="birthDate" required>
+                </label>
             </fieldset>
 
             <fieldset>
                 <legend>Vos informations de connexion</legend>
 
-                <p><label for="email">Adresse e-mail :
-                    <input type="email" name="mail"  placeholder="Exemple : homie@gmail.com" required />
-                </label></p>
+                <label for="email">Adresse e-mail : <br>
+                    <input class="complete largeText" type="email" name="mail"  placeholder="Exemple : homie@gmail.com" required />
+                </label>
 
-                <p><label for="confirmEmail">Confirmer votre adresse e-mail :
-                    <input type="email" name="confirmEmail" placeholder="homie@gmail.com" required/>
-                </label></p>
+                <label for="confirmEmail">Confirmer votre adresse e-mail :<br>
+                    <input class="complete" type="email" name="confirmEmail" placeholder="homie@gmail.com" required/>
+                </label>
 
-                <p><label for="password">Mot de passe :
-                    <input type="password" name="password" placeholder="Mot de passe" required />
-                </label></p>
+                <label for="password">Mot de passe :<br>
+                    <input class="complete" type="password" name="password" placeholder="Mot de passe" required />
+                </label>
 
-                <p><label for="confirmPassword">Confirmer votre mot de passe :
-                    <input type="password" name="confirmPassword" placeholder="Confirmation" required />
-                </label></p>
+                <label for="confirmPassword">Confirmer votre mot de passe :<br>
+                    <input class="complete" type="password" name="confirmPassword" placeholder="Confirmation" required />
+                </label>
 
-                <p><label for="type">Type d'utilisateur :
-                    <select name="type">
+                <label for="type">Type d'utilisateur :
+                    <select class="complete" name="type">
                         <option value="owner">Propriétaire</option>
                         <option value="guest">Invité</option>
                     </select>
-                </label></p>
+                </label>
             </fieldset>
 
             <fieldset>
                 <legend>Informations sur votre domicile</legend>
-                <p><label for="address">Adresse :
-                    <input type="text" name="address" placeholder="Exemple 10 rue de Vanves" required />
-                </label></p>
+                <label for="address">Adresse :<br>
+                    <input class="largeText" type="text" name="address" placeholder="Exemple 10 rue de Vanves" required />
+                </label>
 
-                <p><label for="zipCode">Code postal :
+                <label for="zipCode">Code postal :<br>
                     <input type="text" name="zipCode" placeholder="Exemple : 92130" required/>
-                </label></p>
+                </label>
 
-                <p><label for="city">Ville :
-                    <input type="text" name="city" placeholder="Exemple : Issy-les-Moulineaux" required />
-                </label></p>
+                <label for="city">Ville :<br>
+                    <input class="largeText" type="text" name="city" placeholder="Exemple : Issy-les-Moulineaux" required />
+                </label>
 
-               <p><label for="country">Pays :
-                    <select name="country" required>
+               <label for="country">Pays :
+                    <select class="complete" name="country" required>
                         <option value="belgium">Belgique</option>
                         <option value="france">Fance</option>
                         <option value="luxembourg">Luxembourg</option>
                         <option value="switzerland">Suisse</option>
                     </select>
-                </label></p>
+                </label>
 
-                <p><label for="productNumber">Numéro de produit :
+                <label for="productNumber">Numéro de produit : <br>
                     <input type="text" name="productNumber" placeholder="123456789" required/>
-                </label></p>
+                </label>
             </fieldset>
             </span>
-
             <label for="termOfUse" class="button">J'accepte les <a href="index.php?p=conditionsOfUse">C.G.U</a><input type="checkbox" name="termOfUse" required /><span class="checkbox"></span>
             </label>
 

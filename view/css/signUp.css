@@ -44,9 +44,6 @@ input:invalid {
     width: 6px;
     height: 6px;
 }
-body{
-    color: #2196F3;
-}
 @media screen and (max-width: 700px){
     .container{
         flex-direction: column;

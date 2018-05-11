@@ -6,7 +6,7 @@
 					<select name="habitation" id="habitation" onchange="this.form.submit();">
 
                         <?php
-                        echo $light;
+
                             foreach ($residences as $residence){
                             ?>
                             <option value="<?php echo $residence["idResidence"] ?>"

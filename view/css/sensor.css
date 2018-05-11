@@ -1,29 +1,44 @@
 .checkboxSection{
-    display: grid;
+    /*display: grid;
     grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
     grid-gap: 10px;
-    border-radius: 10px;
+    border-radius: 10px;*/
+    display: flex;
+    flex-wrap: wrap;
     border: #F4A460 solid;
 }
+.button{
+    margin-left: 10px;
+}
+p{
+    display: contents;
 
+}
+label{
+    max-width: 11em;
+    margin: 0;
+}
 #textfield{
 
     text-align: center;
 }
 
-#submit{
+.lastButton{
     margin: 10px;
     color: white;
     background-color: transparent;
-    border: 3px solid sandybrown;
+    border: 3px solid;
     border-radius: 5px;
-    margin-left: 50%;
-    transform: translate(-50%);
     font-size: 20px;
 }
-
-
-
-
-
-
+#reset{
+    border-color: #006d91;
+}
+#delete{
+    border-color: red;
+}
+form > section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

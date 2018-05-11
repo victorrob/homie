@@ -7,9 +7,8 @@ catch (Exception $e){
         $PDO = new PDO('mysql:host=victorropttest.mysql.db;dbname=victorropttest;charset=utf8', 'victorropttest', 'Homie2018', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     }
     catch (Exception $e){
-        $PDO = new PDO('mysql:host=localhost.mysql.db;dbname=homie;charset=utf8', 'root', 'bonjour', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $PDO = new PDO('mysql:host=localhost.mysql.db;dbname=homie;charset=utf8', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     }
-    
 }
 
 //statistic
@@ -27,11 +26,10 @@ function adjustDate($year, $month, $day){
 
 //get all value and date of historic of one specific room
 
-function getHistoric($PDO){
+function getHistoric($roomId, $PDO){
     $req = $PDO->prepare("SELECT type, date, value FROM sensor INNER JOIN data ON sensor.idSensor = data.idSensor WHERE idRoom = ?");
-    $req->execute([$_SESSION['roomId']]);
+    $req->execute([$roomId]);
     $sensorName = [];
-    $sensorHistoric =[];
     while($data = $req->fetch()){
         if(!in_array($data['type'],$sensorName)) {
             $sensorName[count($sensorName)] = $data['type'];
@@ -315,9 +313,8 @@ function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (
 }
 */
 
-function getRoomInfo($PDO){
-    $sensorList = ["Temperature", "humidite", "CO2", "pression", "lumière", "camera"];
-    $sensorCheck = $actuatorCheck = [];
+function getRoomInfo($idRoom, $PDO){
+    $sensorList = ["Temperature", "humidite", "CO2", "pression", "lumière"];
     foreach ($sensorList as $i){
         array_push($sensorCheck, "");
     }
@@ -328,7 +325,7 @@ function getRoomInfo($PDO){
     $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType, actuator.type AS actuatorType 
                           FROM room INNER JOIN sensor INNER JOIN actuator ON room.idRoom = sensor.idRoom AND 
                           room.idRoom = actuator.idRoom where room.idroom = ?");
-    $req->execute([$_SESSION['roomId']]);
+    $req->execute([$idRoom]);
     $roomName = "";
     $roomSize = "";
     $roomType = "";
@@ -349,18 +346,4 @@ function getRoomInfo($PDO){
 
     }
     return [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName];
-}
-
-function setRoomInfo($PDO){
-    echo "in";
-    if($_SESSION['roomId'] ==+ -1){
-        echo '<br/>'.var_dump($_REQUEST).'<br/>';
-        $PDO->exec('INSERT INTO room(idResidence, size, name, type) 
-                    VALUES(\''.$_SESSION['idResidence'].'\',\''.$_REQUEST['size'].'\',\''.$_REQUEST['name'].'\',\''.$_REQUEST['type'].'\')');
-        $idRoom = $PDO->lastInsertId();
-        foreach (array_keys($_REQUEST['sensor']) as $sensor) {
-            $PDO->exec('INSERT INTO sensor(idRoom,type)
-                    VALUES(\'' . $idRoom . '\',\'' . $sensor . '\')');
-        }
-    }
 }

@@ -1,49 +1,31 @@
-.container
-{
-	display: flex;
-    flex-direction: row;
+.container{
+    display:flex;
+    justify-content : center;
+}
+
+h1{
+    text-align: center;
+}
+
+.button{
+    display: inline-block;
+    margin-left: 50%;
+    transform: translate(-50%);
+    margin-top: 2%;
+}
+
+#submit{
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+fieldset{
+    display: flex;
+    flex-direction: column;
     justify-content: space-around;
+    margin: 2%;
 }
 
-form
-{
-    width : 35%;
-    margin: 5%;
-}
-
-#address {
-    width: 40%;
-}
-
-#city {
-    width: 45%;
-}
-
-#email {
-    width: 40%;
-}
-
-.rigthColumn
-{
-    width: 60%;
-    margin: 5%;
-}
-
-.rigthColumn p {
-    text-align: justify;
-}
-
-input:invalid {
-    border: 2px solid red;
-}
-.checkbox{
-    height: 16px;
-    width: 16px;
-}
-.button .checkbox:after {
-    width: 6px;
-    height: 6px;
-}
 @media screen and (max-width: 700px){
     .container{
         flex-direction: column;

@@ -1,0 +1,25 @@
+fieldset{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+}
+
+label{
+    width: 50%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+input{
+    width: 80%;
+}
+
+#submit{
+    width: 40%;
+}
+

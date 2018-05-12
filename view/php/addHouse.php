@@ -1,14 +1,18 @@
 <form>
-    <p><label for="residenceName">Nom de la propriété</label></p>
-    <p><input type="text" name="residenceName" id="propertyName" placeholder="Exemple : Appartement Paris"/></p>
+    <fieldset>
+        <legend>Informations sur le domicile</legend>
+        <label for="residenceName">Nom de la propriété <br>
+            <input type="text" name="residenceName" placeholder="Exemple : Appartement Paris"/>
+        </label>
 
+        <label for="address">Adresse : <br>
+            <input type="text" name="address" id="address" placeholder="Exemple : 10 rue de Vanves" />
+        </label>
 
-    <p><label for="address">Adresse :</label></p>
-    <p><input type="text" name="address" id="address" placeholder="Exemple : 10 rue de Vanves" /></p>
+        <label for="residenceCity">Ville :<br>
+            <input type="text" name="residenceCity" id="residenceCity" placeholder="Exemple : Paris" />
+        </label>
+    </fieldset>
 
-    <p><label for="residenceCity">Ville :</label></p>
-    <p><input type="text" name="residenceCity" id="residenceCity" placeholder="Exemple : Paris" /></p>
-
-    <p><label for="">Adresse :</label></p>
-    <p><input type="text" name="residenceAddress" id="residenceAddress" placeholder="Exemple : 10 rue de Vanves" /></p>
+    <input type="submit" value="Ajouter maison" id="submit" />
 </form>

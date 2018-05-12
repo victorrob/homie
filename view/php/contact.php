@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<META CHARSET="UTF-8">
-		<link rel="stylesheet" href="Contact.css"/>
-		<title> Contact </title>
-		<link rel="icon" type="image/png" href="favicon.png" />
-	</head>
-	<body>
-		<header>
-			<img id="logo" src="LogoHOMIEweb.png">
-		</header>
+    <body>
 		<main>
 			
 			<section>
@@ -35,7 +24,7 @@
 				</article>
 				<article>
 					<br/>
-					<a href="forum.html"> Accéder au forum</a>
+					<a href="forum.html"> Accéder aux questions</a>
 				</article>
 				
 			</section>
@@ -61,8 +50,3 @@
 			
 		</footer>
 	</body>
-
-
-
-
-</html>

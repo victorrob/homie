@@ -23,7 +23,7 @@ legend{
 }
 
 /* input */
-.inputText{
+input[type=text]{
     background-color: #eee;
     border-radius: 5px;
     padding: 5px;
@@ -31,18 +31,30 @@ legend{
     margin-top: 5px;
     border: 1px solid transparent;
 }
-input:invalid{
+input[type=text]:invalid{
     border: 2px solid red;
 }
-input{
+input[type=text]{
     border: 1px solid transparent;
 }
-input:hover{
+input[type=text]:hover{
     background-color: #ccc;
     border: 1px solid blue;
 }
-input:focus{
+input[type=text]:focus{
     border: 1px solid blue;
+}
+
+/* submit */
+
+#submit{
+    margin: 10px;
+    color: white;
+    background-color: transparent;
+    border: 3px solid;
+    border-radius: 5px;
+    font-size: 20px;
+    border-color: sandybrown;
 }
 
 

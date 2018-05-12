@@ -1,4 +1,9 @@
-
+article{
+	color: black;
+}
+a{
+	color: sandybrown;
+}
 
 p,a, h1, h2{
 	font-family: "Arial";

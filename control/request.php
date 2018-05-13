@@ -4,6 +4,8 @@
 if(isset($_GET['d'])) {
     switch (strip_tags($_GET['d'])) {
         case "signUp":
+            $php=login;
+
 
             //mettre alert
             /*$signUp == signUp($PDO);
@@ -11,7 +13,11 @@ if(isset($_GET['d'])) {
                 echo $signUp;
             }
            */
-            $php = 'login';
+            break;
+        case 'login':
+            if (verify($PDO)){
+                $php = 'home';
+            }
             break;
         case "profile":
             profilePOST();

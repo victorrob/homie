@@ -33,7 +33,7 @@ if(isset($_GET['d'])) {
 // Action to perform when loading the page
 switch ($php) {
     case "statistic":
-        [$sensorName, $sensorHistoric] =getHistoric($PDO);
+        //[$sensorName, $sensorHistoric] = getHistoric($PDO);
 
         break;
     case "home":
@@ -45,6 +45,7 @@ switch ($php) {
     case "profile":
         $name; $firstName; $birthDate; $email; $address; $phone; $password;
         profileGet();
+        break;
     case "login":
         break;
 }

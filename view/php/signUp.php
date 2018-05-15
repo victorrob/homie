@@ -2,7 +2,7 @@
 	<body>
 
     <h1>Inscription</h1>
-        <form method="post" action="index.php?p=signUp">
+        <form method="post" action="index.php?p=login&d=signUp">
             <span class="container">
             <fieldset class="left">
                 <legend>Vos coordonnées</legend>
@@ -82,6 +82,6 @@
             <label for="termOfUse" class="button">J'accepte les <a href="index.php?p=conditionsOfUse">C.G.U</a><input type="checkbox" name="termOfUse" required /><span class="checkbox"></span>
             </label>
 
-            <input type="submit" value="S'enregistrer" id="submit" />
+            <input type="submit" value="S'enregistrer" id="submit" required/>
         </form>
     </body>

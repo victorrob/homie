@@ -4,24 +4,20 @@
 if(isset($_GET['d'])) {
     switch (strip_tags($_GET['d'])) {
         case "signUp":
-            $php=login;
-
-
-            //mettre alert
-            /*$signUp == signUp($PDO);
-            if ($signUp == true){
-                echo $signUp;
-            }
-           */
+            if(signUp($PDO))
+                $php='login';
             break;
+
         case 'login':
             if (verify($PDO)){
                 $php = 'home';
             }
             break;
+
         case "profile":
             profilePOST();
             break;
+
         case 'sensor':
             echo "fi";
             $_SESSION['roomId'] = -1;

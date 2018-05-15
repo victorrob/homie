@@ -97,75 +97,48 @@ function setRoomInfo($PDO)
 //add user
 
 function signUp($PDO){
-    if (isset($_POST['name']))
-        $name = strip_tags($_POST['name']);
-    else
-        return('Erreur, veuillez rentrer un nom');
 
-    if (isset($_POST['firstName']))
-        $firstName = strip_tags($_POST['firstName']);
-    else
-        return ('Erreur, veuillez rentrer un prénom');
+    $name = strip_tags($_POST['name']);
 
-    if (isset($_POST['mail']))
-        $mail = strip_tags($_POST['mail']);
-    else
-        return ('Erreur, veuillez rentrer une adresse e-mail');
+    $firstName = strip_tags($_POST['firstName']);
 
-    if (isset($_POST['phone']))
-        $phone = strip_tags($_POST['phone']);
-    else
-        return ('Erreur, veuillez rentrer un numéro de téléphone');
+    $mail = strip_tags($_POST['mail']);
 
-    if (isset($_POST['password']))
-        $password = strip_tags($_POST['password']);
-    else
-        return('Erreur, veuillez rentrer un mot de passe');
+    $confirmEmail = strip_tags($_POST['confirmEmail']);
+    if ($confirmEmail == $mail)
+        return true;
+    else{
+        echo 'Erreur, les adresses emails ne sont pas identiques';
+        return false;
+    }
 
-    if (isset($_POST['confirmPassword'])) {
-        $confirmPassword = strip_tags($_POST['confirmPassword']);
-        if ($confirmPassword == $password)
+    $phone = strip_tags($_POST['phone']);
+
+    $password = strip_tags($_POST['password']);
+
+    $confirmPassword = strip_tags($_POST['confirmPassword']);
+        if ($confirmPassword == $password) {
             $password = hash('sha512', $password);
-        else
-            return ('Erreur, les mots de passes ne sont pas identiques');
+            return true;
         }
-    else
-        return('Erreur, veuillez confirmer votre mot de passe');
+        else
+            echo 'Erreur, les mots de passes ne sont pas identiques';
+            return false;
 
-    if (isset($_POST['type']))
-        $type = strip_tags($_POST['type']);
+    $type = strip_tags($_POST['type']);
 
+    $birthDate = strip_tags($_POST['birthDate']);
 
-    if (isset($_POST['birthDate'])) {
-        $birthDate = strip_tags($_POST['birthDate']);
-        if ($birthDate == "0000-00-00")
-            return ('Erreur, veuillez entrer votre date de naissance');
-    }
+    $address = strip_tags($_POST['address']);
 
-    if (isset($_POST['address']))
-        $address = strip_tags($_POST['address']);
-    else
-        return ('Erreur, veuillez entrer votre adresse');
+    $zipCode = strip_tags($_POST['zipCode']);
 
-    if (isset($_POST['zipCode'])) {
-        $zipCode = strip_tags($_POST['zipCode']);
-        if ($zipCode == 0)
-            return ('Erreur, veuillez entrer votre code postal');
-    }
+    $city = strip_tags($_POST['city']);
 
-    if (isset($_POST['city']))
-        $city = strip_tags($_POST['city']);
-    else
-        return ('Erreur, veuillez entrer votre ville');
+    $country = strip_tags($_POST['country']);
 
-    if (isset($_POST['country']))
-        $country = strip_tags($_POST['country']);
-    else
-        return('Erreur, veuillez entrer votre pays');
-
-    $PDO->exec("INSERT INTO user(name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) 
-
-                VALUES('$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
+    $req = $PDO->prepare("INSERT INTO user(name ,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+    $req->execute([$name,$firstName,$mail,$phone,$password,$type,$birthDate,$address,$zipCode,$city,$country]);
 }
 
 //HOME

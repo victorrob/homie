@@ -4,6 +4,8 @@
 if(isset($_GET['d'])) {
     switch (strip_tags($_GET['d'])) {
         case "signUp":
+            $php=login;
+
 
             //mettre alert
             /*$signUp == signUp($PDO);
@@ -11,7 +13,14 @@ if(isset($_GET['d'])) {
                 echo $signUp;
             }
            */
-            $php = 'login';
+            break;
+        case 'login':
+            if (verify($PDO)){
+                $php = 'home';
+            }
+            break;
+        case "profile":
+            profilePOST();
             break;
         case 'sensor':
             echo "fi";
@@ -34,6 +43,9 @@ switch ($php) {
     case "sensor":
         [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($PDO);
         break;
+    case "profile":
+        $name; $firstName; $birthDate; $email; $address; $phone; $password;
+        profileGet();
     case "login":
         break;
 }

@@ -7,9 +7,8 @@ catch (Exception $e){
         $PDO = new PDO('mysql:host=victorropttest.mysql.db;dbname=victorropttest;charset=utf8', 'victorropttest', 'Homie2018', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     }
     catch (Exception $e){
-        $PDO = new PDO('mysql:host=localhost.mysql.db;dbname=homie;charset=utf8', 'root', 'bonjour', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $PDO = new PDO('mysql:host=localhost:3306;dbname=homie;charset=utf8', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     }
-    
 }
 
 //statistic
@@ -27,11 +26,10 @@ function adjustDate($year, $month, $day){
 
 //get all value and date of historic of one specific room
 
-function getHistoric($PDO){
+function getHistoric($roomId, $PDO){
     $req = $PDO->prepare("SELECT type, date, value FROM sensor INNER JOIN data ON sensor.idSensor = data.idSensor WHERE idRoom = ?");
-    $req->execute([$_SESSION['roomId']]);
+    $req->execute([$roomId]);
     $sensorName = [];
-    $sensorHistoric =[];
     while($data = $req->fetch()){
         if(!in_array($data['type'],$sensorName)) {
             $sensorName[count($sensorName)] = $data['type'];
@@ -142,7 +140,7 @@ function home($PDO, $idUser)
     $req->execute([$idResidence]);
     $rooms = [];
     while ($room = $req->fetch()){
-        $req1 = $PDO->prepare('SELECT type, state, auto, opening, closing FROM actuator WHERE idRoom = ?');
+        $req1 = $PDO->prepare('SELECT type, state, auto, opening, closing, value FROM actuator WHERE idRoom = ?');
         $req1->execute([$room['idRoom']]);
         while ($actuator = $req1->fetch()){
             if ($actuator['type'] == 'Light'){
@@ -169,6 +167,12 @@ function home($PDO, $idUser)
                 $room['opening'] = $actuator['opening'];
                 $room['closing'] = $actuator['closing'];
             }
+            elseif ($actuator['type'] == 'Heating'){
+                $room['heating'] = $actuator['value'];
+            }
+            elseif ($actuator['type'] == 'Ventilation'){
+                $room['ventilation'] = $actuator['value'];
+            }
         }
         $req1->closeCursor();
         $req1 = $PDO->prepare('SELECT idSensor, type FROM sensor WHERE idRoom = ?');
@@ -181,18 +185,157 @@ function home($PDO, $idUser)
                 $room['temperature'] = $data['value'];
                 $req2->closeCursor();
             }
-            elseif ($sensor['type'] == 'Ventilation'){
-                $req2 = $PDO->prepare('SELECT value FROM data WHERE idSensor = ? ORDER BY date DESC LIMIT 1');
-                $req2->execute([$sensor['idSensor']]);
-                $data = $req2->fetch();
-                $room['ventilation'] = $data['value'];
-                $req2->closeCursor();
-            }
         }
         $req1->closeCursor();
         array_push($rooms, $room);
     }
     $req->closeCursor();
+
+    if (isset($_POST['roomModification'])) {
+        for ($i = 0; $i < count($rooms); $i++) {
+            if (isset($_POST["light" . $rooms[$i]['idRoom']])) {
+                $light = 1;
+                $rooms[$i]['light'] = 'checked';
+            } else {
+                $light = 0;
+                $rooms[$i]['light'] = '';
+            }
+            if (isset($_POST["shutter" . $rooms[$i]['idRoom']])) {
+                $shutter = 1;
+                $rooms[$i]['shutter'] = 'checked';
+            } else {
+                $shutter = 0;
+                $rooms[$i]['shutter'] = '';
+            }
+            if (isset($_POST["auto" . $rooms[$i]['idRoom']])) {
+                $auto = 1;
+                $rooms[$i]['auto'] = 'checked';
+            } else {
+                $auto = 0;
+                $rooms[$i]['auto'] = '';
+            }
+            if (isset($_POST["opening" . $rooms[$i]['idRoom']])) {
+                $opening = $_POST["opening" . $rooms[$i]['idRoom']];
+                $rooms[$i]['opening'] = $opening;
+            } else {
+                $opening = $rooms[$i]['opening'];
+            }
+            if (isset($_POST["closing" . $rooms[$i]['idRoom']])) {
+                $closing = $_POST["closing" . $rooms[$i]['idRoom']];
+                $rooms[$i]['closing'] = $closing;
+            } else {
+                $closing = $rooms[$i]['closing'];
+            }
+            if (isset($_POST["heating" . $rooms[$i]['idRoom']])) {
+                $heating = $_POST["heating" . $rooms[$i]['idRoom']];
+                $rooms[$i]['heating'] = $heating;
+            }
+            else {
+                $heating = $rooms[$i]['heating'];
+            }
+            if (isset($_POST["ventilation" . $rooms[$i]['idRoom']])) {
+                $ventilation = $_POST["ventilation" . $rooms[$i]['idRoom']];
+                $rooms[$i]['ventilation'] = $ventilation;
+            }
+            else {
+                $ventilation = $rooms[$i]['ventilation'];
+            }
+            $req = $PDO->prepare('UPDATE actuator SET state = ? WHERE idRoom = ? AND type = ?');
+            $req->execute([$light, $rooms[$i]['idRoom'], "Light"]);
+            $req->closeCursor();
+            $req = $PDO->prepare('UPDATE actuator SET state = ?, auto = ?, opening = ?, closing = ? WHERE idRoom = ? AND type = ?');
+            $req->execute([$shutter, $auto, $opening, $closing, $rooms[$i]['idRoom'], "Shutter"]);
+            $req->closeCursor();
+            $req = $PDO->prepare('UPDATE actuator SET value = ? WHERE idRoom = ? AND type = ?');
+            $req->execute([$heating, $rooms[$i]['idRoom'], "Heating"]);
+            $req->execute([$ventilation, $rooms[$i]['idRoom'], "Ventilation"]);
+            $req->closeCursor();
+        }
+    }
+
+    if (isset($_POST['habitationLight'])) {
+        if (isset($_POST['light'])) {
+            $light = 1;
+            $checkbox = 'checked';
+        } else {
+            $light = 0;
+            $checkbox = '';
+        }
+        $req = $PDO->prepare('UPDATE actuator SET state = ? WHERE idRoom = ? AND type = ?');
+        for ($i = 0; $i < count($rooms); $i++) {
+            $req->execute([$light, $rooms[$i]['idRoom'], "Light"]);
+            $rooms[$i]['light'] = $checkbox;
+        }
+        $req->closeCursor();
+    }
+
+    if (isset($_POST['habitationShutter'])) {
+        if (isset($_POST['shutter'])) {
+            $shutter = 1;
+            $checkboxShutter = 'checked';
+        } else {
+            $shutter = 0;
+            $checkboxShutter = '';
+        }
+        if (isset($_POST['auto'])) {
+            $auto = 1;
+            $checkboxAuto = 'checked';
+        } else {
+            $auto = 0;
+            $checkboxAuto = '';
+        }
+        if (isset($_POST['opening'])) {
+            $opening = $_POST['opening'];
+        }
+        else {
+            $opening = null;
+        }
+        if (isset($_POST['closing'])) {
+            $closing = $_POST['closing'];
+        }
+        else {
+            $closing = null;
+        }
+        $req = $PDO->prepare('UPDATE actuator SET state = ?, auto = ?, opening = ?, closing = ? WHERE idRoom = ? AND type = ?');
+        for ($i = 0; $i < count($rooms); $i++) {
+            $req->execute([$shutter, $auto, $opening, $closing, $rooms[$i]['idRoom'], "Shutter"]);
+            $rooms[$i]['shutter'] = $checkboxShutter;
+            $rooms[$i]['auto'] = $checkboxAuto;
+            $rooms[$i]['opening'] = $opening;
+            $rooms[$i]['closing'] = $closing;
+        }
+        $req->closeCursor();
+    }
+
+    if (isset($_POST['habitationHeating'])) {
+        if (isset($_POST['heating'])) {
+            $heating = $_POST['heating'];
+        }
+        else {
+            $heating = null;
+        }
+        $req = $PDO->prepare('UPDATE actuator SET value = ? WHERE idRoom = ? AND type = ?');
+        for ($i = 0; $i < count($rooms); $i++) {
+            $req->execute([$heating, $rooms[$i]['idRoom'], "Heating"]);
+            $rooms[$i]['heating'] = $heating;
+        }
+        $req->closeCursor();
+    }
+
+    if (isset($_POST['habitationVentilation'])) {
+        if (isset($_POST['ventilation'])) {
+            $ventilation = $_POST['ventilation'];
+        }
+        else {
+            $ventilation = null;
+        }
+        $req = $PDO->prepare('UPDATE actuator SET value = ? WHERE idRoom = ? AND type = ?');
+        for ($i = 0; $i < count($rooms); $i++) {
+            $req->execute([$ventilation, $rooms[$i]['idRoom'], "Ventilation"]);
+            $rooms[$i]['ventilation'] = $ventilation;
+        }
+        $req->closeCursor();
+    }
 
     return [$residences, $rooms];
 }
@@ -202,17 +345,18 @@ function verify($PDO)
 
     if (isset($_POST['connect']))
     {
-        $mail = htmlspecialchars($_POST['identifiant']);
-        $password = hash('sha512',$_POST['mot_de_passe']);
+        $mail = htmlspecialchars($_POST['mail']);
+        $password = $_POST['password'];
         if(!empty($password) AND !empty($mail)){
-            $requser= $PDO->prepare("SELECT * FROM users WHERE identifiant = ? AND mot_de_passe = ?");
+            $requser= $PDO->prepare("SELECT * FROM users WHERE mail = ? AND password = ?");
             $requser->execute(array($mail,$password));
             $userexist = $requser->rowCount();
             if($userexist==1){
-
+                return true;
             }
             else {
-                echo 'lauvais identifiant ou mot de passe ';
+                echo 'Mauvais identifiant ou mot de passe ';
+                return false;
             }
         }
         else{
@@ -315,9 +459,8 @@ function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (
 }
 */
 
-function getRoomInfo($PDO){
-    $sensorList = ["Temperature", "humidite", "CO2", "pression", "lumière", "camera"];
-    $sensorCheck = $actuatorCheck = [];
+function getRoomInfo($idRoom, $PDO){
+    $sensorList = ["Temperature", "humidite", "CO2", "pression", "lumière"];
     foreach ($sensorList as $i){
         array_push($sensorCheck, "");
     }
@@ -328,7 +471,7 @@ function getRoomInfo($PDO){
     $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType, actuator.type AS actuatorType 
                           FROM room INNER JOIN sensor INNER JOIN actuator ON room.idRoom = sensor.idRoom AND 
                           room.idRoom = actuator.idRoom where room.idroom = ?");
-    $req->execute([$_SESSION['roomId']]);
+    $req->execute([$idRoom]);
     $roomName = "";
     $roomSize = "";
     $roomType = "";
@@ -349,18 +492,4 @@ function getRoomInfo($PDO){
 
     }
     return [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName];
-}
-
-function setRoomInfo($PDO){
-    echo "in";
-    if($_SESSION['roomId'] ==+ -1){
-        echo '<br/>'.var_dump($_REQUEST).'<br/>';
-        $PDO->exec('INSERT INTO room(idResidence, size, name, type) 
-                    VALUES(\''.$_SESSION['idResidence'].'\',\''.$_REQUEST['size'].'\',\''.$_REQUEST['name'].'\',\''.$_REQUEST['type'].'\')');
-        $idRoom = $PDO->lastInsertId();
-        foreach (array_keys($_REQUEST['sensor']) as $sensor) {
-            $PDO->exec('INSERT INTO sensor(idRoom,type)
-                    VALUES(\'' . $idRoom . '\',\'' . $sensor . '\')');
-        }
-    }
 }

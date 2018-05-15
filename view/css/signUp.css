@@ -1,67 +1,87 @@
-.container
-{
-	display: flex;
-    flex-direction: row;
+.container{
+    display:flex;
+    justify-content : center;
+}
+
+h1{
+    text-align: center;
+}
+
+a{
+    color: #F4A460;
+}
+
+.button{
+    display: inline-block;
+    margin-left: 50%;
+    transform: translate(-50%);
+    margin-top: 2%;
+}
+
+#submit{
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+fieldset{
+    display: flex;
+    flex-direction: column;
     justify-content: space-around;
+    margin: 2%;
 }
 
-form
-{
-    width : 35%;
-    margin: 5%;
+fieldset.left {
+    width: 15%;
 }
 
-#address {
-    width: 40%;
+input{
+    text-align: left;
+    width: 80%;
 }
 
-#city {
-    width: 45%;
+input#submit{
+    width: initial;
 }
 
-#email {
-    width: 40%;
+.date{
+    width: initial;
 }
 
-.rigthColumn
-{
-    width: 60%;
-    margin: 5%;
+.complete{
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    border: 1px solid transparent;
 }
-
-.rigthColumn p {
-    text-align: justify;
-}
-
-input:invalid {
+.complete:invalid{
     border: 2px solid red;
 }
-.checkbox{
-    height: 16px;
-    width: 16px;
+
+.complete:hover{
+    background-color: #ccc;
+    border: 2px solid blue;
 }
-.button .checkbox:after {
-    width: 6px;
-    height: 6px;
+.complete:focus{
+    border: 2px solid blue;
 }
-@media screen and (max-width: 700px){
-    .container{
+
+label{
+    text-align: center;
+}
+
+
+@media screen and (max-width: 700px) {
+    .container {
         flex-direction: column;
     }
-    form
-    {
+
+    form {
         position: relative;
         left: 50%;
         transform: translate(-50%);
         text-align: center;
-    }
-
-    .rigthColumn
-    {
-        position: relative;
-        left: 50%;
-        transform: translate(-50%);
-
     }
 }
 

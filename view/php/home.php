@@ -6,7 +6,6 @@
 					<select name="residence" id="residence" onchange="this.form.submit();">
 
                         <?php
-                        echo $light;
                             foreach ($residences as $residence){
                             ?>
                             <option value="<?php echo $residence['idResidence'] ?>" <?php echo $residence['select'] ?>><?php echo $residence['name'] ?></option>
@@ -26,78 +25,91 @@
             <?php
                 foreach ($rooms as $room){
                 ?>
-                <div onclick="home(<?php echo $room['idRoom'] ?>)"><p><?php echo $room['name'] ?></p></div>
+                <div onclick="home(<?php echo $room['idRoom'] ?>, 'roomFactors')"><p><?php echo $room['name'] ?></p></div>
                 <?php  }
             ?>
-            <a href="index.php?p=sensor"><div><p id="plus">+</p></div></a>
+            <div id="plus"><a href="index.php?p=sensor"><p>+</p></a></div>
 
 		</section>
 
+        <form method="post" action="index.php?p=home">
         <?php
             foreach ($rooms as $room) {
                 ?>
 
                 <section class="roomFactors" id="<?php echo $room['idRoom'] ?>">
-                    <div><p><?php echo $room['name'] ?></p></div>
-                    <div class="ligne">
-                        <div>
-                            <p>Lumière :</p>
-                            <div class="switchButton">
-                                <input class="switch" name="lumiere" id="lumiere"
-                                       type="checkbox" <?php echo $light[$room['idRoom']] ?> />
-                                <label for="lumiere" class="label" id="labelLight">
-                                    <div class="forme" id="formeLight">
-                                        <div class="rond" id="rondLight">
-                                        </div>
+                        <div class="factors">
+                            <div><p><?php echo $room['name'] ?></p></div>
+                            <div class="ligne">
+                                <div>
+                                    <p>Lumière :</p>
+                                    <div class="switchButton">
+                                        <input class="switch" name="<?php echo "light".$room['idRoom'] ?>" id="<?php echo "light".$room['idRoom'] ?>"
+                                               type="checkbox" <?php echo $room['light'] ?> />
+                                        <label for="<?php echo "light".$room['idRoom'] ?>" class="label">
+                                            <div class="formeLight">
+                                                <div class="rondLight">
+                                                </div>
+                                            </div>
+                                        </label>
                                     </div>
-                                </label>
+                                </div>
+                                <div class="temperature">
+                                    <div>
+                                        <p>Température demandée :</p>
+                                        <input type="number" name="<?php echo "heating".$room['idRoom'] ?>" id="<?php echo "heating".$room['idRoom'] ?>"
+                                                     value="<?php echo $room['heating'] ?>">
+                                        <p>°C</p>
+                                    </div>
+                                    <div>
+                                        <p>Température actuelle : <?php echo $room['temperature'] ?> °C</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p>Ventilation :</p>
+                                    <input type="number" name="<?php echo "ventilation".$room['idRoom'] ?>" id="<?php echo "ventilation".$room['idRoom'] ?>"
+                                                 value="<?php echo $room['ventilation'] ?>">
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <p>Chauffage :</p>
-                            <form><input type="number" name="chauffage" class="input"
-                                         value="<?php echo $temperature[$room['idRoom']] ?>"> °C
-                            </form>
-                        </div>
-                        <div>
-                            <p>Ventilation :</p>
-                            <form><input type="number" name="ventilation" class="input"
-                                         value="<?php echo $ventilation[$room['idRoom']] ?>"></form>
-                        </div>
-                    </div>
-                    <div>
-                        <p>Volets :</p>
-                        <div class="switchButton">
-                            <input class="switch" name="shutter" id="shutter"
-                                   type="checkbox" <?php echo $shutter[$room['idRoom']] ?> />
-                            <label for="shutter" class="label" id="labelShutter">
-                                <div class="forme" id="formeShutter">
-                                    <div class="rond" id="rondShutter">
-                                    </div>
+                            <div>
+                                <p>Volets :</p>
+                                <div class="switchButton">
+                                    <input class="switch" name="<?php echo "shutter".$room['idRoom'] ?>" id="<?php echo "shutter".$room['idRoom'] ?>"
+                                           type="checkbox" <?php echo $room['shutter'] ?> />
+                                    <label for="<?php echo "shutter".$room['idRoom'] ?>" class="label">
+                                        <div class="formeShutter">
+                                            <div class="rondShutter">
+                                            </div>
+                                        </div>
+                                    </label>
                                 </div>
-                            </label>
-                        </div>
-                        <div class="switchButton">
-                            <input class="switch" name="auto" id="auto"
-                                   type="checkbox" <?php echo $auto[$room['idRoom']] ?> />
-                            <label for="auto" class="label" id="labelAuto">
-                                <div class="forme" id="formeAuto">
-                                    <div class="rond" id="rondAuto">
-                                    </div>
+                                <div class="switchButton">
+                                    <input class="switch" name="<?php echo "auto".$room['idRoom'] ?>" id="<?php echo "auto".$room['idRoom'] ?>"
+                                           type="checkbox" <?php echo $room['auto'] ?> />
+                                    <label for="<?php echo "auto".$room['idRoom'] ?>" class="label">
+                                        <div class="formeAuto">
+                                            <div class="rondAuto">
+                                            </div>
+                                        </div>
+                                    </label>
                                 </div>
-                            </label>
+                            </div>
+                            <div>
+                                <p>Plage horaire :</p>
+                                <input type="time" name="<?php echo "opening".$room['idRoom'] ?>" id="<?php echo "opening".$room['idRoom'] ?>"
+                                       value="<?php echo $room['opening'] ?>" />
+                                <P> - </P>
+                                <input type="time" name="<?php echo "closing".$room['idRoom'] ?>" id="<?php echo "closing".$room['idRoom'] ?>"
+                                       value="<?php echo $room['closing'] ?>" />
+                            </div>
+                            <div><a href="index.php?p=statistic"><p>Statistiques</p></a></div>
                         </div>
-                    </div>
-                    <div>
-                        <p>Plage horaire :</p>
-                        <form><input type="time" name="ouverture" value="<?php echo $opening[$room['idRoom']] ?>"/> -
-                            <input type="time" name="fermeture" value="<?php echo $closing[$room['idRoom']] ?>"/></form>
-                    </div>
-                    <div><a href="index.php?p=statistic"><p>Statistiques</p></a></div>
+                        <input type="submit" value="Sauvegarder" name="roomModification" />
                 </section>
                 <?php
             }
         ?>
+        </form>
 
 		<div class="entete">
 			<hr />
@@ -105,10 +117,99 @@
 			<hr />
 		</div>
 		<section id="habitationSection">
-			<div><p>Lumières</p></div>
-			<div><p>Volets</p></div>
-			<div><p>Absent</p></div>
+			<div onclick="home('lumiere', 'habitationFactors');"><p>Lumières</p></div>
+			<div onclick="home('volets', 'habitationFactors');"><p>Volets</p></div>
+            <div onclick="home('chauffage', 'habitationFactors');"><p>Chauffage</p></div>
+            <div onclick="home('ventilation', 'habitationFactors');"><p>Ventilation</p></div>
+			<div onclick="home('modeAbsent', 'habitationFactors');"><p>Absent</p></div>
 		</section>
+
+        <form method="post" action="index.php?p=home">
+
+            <section class="habitationFactors" id="lumiere">
+                <p>Gérez ici toutes les lumières de votre habitation :</p>
+                <div class="switchButton">
+                    <input class="switch" name="light" id="light"
+                           type="checkbox" />
+                    <label for="light" class="label">
+                        <div class="formeLight">
+                            <div class="rondLight">
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <input type="submit" value="Appliquer" name="habitationLight" />
+            </section>
+
+            <section class="habitationFactors" id="volets">
+                <div>
+                    <div>
+                        <p>Gérez ici tous les volets de votre habitation :</p>
+                    </div>
+                    <div class="divLigne">
+                        <div class="switchButton">
+                            <input class="switch" name="shutter" id="shutter" type="checkbox" />
+                            <label for="shutter" class="label">
+                                <div class="formeShutter">
+                                    <div class="rondShutter">
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="switchButton">
+                            <input class="switch" name="auto" id="auto" type="checkbox" />
+                            <label for="auto" class="label">
+                                 <div class="formeAuto">
+                                     <div class="rondAuto">
+                                     </div>
+                                 </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="divLigne">
+                        <p>Plage horaire :</p>
+                        <input type="time" name="opening" id="opening" />
+                        <P> - </P>
+                        <input type="time" name="closing" id="closing" />
+                    </div>
+                </div>
+                <input type="submit" value="Appliquer" name="habitationShutter" />
+            </section>
+
+            <section class="habitationFactors" id="chauffage">
+                <p>Gérez ici toutes les températures demandées de votre habitation :</p>
+                <input type="number" name="heating" id="heating" />
+                <p>°C</p>
+                <input type="submit" value="Appliquer" name="habitationHeating" />
+            </section>
+
+            <section class="habitationFactors" id="ventilation">
+                <p>Gérez ici toutes les ventilations de votre habitation :</p>
+                <input type="number" name="ventilation" id="ventilation" />
+                <input type="submit" value="Appliquer" name="habitationVentilation" />
+            </section>
+
+            <section class="habitationFactors" id="modeAbsent">
+                <div class="divLigne">
+                    <p>Gérez ici le mode absent de votre habitation :</p>
+                    <div class="switchButton">
+                        <input class="switch" name="absent" id="absent"
+                               type="checkbox" />
+                        <label for="absent" class="label">
+                            <div class="formeLight">
+                                <div class="rondLight">
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <input type="submit" value="Appliquer" name="habitationAbsent" />
+                </div>
+                <div>
+                    <p>Lors de l'activation du mode absent, toutes les lumières de l'habitation sont éteintes. Les volets, le chauffage et la ventilation respectent les paramètres appliqués.</p>
+                </div>
+            </section>
+
+        </form>
 
         <script type="text/javascript" src="view/js/home.js"></script>
 

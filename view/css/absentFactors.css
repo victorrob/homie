@@ -1,0 +1,183 @@
+.absentFactors {
+    width: 70%;
+    display: none;
+    margin-left: 20px;
+    flex-wrap: wrap;
+}
+
+.factors {
+    width: 70%;
+}
+
+.factors div {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+input {
+    height: auto;
+    width: auto;
+    margin: auto 3px;
+}
+
+input[type=number] {
+    width: 35px;
+}
+
+input[type=submit] {
+    margin: auto 60px;
+}
+
+.temperature {
+    display: flex;
+    flex-direction: column;
+}
+
+.switchButton {
+    margin-left: 10px;
+}
+
+.ligne {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.switch {
+    display:none;
+}
+
+.label {
+    border-radius: 20px;
+    display: inline-block;
+    float: right;
+    height: 26px;
+    overflow: hidden;
+    padding: 1px;
+}
+
+.formeLight {
+    background: #f4ffe6;
+    border: 1px #cfc8bc solid;
+    border-radius: 15px;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 1), 0 1px 1px rgba(0, 0, 0, .15) inset;
+    display: inline-block;
+    height: 20px;
+    margin-bottom: 15px;
+    padding: 2px;
+    position: relative;
+    width: 70px;
+}
+
+.formeShutter, .formeAuto {
+    background: #f4ffe6;
+    border: 1px #cfc8bc solid;
+    border-radius: 15px;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 1), 0 1px 1px rgba(0, 0, 0, .15) inset;
+    display: inline-block;
+    height: 20px;
+    margin-bottom: 15px;
+    padding: 2px;
+    position: relative;
+    width: 100px;
+}
+
+.switch:checked ~ label .formeLight {
+    background: #006d91;
+}
+
+.switch:checked ~ label .formeShutter {
+    background: #006d91;
+}
+
+.switch:checked ~ label .formeAuto {
+    background: #006d91;
+}
+
+.rondLight {
+    background: #e3dde3;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.8) inset;
+    display: inline-block;
+    height: 20px;
+    position: absolute;
+    width: 20px;
+}
+
+.rondShutter {
+    background: #e3dde3;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.8) inset;
+    display: inline-block;
+    height: 20px;
+    position: absolute;
+    width: 20px;
+}
+
+.rondAuto {
+    background: #e3dde3;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.8) inset;
+    display: inline-block;
+    height: 20px;
+    position: absolute;
+    width: 20px;
+}
+
+.switch:checked ~ label .rondLight {
+    right: 2px;
+}
+
+.switch:checked ~ label .rondShutter {
+    right: 2px;
+}
+
+.switch:checked ~ label .rondAuto {
+    right: 2px;
+}
+
+.rondLight:before {
+    line-height: 22px;
+    color: #FFF;
+    margin-left: -32px;
+    content: "ON";
+}
+.rondLight:after {
+    position: relative;
+    color: black;
+    bottom: 20px;
+    right: -31px;
+    content: "OFF";
+}
+
+.rondShutter:before {
+    line-height: 22px;
+    color: #FFF;
+    margin-left: -64px;
+    content: "FERME";
+}
+
+.rondShutter:after {
+    position: relative;
+    color: black;
+    bottom: 20px;
+    right: -27px;
+    content: "OUVERT";
+}
+
+.rondAuto:before {
+    line-height: 22px;
+    color: #FFF;
+    margin-left: -57px;
+    content: "AUTO";
+}
+
+.rondAuto:after {
+    position: relative;
+    color: black;
+    bottom: 20px;
+    right: -26px;
+    content: "MANUEL";
+}

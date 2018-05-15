@@ -136,6 +136,16 @@ function home($PDO, $idUser)
         $idResidence = $residences[0]['idResidence'];
     }
 
+    $req = $PDO->prepare('SELECT absent FROM absent WHERE idResidence = ?');
+    $req->execute([$idResidence]);
+    if ($req->fetch()['absent'] == 1) {
+        $absent = 'checked';
+    }
+    else {
+        $absent = '';
+    }
+    $req->closeCursor();
+
     $req = $PDO->prepare('SELECT name, idRoom FROM room WHERE idResidence = ?');
     $req->execute([$idResidence]);
     $rooms = [];
@@ -337,7 +347,20 @@ function home($PDO, $idUser)
         $req->closeCursor();
     }
 
-    return [$residences, $rooms];
+    if (isset($_POST['habitationAbsent'])) {
+        $req = $PDO->prepare('UPDATE absent SET absent = ? WHERE idResidence = ?');
+        if (isset($_POST['absent'])) {
+            $req->execute([1, $idResidence]);
+            $absent = 'checked';
+        }
+        else {
+            $req->execute([0, $idResidence]);
+            $absent = '';
+        }
+        $req->closeCursor();
+    }
+
+    return [$residences, $absent, $rooms];
 }
 
 function verify($PDO)

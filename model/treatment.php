@@ -3,7 +3,12 @@ try {
     $PDO = new PDO('mysql:host=localhost:3306;dbname=homie;charset=utf8', 'root', '', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 }
 catch (Exception $e){
-    $PDO = new PDO('mysql:host=victorropttest.mysql.db;dbname=victorropttest;charset=utf8', 'victorropttest', 'Homie2018', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    try{
+        $PDO = new PDO('mysql:host=victorropttest.mysql.db;dbname=victorropttest;charset=utf8', 'victorropttest', 'Homie2018', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    }
+    catch (Exception $e){
+        $PDO = new PDO('mysql:host=localhost:3306;dbname=homie;charset=utf8', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    }
 }
 
 //statistic
@@ -340,17 +345,18 @@ function verify($PDO)
 
     if (isset($_POST['connect']))
     {
-        $mail = htmlspecialchars($_POST['identifiant']);
-        $password = hash('sha512',$_POST['mot_de_passe']);
+        $mail = htmlspecialchars($_POST['mail']);
+        $password = $_POST['password'];
         if(!empty($password) AND !empty($mail)){
-            $requser= $PDO->prepare("SELECT * FROM users WHERE identifiant = ? AND mot_de_passe = ?");
+            $requser= $PDO->prepare("SELECT * FROM users WHERE mail = ? AND password = ?");
             $requser->execute(array($mail,$password));
             $userexist = $requser->rowCount();
             if($userexist==1){
-
+                return true;
             }
             else {
-                echo 'lauvais identifiant ou mot de passe ';
+                echo 'Mauvais identifiant ou mot de passe ';
+                return false;
             }
         }
         else{

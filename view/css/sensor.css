@@ -42,3 +42,6 @@ form > section{
     flex-wrap: wrap;
     justify-content: center;
 }
+#hiddenDelete{
+    display: none;
+}

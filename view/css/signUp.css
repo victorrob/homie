@@ -39,10 +39,6 @@ input{
     width: 80%;
 }
 
-input#submit{
-    width: initial;
-}
-
 .date{
     width: initial;
 }
@@ -65,6 +61,10 @@ input#submit{
 }
 .complete:focus{
     border: 2px solid blue;
+}
+
+legend{
+    text-align: center;
 }
 
 label{

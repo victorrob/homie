@@ -14,11 +14,19 @@ if(isset($_GET['d'])) {
             }
            */
             break;
+
         case 'login':
             if (verify($PDO)){
                 $php = 'home';
             }
             break;
+
+       /* case "resetPassword":
+            if (egalPswd()) {
+                $php = 'home';
+            }
+            break;*/
+
         case "profile":
             profilePOST();
             break;
@@ -37,7 +45,7 @@ switch ($php) {
 
         break;
     case "home":
-        [$residences, $select, $rooms, $light, $shutter, $auto, $opening, $closing, $temperature, $ventilation] = home($PDO, $_SESSION['idUser']);
+        [$residences, $rooms] = home($PDO, $_SESSION['idUser']);
         break;
     case "sensor":
         [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($PDO);
@@ -46,5 +54,11 @@ switch ($php) {
         $name; $firstName; $birthDate; $email; $address; $phone; $password;
         profileGet();
     case "login":
+        break;
+    case "forgottenPswd":
+        $reponse = mailSend();
+        break;
+    case "resetPswd":
+        $erreurPswd = egalPswd();
         break;
 }

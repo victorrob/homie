@@ -20,7 +20,7 @@ if(isset($_GET['d'])) {
             }
             break;
         case "profile":
-            profilePOST();
+            [$error]=profilePOST($PDO,$_POST);
             break;
         case 'sensor':
             echo "fi";
@@ -43,8 +43,10 @@ switch ($php) {
         [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($PDO);
         break;
     case "profile":
-        $name; $firstName; $birthDate; $email; $address; $phone; $password;
-        profileGet();
+        [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
+        if (is_null($error)) {
+            $error = '';
+        }
         break;
     case "login":
         break;

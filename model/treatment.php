@@ -30,6 +30,7 @@ function getHistoric($roomId, $PDO){
     $req = $PDO->prepare("SELECT type, date, value FROM sensor INNER JOIN data ON sensor.idSensor = data.idSensor WHERE idRoom = ?");
     $req->execute([$roomId]);
     $sensorName = [];
+    $sensorHistoric =[];
     while($data = $req->fetch()){
         if(!in_array($data['type'],$sensorName)) {
             $sensorName[count($sensorName)] = $data['type'];
@@ -39,6 +40,58 @@ function getHistoric($roomId, $PDO){
     }
     $req->closeCursor();
     return [$sensorName, $sensorHistoric];
+}
+
+
+function getRoomInfo($PDO){
+    $sensorList = ["Temperature", "humidite", "CO2", "pression", "lumière", "camera"];
+    $sensorCheck = $actuatorCheck = [];
+    foreach ($sensorList as $i){
+        array_push($sensorCheck, "");
+    }
+    $actuatorList = ["chauffage", "lumière", "ventilation"];
+    foreach ($actuatorList as $i){
+        array_push($actuatorCheck, "");
+    }
+    $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType, actuator.type AS actuatorType 
+                          FROM room INNER JOIN sensor INNER JOIN actuator ON room.idRoom = sensor.idRoom AND 
+                          room.idRoom = actuator.idRoom where room.idroom = ?");
+    $req->execute([$_SESSION['roomId']]);
+    $roomName = "";
+    $roomSize = "";
+    $roomType = "";
+    while($data = $req->fetch()){
+        $roomName = $data['name'];
+        $roomSize = $data['size'];
+        $roomType = $data['roomType'];
+        for($i=0 ; $i<count($sensorList); $i++){
+            if ($data['sensorType'] === $sensorList[$i]){
+                $sensorCheck[$i] = "checked";
+            }
+        }
+        for($i=0 ; $i<count($actuatorList); $i++){
+            if ($data['sensorType'] === $actuatorList[$i]){
+                $actuatorCheck[$i] = "checked";
+            }
+        }
+
+    }
+    return [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName];
+}
+
+function setRoomInfo($PDO)
+{
+    echo "in";
+    if ($_SESSION['roomId'] == +-1) {
+        echo '<br/>' . var_dump($_REQUEST) . '<br/>';
+        $PDO->exec('INSERT INTO room(idResidence, size, name, type) 
+                    VALUES(\'' . $_SESSION['idResidence'] . '\',\'' . $_REQUEST['size'] . '\',\'' . $_REQUEST['name'] . '\',\'' . $_REQUEST['type'] . '\')');
+        $idRoom = $PDO->lastInsertId();
+        foreach (array_keys($_REQUEST['sensor']) as $sensor) {
+            $PDO->exec('INSERT INTO sensor(idRoom,type)
+                    VALUES(\'' . $idRoom . '\',\'' . $sensor . '\')');
+        }
+    }
 }
 
 //add user
@@ -385,13 +438,21 @@ function profileGet(){
     $data = $req->execute([$_SESSION['id']]);
     while($userData = $data->fetch()){}
 
-    $name = htmlspecialchars($userData['name']);        //$userData['name'] 
-    $firstName = htmlspecialchars($userData['firstName']);
-    $birthDate = htmlspecialchars($userData['birthDate']);
-    $email = htmlspecialchars($userData['email']);
-    $address = htmlspecialchars($userData['address']);
-    $phone = htmlspecialchars($userData['phone']);
-    $password = $userData['password'];
+function profileGet($PDO){
+    $id =1;
+    $userdata=[];
+    $req = $PDO->prepare('SELECT * FROM `user` WHERE `idUser`=?');
+    $req->execute([$id]); // $_SESSION['id']
+    while($userData = $req->fetch()){
+        $name = htmlspecialchars($userData['name']);
+        $firstName = htmlspecialchars($userData['firstName']);
+        $birthDate = htmlspecialchars($userData['birthDate']);
+        $email = htmlspecialchars($userData['mail']);
+        $address = htmlspecialchars($userData['address']);
+        $phone = htmlspecialchars($userData['phone']);
+        $password = $userData['password'];
+    }
+    return([$name,$firstName,$birthDate,$email,$address,$phone,$password]);
 }
 
 function profilePut($namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,$phonePut,$passwordPut){

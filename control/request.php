@@ -22,7 +22,7 @@ if(isset($_GET['d'])) {
             break;*/
 
         case "profile":
-            profilePOST();
+            [$error]=profilePOST($PDO,$_POST);
             break;
 
         case 'sensor':
@@ -30,13 +30,14 @@ if(isset($_GET['d'])) {
             $_SESSION['roomId'] = -1;
             $_SESSION['idResidence'] = 2;
             setRoomInfo($PDO);
+            $_GET['d']=null;
             break;
     }
 }
 // Action to perform when loading the page
 switch ($php) {
     case "statistic":
-        [$sensorName, $sensorHistoric] =getHistoric($PDO);
+        //[$sensorName, $sensorHistoric] = getHistoric($PDO);
 
         break;
     case "home":
@@ -46,8 +47,11 @@ switch ($php) {
         [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($PDO);
         break;
     case "profile":
-        $name; $firstName; $birthDate; $email; $address; $phone; $password;
-        profileGet();
+        [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
+        if (is_null($error)) {
+            $error = '';
+        }
+        break;
     case "login":
         break;
     case "forgottenPswd":

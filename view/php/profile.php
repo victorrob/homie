@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<?php
-if(!$name){$name = 'undefined';}
-if(!$firstName){$firstName = 'undefined';}
-if(!$email){$email = 'undefined';}
-if(!$phone){$phone = 'undefined';}
-if(!$password){$password = 'undefined';}
-if(!$birthDate){$birthDate = 'undefined';
-if(!$address){$address = 'undefined';}
-}
-?>
 <html>
 
 <!-- a modif pout index.php ( NE PAS SUPPRIMER!! )-->
@@ -20,6 +10,7 @@ if(!$address){$address = 'undefined';}
 <!-- a modif pout index.php -->
 
 <body id="bodyProfile">
+		<div id = error><?php echo($error) ?></div>
 	<div id="formAndCharter">
 		<form id="formProfile" method="POST">
 			<div id="name" class="categoryForm">

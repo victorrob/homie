@@ -1,4 +1,4 @@
-<form id="customForm" method="post" action="index.php?p=home&d=sensor">
+<form clase="sensorForm" id="customForm" method="post" action="index.php?p=home&d=sensor">
     <fieldset class="checkboxSection">
         <legend>capteurs</legend>
     <?php
@@ -46,8 +46,9 @@
     </fieldset>
     <section>
     <input class="lastButton" id="reset" type="reset" value="réinitialiser">
-    <input class="lastButton" id="submit" type="submit" value="enregistrer">
-    <input class="lastButton" id="delete" type="button" value="supprimer" onclick="this.form.submit()">
-    <input id="hiddenDelete" type="text" value="   ">
+    <input class="lastButton" id="submit" type="submit" value="enregistrer" onclick="send('', this.form);">
+    <input class="lastButton" id="delete" type="submit" value="supprimer" onclick="send('delete', this.form);">
+    <input name="deleteRoom" id="hiddenDelete" type="text" value="nul">
     </section>
+    <script type="text/javascript" src="view/js/sensor.js"></script>
 </form>

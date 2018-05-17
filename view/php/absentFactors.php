@@ -19,7 +19,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="temperature">
+                    <div>
                         <p>Température demandée :</p>
                         <input type="number" name="temperatureAbsent" id="temperatureAbsent" value="<?php echo $room['heating'] ?>">
                         <p>°C</p>

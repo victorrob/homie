@@ -115,7 +115,7 @@ function signUp($PDO){
                 VALUES('$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
 }
 
-//HOME
+//home
 function home($PDO, $idUser)
 {
     $req = $PDO->prepare('SELECT name, residence.idResidence FROM residence JOIN user_residence WHERE residence.idResidence = user_residence.idResidence AND user_residence.idUser = ?');
@@ -361,6 +361,12 @@ function home($PDO, $idUser)
     }
 
     return [$residences, $absent, $rooms];
+}
+
+//absentFactors
+function absentFactors()
+{
+    
 }
 
 function verify($PDO)

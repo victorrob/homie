@@ -1,25 +1,33 @@
-fieldset{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 50%;
-}
-
-label{
-    width: 50%;
-}
-
 form{
+    display: flex;
+    flex-direction: column;
+    margin-left: 50%;
+    transform: translate(-50%);
+
+}
+
+fieldset{
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
+
+label{
+    width:100%;
+}
+
 input{
-    width: 80%;
+    width:60%;
+}
+
+legend{
+    text-align: center;
 }
 
 #submit{
-    width: 40%;
+    width: 50%;
+    margin-left: 50%;
+    transform: translate(-50%);
 }
 

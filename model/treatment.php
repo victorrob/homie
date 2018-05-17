@@ -26,10 +26,11 @@ function adjustDate($year, $month, $day){
 
 //get all value and date of historic of one specific room
 
-function getHistoric($roomId, $PDO){
+function getHistoric($PDO){
     $req = $PDO->prepare("SELECT type, date, value FROM sensor INNER JOIN data ON sensor.idSensor = data.idSensor WHERE idRoom = ?");
-    $req->execute([$roomId]);
+    $req->execute([$_SESSION['roomId']]);
     $sensorName = [];
+    $sensorHistoric =[];
     while($data = $req->fetch()){
         if(!in_array($data['type'],$sensorName)) {
             $sensorName[count($sensorName)] = $data['type'];
@@ -41,78 +42,103 @@ function getHistoric($roomId, $PDO){
     return [$sensorName, $sensorHistoric];
 }
 
+
+function getRoomInfo($PDO){
+    $sensorList = ["Temperature", "humidite", "CO2", "pression", "lumière", "camera"];
+    $sensorCheck = $actuatorCheck = [];
+    foreach ($sensorList as $i){
+        array_push($sensorCheck, "");
+    }
+    $actuatorList = ["chauffage", "lumière", "ventilation"];
+    foreach ($actuatorList as $i){
+        array_push($actuatorCheck, "");
+    }
+    $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType, actuator.type AS actuatorType 
+                          FROM room INNER JOIN sensor INNER JOIN actuator ON room.idRoom = sensor.idRoom AND 
+                          room.idRoom = actuator.idRoom where room.idroom = ?");
+    $req->execute([$_SESSION['roomId']]);
+    $roomName = "";
+    $roomSize = "";
+    $roomType = "";
+    while($data = $req->fetch()){
+        $roomName = $data['name'];
+        $roomSize = $data['size'];
+        $roomType = $data['roomType'];
+        for($i=0 ; $i<count($sensorList); $i++){
+            if ($data['sensorType'] === $sensorList[$i]){
+                $sensorCheck[$i] = "checked";
+            }
+        }
+        for($i=0 ; $i<count($actuatorList); $i++){
+            if ($data['sensorType'] === $actuatorList[$i]){
+                $actuatorCheck[$i] = "checked";
+            }
+        }
+
+    }
+    return [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName];
+}
+
+function setRoomInfo($PDO)
+{
+    echo "in";
+    if ($_SESSION['roomId'] == +-1) {
+        echo '<br/>' . var_dump($_REQUEST) . '<br/>';
+        $PDO->exec('INSERT INTO room(idResidence, size, name, type) 
+                    VALUES(\'' . $_SESSION['idResidence'] . '\',\'' . $_REQUEST['size'] . '\',\'' . $_REQUEST['name'] . '\',\'' . $_REQUEST['type'] . '\')');
+        $idRoom = $PDO->lastInsertId();
+        foreach (array_keys($_REQUEST['sensor']) as $sensor) {
+            $PDO->exec('INSERT INTO sensor(idRoom,type)
+                    VALUES(\'' . $idRoom . '\',\'' . $sensor . '\')');
+        }
+    }
+}
+
 //add user
 
 function signUp($PDO){
-    if (isset($_POST['name']))
-        $name = strip_tags($_POST['name']);
-    else
-        return('Erreur, veuillez rentrer un nom');
 
-    if (isset($_POST['firstName']))
-        $firstName = strip_tags($_POST['firstName']);
-    else
-        return ('Erreur, veuillez rentrer un prénom');
+    $name = strip_tags($_POST['name']);
 
-    if (isset($_POST['mail']))
-        $mail = strip_tags($_POST['mail']);
-    else
-        return ('Erreur, veuillez rentrer une adresse e-mail');
+    $firstName = strip_tags($_POST['firstName']);
 
-    if (isset($_POST['phone']))
-        $phone = strip_tags($_POST['phone']);
-    else
-        return ('Erreur, veuillez rentrer un numéro de téléphone');
+    $mail = strip_tags($_POST['mail']);
 
-    if (isset($_POST['password']))
-        $password = strip_tags($_POST['password']);
-    else
-        return('Erreur, veuillez rentrer un mot de passe');
+    $confirmEmail = strip_tags($_POST['confirmEmail']);
+    if ($confirmEmail == $mail)
+        return true;
+    else{
+        echo 'Erreur, les adresses emails ne sont pas identiques';
+        return false;
+    }
 
-    if (isset($_POST['confirmPassword'])) {
-        $confirmPassword = strip_tags($_POST['confirmPassword']);
-        if ($confirmPassword == $password)
+    $phone = strip_tags($_POST['phone']);
+
+    $password = strip_tags($_POST['password']);
+
+    $confirmPassword = strip_tags($_POST['confirmPassword']);
+        if ($confirmPassword == $password) {
             $password = hash('sha512', $password);
-        else
-            return ('Erreur, les mots de passes ne sont pas identiques');
+            return true;
         }
-    else
-        return('Erreur, veuillez confirmer votre mot de passe');
+        else
+            echo 'Erreur, les mots de passes ne sont pas identiques';
+            return false;
 
-    if (isset($_POST['type']))
-        $type = strip_tags($_POST['type']);
+    $type = strip_tags($_POST['type']);
 
+    $birthDate = strip_tags($_POST['birthDate']);
 
-    if (isset($_POST['birthDate'])) {
-        $birthDate = strip_tags($_POST['birthDate']);
-        if ($birthDate == "0000-00-00")
-            return ('Erreur, veuillez entrer votre date de naissance');
-    }
+    $address = strip_tags($_POST['address']);
 
-    if (isset($_POST['address']))
-        $address = strip_tags($_POST['address']);
-    else
-        return ('Erreur, veuillez entrer votre adresse');
+    $zipCode = strip_tags($_POST['zipCode']);
 
-    if (isset($_POST['zipCode'])) {
-        $zipCode = strip_tags($_POST['zipCode']);
-        if ($zipCode == 0)
-            return ('Erreur, veuillez entrer votre code postal');
-    }
+    $city = strip_tags($_POST['city']);
 
-    if (isset($_POST['city']))
-        $city = strip_tags($_POST['city']);
-    else
-        return ('Erreur, veuillez entrer votre ville');
+    $country = strip_tags($_POST['country']);
 
-    if (isset($_POST['country']))
-        $country = strip_tags($_POST['country']);
-    else
-        return('Erreur, veuillez entrer votre pays');
-
-    $PDO->exec("INSERT INTO user(name,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) 
-
-                VALUES('$name','$firstName','$mail','$phone','$password','$type','$birthDate','$address','$zipCode','$city','$country')");
+    $req = $PDO->prepare("INSERT INTO user(name ,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+    $req->execute([$name,$firstName,$mail,$phone,$password,$type,$birthDate,$address,$zipCode,$city,$country]);
 }
 
 //home
@@ -394,100 +420,108 @@ function verify($PDO)
     }
 }
 
-/*
-function profileGet(){
-    $req = $PDO->prepare('FROM "user" SELECT * WHERE id=?');
-    $data = $req->execute([$_SESSION['id']]);
-    while($userData = $data->fetch()){}
 
-    $name = htmlspecialchars($userData['name']);        //$userData['name'] 
-    $firstName = htmlspecialchars($userData['firstName']);
-    $birthDate = htmlspecialchars($userData['birthDate']);
-    $email = htmlspecialchars($userData['email']);
-    $address = htmlspecialchars($userData['address']);
-    $phone = htmlspecialchars($userData['phone']);
-    $password = $userData['password'];
+function profileGet($PDO){
+    $id =1;
+    $userdata=[];
+    $req = $PDO->prepare('SELECT * FROM `user` WHERE `idUser`=?');
+    $req->execute([$id]); // $_SESSION['id']
+    while($userData = $req->fetch()){
+        $name = htmlspecialchars($userData['name']);
+        $firstName = htmlspecialchars($userData['firstName']);
+        $birthDate = htmlspecialchars($userData['birthDate']);
+        $email = htmlspecialchars($userData['mail']);
+        $address = htmlspecialchars($userData['address']);
+        $phone = htmlspecialchars($userData['phone']);
+        $password = $userData['password'];
+    }
+    return([$name,$firstName,$birthDate,$email,$address,$phone,$password]);
 }
 
-function profilePut($namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,$phonePut,$passwordPut){
-    if ($namePut!=0){
-        $req = $PDO->prepare('UPDATE "user" SET "name"=? WHERE id=?');
-        $req->execute([$namePut,$_SESSION['id']]);
+function profilePut($PDO,$namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,$phonePut,$passwordPut,$id){
+ 
+    if ($namePut!=""){
+        $req = $PDO->prepare('UPDATE `user` SET `name`= ? WHERE `idUser` = ?');
+        $req->execute([$namePut,$id]);
     }
-    if ($firstNamePut!=0){
-        $req = $PDO->prepare('UPDATE "user" SET "firstName"=? WHERE id=?');
-        $req->execute([$firstNamePut,$_SESSION['id']]);
+    if ($firstNamePut!=""){
+        $req = $PDO->prepare('UPDATE `user` SET `firstName`= ? WHERE `idUser` = ?');
+        print_r($req);
+        $req->execute([$firstNamePut,$id]);
     }
-    if ($birthPut!=0){
-        $req = $PDO->prepare('UPDATE "user" SET "birth"=? WHERE id=?');
-        $req->execute([$birthPut,$_SESSION['id']]);
+    if ($birthPut!=""){
+        $req = $PDO->prepare('UPDATE `user` SET `birthDate`= ? WHERE `idUser` = ?');
+        $req->execute([$birthPut,$id]);
     }
-    if ($emailPut!=0){
-        $req = $PDO->prepare('UPDATE "user" SET "email"=? WHERE id=?');
-        $req->execute([$emailPut,$_SESSION['id']]);
+    if ($emailPut!=""){
+        $req = $PDO->prepare('UPDATE `user` SET `mail`= ? WHERE `idUser` = ?');
+        $req->execute([$emailPut,$id]);
     }
-    if ($addressPut!=0){
-        $req = $PDO->prepare('UPDATE "user" SET "address"=? WHERE id=?');
-        $req->execute([$addressPut,$_SESSION['id']]);
+    if ($addressPut!=""){
+        $req = $PDO->prepare('UPDATE `user` SET `address`= ? WHERE `idUser` = ?');
+        $req->execute([$addressPut,$id]);
     }
-    if ($phonePut!=0){
-        $req = $PDO->prepare('UPDATE "user" SET "phone"=? WHERE id=?');
-        $req->execute([$phonePut,$_SESSION['id']]);
+    if ($phonePut!=""){
+        $req = $PDO->prepare('UPDATE `user` SET `phone`= ? WHERE `idUser` = ?');
+        $req->execute([$phonePut,$id]);
     }
-    if ($passwordPut!=0){
-        $req = $PDO->prepare('UPDATE "user" SET "password"=? WHERE id=?');
-        $req->execute([$passwordPut,$_SESSION['id']]);
+    if ($passwordPut!=""){
+        $req = $PDO->prepare('UPDATE `user` SET `phone`= ? WHERE `idUser` = ?');
+        $req->execute([$passwordPut,$id]);
     }
 }
 
-function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (dans les else) !
+function profilePOST($PDO){ // mdp a cripte et gestion des erreur a faire (dans les else) !
     if (isset($_POST['name'])|| isset($_POST['firstName'])||isset($_POST['birth'])|| isset($_POST['email'])||isset($_POST['address'])|| isset($_POST['phone'])||isset($_POST['password1'])){
+
+        [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
+
         $_POST['password']=$_POST['password'];  // mdp a cripte !!!!!
-        if($_POST['password']=$password){
-            if (isset($_POST['name'])){
+        // $id = $_SESSION['id'];
+        $id = 1; // a supprimer plus tartd
+        if($_POST['password']==$password){
+            if ($_POST['name'] != ""){
                 $nameModif=$_POST['name'];
             }else{
-                $nameModif=0;
+                $nameModif="";
             }
-            if (isset($_POST['firstName'])){
+            if ($_POST['firstName'] != ""){
                 $firstNameModif=$_POST['firstName'];
             }else{
-                $firstNameModif=0;
+                $firstNameModif="";
             }
-            if (isset($_POST['birth'])){
+            if ($_POST['birth'] != ""){
                 $birthModif=$_POST['birth'];
             }else{
-                $birthModif=0;
+                $birthModif="";
             }
-            if (isset($_POST['email'])){
+            if ($_POST['email'] != ""){
                 $emailModif=$_POST['email'];
             }else{
-                $emailModif=0;
+                $emailModif="";
             }
-            if (isset($_POST['address'])){
+            if ($_POST['address'] != ""){
                 $addressModif=$_POST['address'];
             }else{
-                $addressModif=0;
+                $addressModif="";
             }
-            if (isset($_POST['phone'])){
+            if ($_POST['phone'] != ""){
                 $phoneModif=$_POST['phone'];
             }else{
-                $phoneModif=0;
+                $phoneModif="";
             }
-            if (isset($_POST['password1']) && ($_POST['password1'] == $_POST['password2'])){
+            if ($_POST['password1'] != "" && ($_POST['password1'] == $_POST['password2'])){
                 $password1Modif=$_POST['password1'];
             }else{
-                $password1Modif=0;
+                $password1Modif="";
             }
-            profilePut($nameModif,$firstNameModif,$birthModif,$emailModif,$addressModif,$phoneModif,$password1Modif);
+            profilePut($PDO,$nameModif,$firstNameModif,$birthModif,$emailModif,$addressModif,$phoneModif,$password1Modif,$id);
+        }else{
+            return('ERREUR : movais mot de passe!');
         }
 
     }
->>>>>>> 278cd02ef14c1698332522c020d656f85b9403e9
-
 }
-*/
-
 function getRoomInfo($idRoom, $PDO){
     $sensorList = ["Temperature", "humidite", "CO2", "pression", "lumière"];
     foreach ($sensorList as $i){

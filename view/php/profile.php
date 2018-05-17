@@ -12,7 +12,7 @@
 <body id="bodyProfile">
 		<div id = error><?php echo($error) ?></div>
 	<div id="formAndCharter">
-		<form id="formProfile" method="POST">
+		<form id="formProfile" method="POST" action="index.php?p=profile&d=profile">
 			<div id="name" class="categoryForm">
 				<div>
 					<label for="name">Nom : <?php echo($name); ?></label>

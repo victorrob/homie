@@ -43,7 +43,7 @@ switch ($php) {
         break;
     case "profile":
         [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
-        if (is_null($error)) {
+        if (!isset($error)) {
             $error = '';
         }
         break;

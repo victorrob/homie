@@ -16,6 +16,7 @@ if(isset($_GET['d'])) {
 
         case "profile":
             [$error]=profilePOST($PDO,$_POST);
+            echo ($error);
             break;
 
         case 'sensor':

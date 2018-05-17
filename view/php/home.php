@@ -194,7 +194,7 @@
                     <p>Gérez ici le mode absent de votre habitation :</p>
                     <div class="switchButton">
                         <input class="switch" name="absent" id="absent"
-                               type="checkbox" />
+                               type="checkbox" <?php echo $absent ?> />
                         <label for="absent" class="label">
                             <div class="formeLight">
                                 <div class="rondLight">
@@ -205,7 +205,8 @@
                     <input type="submit" value="Appliquer" name="habitationAbsent" />
                 </div>
                 <div>
-                    <p>Lors de l'activation du mode absent, toutes les lumières de l'habitation sont éteintes. Les volets, le chauffage et la ventilation respectent les paramètres appliqués.</p>
+                    <p>Lorsque le mode absent est activé, les lumières, les volets, le chauffage et la ventilation respectent les paramètres enregistrés.</p>
+                    <p><a href="index.php?p=absentFactors">Modifier les paramètres</a></p>
                 </div>
             </section>
 

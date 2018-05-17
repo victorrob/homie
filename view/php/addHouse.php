@@ -1,16 +1,29 @@
 <form>
     <fieldset>
         <legend>Informations sur le domicile</legend>
-        <label for="residenceName">Nom de la propriété <br>
-            <input type="text" name="residenceName" placeholder="Exemple : Appartement Paris"/>
+        <label>Nom de la propriété <br>
+            <input type="text" name="residenceName" placeholder="Exemple : Appartement Paris" required/>
         </label>
 
-        <label for="address">Adresse : <br>
-            <input type="text" name="address" id="address" placeholder="Exemple : 10 rue de Vanves" />
+        <label>Adresse : <br>
+            <input type="text" name="address" id="address" placeholder="Exemple : 10 rue de Vanves" required/>
         </label>
 
-        <label for="residenceCity">Ville :<br>
-            <input type="text" name="residenceCity" id="residenceCity" placeholder="Exemple : Paris" />
+        <label>Ville :<br>
+            <input type="text" name="residenceCity" placeholder="Exemple : Issy-les-Moulineaux" required />
+        </label>
+
+        <label>Code postal :<br>
+            <input type="text" name="residenceCity" placeholder="Exemple : 92130" required />
+        </label>
+
+        <label>Type de résidence :
+            <select class="complete" name="residenceType" required>
+                <option value="belgium">Belgique</option>
+                <option value="france">Fance</option>
+                <option value="luxembourg">Luxembourg</option>
+                <option value="switzerland">Suisse</option>
+            </select>
         </label>
     </fieldset>
 

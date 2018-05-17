@@ -13,10 +13,10 @@ function display(id){
 	}else{
 		var id = id + "Modif";
 		var doc = document.getElementById(id);
-		if (doc.style.display == "block"){
+		if (doc.style.display == "inline"){
 			doc.style.display = "";
 		}else{
-			doc.style.display = "block";
+			doc.style.display = "inline";
 		}
 		console.log("moddifiquation du display de : " + id);
 	}

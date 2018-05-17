@@ -6,6 +6,8 @@ if(isset($_GET['d'])) {
         case "signUp":
             if(signUp($PDO))
                 $php='login';
+            else
+                $php='signUp';
             break;
 
         case 'login':
@@ -14,15 +16,9 @@ if(isset($_GET['d'])) {
             }
             break;
 
-
-       /* case "resetPassword":
-            if (egalPswd()) {
-                $php = 'home';
-            }
-            break;*/
-
         case "profile":
             [$error]=profilePOST($PDO,$_POST);
+            echo ($error);
             break;
 
         case 'sensor':
@@ -41,6 +37,10 @@ switch ($php) {
 
         break;
     case "home":
+        [$residences, $absent, $rooms] = home($PDO, $_SESSION['idUser']);
+        break;
+    case "absentFactors":
+        $absentFactors = absentFactors($PDO);
         [$residences, $rooms] = home($PDO, $_SESSION['idUser']);
         break;
     case "sensor":
@@ -48,7 +48,7 @@ switch ($php) {
         break;
     case "profile":
         [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
-        if (is_null($error)) {
+        if (!isset($error)) {
             $error = '';
         }
         break;

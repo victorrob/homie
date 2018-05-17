@@ -1,25 +1,19 @@
-#nameModif,#firstNameModif,#birthModif,#emailModif,#addressModif,#phoneModif,#password1Modif,#password2Modif{
+#nameModif,#firstNameModif,#birthModif,#emailModif,#addressModif,#phoneModif,#password1Modif,#password2Modif{/* imput du form */
 	display: none;
 	margin-top: 13px;
 	margin-left: 35px;
 }
-#name,#firstName,#birth,#email,#address,#phone,#password,#validate{
+#name,#firstName,#birth,#email,#address,#phone,#password,#validate{/* text du form */
 	margin: 22px;
 }
-.button{
-	margin-right: 10px;
+.button{/* tout les bouton de la page */
+	display: inline-block;
 }
-#formAndCharter{
-	display: grid;
+body{/* organisation de la page */
+	text-align: center;
 }
-#formProfile{
-	grid-row: 1;
-	grid-column: 1/2;
-	width: 400px;
-	margin-left: 50px;
-}
-#charter{
-	grid-row: 1;
-	grid-column: 2/2;
-	margin-right: 50px;
+form{
+	width: -moz-max-content;
+	margin: auto;
+	/* text-align: initial;  dépand des choix du client */
 }

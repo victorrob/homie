@@ -16,6 +16,7 @@ if(isset($_GET['d'])) {
 
         case "profile":
             [$error]=profilePOST($PDO,$_POST);
+            echo ($error);
             break;
 
         case 'sensor':
@@ -44,7 +45,7 @@ switch ($php) {
         break;
     case "profile":
         [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
-        if (is_null($error)) {
+        if (!isset($error)) {
             $error = '';
         }
         break;

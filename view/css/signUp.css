@@ -17,7 +17,8 @@ a{
     transform: translate(-50%);
     margin-top: 2%;
 }
-fieldset input{
+
+input{
     text-align: left;
     width: 80%;
 }

@@ -98,26 +98,26 @@ function setRoomInfo($PDO)
 
 function signUp($PDO){
 
-    $state1 = true;
-    $state2 = true;
+    echo "test";
+    $state = true;
 
     $name = strip_tags($_POST['name']);
 
     $firstName = strip_tags($_POST['firstName']);
 
     $mail = strip_tags($_POST['mail']);
-    $maildata=[];
     //verify that the email isn't yet in database
     $req = $PDO->prepare('SELECT mail  FROM user WHERE mail=?');
     $req->execute([$mail]);
     while($req->fetch()){
         echo "Erreur, addresse email déjà utilisée";
+        $state = false;
     }
 
     $confirmEmail = strip_tags($_POST['confirmEmail']);
     if ($confirmEmail != $mail){
         echo 'Erreur, les adresses emails ne sont pas identiques';
-        $state1 = false;
+        $state = false;
     }
 
 
@@ -127,6 +127,7 @@ function signUp($PDO){
     $req->execute([$phone]);
     while ($req->fetch()){
         echo "Erreur, numéro de téléphone déjà utilisé";
+        $state = false;
     }
 
 
@@ -136,9 +137,10 @@ function signUp($PDO){
         if ($confirmPassword == $password) {
             $password = hash('sha512', $password);
         }
-        else
+        else {
             echo 'Erreur, les mots de passes ne sont pas identiques';
-            $state2 = false;
+            $state = false;
+        }
 
     $type = strip_tags($_POST['type']);
 
@@ -152,8 +154,8 @@ function signUp($PDO){
 
     $country = strip_tags($_POST['country']);
 
-    if ($state1 && $state2 ) {
-
+    if ($state) {
+        echo "test2";
         $req = $PDO->prepare("INSERT INTO user(name ,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
         $req->execute([$name, $firstName, $mail, $phone, $password, $type, $birthDate, $address, $zipCode, $city, $country]);
         return true;

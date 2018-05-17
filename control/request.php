@@ -6,6 +6,8 @@ if(isset($_GET['d'])) {
         case "signUp":
             if(signUp($PDO))
                 $php='login';
+            else
+                $php='signUp';
             break;
 
         case 'login':

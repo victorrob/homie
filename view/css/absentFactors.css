@@ -1,8 +1,13 @@
 .absentFactors {
     display: flex;
-    width: 70%;
+    width: 80%;
     margin-left: 20px;
     flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.factors {
+    width: 70%;
 }
 
 .factors div {
@@ -10,6 +15,11 @@
     flex-wrap: wrap;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+#intro {
+    flex-direction: column;
+    margin: 30px;
 }
 
 input {

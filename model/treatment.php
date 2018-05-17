@@ -142,10 +142,10 @@ function signUp($PDO){
 }
 
 //home
-function home($PDO, $idUser)
+function home($PDO)
 {
     $req = $PDO->prepare('SELECT name, residence.idResidence FROM residence JOIN user_residence WHERE residence.idResidence = user_residence.idResidence AND user_residence.idUser = ?');
-    $req->execute([$idUser]);
+    $req->execute([$_SESSION['idUser']]);
     $residences = [];
     while ($residence = $req->fetch()){
         $residence['select'] = '';
@@ -161,6 +161,7 @@ function home($PDO, $idUser)
     else{
         $idResidence = $residences[0]['idResidence'];
     }
+    $_SESSION['idResidence'] = $idResidence;
 
     $req = $PDO->prepare('SELECT absent FROM absent WHERE idResidence = ?');
     $req->execute([$idResidence]);
@@ -390,9 +391,87 @@ function home($PDO, $idUser)
 }
 
 //absentFactors
-function absentFactors()
+function absentFactors($PDO)
 {
-    
+    if (isset($_POST['absentFactors'])) {
+        if (isset($_POST['lightAbsent'])) {
+            $light = 1;
+        }
+        else {
+            $light = 0;
+        }
+        if (isset($_POST['shutterAbsent'])) {
+            $shutter = 1;
+        }
+        else {
+            $shutter = 0;
+        }
+        if (isset($_POST['autoAbsent'])) {
+            $auto = 1;
+        }
+        else {
+            $auto = 0;
+        }
+        if (isset($_POST['openingAbsent'])) {
+            $opening = $_POST['openingAbsent'];
+        }
+        else {
+            $opening = null;
+        }
+        if (isset($_POST['closingAbsent'])) {
+            $closing = $_POST['closingAbsent'];
+        }
+        else {
+            $closing = null;
+        }
+        if (isset($_POST['temperatureAbsent'])) {
+            $heating = $_POST['temperatureAbsent'];
+        }
+        else {
+            $heating = null;
+        }
+        if (isset($_POST['ventilationAbsent'])) {
+            $ventilation = $_POST['ventilationAbsent'];
+        }
+        else {
+            $ventilation = null;
+        }
+        $req = $PDO->prepare('UPDATE absent SET light = ?, shutter = ?, auto = ?, opening = ?, closing = ?, heating = ?, ventilation =? WHERE idResidence = ?');
+        $req->execute([$light, $shutter, $auto, $opening, $closing, $heating, $ventilation, $_SESSION['idResidence']]);
+        $req->closeCursor();
+    }
+    $req = $PDO->prepare('SELECT * FROM absent WHERE idResidence = ?');
+    $req->execute([$_SESSION['idResidence']]);
+    $absent = $req->fetch();
+    $absentFactors = [];
+    if ($absent['light'] == 1) {
+        $absentFactors['light'] = 'checked';
+    }
+    else {
+        $absentFactors['light'] = '';
+    }
+    if ($absent['shutter'] == 1) {
+        $absentFactors['shutter'] = 'checked';
+    }
+    else {
+        $absentFactors['shutter'] = '';
+    }
+    if ($absent['auto'] == 1) {
+        $absentFactors['auto'] = 'checked';
+    }
+    else {
+        $absentFactors['auto'] = '';
+    }
+    $absentFactors['opening'] = $absent['opening'];
+    $absentFactors['closing'] = $absent['closing'];
+    $absentFactors['heating'] = $absent['heating'];
+    $absentFactors['ventilation'] = $absent['ventilation'];
+    $req->closeCursor();
+    $req = $PDO->prepare('SELECT name FROM residence WHERE idResidence = ?');
+    $req->execute([$_SESSION['idResidence']]);
+    $absentFactors['name'] = $req->fetch()['name'];
+    $req->closeCursor();
+    return $absentFactors;
 }
 
 function verify($PDO)

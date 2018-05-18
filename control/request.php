@@ -49,7 +49,6 @@ switch ($php) {
         break;
     case "absentFactors":
         $absentFactors = absentFactors($PDO);
-        [$residences, $rooms] = home($PDO, $_SESSION['idUser']);
         break;
     case "sensor":
         [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($PDO);

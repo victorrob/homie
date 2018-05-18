@@ -538,6 +538,7 @@ function profileGet($PDO){
         $phone = htmlspecialchars($userData['phone']);
         $password = $userData['password'];
     }
+    $req->closeCursor();
     return([$name,$firstName,$birthDate,$email,$address,$phone,$password]);
 }
 
@@ -546,35 +547,42 @@ function profilePut($PDO,$namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,
     if ($namePut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `name`= ? WHERE `idUser` = ?');
         $req->execute([$namePut,$id]);
+        $req->closeCursor();
     }
     if ($firstNamePut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `firstName`= ? WHERE `idUser` = ?');
-        print_r($req);
         $req->execute([$firstNamePut,$id]);
+        $req->closeCursor();
     }
     if ($birthPut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `birthDate`= ? WHERE `idUser` = ?');
         $req->execute([$birthPut,$id]);
+        $req->closeCursor();
     }
     if ($emailPut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `mail`= ? WHERE `idUser` = ?');
         $req->execute([$emailPut,$id]);
+        $req->closeCursor();
     }
     if ($addressPut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `address`= ? WHERE `idUser` = ?');
         $req->execute([$addressPut,$id]);
+        $req->closeCursor();
     }
     if ($phonePut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `phone`= ? WHERE `idUser` = ?');
         $req->execute([$phonePut,$id]);
+        $req->closeCursor();
     }
     if ($passwordPut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `phone`= ? WHERE `idUser` = ?');
         $req->execute([$passwordPut,$id]);
+        $req->closeCursor();
     }
 }
 
 function profilePOST($PDO){ // mdp a cripte et gestion des erreur a faire (dans les else) !
+    $error='';
     if (isset($_POST['name'])|| isset($_POST['firstName'])||isset($_POST['birth'])|| isset($_POST['email'])||isset($_POST['address'])|| isset($_POST['phone'])||isset($_POST['password1'])){
 
         [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
@@ -613,15 +621,21 @@ function profilePOST($PDO){ // mdp a cripte et gestion des erreur a faire (dans 
             }else{
                 $phoneModif="";
             }
-            if ($_POST['password1'] != "" && ($_POST['password1'] == $_POST['password2'])){
-                $password1Modif=$_POST['password1'];
+            if ($_POST['password1'] != ""){
+                if($_POST['password1'] == $_POST['password2']){
+                    $password1Modif=$_POST['password1'];
+                }else{
+                    $password1Modif="";
+                    $error=$error.'ERREUR : les nouvaux mot de passe ne sont pas identiques <br/>';
+                }
             }else{
                 $password1Modif="";
             }
             profilePut($PDO,$nameModif,$firstNameModif,$birthModif,$emailModif,$addressModif,$phoneModif,$password1Modif,$id);
         }else{
-            return('ERREUR : movais mot de passe!');
+            $error='ERREUR : mauvais mot de passe! <br/>'.$error;
         }
 
     }
+    return([$error]);
 }

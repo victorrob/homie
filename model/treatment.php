@@ -395,6 +395,8 @@ function mailSend($PDO){
 
     $reponse = '';
     if (isset($_POST['okmail']) && verifyMail($PDO)) {
+        $passPassword = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        $passPassword = str_shuffle($passPassword);
 
         $header="MIME-Version: 1.0\r\n";
         $header.='From:"gmail.com"<support@gmail.com>'."\n";
@@ -406,14 +408,21 @@ function mailSend($PDO){
         <body>
             <div align="center">
                     Veuillez appuyer sur le lien, pour changer de mot de passe :
-                    <a href="http://localhost/homie/index.php?p=resetPassword"> changervotremotdepasse</a>
+                    <a href="http://localhost/homie/index.php?p=resetPassword&h='.$passPassword.'"> changervotremotdepasse</a>
             </div>
         </body>
 </html>
 
 ';
+        $req= $PDO->prepare("UPDATE user SET passPassword= ?");
+        $req->execute([$passPassword]);
+        $req->closeCursor();
+
         mail($_POST['mail'], "Changement de mot de passe", $message, $header);
         $reponse = 'le mail a été envoyé !';
+
+
+
     }
 
     return $reponse;

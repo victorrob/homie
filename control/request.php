@@ -62,9 +62,8 @@ switch ($php) {
     case "login":
         break;
     case "forgottenPswd":
-        $reponse = mailSend();
+        $reponse = mailSend($PDO);
         break;
     case "resetPswd":
-        $erreurPswd = egalPswd();
         break;
 }

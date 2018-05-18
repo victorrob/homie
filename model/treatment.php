@@ -391,10 +391,10 @@ function verify($PDO)
     }
 }
 
-function mailSend(){
+function mailSend($PDO){
 
     $reponse = '';
-    if (isset($_POST['okmail'])) {
+    if (isset($_POST['okmail']) && verifyMail($PDO)) {
 
         $header="MIME-Version: 1.0\r\n";
         $header.='From:"gmail.com"<support@gmail.com>'."\n";
@@ -424,13 +424,38 @@ function egalPswd(){
 
 
     if($_POST['newPassword']!= $_POST['newPassword2']){
+        echo 'Vos mots de passes ne correspondents pas !';
         return false;
     }
     else{
         return true;
     }
 
-   return $erreurPswd;
+}
+
+function verifyMail($PDO){
+    $mailInput=$_POST['mail'];
+    if (isset($_POST['okmail'])){
+        $req= $PDO->prepare("SELECT idUser FROM user WHERE mail = ? ");
+        $req->execute([$mailInput]);
+        $mailExist=$req->rowCount();
+        $req->closeCursor();
+
+        if($mailExist==1){
+            return true;
+        }
+        else {
+            echo 'Votre adresse mail est introuvable ! ';
+            return false;
+        }
+    }
+}
+
+function changePswd($PDO)
+{
+    $req= $PDO->prepare("UPDATE user SET password= ? WHERE mail= ?");
+    $req->execute($_POST['newPassword'],$_POST['mail']);
+    $req->closeCursor();
 }
 /*
 function profileGet(){

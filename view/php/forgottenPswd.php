@@ -1,7 +1,6 @@
 
     <body>
     <br><br>
-        <div class="reponse">  <?php echo $reponse ?>   </div>
 		<form method="post" action="index.php?p=forgottenPswd&d=forgottenPswd">
 			<p><label for="mail">Adresse mail :</label></p>
 			<p><input class="complete largeText" type="email" name="mail"   required /></p>

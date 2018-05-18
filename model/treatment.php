@@ -98,7 +98,6 @@ function setRoomInfo($PDO)
 
 function signUp($PDO){
 
-    echo "test";
     $state = true;
 
     $name = strip_tags($_POST['name']);
@@ -155,14 +154,57 @@ function signUp($PDO){
     $country = strip_tags($_POST['country']);
 
     if ($state) {
-        echo "test2";
         $req = $PDO->prepare("INSERT INTO user(name ,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
         $req->execute([$name, $firstName, $mail, $phone, $password, $type, $birthDate, $address, $zipCode, $city, $country]);
+        $req->closeCursor();
         return true;
     }
     else {
         return false;
     }
+}
+
+//add house in database
+
+function addHouse($PDO){
+
+    $name = strip_tags($_POST['residenceName']);
+
+    $address = strip_tags($_POST['address']);
+
+    $zipCode = strip_tags($_POST['zipCode']);
+
+    $city = strip_tags($_POST['residenceCity']);
+
+    $type = strip_tags($_POST['residenceType']);
+
+    $country = strip_tags($_POST['residenceCountry']);
+
+    $email = strip_tags($_POST['email']);
+
+    $req = $PDO->prepare("INSERT INTO residence(type ,name,address,zipCode,city,country) VALUES(?,?,?,?,?,?)");
+    $req->execute([$type, $name, $address, $zipCode, $city, $country]);
+    $req->closeCursor();
+
+    $req = $PDO -> prepare("SELECT idUser FROM user WHERE mail = ?");
+    $req->execute([$email]);
+    $idUser = $req->fetch()['idUser'];
+    $req->closeCursor();
+
+
+    if ($idUser != null) {
+
+        $req = $PDO->prepare("INSERT INTO user_residence(idUser, idResidence) VALUES (?,LAST_INSERT_ID())");
+        $req->execute([$idUser]);
+        $req->closeCursor();
+    }
+    else{
+        echo "L'utilisateur n'existe pas dans la base de donnée";
+}
+
+
+
+    $_SESSION["idResidence"] = $PDO->lastInsertId();
 }
 
 //home
@@ -183,9 +225,8 @@ function home($PDO)
         $residences[$numberResidence]['select'] = 'selected';
     }
     else{
-        $idResidence = $residences[0]['idResidence'];
+        $idResidence = $_SESSION['idResidence'];
     }
-    $_SESSION['idResidence'] = $idResidence;
 
     $req = $PDO->prepare('SELECT absent FROM absent WHERE idResidence = ?');
     $req->execute([$idResidence]);

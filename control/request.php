@@ -16,6 +16,11 @@ if(isset($_GET['d'])) {
             }
             break;
 
+        case 'addHouse':
+            addHouse($PDO);
+            break;
+
+
         case "profile":
             [$error]=profilePOST($PDO,$_POST);
             echo ($error);

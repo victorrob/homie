@@ -26,9 +26,9 @@ function adjustDate($year, $month, $day){
 
 //get all value and date of historic of one specific room
 
-function getHistoric($PDO){
+function getHistoric($roomId, $PDO){
     $req = $PDO->prepare("SELECT type, date, value FROM sensor INNER JOIN data ON sensor.idSensor = data.idSensor WHERE idRoom = ?");
-    $req->execute([$_SESSION['roomId']]);
+    $req->execute([$roomId]);
     $sensorName = [];
     $sensorHistoric =[];
     while($data = $req->fetch()){
@@ -98,49 +98,32 @@ function setRoomInfo($PDO)
 
 function signUp($PDO){
 
-    echo "test";
-    $state = true;
-
     $name = strip_tags($_POST['name']);
 
     $firstName = strip_tags($_POST['firstName']);
 
     $mail = strip_tags($_POST['mail']);
-    //verify that the email isn't yet in database
-    $req = $PDO->prepare('SELECT mail  FROM user WHERE mail=?');
-    $req->execute([$mail]);
-    while($req->fetch()){
-        echo "Erreur, addresse email déjà utilisée";
-        $state = false;
-    }
 
     $confirmEmail = strip_tags($_POST['confirmEmail']);
-    if ($confirmEmail != $mail){
+    if ($confirmEmail == $mail)
+        return true;
+    else{
         echo 'Erreur, les adresses emails ne sont pas identiques';
-        $state = false;
+        return false;
     }
-
 
     $phone = strip_tags($_POST['phone']);
-    //verify that the phone number isn't yet in database
-    $req = $PDO->prepare('SELECT phone FROM user WHERE phone=?');
-    $req->execute([$phone]);
-    while ($req->fetch()){
-        echo "Erreur, numéro de téléphone déjà utilisé";
-        $state = false;
-    }
-
 
     $password = strip_tags($_POST['password']);
 
     $confirmPassword = strip_tags($_POST['confirmPassword']);
         if ($confirmPassword == $password) {
             $password = hash('sha512', $password);
+            return true;
         }
-        else {
+        else
             echo 'Erreur, les mots de passes ne sont pas identiques';
-            $state = false;
-        }
+            return false;
 
     $type = strip_tags($_POST['type']);
 
@@ -154,22 +137,15 @@ function signUp($PDO){
 
     $country = strip_tags($_POST['country']);
 
-    if ($state) {
-        echo "test2";
-        $req = $PDO->prepare("INSERT INTO user(name ,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
-        $req->execute([$name, $firstName, $mail, $phone, $password, $type, $birthDate, $address, $zipCode, $city, $country]);
-        return true;
-    }
-    else {
-        return false;
-    }
+    $req = $PDO->prepare("INSERT INTO user(name ,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+    $req->execute([$name,$firstName,$mail,$phone,$password,$type,$birthDate,$address,$zipCode,$city,$country]);
 }
 
-//home
-function home($PDO)
+//HOME
+function home($PDO, $idUser)
 {
     $req = $PDO->prepare('SELECT name, residence.idResidence FROM residence JOIN user_residence WHERE residence.idResidence = user_residence.idResidence AND user_residence.idUser = ?');
-    $req->execute([$_SESSION['idUser']]);
+    $req->execute([$idUser]);
     $residences = [];
     while ($residence = $req->fetch()){
         $residence['select'] = '';
@@ -185,17 +161,6 @@ function home($PDO)
     else{
         $idResidence = $residences[0]['idResidence'];
     }
-    $_SESSION['idResidence'] = $idResidence;
-
-    $req = $PDO->prepare('SELECT absent FROM absent WHERE idResidence = ?');
-    $req->execute([$idResidence]);
-    if ($req->fetch()['absent'] == 1) {
-        $absent = 'checked';
-    }
-    else {
-        $absent = '';
-    }
-    $req->closeCursor();
 
     $req = $PDO->prepare('SELECT name, idRoom FROM room WHERE idResidence = ?');
     $req->execute([$idResidence]);
@@ -398,104 +363,7 @@ function home($PDO)
         $req->closeCursor();
     }
 
-    if (isset($_POST['habitationAbsent'])) {
-        $req = $PDO->prepare('UPDATE absent SET absent = ? WHERE idResidence = ?');
-        if (isset($_POST['absent'])) {
-            $req->execute([1, $idResidence]);
-            $absent = 'checked';
-        }
-        else {
-            $req->execute([0, $idResidence]);
-            $absent = '';
-        }
-        $req->closeCursor();
-    }
-
-    return [$residences, $absent, $rooms];
-}
-
-//absentFactors
-function absentFactors($PDO)
-{
-    if (isset($_POST['absentFactors'])) {
-        if (isset($_POST['lightAbsent'])) {
-            $light = 1;
-        }
-        else {
-            $light = 0;
-        }
-        if (isset($_POST['shutterAbsent'])) {
-            $shutter = 1;
-        }
-        else {
-            $shutter = 0;
-        }
-        if (isset($_POST['autoAbsent'])) {
-            $auto = 1;
-        }
-        else {
-            $auto = 0;
-        }
-        if (isset($_POST['openingAbsent'])) {
-            $opening = $_POST['openingAbsent'];
-        }
-        else {
-            $opening = null;
-        }
-        if (isset($_POST['closingAbsent'])) {
-            $closing = $_POST['closingAbsent'];
-        }
-        else {
-            $closing = null;
-        }
-        if (isset($_POST['temperatureAbsent'])) {
-            $heating = $_POST['temperatureAbsent'];
-        }
-        else {
-            $heating = null;
-        }
-        if (isset($_POST['ventilationAbsent'])) {
-            $ventilation = $_POST['ventilationAbsent'];
-        }
-        else {
-            $ventilation = null;
-        }
-        $req = $PDO->prepare('UPDATE absent SET light = ?, shutter = ?, auto = ?, opening = ?, closing = ?, heating = ?, ventilation =? WHERE idResidence = ?');
-        $req->execute([$light, $shutter, $auto, $opening, $closing, $heating, $ventilation, $_SESSION['idResidence']]);
-        $req->closeCursor();
-    }
-    $req = $PDO->prepare('SELECT * FROM absent WHERE idResidence = ?');
-    $req->execute([$_SESSION['idResidence']]);
-    $absent = $req->fetch();
-    $absentFactors = [];
-    if ($absent['light'] == 1) {
-        $absentFactors['light'] = 'checked';
-    }
-    else {
-        $absentFactors['light'] = '';
-    }
-    if ($absent['shutter'] == 1) {
-        $absentFactors['shutter'] = 'checked';
-    }
-    else {
-        $absentFactors['shutter'] = '';
-    }
-    if ($absent['auto'] == 1) {
-        $absentFactors['auto'] = 'checked';
-    }
-    else {
-        $absentFactors['auto'] = '';
-    }
-    $absentFactors['opening'] = $absent['opening'];
-    $absentFactors['closing'] = $absent['closing'];
-    $absentFactors['heating'] = $absent['heating'];
-    $absentFactors['ventilation'] = $absent['ventilation'];
-    $req->closeCursor();
-    $req = $PDO->prepare('SELECT name FROM residence WHERE idResidence = ?');
-    $req->execute([$_SESSION['idResidence']]);
-    $absentFactors['name'] = $req->fetch()['name'];
-    $req->closeCursor();
-    return $absentFactors;
+    return [$residences, $rooms];
 }
 
 function verify($PDO)
@@ -506,7 +374,7 @@ function verify($PDO)
         $mail = htmlspecialchars($_POST['mail']);
         $password = $_POST['password'];
         if(!empty($password) AND !empty($mail)){
-            $requser= $PDO->prepare("SELECT * FROM users WHERE mail = ? AND password = ?");
+            $requser= $PDO->prepare("SELECT * FROM user WHERE mail = ? AND password = ?");
             $requser->execute(array($mail,$password));
             $userexist = $requser->rowCount();
             if($userexist==1){
@@ -523,6 +391,65 @@ function verify($PDO)
     }
 }
 
+function mailSend(){
+
+    $reponse = '';
+    if (isset($_POST['okmail'])) {
+
+        $header="MIME-Version: 1.0\r\n";
+        $header.='From:"gmail.com"<support@gmail.com>'."\n";
+        $header.='Content-Type:text/html; charset=utf-8'."\n";
+        $header.='Content-Transfer-Encoding: 8bit';
+
+        $message='
+<html>
+        <body>
+            <div align="center">
+                    Veuillez appuyer sur le lien, pour changer de mot de passe :
+                    <a href="http://localhost/homie/index.php?p=resetPassword"> changervotremotdepasse</a>
+            </div>
+        </body>
+</html>
+
+';
+        mail($_POST['mail'], "Changement de mot de passe", $message, $header);
+        $reponse = 'le mail a été envoyé !';
+    }
+
+    return $reponse;
+}
+
+
+function egalPswd()
+{
+
+    if (isset($_POST['okPassword'])) {
+        if ($_POST['newPassword'] == $_POST['newPassword2']) {
+            return true;
+        }
+        else{
+            echo 'les mots de passes ne correspondent pas !';
+            return false;
+        }
+    }
+
+}
+
+function resetPasswordInDb()
+{
+    $newpassword = $_POST['newPassword'];
+    $newpassword2= $_POST['newPassword2'];
+
+    $req = $PDO ->prepare("SELECT * FROM users WHERE mail = ? AND password = ?");
+
+
+
+}
+/*
+function profileGet(){
+    $req = $PDO->prepare('FROM "user" SELECT * WHERE id=?');
+    $data = $req->execute([$_SESSION['id']]);
+    while($userData = $data->fetch()){}
 
 function profileGet($PDO){
     $id =1;
@@ -541,87 +468,117 @@ function profileGet($PDO){
     return([$name,$firstName,$birthDate,$email,$address,$phone,$password]);
 }
 
-function profilePut($PDO,$namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,$phonePut,$passwordPut,$id){
- 
-    if ($namePut!=""){
-        $req = $PDO->prepare('UPDATE `user` SET `name`= ? WHERE `idUser` = ?');
-        $req->execute([$namePut,$id]);
+function profilePut($namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,$phonePut,$passwordPut){
+    if ($namePut!=0){
+        $req = $PDO->prepare('UPDATE "user" SET "name"=? WHERE id=?');
+        $req->execute([$namePut,$_SESSION['id']]);
     }
-    if ($firstNamePut!=""){
-        $req = $PDO->prepare('UPDATE `user` SET `firstName`= ? WHERE `idUser` = ?');
-        print_r($req);
-        $req->execute([$firstNamePut,$id]);
+    if ($firstNamePut!=0){
+        $req = $PDO->prepare('UPDATE "user" SET "firstName"=? WHERE id=?');
+        $req->execute([$firstNamePut,$_SESSION['id']]);
     }
-    if ($birthPut!=""){
-        $req = $PDO->prepare('UPDATE `user` SET `birthDate`= ? WHERE `idUser` = ?');
-        $req->execute([$birthPut,$id]);
+    if ($birthPut!=0){
+        $req = $PDO->prepare('UPDATE "user" SET "birth"=? WHERE id=?');
+        $req->execute([$birthPut,$_SESSION['id']]);
     }
-    if ($emailPut!=""){
-        $req = $PDO->prepare('UPDATE `user` SET `mail`= ? WHERE `idUser` = ?');
-        $req->execute([$emailPut,$id]);
+    if ($emailPut!=0){
+        $req = $PDO->prepare('UPDATE "user" SET "email"=? WHERE id=?');
+        $req->execute([$emailPut,$_SESSION['id']]);
     }
-    if ($addressPut!=""){
-        $req = $PDO->prepare('UPDATE `user` SET `address`= ? WHERE `idUser` = ?');
-        $req->execute([$addressPut,$id]);
+    if ($addressPut!=0){
+        $req = $PDO->prepare('UPDATE "user" SET "address"=? WHERE id=?');
+        $req->execute([$addressPut,$_SESSION['id']]);
     }
-    if ($phonePut!=""){
-        $req = $PDO->prepare('UPDATE `user` SET `phone`= ? WHERE `idUser` = ?');
-        $req->execute([$phonePut,$id]);
+    if ($phonePut!=0){
+        $req = $PDO->prepare('UPDATE "user" SET "phone"=? WHERE id=?');
+        $req->execute([$phonePut,$_SESSION['id']]);
     }
-    if ($passwordPut!=""){
-        $req = $PDO->prepare('UPDATE `user` SET `phone`= ? WHERE `idUser` = ?');
-        $req->execute([$passwordPut,$id]);
+    if ($passwordPut!=0){
+        $req = $PDO->prepare('UPDATE "user" SET "password"=? WHERE id=?');
+        $req->execute([$passwordPut,$_SESSION['id']]);
     }
 }
 
-function profilePOST($PDO){ // mdp a cripte et gestion des erreur a faire (dans les else) !
+function profilePOST($userPost){ // mdp a cripte et gestion des erreur a faire (dans les else) !
     if (isset($_POST['name'])|| isset($_POST['firstName'])||isset($_POST['birth'])|| isset($_POST['email'])||isset($_POST['address'])|| isset($_POST['phone'])||isset($_POST['password1'])){
-
-        [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
-
         $_POST['password']=$_POST['password'];  // mdp a cripte !!!!!
-        // $id = $_SESSION['id'];
-        $id = 1; // a supprimer plus tartd
-        if($_POST['password']==$password){
-            if ($_POST['name'] != ""){
+        if($_POST['password']=$password){
+            if (isset($_POST['name'])){
                 $nameModif=$_POST['name'];
             }else{
-                $nameModif="";
+                $nameModif=0;
             }
-            if ($_POST['firstName'] != ""){
+            if (isset($_POST['firstName'])){
                 $firstNameModif=$_POST['firstName'];
             }else{
-                $firstNameModif="";
+                $firstNameModif=0;
             }
-            if ($_POST['birth'] != ""){
+            if (isset($_POST['birth'])){
                 $birthModif=$_POST['birth'];
             }else{
-                $birthModif="";
+                $birthModif=0;
             }
-            if ($_POST['email'] != ""){
+            if (isset($_POST['email'])){
                 $emailModif=$_POST['email'];
             }else{
-                $emailModif="";
+                $emailModif=0;
             }
-            if ($_POST['address'] != ""){
+            if (isset($_POST['address'])){
                 $addressModif=$_POST['address'];
             }else{
-                $addressModif="";
+                $addressModif=0;
             }
-            if ($_POST['phone'] != ""){
+            if (isset($_POST['phone'])){
                 $phoneModif=$_POST['phone'];
             }else{
-                $phoneModif="";
+                $phoneModif=0;
             }
-            if ($_POST['password1'] != "" && ($_POST['password1'] == $_POST['password2'])){
+            if (isset($_POST['password1']) && ($_POST['password1'] == $_POST['password2'])){
                 $password1Modif=$_POST['password1'];
             }else{
-                $password1Modif="";
+                $password1Modif=0;
             }
-            profilePut($PDO,$nameModif,$firstNameModif,$birthModif,$emailModif,$addressModif,$phoneModif,$password1Modif,$id);
-        }else{
-            return('ERREUR : movais mot de passe!');
+            profilePut($nameModif,$firstNameModif,$birthModif,$emailModif,$addressModif,$phoneModif,$password1Modif);
         }
 
     }
+>>>>>>> 278cd02ef14c1698332522c020d656f85b9403e9
+
 }
+*/
+
+/*function getRoomInfo($idRoom, $PDO)
+{
+    $sensorList = ["Temperature", "humidite", "CO2", "pression", "lumière"];
+    foreach ($sensorList as $i) {
+        array_push($sensorCheck, "");
+    }
+    $actuatorList = ["chauffage", "lumière", "ventilation"];
+    foreach ($actuatorList as $i) {
+        array_push($actuatorCheck, "");
+    }
+    $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType, actuator.type AS actuatorType 
+                          FROM room INNER JOIN sensor INNER JOIN actuator ON room.idRoom = sensor.idRoom AND 
+                          room.idRoom = actuator.idRoom where room.idroom = ?");
+    $req->execute([$idRoom]);
+    $roomName = "";
+    $roomSize = "";
+    $roomType = "";
+    while ($data = $req->fetch()) {
+        $roomName = $data['name'];
+        $roomSize = $data['size'];
+        $roomType = $data['roomType'];
+        for ($i = 0; $i < count($sensorList); $i++) {
+            if ($data['sensorType'] === $sensorList[$i]) {
+                $sensorCheck[$i] = "checked";
+            }
+        }
+        for ($i = 0; $i < count($actuatorList); $i++) {
+            if ($data['sensorType'] === $actuatorList[$i]) {
+                $actuatorCheck[$i] = "checked";
+            }
+        }
+
+    }
+    return [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName];
+}*/

@@ -1,6 +1,6 @@
 
 
-<form method="post" action="index.php?p=login" >
+<form method="post" action="index.php?d=login" >
 <p><label for="identifiant">Identifiant :</label></p>
 <p><input type="email" name="mail" id="identifiant" placeholder="Nom d'utilisateur" /></p>
 <p><label for="mot_de_passe">Mot de passe :</label></p>

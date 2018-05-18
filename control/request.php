@@ -15,6 +15,14 @@ if(isset($_GET['d'])) {
                 $php = 'home';
             }
             break;
+        case 'resetPassword':
+           if (egalPswd()){
+               $php='ChangePswdOk';
+           }
+           else{
+               $php='resetPassword';
+           }
+            break;
 
         case "profile":
             [$error]=profilePOST($PDO,$_POST);

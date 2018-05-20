@@ -1,4 +1,4 @@
-<form>
+<form method="post" action="index.php?p=home&d=addHouse">
     <fieldset>
         <legend>Informations sur le domicile</legend>
         <label>Nom de la propriété <br>
@@ -14,17 +14,30 @@
         </label>
 
         <label>Code postal :<br>
-            <input type="text" name="residenceCity" placeholder="Exemple : 92130" required />
+            <input type="text" name="zipCode" placeholder="Exemple : 92130" required />
+        </label>
+
+        <label>Email de l'utilisateur : <br>
+            <input type="email" name="email" class="complete" placeholder="Exemple : homie.corp@gmail.com" required/>
         </label>
 
         <label>Type de résidence :
-            <select class="complete" name="residenceType" required>
+            <select class="complete" type="text" name="residenceType" required>
+                <option value="appartment">Appartement</option>
+                <option value="house">Maison</option>
+            </select>
+        </label>
+
+        <label>Pays :
+            <select class="complete" name="residenceCountry" required>
                 <option value="belgium">Belgique</option>
-                <option value="france">Fance</option>
-                <option value="luxembourg">Luxembourg</option>
+                <option value="france">France</option>
                 <option value="switzerland">Suisse</option>
             </select>
         </label>
+
+
+
     </fieldset>
 
     <input type="submit" value="Ajouter maison" id="submit" />

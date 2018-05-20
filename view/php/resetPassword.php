@@ -8,7 +8,7 @@
 <br>
 <div align="center">
 
-   <form method="post" action="index.php?d=resetPassword">
+   <form method="post" action=<?php echo("index.php?p=resetPassword&d=resetPassword&h=".$h); ?> >
         <p><label>Nouveau mot de passe :</label></p>
         <p><input class="complete largeText" type="text" name="newPassword" required /></p>
         <p><label>Confirmer le mot de passe :</label></p>

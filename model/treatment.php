@@ -547,7 +547,7 @@ function verify($PDO)
         $mail = htmlspecialchars($_POST['mail']);
         $password = $_POST['password'];
         if(!empty($password) AND !empty($mail)){
-            $requser= $PDO->prepare("SELECT * FROM users WHERE mail = ? AND password = ?");
+            $requser= $PDO->prepare("SELECT * FROM user WHERE mail = ? AND password = ?");
             $requser->execute(array($mail,$password));
             $userexist = $requser->rowCount();
             if($userexist==1){
@@ -562,6 +562,86 @@ function verify($PDO)
             echo "un des champs n'est pas rempli";
         }
     }
+}
+
+function mailSend($PDO){
+
+    $reponse = '';
+    if (isset($_POST['okmail']) && verifyMail($PDO)) {
+        $passPassword = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        $passPassword = str_shuffle($passPassword);
+
+        $header="MIME-Version: 1.0\r\n";
+        $header.='From:"gmail.com"<support@gmail.com>'."\n";
+        $header.='Content-Type:text/html; charset=utf-8'."\n";
+        $header.='Content-Transfer-Encoding: 8bit';
+
+        $message='
+<html>
+        <body>
+            <div align="center">
+                    Veuillez appuyer sur le lien, pour changer de mot de passe :
+                    <a href="http://localhost/homie/index.php?p=resetPassword&h='.$passPassword.'"> changervotremotdepasse</a>
+            </div>
+        </body>
+</html>
+
+';
+        $req= $PDO->prepare("UPDATE user SET passPassword= ? WHERE mail= ?");
+        $req->execute(array($passPassword, $_POST['mail']));
+        $req->closeCursor();
+
+
+        mail($_POST['mail'], "Changement de mot de passe", $message, $header);
+        $reponse = 'le mail a été envoyé !';
+
+
+
+    }
+
+    return $reponse;
+}
+
+$erreurPswd='';
+
+function egalPswd(){
+
+
+    if($_POST['newPassword']!= $_POST['newPassword2']){
+        echo 'Vos mots de passes ne correspondents pas !';
+        return false;
+    }
+    else{
+        return true;
+    }
+
+}
+
+function verifyMail($PDO){
+    $mailInput=$_POST['mail'];
+    if (isset($_POST['okmail'])){
+        $req= $PDO->prepare("SELECT idUser FROM user WHERE mail = ? ");
+        $req->execute([$mailInput]);
+        $mailExist=$req->rowCount();
+        $req->closeCursor();
+
+        if($mailExist==1){
+            return true;
+        }
+        else {
+            echo 'Votre adresse mail est introuvable ! ';
+            return false;
+        }
+    }
+}
+
+
+function changePswd($PDO)
+{
+    $h=$_GET['h'];
+    $req= $PDO->prepare("UPDATE user SET password= ? WHERE passPassword= ?");
+    $req->execute(array($_POST['newPassword'],$h));
+    $req->closeCursor();
 }
 
 

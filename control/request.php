@@ -18,7 +18,7 @@ if(isset($_GET['d'])) {
         case 'resetPassword':
            if (egalPswd()){
                changePswd($PDO);
-               $php='ChangePswdOk';
+               $php='header';
            }
            else{
                $php='resetPassword';

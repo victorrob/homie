@@ -73,7 +73,10 @@ switch ($php) {
         $reponse = mailSend($PDO);
         echo $reponse;
         break;
-    case "resetPswd":
+    case 'resetPassword':
+        $h=$_GET['h'];
+        break;
+    case "ChangePswdOk":
         break;
 
 }

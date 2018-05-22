@@ -6,8 +6,6 @@ if(isset($_GET['d'])) {
         case "signUp":
             if(signUp($PDO))
                 $php='login';
-            else
-                $php='signUp';
             break;
 
         case 'login':
@@ -38,8 +36,6 @@ if(isset($_GET['d'])) {
             break;
 
         case 'sensor':
-            echo "fi";
-            $_SESSION['roomId'] = -1;
             $_SESSION['idResidence'] = 2;
             setRoomInfo($PDO);
             $_GET['d']=null;
@@ -56,7 +52,6 @@ switch ($php) {
         [$residences, $absent, $rooms] = home($PDO, $_SESSION['idUser']);
         break;
     case "absentFactors":
-        $absentFactors = absentFactors($PDO);
         break;
     case "sensor":
         [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($PDO);

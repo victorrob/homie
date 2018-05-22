@@ -8,8 +8,6 @@ session_start();
 
 include('model/treatment.php');
 $php = isset($_GET['p']) ? strip_tags($_GET['p']) : "login";
-$dataNeeded = isset($dataNeeded) ? strip_tags($dataNeeded) : "";
-
 $_SESSION['homeId'] = 1;
 $_SESSION['roomId'] = 1;
 $_SESSION['idUser'] = 1;

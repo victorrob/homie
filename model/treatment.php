@@ -70,7 +70,7 @@ function getRoomInfo($PDO){
             }
         }
         for($i=0 ; $i<count($actuatorList); $i++){
-            if ($data['sensorType'] === $actuatorList[$i]){
+            if ($data['actuatorType'] === $actuatorList[$i]){
                 $actuatorCheck[$i] = "checked";
             }
         }
@@ -81,9 +81,7 @@ function getRoomInfo($PDO){
 
 function setRoomInfo($PDO)
 {
-    echo "in";
-    if ($_SESSION['roomId'] == +-1) {
-        echo '<br/>' . var_dump($_REQUEST) . '<br/>';
+    if ($_SESSION['roomId'] == -1) {
         $PDO->exec('INSERT INTO room(idResidence, size, name, type) 
                     VALUES(\'' . $_SESSION['idResidence'] . '\',\'' . $_REQUEST['size'] . '\',\'' . $_REQUEST['name'] . '\',\'' . $_REQUEST['type'] . '\')');
         $idRoom = $PDO->lastInsertId();
@@ -91,9 +89,51 @@ function setRoomInfo($PDO)
             $PDO->exec('INSERT INTO sensor(idRoom,type)
                     VALUES(\'' . $idRoom . '\',\'' . $sensor . '\')');
         }
+        foreach (array_keys($_REQUEST['actuator']) as $actuator) {
+            $PDO->exec('INSERT INTO actuator(idRoom,type)
+                    VALUES(\'' . $idRoom . '\',\'' . $actuator . '\')');
+        }
+    }
+    else if($_REQUEST['deleteRoom'] = 'delete'){
+        del('room', $_SESSION['roomId'], $PDO);
+        del('sensor', $_SESSION['roomId'], $PDO);
+        del('actuator', $_SESSION['roomId'], $PDO);
+    }
+    else{
+        addOrDont('sensor', array_keys($_REQUEST['sensor']), $_SESSION['roomId'], $PDO);
+        addOrDont('actuator', array_keys($_REQUEST['actuator']), $_SESSION['roomId'], $PDO);
     }
 }
 
+function del($table, $id, $PDO){
+    $req = $PDO->prepare('DELETE FROM '.$table.' WHERE idRoom = ?');
+    $req->execute([$id]);
+    $req->closeCursor();
+}
+
+function addOrDont($table, $values, $id, $PDO){
+    if(gettype($values) == 'string') {
+        $req = $PDO->prepare('SELECT IF(type = ?, \'true\', \'false\') AS answer FROM '.$table.' WHERE idRoom = ?');
+        $req->execute([$values, $id]);
+        $check = $req->fetchAll();
+        if (in_array('false', $check)) {
+            $PDO->exec('INSERT INTO ' . $table . '(type, idRoom) VALUES(\'' . $values . '\',\'' . $id . '\')');
+        }
+        $req->closeCursor();
+    }
+    else if(gettype($values) == 'array'){
+        foreach ($values as $value){
+            echo '<br/> val = '.$value;
+            $req = $PDO->prepare('SELECT IF(type = ?, \'true\', \'false\') AS answer FROM '.$table.' WHERE idRoom = ?');
+            $req->execute([$value, $id]);
+            $check = $req->fetchAll();
+            if (in_array('false', $check)) {
+                $PDO->exec('INSERT INTO ' . $table . '(type, idRoom) VALUES(\'' . $value . '\',\'' . $id . '\')');
+            }
+            $req->closeCursor();
+        }
+    }
+}
 //add user
 
 function signUp($PDO){

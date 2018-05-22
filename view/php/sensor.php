@@ -4,7 +4,7 @@
     <?php
     for($i = 0; $i<count($sensorList); $i++){
         ?>
-        <label class="button"><p><?php echo $sensorList[$i]; ?></p><input type="checkbox" name="sensor[<?php echo $sensorList[$i]; ?>]"
+        <label class="lblButton"><p><?php echo $sensorList[$i]; ?></p><input type="checkbox" name="sensor[<?php echo $sensorList[$i]; ?>]"
             <?php echo $sensorCheck[$i]; ?>>
             <span class="checkbox"></span>
         </label>
@@ -17,7 +17,7 @@
         <?php
         for($i = 0; $i<count($actuatorList); $i++){
             ?><div>
-            <label class="button"><?php echo $actuatorList[$i]; ?><input type="checkbox" name="actuator[<?php echo $actuatorList[$i]; ?>]"
+            <label class="lblButton"><?php echo $actuatorList[$i]; ?><input type="checkbox" name="actuator[<?php echo $actuatorList[$i]; ?>]"
                     <?php echo $actuatorCheck[$i]; ?>>
                 <span class="checkbox"></span>
             </label>

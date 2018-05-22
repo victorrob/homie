@@ -32,14 +32,14 @@
 					<label for="birth">Date d'aniversaire : <?php echo($birthDate); ?></label>
 					<input class="button" type="button" value="Modifier" id="birthButton"/>
 				</div>
-				<input id="birthModif" type="text" placeholder="Nouvelle date d'anniversair" name="birth" />
+				<input id="birthModif" type="date" placeholder="Nouvelle date d'anniversair" name="birth" />
 			</div>
 			<div id="email" class="categoryForm">
 				<div>
 					<label for="email">Email : <?php echo($email); ?></label>
 					<input class="button" type="button" value="Modifier" id="emailButton"/>
 				</div>
-				<input id="emailModif" type="text" placeholder="Nouvelle email" name="email" />
+				<input id="emailModif" type="email" placeholder="Nouvelle email" name="email" />
 			</div>
 			<div id="address" class="categoryForm">
 				<div>
@@ -53,7 +53,7 @@
 					<label for="phone">Téléphone : <?php echo($phone); ?></label>
 					<input class="button" type="button" value="Modifier" id="phoneButton"/>
 				</div>
-				<input id="phoneModif" type="text" placeholder="Nouvau téléphone" name="phone" />
+				<input id="phoneModif" type="tel" placeholder="Nouvau téléphone" name="phone" />
 			</div>
 			<div id="password" class="categoryForm">
 				<div>

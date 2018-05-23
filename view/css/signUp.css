@@ -11,13 +11,14 @@ a{
     color: #F4A460;
 }
 
-.button{
+.lblButton{
     display: inline-block;
     margin-left: 50%;
     transform: translate(-50%);
     margin-top: 2%;
 }
-fieldset input{
+
+input{
     text-align: left;
     width: 80%;
 }

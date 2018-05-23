@@ -1,17 +1,43 @@
-<form>
+<form method="post" action="index.php?p=home&d=addHouse">
     <fieldset>
         <legend>Informations sur le domicile</legend>
-        <label for="residenceName">Nom de la propriété <br>
-            <input type="text" name="residenceName" placeholder="Exemple : Appartement Paris"/>
+        <label>Nom de la propriété <br>
+            <input type="text" name="residenceName" placeholder="Exemple : Appartement Paris" required/>
         </label>
 
-        <label for="address">Adresse : <br>
-            <input type="text" name="address" id="address" placeholder="Exemple : 10 rue de Vanves" />
+        <label>Adresse : <br>
+            <input type="text" name="address" id="address" placeholder="Exemple : 10 rue de Vanves" required/>
         </label>
 
-        <label for="residenceCity">Ville :<br>
-            <input type="text" name="residenceCity" id="residenceCity" placeholder="Exemple : Paris" />
+        <label>Ville :<br>
+            <input type="text" name="residenceCity" placeholder="Exemple : Issy-les-Moulineaux" required />
         </label>
+
+        <label>Code postal :<br>
+            <input type="text" name="zipCode" placeholder="Exemple : 92130" required />
+        </label>
+
+        <label>Email de l'utilisateur : <br>
+            <input type="email" name="email" class="complete" placeholder="Exemple : homie.corp@gmail.com" required/>
+        </label>
+
+        <label>Type de résidence :
+            <select class="complete" type="text" name="residenceType" required>
+                <option value="appartment">Appartement</option>
+                <option value="house">Maison</option>
+            </select>
+        </label>
+
+        <label>Pays :
+            <select class="complete" name="residenceCountry" required>
+                <option value="belgium">Belgique</option>
+                <option value="france">France</option>
+                <option value="switzerland">Suisse</option>
+            </select>
+        </label>
+
+
+
     </fieldset>
 
     <input type="submit" value="Ajouter maison" id="submit" />

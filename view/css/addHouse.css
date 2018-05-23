@@ -31,3 +31,23 @@ legend{
     transform: translate(-50%);
 }
 
+.complete{
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    border: 1px solid transparent;
+}
+
+.complete:invalid{
+    border: 2px solid red;
+}
+
+.complete:hover{
+    background-color: #ccc;
+    border: 2px solid blue;
+}
+.complete:focus{
+    border: 2px solid blue;
+}

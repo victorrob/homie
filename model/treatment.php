@@ -70,7 +70,7 @@ function getRoomInfo($PDO){
             }
         }
         for($i=0 ; $i<count($actuatorList); $i++){
-            if ($data['sensorType'] === $actuatorList[$i]){
+            if ($data['actuatorType'] === $actuatorList[$i]){
                 $actuatorCheck[$i] = "checked";
             }
         }
@@ -81,9 +81,7 @@ function getRoomInfo($PDO){
 
 function setRoomInfo($PDO)
 {
-    echo "in";
-    if ($_SESSION['roomId'] == +-1) {
-        echo '<br/>' . var_dump($_REQUEST) . '<br/>';
+    if ($_SESSION['roomId'] == -1) {
         $PDO->exec('INSERT INTO room(idResidence, size, name, type) 
                     VALUES(\'' . $_SESSION['idResidence'] . '\',\'' . $_REQUEST['size'] . '\',\'' . $_REQUEST['name'] . '\',\'' . $_REQUEST['type'] . '\')');
         $idRoom = $PDO->lastInsertId();
@@ -91,33 +89,74 @@ function setRoomInfo($PDO)
             $PDO->exec('INSERT INTO sensor(idRoom,type)
                     VALUES(\'' . $idRoom . '\',\'' . $sensor . '\')');
         }
+        foreach (array_keys($_REQUEST['actuator']) as $actuator) {
+            $PDO->exec('INSERT INTO actuator(idRoom,type)
+                    VALUES(\'' . $idRoom . '\',\'' . $actuator . '\')');
+        }
+    }
+    else if($_REQUEST['deleteRoom'] = 'delete'){
+        del('room', $_SESSION['roomId'], $PDO);
+        del('sensor', $_SESSION['roomId'], $PDO);
+        del('actuator', $_SESSION['roomId'], $PDO);
+    }
+    else{
+        addOrDont('sensor', array_keys($_REQUEST['sensor']), $_SESSION['roomId'], $PDO);
+        addOrDont('actuator', array_keys($_REQUEST['actuator']), $_SESSION['roomId'], $PDO);
     }
 }
 
+function del($table, $id, $PDO){
+    $req = $PDO->prepare('DELETE FROM '.$table.' WHERE idRoom = ?');
+    $req->execute([$id]);
+    $req->closeCursor();
+}
+
+function addOrDont($table, $values, $id, $PDO){
+    if(gettype($values) == 'string') {
+        $req = $PDO->prepare('SELECT IF(type = ?, \'true\', \'false\') AS answer FROM '.$table.' WHERE idRoom = ?');
+        $req->execute([$values, $id]);
+        $check = $req->fetchAll();
+        if (in_array('false', $check)) {
+            $PDO->exec('INSERT INTO ' . $table . '(type, idRoom) VALUES(\'' . $values . '\',\'' . $id . '\')');
+        }
+        $req->closeCursor();
+    }
+    else if(gettype($values) == 'array'){
+        foreach ($values as $value){
+            echo '<br/> val = '.$value;
+            $req = $PDO->prepare('SELECT IF(type = ?, \'true\', \'false\') AS answer FROM '.$table.' WHERE idRoom = ?');
+            $req->execute([$value, $id]);
+            $check = $req->fetchAll();
+            if (in_array('false', $check)) {
+                $PDO->exec('INSERT INTO ' . $table . '(type, idRoom) VALUES(\'' . $value . '\',\'' . $id . '\')');
+            }
+            $req->closeCursor();
+        }
+    }
+}
 //add user
 
 function signUp($PDO){
 
-    $state1 = true;
-    $state2 = true;
+    $state = true;
 
     $name = strip_tags($_POST['name']);
 
     $firstName = strip_tags($_POST['firstName']);
 
     $mail = strip_tags($_POST['mail']);
-    $maildata=[];
     //verify that the email isn't yet in database
     $req = $PDO->prepare('SELECT mail  FROM user WHERE mail=?');
     $req->execute([$mail]);
     while($req->fetch()){
         echo "Erreur, addresse email déjà utilisée";
+        $state = false;
     }
 
     $confirmEmail = strip_tags($_POST['confirmEmail']);
     if ($confirmEmail != $mail){
         echo 'Erreur, les adresses emails ne sont pas identiques';
-        $state1 = false;
+        $state = false;
     }
 
 
@@ -127,6 +166,7 @@ function signUp($PDO){
     $req->execute([$phone]);
     while ($req->fetch()){
         echo "Erreur, numéro de téléphone déjà utilisé";
+        $state = false;
     }
 
 
@@ -136,9 +176,10 @@ function signUp($PDO){
         if ($confirmPassword == $password) {
             $password = hash('sha512', $password);
         }
-        else
+        else {
             echo 'Erreur, les mots de passes ne sont pas identiques';
-            $state2 = false;
+            $state = false;
+        }
 
     $type = strip_tags($_POST['type']);
 
@@ -152,15 +193,58 @@ function signUp($PDO){
 
     $country = strip_tags($_POST['country']);
 
-    if ($state1 && $state2 ) {
-
+    if ($state) {
         $req = $PDO->prepare("INSERT INTO user(name ,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
         $req->execute([$name, $firstName, $mail, $phone, $password, $type, $birthDate, $address, $zipCode, $city, $country]);
+        $req->closeCursor();
         return true;
     }
     else {
         return false;
     }
+}
+
+//add house in database
+
+function addHouse($PDO){
+
+    $name = strip_tags($_POST['residenceName']);
+
+    $address = strip_tags($_POST['address']);
+
+    $zipCode = strip_tags($_POST['zipCode']);
+
+    $city = strip_tags($_POST['residenceCity']);
+
+    $type = strip_tags($_POST['residenceType']);
+
+    $country = strip_tags($_POST['residenceCountry']);
+
+    $email = strip_tags($_POST['email']);
+
+    $req = $PDO->prepare("INSERT INTO residence(type ,name,address,zipCode,city,country) VALUES(?,?,?,?,?,?)");
+    $req->execute([$type, $name, $address, $zipCode, $city, $country]);
+    $req->closeCursor();
+
+    $req = $PDO -> prepare("SELECT idUser FROM user WHERE mail = ?");
+    $req->execute([$email]);
+    $idUser = $req->fetch()['idUser'];
+    $req->closeCursor();
+
+
+    if ($idUser != null) {
+
+        $req = $PDO->prepare("INSERT INTO user_residence(idUser, idResidence) VALUES (?,LAST_INSERT_ID())");
+        $req->execute([$idUser]);
+        $req->closeCursor();
+    }
+    else{
+        echo "L'utilisateur n'existe pas dans la base de donnée";
+}
+
+
+
+    $_SESSION["idResidence"] = $PDO->lastInsertId();
 }
 
 //home
@@ -181,9 +265,8 @@ function home($PDO)
         $residences[$numberResidence]['select'] = 'selected';
     }
     else{
-        $idResidence = $residences[0]['idResidence'];
+        $idResidence = $_SESSION['idResidence'];
     }
-    $_SESSION['idResidence'] = $idResidence;
 
     $req = $PDO->prepare('SELECT absent FROM absent WHERE idResidence = ?');
     $req->execute([$idResidence]);
@@ -504,7 +587,7 @@ function verify($PDO)
         $mail = htmlspecialchars($_POST['mail']);
         $password = $_POST['password'];
         if(!empty($password) AND !empty($mail)){
-            $requser= $PDO->prepare("SELECT * FROM users WHERE mail = ? AND password = ?");
+            $requser= $PDO->prepare("SELECT * FROM user WHERE mail = ? AND password = ?");
             $requser->execute(array($mail,$password));
             $userexist = $requser->rowCount();
             if($userexist==1){
@@ -519,6 +602,86 @@ function verify($PDO)
             echo "un des champs n'est pas rempli";
         }
     }
+}
+
+function mailSend($PDO){
+
+    $reponse = '';
+    if (isset($_POST['okmail']) && verifyMail($PDO)) {
+        $passPassword = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        $passPassword = str_shuffle($passPassword);
+
+        $header="MIME-Version: 1.0\r\n";
+        $header.='From:"gmail.com"<support@gmail.com>'."\n";
+        $header.='Content-Type:text/html; charset=utf-8'."\n";
+        $header.='Content-Transfer-Encoding: 8bit';
+
+        $message='
+<html>
+        <body>
+            <div align="center">
+                    Veuillez appuyer sur le lien, pour changer de mot de passe :
+                    <a href="http://localhost/homie/index.php?p=resetPassword&h='.$passPassword.'"> changervotremotdepasse</a>
+            </div>
+        </body>
+</html>
+
+';
+        $req= $PDO->prepare("UPDATE user SET passPassword= ? WHERE mail= ?");
+        $req->execute(array($passPassword, $_POST['mail']));
+        $req->closeCursor();
+
+
+        mail($_POST['mail'], "Changement de mot de passe", $message, $header);
+        $reponse = 'le mail a été envoyé !';
+
+
+
+    }
+
+    return $reponse;
+}
+
+$erreurPswd='';
+
+function egalPswd(){
+
+
+    if($_POST['newPassword']!= $_POST['newPassword2']){
+        echo 'Vos mots de passes ne correspondents pas !';
+        return false;
+    }
+    else{
+        return true;
+    }
+
+}
+
+function verifyMail($PDO){
+    $mailInput=$_POST['mail'];
+    if (isset($_POST['okmail'])){
+        $req= $PDO->prepare("SELECT idUser FROM user WHERE mail = ? ");
+        $req->execute([$mailInput]);
+        $mailExist=$req->rowCount();
+        $req->closeCursor();
+
+        if($mailExist==1){
+            return true;
+        }
+        else {
+            echo 'Votre adresse mail est introuvable ! ';
+            return false;
+        }
+    }
+}
+
+
+function changePswd($PDO)
+{
+    $h=$_GET['h'];
+    $req= $PDO->prepare("UPDATE user SET password= ? WHERE passPassword= ?");
+    $req->execute(array($_POST['newPassword'],$h));
+    $req->closeCursor();
 }
 
 
@@ -536,6 +699,7 @@ function profileGet($PDO){
         $phone = htmlspecialchars($userData['phone']);
         $password = $userData['password'];
     }
+    $req->closeCursor();
     return([$name,$firstName,$birthDate,$email,$address,$phone,$password]);
 }
 
@@ -544,35 +708,42 @@ function profilePut($PDO,$namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,
     if ($namePut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `name`= ? WHERE `idUser` = ?');
         $req->execute([$namePut,$id]);
+        $req->closeCursor();
     }
     if ($firstNamePut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `firstName`= ? WHERE `idUser` = ?');
-        print_r($req);
         $req->execute([$firstNamePut,$id]);
+        $req->closeCursor();
     }
     if ($birthPut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `birthDate`= ? WHERE `idUser` = ?');
         $req->execute([$birthPut,$id]);
+        $req->closeCursor();
     }
     if ($emailPut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `mail`= ? WHERE `idUser` = ?');
         $req->execute([$emailPut,$id]);
+        $req->closeCursor();
     }
     if ($addressPut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `address`= ? WHERE `idUser` = ?');
         $req->execute([$addressPut,$id]);
+        $req->closeCursor();
     }
     if ($phonePut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `phone`= ? WHERE `idUser` = ?');
         $req->execute([$phonePut,$id]);
+        $req->closeCursor();
     }
     if ($passwordPut!=""){
         $req = $PDO->prepare('UPDATE `user` SET `phone`= ? WHERE `idUser` = ?');
         $req->execute([$passwordPut,$id]);
+        $req->closeCursor();
     }
 }
 
 function profilePOST($PDO){ // mdp a cripte et gestion des erreur a faire (dans les else) !
+    $error='';
     if (isset($_POST['name'])|| isset($_POST['firstName'])||isset($_POST['birth'])|| isset($_POST['email'])||isset($_POST['address'])|| isset($_POST['phone'])||isset($_POST['password1'])){
 
         [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
@@ -611,15 +782,21 @@ function profilePOST($PDO){ // mdp a cripte et gestion des erreur a faire (dans 
             }else{
                 $phoneModif="";
             }
-            if ($_POST['password1'] != "" && ($_POST['password1'] == $_POST['password2'])){
-                $password1Modif=$_POST['password1'];
+            if ($_POST['password1'] != ""){
+                if($_POST['password1'] == $_POST['password2']){
+                    $password1Modif=$_POST['password1'];
+                }else{
+                    $password1Modif="";
+                    $error=$error.'ERREUR : les nouvaux mot de passe ne sont pas identiques <br/>';
+                }
             }else{
                 $password1Modif="";
             }
             profilePut($PDO,$nameModif,$firstNameModif,$birthModif,$emailModif,$addressModif,$phoneModif,$password1Modif,$id);
         }else{
-            return('ERREUR : movais mot de passe!');
+            $error='ERREUR : mauvais mot de passe! <br/>'.$error;
         }
 
     }
+    return([$error]);
 }

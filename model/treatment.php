@@ -260,16 +260,16 @@ function home($PDO)
     $req->closeCursor();
 
     if (isset($_POST['residence'])){
-        $idResidence = $_POST['residence'];
-        $numberResidence = array_search($idResidence, array_column($residences, 'idResidence'));
-        $residences[$numberResidence]['select'] = 'selected';
+        $_SESSION['idResidence'] = $_POST['residence'];
     }
     else{
-        $idResidence = $_SESSION['idResidence'];
+        $_SESSION['idResidence'] = $_SESSION['idResidence'];
     }
+    $numberResidence = array_search($_SESSION['idResidence'], array_column($residences, 'idResidence'));
+    $residences[$numberResidence]['select'] = 'selected';
 
     $req = $PDO->prepare('SELECT absent FROM absent WHERE idResidence = ?');
-    $req->execute([$idResidence]);
+    $req->execute([$_SESSION['idResidence']]);
     if ($req->fetch()['absent'] == 1) {
         $absent = 'checked';
     }
@@ -279,7 +279,7 @@ function home($PDO)
     $req->closeCursor();
 
     $req = $PDO->prepare('SELECT name, idRoom FROM room WHERE idResidence = ?');
-    $req->execute([$idResidence]);
+    $req->execute([$_SESSION['idResidence']]);
     $rooms = [];
     while ($room = $req->fetch()){
         $req1 = $PDO->prepare('SELECT type, state, auto, opening, closing, value FROM actuator WHERE idRoom = ?');
@@ -482,11 +482,11 @@ function home($PDO)
     if (isset($_POST['habitationAbsent'])) {
         $req = $PDO->prepare('UPDATE absent SET absent = ? WHERE idResidence = ?');
         if (isset($_POST['absent'])) {
-            $req->execute([1, $idResidence]);
+            $req->execute([1, $_SESSION['idResidence']]);
             $absent = 'checked';
         }
         else {
-            $req->execute([0, $idResidence]);
+            $req->execute([0, $_SESSION['idResidence']]);
             $absent = '';
         }
         $req->closeCursor();

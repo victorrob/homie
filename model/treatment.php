@@ -742,60 +742,61 @@ function profilePut($PDO,$namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,
     }
 }
 
-function profilePOST($PDO){ // mdp a cripte et gestion des erreur a faire (dans les else) !
+function profilePOST($PDO){
     $error='';
     if (isset($_POST['name'])|| isset($_POST['firstName'])||isset($_POST['birth'])|| isset($_POST['email'])||isset($_POST['address'])|| isset($_POST['phone'])||isset($_POST['password1'])){
+        if ($_POST['name'] != '' ||$_POST['firstName'] != '' ||$_POST['birth'] != '' ||$_POST['email'] != '' ||$_POST['address'] != '' ||$_POST['phone'] != '' ||$_POST['password1'] != '') {
 
-        [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
-
-        $_POST['password']=$_POST['password'];  // mdp a cripte !!!!!
-        // $id = $_SESSION['id'];
-        $id = 1; // a supprimer plus tartd
-        if($_POST['password']==$password){
-            if ($_POST['name'] != ""){
-                $nameModif=$_POST['name'];
-            }else{
-                $nameModif="";
-            }
-            if ($_POST['firstName'] != ""){
-                $firstNameModif=$_POST['firstName'];
-            }else{
-                $firstNameModif="";
-            }
-            if ($_POST['birth'] != ""){
-                $birthModif=$_POST['birth'];
-            }else{
-                $birthModif="";
-            }
-            if ($_POST['email'] != ""){
-                
-                $emailModif=$_POST['email'];
-            }else{
-                $emailModif="";
-            }
-            if ($_POST['address'] != ""){
-                $addressModif=$_POST['address'];
-            }else{
-                $addressModif="";
-            }
-            if ($_POST['phone'] != ""){
-                $phoneModif=$_POST['phone'];
-            }else{
-                $phoneModif="";
-            }
-            if ($_POST['password1'] != ""){
-                if($_POST['password1'] == $_POST['password2']){
-                    $password1Modif=$_POST['password1'];
+            [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
+            echo ('test : '.$_POST['name']);
+            $_POST['password']=hash('sha512',$_POST['password']);
+            $id = $_SESSION['idUser'];
+            if($_POST['password']==$password){
+                if ($_POST['name'] != ""){
+                    $nameModif=$_POST['name'];
+                }else{
+                    $nameModif="";
+                }
+                if ($_POST['firstName'] != ""){
+                    $firstNameModif=$_POST['firstName'];
+                }else{
+                    $firstNameModif="";
+                }
+                if ($_POST['birth'] != ""){
+                    $birthModif=$_POST['birth'];
+                }else{
+                    $birthModif="";
+                }
+                if ($_POST['email'] != ""){
+                    
+                    $emailModif=$_POST['email'];
+                }else{
+                    $emailModif="";
+                }
+                if ($_POST['address'] != ""){
+                    $addressModif=$_POST['address'];
+                }else{
+                    $addressModif="";
+                }
+                if ($_POST['phone'] != ""){
+                    $phoneModif=$_POST['phone'];
+                }else{
+                    $phoneModif="";
+                }
+                if ($_POST['password1'] != ""){
+                    if($_POST['password1'] == $_POST['password2']){
+                        $password1Modif=hash('sha512',$_POST['password1']);
+                    }else{
+                        $password1Modif="";
+                        $error=$error.'ERREUR : les nouvaux mot de passe ne sont pas identiques <br/>';
+                    }
                 }else{
                     $password1Modif="";
-                    $error=$error.'ERREUR : les nouvaux mot de passe ne sont pas identiques <br/>';
                 }
+                profilePut($PDO,$nameModif,$firstNameModif,$birthModif,$emailModif,$addressModif,$phoneModif,$password1Modif,$id);
             }else{
-                $password1Modif="";
+                $error='ERREUR : mauvais mot de passe! <br/>'.$error;
             }
-            profilePut($PDO,$nameModif,$firstNameModif,$birthModif,$emailModif,$addressModif,$phoneModif,$password1Modif,$id);
-        }else{
-            $error='ERREUR : mauvais mot de passe! <br/>'.$error;
         }
 
     }

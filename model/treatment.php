@@ -728,6 +728,7 @@ function profilePOST($PDO){ // mdp a cripte et gestion des erreur a faire (dans 
                 $birthModif="";
             }
             if ($_POST['email'] != ""){
+                
                 $emailModif=$_POST['email'];
             }else{
                 $emailModif="";

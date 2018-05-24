@@ -34,7 +34,6 @@ if(isset($_GET['d'])) {
         
             $error = "ERROR: test";
             [$error]=profilePOST($PDO,$_POST);
-            echo ($error);
             break;
 
         case 'sensor':

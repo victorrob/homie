@@ -28,7 +28,6 @@
                     <div onclick="home(<?php echo $room['idRoom'] ?>, 'roomFactors')"><a href="<?php echo '#'.$room['idRoom'] ?>" class="carre"><p><?php echo $room['name'] ?></p></a></div>
                 <?php  }
             ?>
-            <div id="plus"><a href="index.php?p=sensor"><p>+</p></a></div>
 
 		</section>
 
@@ -102,7 +101,7 @@
                                 <input type="time" name="<?php echo "closing".$room['idRoom'] ?>" id="<?php echo "closing".$room['idRoom'] ?>"
                                        value="<?php echo $room['closing'] ?>" />
                             </div>
-                            <div><a href="index.php?p=statistic"><p>Statistiques</p></a></div>
+                            <div><a href="index.php?p=statistic&r=<?php echo $room['idRoom'] ?>"><p>Statistiques</p></a></div>
                         </div>
                         <input type="submit" value="Sauvegarder" name="roomModification" />
                 </section>

@@ -8,7 +8,7 @@
        <ul id="menu">
             <li><a href="index.php?p=profile">Paramètres</a></li>
             <li><a href="index.php?p=contact">Nous contacter</a></li>
-            <li><a href="index.php?p=login">Déconnexion</a></li>
+            <li><a href="index.php?p=login&d=logout">Déconnexion</a></li>
         </ul>
     </div>
 </section>

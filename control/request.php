@@ -7,11 +7,22 @@ if(isset($_GET['d'])) {
             if(signUp($PDO))
                 $php='login';
             break;
-
         case 'login':
             if (verify($PDO)){
-                $php = 'home';
+                if (installateur($PDO)) {
+                    $php = 'installateurPage';
+                }
+                else {
+                    $php = 'home';
+                }
             }
+            break;
+        case 'installateurPage':
+            installateurPage($PDO);
+            $php = 'homeInstallateur';
+            break;
+        case 'logout':
+            session_destroy();
             break;
         case 'resetPassword':
            if (egalPswd()){
@@ -22,7 +33,6 @@ if(isset($_GET['d'])) {
                $php='resetPassword';
            }
             break;
-
         case 'addHouse':
             addHouse($PDO);
             break;
@@ -44,13 +54,16 @@ if(isset($_GET['d'])) {
 // Action to perform when loading the page
 switch ($php) {
     case "statistic":
-        //[$sensorName, $sensorHistoric] = getHistoric($PDO);
-
+        [$sensorName, $sensorHistoric] = getHistoric($PDO);
         break;
     case "home":
         [$residences, $absent, $rooms] = home($PDO, $_SESSION['idUser']);
         break;
+    case "homeInstallateur":
+        [$residences, $absent, $rooms] = home($PDO, $_SESSION['idClient']);
+        break;
     case "absentFactors":
+        $absentFactors = absentFactors($PDO);
         break;
     case "sensor":
         [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($PDO);

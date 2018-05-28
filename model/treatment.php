@@ -693,6 +693,7 @@ function changePswd($PDO)
 }
 
 
+
 function resetPassPassword($PDO)
 {
     $req= $PDO->prepare("UPDATE user SET passPassword= ? WHERE passPassword=? ");
@@ -706,14 +707,14 @@ function resetPassPassword($PDO)
 
 function verifyPPswd($PDO)
 {
-    $data=[];
+
     $req= $PDO->prepare("SELECT passPassword from user WHERE passPassword=? ");
     $req->execute([$_GET['h']]);
-    $data=$req->fetch();
-    $passPassword=data["passPassword"];
+    $passPassword=$req->rowCount();
     $req->closeCursor();
 
-    if ($_GET['h'] == $passPassword) {
+
+    if ($passPassword==1) {
         changePswd($PDO);
         resetPassPassword($PDO);
     } else {
@@ -787,7 +788,8 @@ function profilePut($PDO,$namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,
         $req->closeCursor();
     }
     if ($passwordPut!=""){
-        $req = $PDO->prepare('UPDATE `user` SET `phone`= ? WHERE `idUser` = ?');
+        $req = $PDO->prepare('UPDATE `user` SET `password`= ? WHERE `idUser` = ?');
+        echo $passwordPut." - ".$id;
         $req->execute([$passwordPut,$id]);
         $req->closeCursor();
     }

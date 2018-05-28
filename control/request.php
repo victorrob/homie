@@ -31,8 +31,8 @@ if(isset($_GET['d'])) {
         case 'resetPassword':
 
            if (egalPswd()){
-               if(changePswd($PDO))
-               {
+               if(verifyPPswd($PDO)){
+                   changePswd($PDO);
                    resetPassPassword($PDO);
                    $php='ChangePswdOk';
                }
@@ -51,7 +51,7 @@ if(isset($_GET['d'])) {
         case "profile":
         
             $error = "ERROR: test";
-            [$error]=profilePOST($PDO,$_POST);
+            [$error]=profilePOST($PDO);
             echo ($error);
             break;
 

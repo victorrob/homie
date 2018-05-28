@@ -788,7 +788,8 @@ function profilePut($PDO,$namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,
         $req->closeCursor();
     }
     if ($passwordPut!=""){
-        $req = $PDO->prepare('UPDATE `user` SET `phone`= ? WHERE `idUser` = ?');
+        $req = $PDO->prepare('UPDATE `user` SET `password`= ? WHERE `idUser` = ?');
+        echo $passwordPut." - ".$id;
         $req->execute([$passwordPut,$id]);
         $req->closeCursor();
     }

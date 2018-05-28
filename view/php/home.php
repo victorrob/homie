@@ -3,16 +3,18 @@
         <div id="tete" class="menu_tete">
 				<form class="form" method="post" action="index.php?p=home">
 					<label for="residence">Résidence :</label><br />
-					<select name="residence" id="residence" onchange="this.form.submit();">
+                    <span class="custom-dropdown custom-dropdown--white">
+                        <select name="residence" id="residence" onchange="this.form.submit();" class="custom-dropdown__select custom-dropdown__select--white">
 
-                        <?php
-                            foreach ($residences as $residence){
+                            <?php
+                                foreach ($residences as $residence){
+                                ?>
+                                <option value="<?php echo $residence['idResidence'] ?>" <?php echo $residence['select'] ?>><?php echo $residence['name'] ?></option>
+                                <?php }
                             ?>
-                            <option value="<?php echo $residence['idResidence'] ?>" <?php echo $residence['select'] ?>><?php echo $residence['name'] ?></option>
-                            <?php }
-                        ?>
 
-                    </select>
+                        </select>
+                    </span>
 				</form>
         </div>
 		<div class="entete">

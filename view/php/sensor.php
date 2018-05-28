@@ -46,9 +46,9 @@
     </fieldset>
     <section>
     <input class="lastButton" id="reset" type="reset" value="réinitialiser">
-    <input class="lastButton" id="submit" type="submit" value="enregistrer" onclick="send('', this.form);">
-    <input class="lastButton" id="delete" type="submit" value="supprimer" onclick="send('delete', this.form);">
-    <input name="deleteRoom" id="hiddenDelete" type="text" value="nul">
+    <input class="lastButton" id="submit" type="submit" value="enregistrer" onclick="send('');">
+    <input class="lastButton" id="delete" type="submit" value="supprimer" onclick="send('delete');">
+    <input name="deleteRoom" id="hiddenDelete" type="text" value="null">
     </section>
-    <script type="text/javascript" src="view/js/sensor.js"></script>
+
 </form>

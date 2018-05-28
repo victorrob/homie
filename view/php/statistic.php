@@ -52,5 +52,4 @@
         var sensorHistoricOriginal = <?php echo json_encode($sensorHistoric); ?>;
         var sensorHistoric = [].concat(sensorHistoricOriginal);
     </script>
-    <script type="text/javascript" src="view/js/statistic.js"></script>
 </body>

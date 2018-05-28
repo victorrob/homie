@@ -72,6 +72,9 @@ switch ($php) {
     case "statistic":
         [$sensorName, $sensorHistoric] = getHistoric($PDO);
         break;
+    case "homeAdmin":
+        getUser(['installateur'], $PDO);
+        break;
     case "home":
         [$residences, $absent, $rooms] = home($PDO, $_SESSION['idUser']);
         break;

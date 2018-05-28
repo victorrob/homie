@@ -11,17 +11,24 @@ catch (Exception $e){
     }
 }
 
-//statistic
-function adjustDate($year, $month, $day){
-    while($day>28){
-        $day = $day-28;
-        $month++;
+//admin page
+
+function getUser($userTypes, $PDO){
+    global $users;
+    $users = [];
+    foreach ($userTypes as $userType) {
+        $req = $PDO->prepare("SELECT `name`, firstName, mail, phone, `type`, birthDate, address, zipCode, city, country FROM `user` WHERE `type` = ?");
+        $req->execute([$userType]);
+        while($data = $req->fetch()){
+            array_push($users, $data);
+
+        }
     }
-    while($month>12){
-        $month = $month-12;
-        $year++;
-    }
-    return $year.'-'.$month.'-'.$day;
+
+}
+function setUserInfo($PDO){
+
+
 }
 
 //get all value and date of historic of one specific room
@@ -41,7 +48,6 @@ function getHistoric($PDO){
     $req->closeCursor();
     return [$sensorName, $sensorHistoric];
 }
-
 
 function getRoomInfo($PDO){
     $sensorList = ["Temperature", "humidite", "CO2", "pression", "lumière", "camera"];
@@ -82,9 +88,12 @@ function getRoomInfo($PDO){
 function setRoomInfo($PDO)
 {
     if ($_SESSION['roomId'] == -1) {
-        $PDO->exec('INSERT INTO room(idResidence, size, name, type) 
+        $req = $PDO->prepare('INSERT INTO room(idResidence, size, name, type) 
+                    VALUES(?,?,?,?)');
+        $req->execute([$_SESSION['idResidence'],$_REQUEST['size'], $_REQUEST['name'], $_REQUEST['type']]);
+        /*$PDO->exec('INSERT INTO room(idResidence, size, name, type)
                     VALUES(\'' . $_SESSION['idResidence'] . '\',\'' . $_REQUEST['size'] . '\',\'' . $_REQUEST['name'] . '\',\'' . $_REQUEST['type'] . '\')');
-        $idRoom = $PDO->lastInsertId();
+        $idRoom = $PDO->lastInsertId();*/
         foreach (array_keys($_REQUEST['sensor']) as $sensor) {
             $PDO->exec('INSERT INTO sensor(idRoom,type)
                     VALUES(\'' . $idRoom . '\',\'' . $sensor . '\')');

@@ -1,4 +1,4 @@
-<h1>Inscription installateur</h1>
+<h1>Inscription</h1>
 <form method="post" action="index.php?p=login&d=signUp">
             <section class="container">
             <fieldset class="left">

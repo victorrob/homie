@@ -69,7 +69,7 @@ switch ($php) {
         [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($PDO);
         break;
     case "profile":
-        [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
+        [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO,$_SESSION['idUser']);
         if (!isset($error)) {
             $error = '';
         }

@@ -1,5 +1,4 @@
 
-
 <form method="post" action="index.php?d=login" >
 <p><label for="identifiant">Identifiant :</label></p>
 <p><input type="email" name="mail" id="identifiant" placeholder="Nom d'utilisateur" /></p>

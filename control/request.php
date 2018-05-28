@@ -15,13 +15,17 @@ if(isset($_GET['d'])) {
                 $php = 'home';
             }
             break;
+
         case 'resetPassword':
+
            if (egalPswd()){
                changePswd($PDO);
-               $php='header';
+               resetPassPassword($PDO);
+               $php='ChangePswdOk';
            }
            else{
                $php='resetPassword';
+             //  $erreurEgalPswd='Vos mots de passes ne correspondent pas !';
            }
             break;
 
@@ -46,6 +50,9 @@ if(isset($_GET['d'])) {
             break;
     }
 }
+$erreurEgalPswd='';
+$erreurMail='';
+
 // Action to perform when loading the page
 switch ($php) {
     case "statistic":
@@ -71,12 +78,12 @@ switch ($php) {
         break;
     case "forgottenPswd":
         $reponse = mailSend($PDO);
-        echo $reponse;
         break;
     case 'resetPassword':
         $h=$_GET['h'];
         break;
     case "ChangePswdOk":
         break;
+
 
 }

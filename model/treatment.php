@@ -545,8 +545,8 @@ function verify($PDO)
     if (isset($_POST['connect']))
     {
         $mail = htmlspecialchars($_POST['mail']);
-        $password = $_POST['password'];
-        if(!empty($password) AND !empty($mail)){
+        $password = hash("sha512",($_POST['password']));
+        if(!empty($password) AND !empty($mail)){ 
             $requser= $PDO->prepare("SELECT * FROM user WHERE mail = ? AND password = ?");
             $requser->execute(array($mail,$password));
             $userexist = $requser->rowCount();
@@ -554,17 +554,19 @@ function verify($PDO)
                 return true;
             }
             else {
-                echo 'Mauvais identifiant ou mot de passe ';
+                echo " <h5 class='erreurIdenfiants' align='center' >  Mauvais identifiant ou mot de passe  </h5>";
                 return false;
             }
         }
         else{
-            echo "un des champs n'est pas rempli";
+            echo " <h5 class='erreurIdentifiants'> un des champs n'est pas rempli </h5>";
         }
     }
 }
 
-function mailSend($PDO){
+
+
+    function mailSend($PDO){
 
     $reponse = '';
     if (isset($_POST['okmail']) && verifyMail($PDO)) {
@@ -602,13 +604,15 @@ function mailSend($PDO){
     return $reponse;
 }
 
-$erreurPswd='';
 
+
+
+$erreurPswd='';
 function egalPswd(){
 
 
     if($_POST['newPassword']!= $_POST['newPassword2']){
-        echo 'Vos mots de passes ne correspondents pas !';
+       echo 'Vos mots de passes ne correspondents pas !';
         return false;
     }
     else{
@@ -617,6 +621,9 @@ function egalPswd(){
 
 }
 
+
+
+$erreurMail="";
 function verifyMail($PDO){
     $mailInput=$_POST['mail'];
     if (isset($_POST['okmail'])){
@@ -629,11 +636,13 @@ function verifyMail($PDO){
             return true;
         }
         else {
-            echo 'Votre adresse mail est introuvable ! ';
+           $erreurMail='Votre adresse mail est introuvable ! ';
             return false;
         }
     }
 }
+
+
 
 
 function changePswd($PDO)
@@ -645,6 +654,40 @@ function changePswd($PDO)
 }
 
 
+
+
+function resetPassPassword($PDO)
+{
+    $req= $PDO->prepare("UPDATE user SET passPassword= ? ");
+    $req->execute([null]);
+    $req->closeCursor();
+
+}
+
+
+
+
+function verifyPPswd($PDO)
+{
+    if ($_GET['h']==$passPassword){
+        changePswd($PDO);
+    }
+    else{
+        echo ' Bien tenté !';
+    }
+
+function session1($PDO)
+{
+    $mailInput=$_POST['mail'];
+    $req= $PDO->prepare("SELECT idUser FROM user WHERE mail = ? ");
+    $req->execute([$mailInput]);
+
+    echo $req;
+
+}
+
+
+}
 function profileGet($PDO){
     $id =1;
     $userdata=[];

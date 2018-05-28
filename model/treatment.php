@@ -695,7 +695,7 @@ function changePswd($PDO)
 function profileGet($PDO,$id){
     $userdata=[];
     $req = $PDO->prepare('SELECT * FROM `user` WHERE `idUser`=?');
-    $req->execute([$_SESSION['idUser']]);
+    $req->execute([$id]);
     while($userData = $req->fetch()){
         $name = htmlspecialchars($userData['name']);
         $firstName = htmlspecialchars($userData['firstName']);

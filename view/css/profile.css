@@ -36,3 +36,13 @@ input[type=text]{
 #password1Modif:focus,#password2Modif:focus{
     border: 2px solid blue;
 }
+#error{
+	color: red;
+	font-size: x-large;
+	font-weight: bold;
+	padding: 20px;
+}
+fieldset{
+width: -moz-max-content;
+margin: auto;
+}

@@ -5,6 +5,7 @@ function start(){
 		button(parametre[i]);
 		display(parametre[i]);
 		display(parametre[i]);
+		
 	}
 }
 

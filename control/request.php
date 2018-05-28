@@ -31,8 +31,8 @@ if(isset($_GET['d'])) {
         case 'resetPassword':
 
            if (egalPswd()){
-               if(changePswd($PDO))
-               {
+               if(verifyPPswd($PDO)){
+                   changePswd($PDO);
                    resetPassPassword($PDO);
                    $php='ChangePswdOk';
                }

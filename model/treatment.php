@@ -685,8 +685,7 @@ function changePswd($PDO)
 }
 
 
-function profileGet($PDO){
-    $id =1;
+function profileGet($PDO,$id){
     $userdata=[];
     $req = $PDO->prepare('SELECT * FROM `user` WHERE `idUser`=?');
     $req->execute([$id]); // $_SESSION['id']
@@ -747,10 +746,9 @@ function profilePOST($PDO){
     if (isset($_POST['name'])|| isset($_POST['firstName'])||isset($_POST['birth'])|| isset($_POST['email'])||isset($_POST['address'])|| isset($_POST['phone'])||isset($_POST['password1'])){
         if ($_POST['name'] != '' ||$_POST['firstName'] != '' ||$_POST['birth'] != '' ||$_POST['email'] != '' ||$_POST['address'] != '' ||$_POST['phone'] != '' ||$_POST['password1'] != '') {
 
-            [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
-            echo ('test : '.$_POST['name']);
             $_POST['password']=hash('sha512',$_POST['password']);
             $id = $_SESSION['idUser'];
+            [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO,$id);
             if($_POST['password']==$password){
                 if ($_POST['name'] != ""){
                     $nameModif=$_POST['name'];

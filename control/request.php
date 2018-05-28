@@ -31,9 +31,11 @@ if(isset($_GET['d'])) {
         case 'resetPassword':
 
            if (egalPswd()){
-               changePswd($PDO);
-               resetPassPassword($PDO);
-               $php='ChangePswdOk';
+               if(changePswd($PDO))
+               {
+                   resetPassPassword($PDO);
+                   $php='ChangePswdOk';
+               }
            }
            else{
                $php='resetPassword';
@@ -92,7 +94,6 @@ switch ($php) {
         break;
     case "forgottenPswd":
         $reponse = mailSend($PDO);
-        echo $reponse;
         break;
     case 'resetPassword':
         $h=$_GET['h'];

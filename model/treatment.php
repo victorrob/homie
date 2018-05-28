@@ -591,7 +591,7 @@ function verify($PDO)
     if (isset($_POST['connect']))
     {
         $mail = htmlspecialchars($_POST['mail']);
-        $password = $_POST['password'];
+        $password = hash("sha512",$_POST['password']);
         if(!empty($password) AND !empty($mail)){
             $requser= $PDO->prepare("SELECT * FROM user WHERE mail = ? AND password = ?");
             $requser->execute(array($mail,$password));
@@ -687,9 +687,53 @@ function changePswd($PDO)
 {
     $h=$_GET['h'];
     $req= $PDO->prepare("UPDATE user SET password= ? WHERE passPassword= ?");
-    $req->execute(array($_POST['newPassword'],$h));
+    $req->execute(array(hash("sha512",$_POST['newPassword']),$h));
     $req->closeCursor();
 }
+
+
+function resetPassPassword($PDO)
+{
+    $req= $PDO->prepare("UPDATE user SET passPassword= ? WHERE passPassword=? ");
+    $req->execute([null, $_GET['h']]);
+    $req->closeCursor();
+
+}
+
+
+
+
+function verifyPPswd($PDO)
+{
+    $data=[];
+    $req= $PDO->prepare("SELECT passPassword from user WHERE passPassword=? ");
+    $req->execute([$_GET['h']]);
+    $data=$req->fetch();
+    $passPassword=data["passPassword"];
+    $req->closeCursor();
+
+    if ($_GET['h'] == $passPassword) {
+        changePswd($PDO);
+        resetPassPassword($PDO);
+    } else {
+        echo ' Bien tenté !';
+    }
+
+
+}
+
+
+
+    function session1($PDO)
+    {
+        $mailInput=$_POST['mail'];
+        $req= $PDO->prepare("SELECT idUser FROM user WHERE mail = ? ");
+        $req->execute([$mailInput]);
+
+        echo $req;
+
+    }
+
 
 
 function profileGet($PDO,$id){

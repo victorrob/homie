@@ -6,7 +6,10 @@ if(isset($_GET['d'])) {
         case "signUp":
             if(signUp($PDO))
                 $php='login';
+            else
+                $php='signUp';
             break;
+
         case 'login':
             if (verify($PDO)){
                 if (installateur($PDO)) {
@@ -24,15 +27,20 @@ if(isset($_GET['d'])) {
         case 'logout':
             session_destroy();
             break;
+
         case 'resetPassword':
+
            if (egalPswd()){
                changePswd($PDO);
+               resetPassPassword($PDO);
                $php='ChangePswdOk';
            }
            else{
                $php='resetPassword';
+             //  $erreurEgalPswd='Vos mots de passes ne correspondent pas !';
            }
             break;
+
         case 'addHouse':
             addHouse($PDO);
             break;
@@ -42,15 +50,21 @@ if(isset($_GET['d'])) {
         
             $error = "ERROR: test";
             [$error]=profilePOST($PDO,$_POST);
+            echo ($error);
             break;
 
         case 'sensor':
+            echo "fi";
+            $_SESSION['roomId'] = -1;
             $_SESSION['idResidence'] = 2;
             setRoomInfo($PDO);
             $_GET['d']=null;
             break;
     }
 }
+$erreurEgalPswd='';
+$erreurMail='';
+
 // Action to perform when loading the page
 switch ($php) {
     case "statistic":
@@ -85,5 +99,6 @@ switch ($php) {
         break;
     case "ChangePswdOk":
         break;
+
 
 }

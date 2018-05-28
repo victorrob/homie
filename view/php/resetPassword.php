@@ -8,7 +8,8 @@
 <br>
 <div align="center">
 
-   <form method="post" action=<?php echo("index.php?p=resetPassword&d=resetPassword&h=".$h); ?> >
+   <form method="post" action=<?php echo("index.php?p=ChangePswdOk&d=resetPassword&h=".$h); ?> >
+       <div class="erreurPswd"> <?php echo $erreurEgalPswd ?> </div>
         <p><label>Nouveau mot de passe :</label></p>
         <p><input class="complete largeText" type="text" name="newPassword" required /></p>
         <p><label>Confirmer le mot de passe :</label></p>

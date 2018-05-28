@@ -774,7 +774,7 @@ function profilePOST($PDO){
                     $birthModif="";
                 }
                 if ($_POST['email'] != ""){
-                    
+
                     $emailModif=$_POST['email'];
                 }else{
                     $emailModif="";

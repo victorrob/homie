@@ -51,7 +51,7 @@ if(isset($_GET['d'])) {
         case "profile":
         
             $error = "ERROR: test";
-            [$error]=profilePOST($PDO,$_POST);
+            [$error]=profilePOST($PDO);
             echo ($error);
             break;
 

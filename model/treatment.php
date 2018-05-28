@@ -146,12 +146,6 @@ function signUp($PDO){
 
     $mail = strip_tags($_POST['mail']);
     //verify that the email isn't yet in database
-    $req = $PDO->prepare('SELECT mail  FROM user WHERE mail=?');
-    $req->execute([$mail]);
-    while($req->fetch()){
-        echo "Erreur, addresse email déjà utilisée";
-        $state = false;
-    }
 
     $confirmEmail = strip_tags($_POST['confirmEmail']);
     if ($confirmEmail != $mail){
@@ -193,11 +187,18 @@ function signUp($PDO){
 
     $country = strip_tags($_POST['country']);
 
+    $productNumber = strip_tags($_POST['productNumber']);
+
     if ($state) {
-        $req = $PDO->prepare("INSERT INTO user(name ,firstName,mail,phone,password,type,birthDate,address,zipCode,city,country) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
-        $req->execute([$name, $firstName, $mail, $phone, $password, $type, $birthDate, $address, $zipCode, $city, $country]);
-        $req->closeCursor();
-        return true;
+        $req = $PDO->prepare("UPDATE user SET name = ?, firstName = ?, phone = ?, password = ?, type = ?, birthDate = ?, address = ?, zipCode = ?, city = ?, country = ? WHERE mail = ? AND productNumber = ?");
+        $req->execute([$name, $firstName, $phone, $password, $type, $birthDate, $address, $zipCode, $city, $country, $mail, $productNumber]);
+        if ($req->rowCount() == 0) {
+            echo 'Erreur, mail et numéro de produits incompatibles';
+            return false;
+        }
+        else {
+            return true;
+        }
     }
     else {
         return false;
@@ -870,13 +871,24 @@ function installateurPage($PDO) {
     $req = $PDO->prepare('SELECT idUser FROM user WHERE mail = ?');
     $req->execute([$mail]);
     if ($req->rowcount() == 0) {
-        $req1 = $PDO->prepare('INSERT INTO user mail VALUES ?');
-        $req1->execute([$mail]);
+        $productNumber = randomString(10);
+        $req1 = $PDO->prepare('INSERT INTO user (mail,productNumber) VALUES (?,?)');
+        $req1->execute([$mail, $productNumber]);
         $req1->closeCursor();
         $idClient = $PDO->lastInsertId();
     }
     else {
         $idClient = $req->fetch()['idUser'];
     }
+    $req->closeCursor();
     $_SESSION['idClient'] = $idClient;
+}
+
+function randomString($length){
+    $chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+    $string = '';
+    for($i=0; $i<$length; $i++){
+        $string .= $chars[rand(0, strlen($chars)-1)];
+    }
+    return $string;
 }

@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html>
 
-<!-- a modif pout index.php ( NE PAS SUPPRIMER!! )-->
-<!-- j'aimerais modifier quand je serais la -->
-<header>
-	<link rel="stylesheet" href="view/css/profile.css" />
-	<script type="text/javascript" src="view/js/profile.js"></script>
-</header>
-<!-- a modif pout index.php -->
 
 <body id="bodyProfile">
 	<div id = error><?php echo($error) ?></div>
-	<form id="formProfile" method="POST" action="index.php?p=profile&d=profile">
-		<fieldset>
+	<fieldset>
+		<form id="formProfile" method="POST" action="index.php?p=profile&d=profile">
 			<div id="name" class="categoryForm">
 				<div>
 					<label for="name">Nom : <?php echo($name); ?></label>
@@ -32,14 +25,14 @@
 					<label for="birth">Date d'aniversaire : <?php echo($birthDate); ?></label>
 					<input class="button" type="button" value="Modifier" id="birthButton"/>
 				</div>
-				<input id="birthModif" type="text" placeholder="Nouvelle date d'anniversair" name="birth" />
+				<input id="birthModif" type="date" placeholder="Nouvelle date d'anniversair" name="birth" />
 			</div>
 			<div id="email" class="categoryForm">
 				<div>
 					<label for="email">Email : <?php echo($email); ?></label>
 					<input class="button" type="button" value="Modifier" id="emailButton"/>
 				</div>
-				<input id="emailModif" type="text" placeholder="Nouvelle email" name="email" />
+				<input id="emailModif" type="email" placeholder="Nouvelle email" name="email" />
 			</div>
 			<div id="address" class="categoryForm">
 				<div>
@@ -53,7 +46,7 @@
 					<label for="phone">Téléphone : <?php echo($phone); ?></label>
 					<input class="button" type="button" value="Modifier" id="phoneButton"/>
 				</div>
-				<input id="phoneModif" type="text" placeholder="Nouvau téléphone" name="phone" />
+				<input id="phoneModif" type="tel" placeholder="Nouvau téléphone" name="phone" />
 			</div>
 			<div id="password" class="categoryForm">
 				<div>
@@ -66,12 +59,14 @@
 			<div id="validate" class="categoryForm">
 				<input id="passwordValidation" type="password" placeholder="Mot de passe" name="password" />
 				<input class="button" type="submit" value="Valider" id="validateButton"/> <!-- submit -->
-				<form method="GET" action="index.php?p=profile">
-					<input class="button" type="submit" value="Anuler" id="validateButton"/> <!-- anuler -->
-				</form>
 			</div>
-		</fieldset>
-	</form>
-	<script type="text/javascript">start();</script>
+		</form>
+		<form action="index.php?p=profile">
+			<input class="button" type="submit" value="Anuler" id="validateButton"/> <!-- anuler -->
+		</form>
+	</fieldset>
 </body>
 </html>
+
+        <script type="text/javascript" src="view/js/profile.js"></script>
+        <script type="text/javascript">start();</script>

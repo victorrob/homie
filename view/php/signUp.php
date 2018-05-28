@@ -36,7 +36,7 @@
                 </label>
 
                 <label>Mot de passe :<br>
-                    <input class="complete" type="password" name="password" placeholder="Mot de passe" required />
+                    <input class="complete" type="password" name="password" placeholder="Mot de passe" onblur="checkPassword(this)" required />
                 </label>
 
                 <label>Confirmer votre mot de passe :<br>
@@ -84,4 +84,5 @@
 
             <input type="submit" value="S'enregistrer" id="submit" required/>
         </form>
+    <script type="text/javascript" src="view/js/signUp.js"></script>
     </body>

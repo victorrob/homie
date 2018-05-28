@@ -1,5 +1,5 @@
 #nameModif,#firstNameModif,#birthModif,#emailModif,#addressModif,#phoneModif,#password1Modif,#password2Modif{/* imput du form */
-	display: none;
+	display: inline;
 	margin-top: 13px;
 	margin-left: 35px;
 }
@@ -16,4 +16,33 @@ form{
 	width: -moz-max-content;
 	margin: auto;
 	/* text-align: initial;  dépand des choix du client */
+}
+
+input[type=text]{
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    border: 2px solid transparent;
+}
+#password1Modif:invalid,#password2Modif:invalid{
+    border: 2px solid red;
+}
+#password1Modif:hover,#password2Modif:hover{
+    background-color: #ccc;
+    border: 2px solid blue;
+}
+#password1Modif:focus,#password2Modif:focus{
+    border: 2px solid blue;
+}
+#error{
+	color: red;
+	font-size: x-large;
+	font-weight: bold;
+	padding: 20px;
+}
+fieldset{
+width: -moz-max-content;
+margin: auto;
 }

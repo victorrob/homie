@@ -25,10 +25,9 @@
             <?php
                 foreach ($rooms as $room){
                 ?>
-                <div onclick="home(<?php echo $room['idRoom'] ?>, 'roomFactors')"><p><?php echo $room['name'] ?></p></div>
+                    <div onclick="home(<?php echo $room['idRoom'] ?>, 'roomFactors')"><a href="<?php echo '#'.$room['idRoom'] ?>" class="carre"><p><?php echo $room['name'] ?></p></a></div>
                 <?php  }
             ?>
-            <div id="plus"><a href="index.php?p=sensor"><p>+</p></a></div>
 
 		</section>
 
@@ -102,7 +101,7 @@
                                 <input type="time" name="<?php echo "closing".$room['idRoom'] ?>" id="<?php echo "closing".$room['idRoom'] ?>"
                                        value="<?php echo $room['closing'] ?>" />
                             </div>
-                            <div><a href="index.php?p=statistic"><p>Statistiques</p></a></div>
+                            <div><a href="index.php?p=statistic&r=<?php echo $room['idRoom'] ?>"><p>Statistiques</p></a></div>
                         </div>
                         <input type="submit" value="Sauvegarder" name="roomModification" />
                 </section>
@@ -117,11 +116,11 @@
 			<hr />
 		</div>
 		<section id="habitationSection">
-			<div onclick="home('lumiere', 'habitationFactors');"><p>Lumières</p></div>
-			<div onclick="home('volets', 'habitationFactors');"><p>Volets</p></div>
-            <div onclick="home('chauffage', 'habitationFactors');"><p>Chauffage</p></div>
-            <div onclick="home('ventilation', 'habitationFactors');"><p>Ventilation</p></div>
-			<div onclick="home('modeAbsent', 'habitationFactors');"><p>Absent</p></div>
+            <div onclick="home('lumiere', 'habitationFactors');"><a href="#lumiere" class="carre"><p>Lumières</p></a></div>
+            <div onclick="home('volets', 'habitationFactors');"><a href="#volets" class="carre"><p>Volets</p></a></div>
+            <div onclick="home('chauffage', 'habitationFactors');"><a href="#chauffage" class="carre"><p>Chauffage</p></a></div>
+            <div onclick="home('ventilation', 'habitationFactors');"><a href="#ventilaton" class="carre"><p>Ventilation</p></a></div>
+            <div onclick="home('modeAbsent', 'habitationFactors');"><a href="#modeAbsent" class="carre"><p>Absent</p></a></div>
 		</section>
 
         <form method="post" action="index.php?p=home">

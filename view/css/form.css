@@ -57,8 +57,8 @@ input[type=text]:focus{
 
 
 /* checkbox
-/* Customize the label (the button) */
-.button {
+/* Customize the label (the lblButton) */
+.lblButton {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -70,13 +70,13 @@ input[type=text]:focus{
     -ms-user-select: none;
     user-select: none;
 }
-/* Hide the browser's default radio button */
-.button input {
+/* Hide the browser's default radio lblButton */
+.lblButton input {
     position: absolute;
     opacity: 0;
 }
 
-/* Create a custom radio button */
+/* Create a custom radio lblButton */
 .checkbox {
     position: absolute;
     top: 0;
@@ -90,13 +90,13 @@ input[type=text]:focus{
 }
 
 /* On mouse-over, add a grey background color */
-.button:hover input ~ .checkbox {
+.lblButton:hover input ~ .checkbox {
     background-color: #ccc;
     border: 1px solid blue;
 }
 
-/* When the radio button is checked, add a blue background */
-.button input:checked ~ .checkbox {
+/* When the radio lblButton is checked, add a blue background */
+.lblButton input:checked ~ .checkbox {
     background-color: #2196F3;
 }
 
@@ -108,12 +108,12 @@ input[type=text]:focus{
 }
 
 /* Show the indicator (dot/circle) when checked */
-.button input:checked ~ .checkbox:after {
+.lblButton input:checked ~ .checkbox:after {
     display: block;
 }
 
 /* Style the indicator (dot/circle) */
-.button .checkbox:after {
+.lblButton .checkbox:after {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);

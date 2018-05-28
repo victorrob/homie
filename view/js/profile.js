@@ -3,6 +3,9 @@ function start(){
 	for (var i = parametre.length - 1; i >= 0; i--) {
 		console.log("création du bouton : " + parametre[i]);
 		button(parametre[i]);
+		display(parametre[i]);
+		display(parametre[i]);
+		
 	}
 }
 
@@ -14,7 +17,7 @@ function display(id){
 		var id = id + "Modif";
 		var doc = document.getElementById(id);
 		if (doc.style.display == "inline"){
-			doc.style.display = "";
+			doc.style.display = "none";
 		}else{
 			doc.style.display = "inline";
 		}

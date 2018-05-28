@@ -8,14 +8,18 @@ session_start();
 
 include('model/treatment.php');
 $php = isset($_GET['p']) ? strip_tags($_GET['p']) : "login";
-$dataNeeded = isset($dataNeeded) ? strip_tags($dataNeeded) : "";
+$_SESSION['idRoom'] = isset($_GET['r']) ? strip_tags($_GET['r']) : "";
 
-$_SESSION['homeId'] = 1;
-$_SESSION['roomId'] = 1;
-$_SESSION['idUser'] = 1;
+$headerLogin = ['login', 'forgottenPswd', 'resetPasseword', 'signUp', 'ChangePswdOk', 'conditionsOfUse'];
+
+if (!isset($_SESSION['idUser']) && !in_array($php, $headerLogin)) {
+    $php = 'login';
+}
 
 include("control/request.php");
+
 ?>
+
         <link rel="stylesheet" href="view/css/header.css" />
         <link rel="stylesheet" href="view/css/form.css" />
         <link rel="stylesheet" href="view/css/<?php echo $php ?>.css" />
@@ -28,7 +32,17 @@ include("control/request.php");
 <body>
 <?php
 
-include('view/php/header.php');
+if (in_array($php, $headerLogin)) {
+    include('view/php/headerLogin.php');
+}
+else {
+    if (installateur($PDO)) {
+        include('view/php/headerInstallateur.php');
+    }
+    else {
+        include('view/php/header.php');
+    }
+}
 
 if(FALSE == (include 'view/php/' . $php . '.php')){
     include 'view/php/404.php';

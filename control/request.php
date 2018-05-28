@@ -12,8 +12,20 @@ if(isset($_GET['d'])) {
 
         case 'login':
             if (verify($PDO)){
-                $php = 'home';
+                if (installateur($PDO)) {
+                    $php = 'installateurPage';
+                }
+                else {
+                    $php = 'home';
+                }
             }
+            break;
+        case 'installateurPage':
+            installateurPage($PDO);
+            $php = 'homeInstallateur';
+            break;
+        case 'logout':
+            session_destroy();
             break;
 
         case 'resetPassword':
@@ -56,11 +68,13 @@ $erreurMail='';
 // Action to perform when loading the page
 switch ($php) {
     case "statistic":
-        //[$sensorName, $sensorHistoric] = getHistoric($PDO);
-
+        [$sensorName, $sensorHistoric] = getHistoric($PDO);
         break;
     case "home":
         [$residences, $absent, $rooms] = home($PDO, $_SESSION['idUser']);
+        break;
+    case "homeInstallateur":
+        [$residences, $absent, $rooms] = home($PDO, $_SESSION['idClient']);
         break;
     case "absentFactors":
         $absentFactors = absentFactors($PDO);
@@ -69,7 +83,7 @@ switch ($php) {
         [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($PDO);
         break;
     case "profile":
-        [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO);
+        [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO,$_SESSION['idUser']);
         if (!isset($error)) {
             $error = '';
         }
@@ -78,6 +92,7 @@ switch ($php) {
         break;
     case "forgottenPswd":
         $reponse = mailSend($PDO);
+        echo $reponse;
         break;
     case 'resetPassword':
         $h=$_GET['h'];

@@ -821,8 +821,17 @@ function installateur($PDO) {
 }
 
 function installateurPage($PDO) {
+    $mail = strip_tags($_POST['mailClient']);
     $req = $PDO->prepare('SELECT idUser FROM user WHERE mail = ?');
-    $req->execute([$_POST['mailClient']]);
-    $_SESSION['idClient'] = $req->fetch()['idUser'];
-    $req->closeCursor();
+    $req->execute([$mail]);
+    if ($req->rowcount() == 0) {
+        $req1 = $PDO->prepare('INSERT INTO user mail VALUES ?');
+        $req1->execute([$mail]);
+        $req1->closeCursor();
+        $idClient = $PDO->lastInsertId();
+    }
+    else {
+        $idClient = $req->fetch()['idUser'];
+    }
+    $_SESSION['idClient'] = $idClient;
 }

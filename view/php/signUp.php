@@ -5,15 +5,15 @@
             <legend>Vos coordonnées</legend>
 
            <label>Nom :<br>
-                <input type="text" name="name" placeholder="Exemple : Pierre" required />
+                <input type="text" name="name" placeholder="Exemple : Pierre" onblur="checkLength(this,2)" required />
            </label>
 
             <label>Prénom :<br>
-                <input type="text" name="firstName" placeholder="Exemple : Dupond" required />
+                <input type="text" name="firstName" placeholder="Exemple : Dupond" onblur="checkLength(this,2)" required />
             </label>
 
             <label>Numéro de téléphone :<br>
-                <input class="complete" type="tel" name="phone" placeholder="Exemple : 0601020304" required />
+                <input class="complete" type="tel" name="phone" placeholder="Exemple : 0601020304" onblur="checkPhoneLength(this,10)" pattern="\d" required />
             </label>
 
             <label>Date de naissance :<br>
@@ -33,7 +33,7 @@
             </label>
 
             <label>Mot de passe :<br>
-                <input class="complete" type="password" name="password" placeholder="Mot de passe" onblur="checkPassword(this)" required />
+                <input class="complete" type="password" name="password" placeholder="Mot de passe" onblur="checkLength(this,6)" required />
             </label>
 
             <label>Confirmer votre mot de passe :<br>

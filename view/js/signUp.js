@@ -6,12 +6,27 @@ function surligne(field, error)
         field.style.backgroundColor = "";
 }
 
-function checkPassword(field)
+function checkLength(field, length)
 {
-    if(field.value.length < 6 )
+    if(field.value.length < length )
     {
         surligne(field, true);
-        alert('Votre mot de passe doit faire 6 caractères minimum');
+        alert("Ce champ doit faire " + length + " caractères minimum");
+        return false;
+    }
+    else
+    {
+        surligne(field, false);
+        return true;
+    }
+}
+
+function checkPhoneLength(field, length)
+{
+    if(field.value.length != length )
+    {
+        surligne(field, true);
+        alert("Votre téléphone doit faire " + length + " caractères");
         return false;
     }
     else

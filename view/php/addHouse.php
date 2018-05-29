@@ -32,6 +32,7 @@
             <select class="complete" name="residenceCountry" required>
                 <option value="belgium">Belgique</option>
                 <option value="france">France</option>
+                <option value="luxemboug">Luxembourg</option>
                 <option value="switzerland">Suisse</option>
             </select>
         </label>

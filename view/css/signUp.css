@@ -52,7 +52,7 @@ fieldset.left {
     padding: 5px;
     margin-bottom: 10px;
     margin-top: 5px;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
 }
 .complete:invalid{
     border: 2px solid red;

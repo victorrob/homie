@@ -239,13 +239,29 @@ function addHouse($PDO){
         $req->execute([$idUser]);
         $req->closeCursor();
     }
-    else{
+    else
         echo "L'utilisateur n'existe pas dans la base de donnée";
-}
-
-
 
     $_SESSION["idResidence"] = $PDO->lastInsertId();
+}
+
+function getSensorPerRoom($PDO){
+    //permet de récupérer le type de pièce, son nom, sa taille, le type de capteur présent pour une pièce donnée
+    $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType, 
+                          FROM room INNER JOIN sensor ON room.idRoom = sensor.idRoom 
+                          WHERE room.idroom = ?");
+    $req->execute([$_SESSION['roomId']]);
+    $roomName = "";
+    $roomSize = "";
+    $roomType = "";
+    $sensorList = [];
+    while($data = $req->fetch()) {
+        $roomName = $data['name'];
+        $roomSize = $data['size'];
+        $roomType = $data['roomType'];
+        array_push($sensorList,$data['sensorType']);
+    }
+    return [$sensorList, $roomType, $roomSize, $roomName];
 }
 
 //home

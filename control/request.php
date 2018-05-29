@@ -56,11 +56,7 @@ if(isset($_GET['d'])) {
             break;
 
         case 'sensor':
-            echo "fi";
-            $_SESSION['roomId'] = -1;
-            $_SESSION['idResidence'] = 2;
             setRoomInfo($PDO);
-            $_GET['d']=null;
             break;
     }
 }

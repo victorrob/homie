@@ -1,4 +1,4 @@
-<form method="post" action="index.php?p=home&d=addHouse">
+<form method="post" action="index.php?p=homeInstallateur&d=addHouse">
     <fieldset>
         <legend>Informations sur le domicile</legend>
         <label>Nom de la propriété <br>
@@ -15,10 +15,6 @@
 
         <label>Code postal :<br>
             <input type="text" name="zipCode" placeholder="Exemple : 92130" required />
-        </label>
-
-        <label>Email de l'utilisateur : <br>
-            <input type="email" name="email" class="complete" placeholder="Exemple : homie.corp@gmail.com" required/>
         </label>
 
         <label>Type de résidence :

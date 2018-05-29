@@ -31,7 +31,7 @@
         <div onclick="home(<?php echo $room['idRoom'] ?>, 'roomFactors')"><a href="<?php echo '#'.$room['idRoom'] ?>" class="carre"><p><?php echo $room['name'] ?></p></a></div>
     <?php  }
     ?>
-    <div id="plus"><a href="index.php?p=sensor"><p>+</p></a></div>
+    <div id="plus"><a href="index.php?p=sensor&r=-1"><p>+</p></a></div>
 
 </section>
 

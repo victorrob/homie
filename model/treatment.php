@@ -221,29 +221,13 @@ function addHouse($PDO){
 
     $country = strip_tags($_POST['residenceCountry']);
 
-    $email = strip_tags($_POST['email']);
-
     $req = $PDO->prepare("INSERT INTO residence(type ,name,address,zipCode,city,country) VALUES(?,?,?,?,?,?)");
     $req->execute([$type, $name, $address, $zipCode, $city, $country]);
     $req->closeCursor();
 
-    $req = $PDO -> prepare("SELECT idUser FROM user WHERE mail = ?");
-    $req->execute([$email]);
-    $idUser = $req->fetch()['idUser'];
+    $req = $PDO->prepare("INSERT INTO user_residence(idUser, idResidence) VALUES (?,LAST_INSERT_ID())");
+    $req->execute([$_SESSION['idClient']]);
     $req->closeCursor();
-
-
-    if ($idUser != null) {
-
-        $req = $PDO->prepare("INSERT INTO user_residence(idUser, idResidence) VALUES (?,LAST_INSERT_ID())");
-        $req->execute([$idUser]);
-        $req->closeCursor();
-    }
-    else{
-        echo "L'utilisateur n'existe pas dans la base de donnée";
-}
-
-
 
     $_SESSION["idResidence"] = $PDO->lastInsertId();
 }

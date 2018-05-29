@@ -1,4 +1,4 @@
-<form clase="sensorForm" id="customForm" method="post" action="index.php?p=home&d=sensor">
+<form clase="sensorForm" id="customForm" method="post" action="index.php?p=homeInstallateur&d=sensor">
     <fieldset class="checkboxSection">
         <legend>capteurs</legend>
     <?php

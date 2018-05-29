@@ -10,7 +10,7 @@ include('model/treatment.php');
 $php = isset($_GET['p']) ? strip_tags($_GET['p']) : "login";
 $_SESSION['idRoom'] = isset($_GET['r']) ? strip_tags($_GET['r']) : "";
 
-$headerLogin = ['login', 'forgottenPswd', 'resetPasseword', 'signUp', 'ChangePswdOk', 'conditionsOfUse'];
+$headerLogin = ['login', 'forgottenPswd', 'resetPasseword', 'signUp', 'ChangePswdOk', 'conditionsOfUse', 'signUpInstallateur'];
 
 if (!isset($_SESSION['idUser']) && !in_array($php, $headerLogin)) {
     $php = 'login';

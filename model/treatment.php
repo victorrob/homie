@@ -835,9 +835,13 @@ function profilePOST($PDO){
                 }else{
                     $birthModif="";
                 }
-                if ($_POST['email'] != ""){
-
-                    $emailModif=$_POST['email'];
+                if ($_POST['email1'] != ""){
+                    if($_POST['email1'] == $_POST['email2']){
+                        $emailModif=$_POST['email1'];
+                    }else{
+                        $emailModif="";
+                        $error=$error.'ERREUR : les nouveaux mails ne sont pas identiques <br/>';
+                    }
                 }else{
                     $emailModif="";
                 }
@@ -856,7 +860,7 @@ function profilePOST($PDO){
                         $password1Modif=hash('sha512',$_POST['password1']);
                     }else{
                         $password1Modif="";
-                        $error=$error.'ERREUR : les nouvaux mot de passe ne sont pas identiques <br/>';
+                        $error=$error.'ERREUR : les nouveaux mot de passe ne sont pas identiques <br/>';
                     }
                 }else{
                     $password1Modif="";

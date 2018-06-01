@@ -69,5 +69,9 @@
 </body>
 </html>
 
-        <script type="text/javascript" src="view/js/profile.js"></script>
-        <script type="text/javascript">start();</script>
+    <script type="text/javascript" src="view/js/profile.js"></script>
+    <script type="text/javascript">
+      	start();
+      	setInterval('checkForm();', 1000);
+      	
+    </script>

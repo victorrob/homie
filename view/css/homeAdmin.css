@@ -1,16 +1,25 @@
-table, th, td {
-    border: 1px solid sandybrown;
-    border-collapse: collapse;
+#userType{
+    display: flex;
+    flex-wrap: wrap;
+    width: 40%;
+    margin: 0 auto;
+    justify-content: space-around;
 }
-th, td {
+.selectType{
+    padding: 10px;
+    border: 2px solid sandybrown;
+    border-radius: 10px;
+}
+
+table, th, td {
     padding: 5px;
     text-align: center;
+    border: 1px solid sandybrown;
+    border-collapse: collapse;
 }
 table{
     margin: 20px auto 80px;
     width: 80%;
-    overflow: scroll;
-
 }
 th{
     font-weight: bold;
@@ -32,7 +41,7 @@ th{
     display: block;
 }
 
-#adminSelect {
+.adminSelect {
     width: 150px;
     padding: 5px 35px 5px 5px;
     font-size: 16px;
@@ -43,3 +52,21 @@ th{
     appearance: none;
     background: url('../../image/arrowUp.png')96% / 15% no-repeat #eee;
 }
+#search{
+    width: 80%;
+    margin: 20px auto;
+    padding: unset;
+}
+#hiddenDelete{
+    display: none;
+}
+#searchField{
+    transition: width 0.5s ease-in-out;
+    width: 15%;
+    display: block;
+    margin: 20px auto;
+}
+#searchField:focus{
+    width: 50% ;
+}
+

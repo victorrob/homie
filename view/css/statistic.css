@@ -28,7 +28,8 @@
     left: 50%;
     transform: translate(-58%,-135%);
     /*display: flex;
-    flex-direction: row;*/
+    flex-direction: row;
+    flex-wrap: wrap;*/
     display: grid;
     width: 30.4em;
     grid-template-columns: repeat(auto-fill, minmax(6em, 1fr));

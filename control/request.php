@@ -63,6 +63,9 @@ if(isset($_GET['d'])) {
         case 'sensor':
             setRoomInfo($PDO);
             break;
+        case 'homeAdmin':
+            setUserInfo($PDO);
+            break;
     }
 }
 $erreurEgalPswd='';
@@ -72,6 +75,9 @@ $erreurMail='';
 switch ($php) {
     case "statistic":
         [$sensorName, $sensorHistoric] = getHistoric($PDO);
+        break;
+    case "homeAdmin":
+        getUser($userType, $PDO);
         break;
     case "home":
         [$residences, $absent, $rooms] = getHome($PDO, $_SESSION['idUser']);
@@ -83,7 +89,7 @@ switch ($php) {
         $absentFactors = absentFactors($PDO);
         break;
     case "sensor":
-        [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($PDO);
+        [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName] = getRoomInfo($actuatorList, $sensorList, $PDO);
         break;
     case "profile":
         [$name,$firstName,$birthDate,$email,$address,$phone,$password] = profileGet($PDO,$_SESSION['idUser']);

@@ -11,17 +11,40 @@ catch (Exception $e){
     }
 }
 
-//statistic
-function adjustDate($year, $month, $day){
-    while($day>28){
-        $day = $day-28;
-        $month++;
+//admin page
+
+function getUser($userTypes, $PDO){
+    global $users;
+    $users = [];
+    foreach ($userTypes as $userType) {
+        $req = $PDO->prepare("SELECT `name`, firstName, mail, phone, `type`, birthDate, address, zipCode, city, country FROM `user` WHERE `type` = ?");
+        $req->execute([$userType]);
+        while($data = $req->fetch()){
+            array_push($users, $data);
+        }
     }
-    while($month>12){
-        $month = $month-12;
-        $year++;
+
+}
+function setUserInfo($PDO){
+    if($_REQUEST['deleteUser'] == 'delete'){
+        $keys = array_keys($_REQUEST['user']);
+        foreach ($keys as $key){
+            $req = $PDO->prepare("DELETE FROM user WHERE mail = ?");
+            $req->execute([$key]);
+            $req->closeCursor();
+        }
     }
-    return $year.'-'.$month.'-'.$day;
+    else if($_REQUEST['deleteUser'] == 'add'){
+        echo var_dump($_REQUEST['type']['new']);
+    }
+    else{
+        $keys = array_keys($_REQUEST['type']);
+        foreach ($keys as $key) {
+            $req = $PDO->prepare("UPDATE user SET type = ? WHERE mail = ?");
+            $req->execute([$_REQUEST['type'][$key], $key]);
+
+        }
+    }
 }
 
 //get all value and date of historic of one specific room
@@ -42,49 +65,57 @@ function getHistoric($PDO){
     return [$sensorName, $sensorHistoric];
 }
 
+function getRoomInfo($actuatorList, $sensorList, $PDO){
 
-function getRoomInfo($PDO){
-    $sensorList = ["température", "humidité", "CO2", "pression", "luminosité"];
     $sensorCheck = $actuatorCheck = [];
     foreach ($sensorList as $i){
         array_push($sensorCheck, "");
     }
-    $actuatorList = ["chauffage", "lumière", "ventilation", "volet"];
+
     foreach ($actuatorList as $i){
         array_push($actuatorCheck, "");
     }
-    $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType, actuator.type AS actuatorType 
-                          FROM room INNER JOIN sensor INNER JOIN actuator ON room.idRoom = sensor.idRoom AND 
-                          room.idRoom = actuator.idRoom where room.idroom = ?");
-    $req->execute([$_SESSION['idRoom']]);
-    $roomName = "";
-    $roomSize = "";
-    $roomType = "";
+    $req = $PDO->prepare("SELECT room.type AS roomType,name, size FROM room WHERE idRoom = ?");
+    $req->execute([$_REQUEST['r']]);
+    $data = $req->fetch();
+    $req->closeCursor();
+    $roomName = $data['name'];
+    $roomSize = $data['size'];
+    $roomType = $data['roomType'];
+
+    $req = $PDO->prepare("SELECT type AS sensorType FROM sensor WHERE idRoom = ?");
+    $req->execute([$_REQUEST['r']]);
+
     while($data = $req->fetch()){
-        $roomName = $data['name'];
-        $roomSize = $data['size'];
-        $roomType = $data['roomType'];
         for($i=0 ; $i<count($sensorList); $i++){
             if ($data['sensorType'] === $sensorList[$i]){
                 $sensorCheck[$i] = "checked";
             }
         }
+    }
+    $req->closeCursor();
+    $req = $PDO->prepare("SELECT type AS actuatorType FROM actuator WHERE idRoom = ?");
+    $req->execute([$_REQUEST['r']]);
+
+    while($data = $req->fetch()){
         for($i=0 ; $i<count($actuatorList); $i++){
             if ($data['actuatorType'] === $actuatorList[$i]){
                 $actuatorCheck[$i] = "checked";
             }
         }
-
     }
+    $req->closeCursor();
+
+    echo $roomName;
     return [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName];
 }
 
 function setRoomInfo($PDO)
 {
-    echo var_dump($_GET);
     if ($_GET['r'] == -1) {
-        $PDO->exec('INSERT INTO room(idResidence, size, name, type) 
-                    VALUES(\'' . $_SESSION['idResidence'] . '\',\'' . $_REQUEST['size'] . '\',\'' . $_REQUEST['name'] . '\',\'' . $_REQUEST['type'] . '\')');
+        $req = $PDO->prepare('INSERT INTO room(idResidence, size, name, type) 
+                    VALUES(?,?,?,?)');
+        $req->execute([$_SESSION['idResidence'],$_REQUEST['size'], $_REQUEST['name'], $_REQUEST['type']]);
         $idRoom = $PDO->lastInsertId();
         foreach (array_keys($_REQUEST['sensor']) as $sensor) {
             $PDO->exec('INSERT INTO sensor(idRoom,type)
@@ -95,7 +126,7 @@ function setRoomInfo($PDO)
                     VALUES(\'' . $idRoom . '\',\'' . $actuator . '\')');
         }
     }
-    else if($_REQUEST['deleteRoom'] = 'delete'){
+    else if($_REQUEST['deleteRoom'] == 'delete'){
         del('room', $_GET['r'], $PDO);
         del('sensor', $_GET['r'], $PDO);
         del('actuator', $_GET['r'], $PDO);
@@ -103,6 +134,8 @@ function setRoomInfo($PDO)
     else{
         addOrDont('sensor', array_keys($_REQUEST['sensor']), $_GET['r'], $PDO);
         addOrDont('actuator', array_keys($_REQUEST['actuator']), $_GET['r'], $PDO);
+        $req = $PDO->prepare("UPDATE room SET name = ?, type = ?, size = ? WHERE idRoom = ?");
+        $req->execute([$_REQUEST['name'], $_REQUEST['type'], $_REQUEST['size'], $_REQUEST['r']]);
     }
 }
 
@@ -113,28 +146,26 @@ function del($table, $id, $PDO){
 }
 
 function addOrDont($table, $values, $id, $PDO){
-    if(gettype($values) == 'string') {
-        $req = $PDO->prepare('SELECT IF(type = ?, \'true\', \'false\') AS answer FROM '.$table.' WHERE idRoom = ?');
-        $req->execute([$values, $id]);
-        $check = $req->fetchAll();
-        if (in_array('false', $check)) {
-            $PDO->exec('INSERT INTO ' . $table . '(type, idRoom) VALUES(\'' . $values . '\',\'' . $id . '\')');
-        }
+    $req = $PDO->prepare('SELECT type FROM '.$table.' WHERE idRoom = ?');
+    $req->execute([$id]);
+    $exist = [];
+    while($data = $req->fetch()){
+        array_push($exist, $data['type']);
+    }
+    $req->closeCursor();
+    $doNotExist = array_diff($exist, $values);
+    $add = array_diff($values, $exist);
+    foreach ($add as $value){
+        $PDO->exec('INSERT INTO ' . $table . '(type, idRoom) VALUES(\'' . $value . '\',\'' . $id . '\')');
+
+    }
+    foreach ($doNotExist as $dont) {
+        $req = $PDO->prepare('DELETE FROM ' . $table . ' WHERE idRoom = ? AND type = ?');
+        $req->execute([$id, $dont]);
         $req->closeCursor();
     }
-    else if(gettype($values) == 'array'){
-        foreach ($values as $value){
-            echo '<br/> val = '.$value;
-            $req = $PDO->prepare('SELECT IF(type = ?, \'true\', \'false\') AS answer FROM '.$table.' WHERE idRoom = ?');
-            $req->execute([$value, $id]);
-            $check = $req->fetchAll();
-            if (in_array('false', $check)) {
-                $PDO->exec('INSERT INTO ' . $table . '(type, idRoom) VALUES(\'' . $value . '\',\'' . $id . '\')');
-            }
-            $req->closeCursor();
-        }
-    }
 }
+
 //add user
 
 function signUp($PDO){
@@ -231,6 +262,25 @@ function addHouse($PDO){
     $req->closeCursor();
 
     $_SESSION["idResidence"] = $PDO->lastInsertId();
+}
+
+function getSensorPerRoom($PDO){
+    //permet de récupérer le type de pièce, son nom, sa taille, le type de capteur présent pour une pièce donnée
+    $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType, 
+                          FROM room INNER JOIN sensor ON room.idRoom = sensor.idRoom 
+                          WHERE room.idroom = ?");
+    $req->execute([$_SESSION['roomId']]);
+    $roomName = "";
+    $roomSize = "";
+    $roomType = "";
+    $sensorList = [];
+    while($data = $req->fetch()) {
+        $roomName = $data['name'];
+        $roomSize = $data['size'];
+        $roomType = $data['roomType'];
+        array_push($sensorList,$data['sensorType']);
+    }
+    return [$sensorList, $roomType, $roomSize, $roomName];
 }
 
 //home
@@ -817,9 +867,13 @@ function profilePOST($PDO){
                 }else{
                     $birthModif="";
                 }
-                if ($_POST['email'] != ""){
-
-                    $emailModif=$_POST['email'];
+                if ($_POST['email1'] != ""){
+                    if($_POST['email1'] == $_POST['email2']){
+                        $emailModif=$_POST['email1'];
+                    }else{
+                        $emailModif="";
+                        $error=$error.'ERREUR : les nouveaux mails ne sont pas identiques <br/>';
+                    }
                 }else{
                     $emailModif="";
                 }
@@ -838,7 +892,7 @@ function profilePOST($PDO){
                         $password1Modif=hash('sha512',$_POST['password1']);
                     }else{
                         $password1Modif="";
-                        $error=$error.'ERREUR : les nouvaux mot de passe ne sont pas identiques <br/>';
+                        $error=$error.'ERREUR : les nouveaux mot de passe ne sont pas identiques <br/>';
                     }
                 }else{
                     $password1Modif="";
@@ -858,7 +912,7 @@ function installateur($PDO) {
     $req->execute([$_SESSION['idUser']]);
     $type = $req->fetch()['type'];
     $req->closeCursor();
-    if ($type == 'installateur') {
+    if ($type == 'Installateur') {
         return true;
     }
     else {

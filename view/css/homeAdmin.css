@@ -1,0 +1,72 @@
+#userType{
+    display: flex;
+    flex-wrap: wrap;
+    width: 40%;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+.selectType{
+    padding: 10px;
+    border: 2px solid sandybrown;
+    border-radius: 10px;
+}
+
+table, th, td {
+    padding: 5px;
+    text-align: center;
+    border: 1px solid sandybrown;
+    border-collapse: collapse;
+}
+table{
+    margin: 20px auto 80px;
+    width: 80%;
+}
+th{
+    font-weight: bold;
+}
+.checkbox{
+    height: 15px;
+    width: 15px;
+    left: 50%;
+    transform: translate(-50%,-15%);
+}
+
+#delete{
+    color: white;
+    background-color: transparent;
+    border: 3px solid red;
+    border-radius: 5px;
+    font-size: 20px;
+    margin: 20px auto;
+    display: block;
+}
+
+.adminSelect {
+    width: 150px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid transparent;
+    height: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('../../image/arrowUp.png')96% / 15% no-repeat #eee;
+}
+#search{
+    width: 80%;
+    margin: 20px auto;
+    padding: unset;
+}
+#hiddenDelete{
+    display: none;
+}
+#searchField{
+    transition: width 0.5s ease-in-out;
+    width: 15%;
+    display: block;
+    margin: 20px auto;
+}
+#searchField:focus{
+    width: 50% ;
+}
+

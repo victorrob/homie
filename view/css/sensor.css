@@ -1,8 +1,4 @@
 .checkboxSection{
-    /*display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
-    grid-gap: 10px;
-    border-radius: 10px;*/
     display: flex;
     flex-wrap: wrap;
     border: #F4A460 solid;

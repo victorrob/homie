@@ -1,13 +1,13 @@
-#nameModif,#firstNameModif,#birthModif,#emailModif,#addressModif,#phoneModif,#password1Modif,#password2Modif{/* imput du form */
+#nameModif,#firstNameModif,#birthModif,#email1Modif,#email2Modif,#addressModif,#phoneModif,#password1Modif,#password2Modif{/* imput du form */
 	display: inline;
-	margin-top: 13px;
-	margin-left: 35px;
+	margin: 5px;
 }
 #name,#firstName,#birth,#email,#address,#phone,#password,#validate{/* text du form */
 	margin: 22px;
 }
 .button{/* tout les bouton de la page */
 	display: inline-block;
+	margin-left: 10px;
 }
 body{/* organisation de la page */
 	text-align: center;
@@ -26,14 +26,14 @@ input[type=text]{
     margin-top: 5px;
     border: 2px solid transparent;
 }
-#password1Modif:invalid,#password2Modif:invalid{
+#password1Modif:invalid,#password2Modif:invalid,#email1Modif:invalid,#email2Modif:invalid,#phoneModif:invalid{
     border: 2px solid red;
 }
-#password1Modif:hover,#password2Modif:hover{
+#password1Modif:hover,#password2Modif:hover,#email1Modif:hover,#email2Modif:hover,#phoneModif:hover{
     background-color: #ccc;
     border: 2px solid blue;
 }
-#password1Modif:focus,#password2Modif:focus{
+#password1Modif:focus,#password2Modif:focus,#email1Modif:focus,#email2Modif:focus,#phoneModif:focus{
     border: 2px solid blue;
 }
 #error{
@@ -45,4 +45,9 @@ input[type=text]{
 fieldset{
 width: -moz-max-content;
 margin: auto;
+min-width: 390px;
+}
+.formText{
+	display: flex;
+	justify-content: space-between;
 }

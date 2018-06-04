@@ -8,5 +8,5 @@ $userInfo = ['Nom', 'Prenom', 'Mail', 'Téléphone', 'Type', 'Date de  naissance
 
 // add/mod/del room
 
-$actuatorList = ["chauffage", "lumière", "ventilation"];
-$sensorList = ["Temperature", "humidite", "CO2", "pression", "lumière", "camera"];
+$actuatorList = ["chauffage", "lumière", "ventilation", "volet"];
+$sensorList = ["température", "humidité", "CO2", "pression", "luminosité"];

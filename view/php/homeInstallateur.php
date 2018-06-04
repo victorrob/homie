@@ -38,77 +38,79 @@
         ?>
 
         <form method="post" action="index.php?p=homeInstallateur&d=homeInstallateur" class="roomFactors" id="<?php echo $room['idRoom'] ?>">
-            <div class="factors">
+            <div class="statistiques">
                 <div><p><?php echo $room['name'] ?></p></div>
-                <div style="display: <?php echo $room['lumière']['existence'] ?>">
-                    <p>Lumière :</p>
-                    <div class="switchButton">
-                        <input class="switch" name="lumière" id="<?php echo "lumière".$room['idRoom']?>"
-                               type="checkbox" <?php echo $room['lumière']['state'] ?> />
-                        <label for="<?php echo "lumière".$room['idRoom']?>" class="label">
-                            <div class="formeLight">
-                                <div class="rondLight">
+                <div class="factors">
+                    <div class="divFactors" style="display: <?php echo $room['lumière']['existence'] ?>">
+                        <p>Lumière :</p>
+                        <div class="switchButton">
+                            <input class="switch" name="lumière" id="<?php echo "lumière".$room['idRoom']?>"
+                                   type="checkbox" <?php echo $room['lumière']['state'] ?> />
+                            <label for="<?php echo "lumière".$room['idRoom']?>" class="label">
+                                <div class="formeLight">
+                                    <div class="rondLight">
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div style="display: <?php echo $room['chauffage']['existence'] ?>">
-                    <p>Température demandée :</p>
-                    <input type="number" name="chauffage" id="<?php echo "chauffage".$room['idRoom']?>"
-                           value="<?php echo $room['chauffage']['value'] ?>">
-                    <p>°C</p>
-                </div>
-                <div style="display: <?php echo $room['température']['existence'] ?>">
-                    <p>Température actuelle : <?php echo $room['température']['value'] ?> °C</p>
-                </div>
-                <div style="display: <?php echo $room['ventilation']['existence'] ?>">
-                    <p>Ventilation :</p>
-                    <input type="number" name="ventilation" id="<?php echo "ventilation".$room['idRoom']?>"
-                           value="<?php echo $room['ventilation']['value'] ?>">
-                </div>
-                <div style="display: <?php echo $room['volet']['existence'] ?>">
-                    <p>Volets :</p>
-                    <div class="switchButton">
-                        <input class="switch" name="volet_state" id="<?php echo "volet_state".$room['idRoom']?>"
-                               type="checkbox" <?php echo $room['volet']['state'] ?> />
-                        <label for="<?php echo "volet_state".$room['idRoom']?>" class="label">
-                            <div class="formeShutter">
-                                <div class="rondShutter">
+                    <div class="divFactors" style="display: <?php echo $room['chauffage']['existence'] ?>">
+                        <p>Température demandée :</p>
+                        <input type="number" name="chauffage" id="<?php echo "chauffage".$room['idRoom']?>"
+                               value="<?php echo $room['chauffage']['value'] ?>">
+                        <p>°C</p>
+                    </div>
+                    <div class="divFactors" style="display: <?php echo $room['température']['existence'] ?>">
+                        <p>Température actuelle : <?php echo $room['température']['value'] ?> °C</p>
+                    </div>
+                    <div class="divFactors" style="display: <?php echo $room['ventilation']['existence'] ?>">
+                        <p>Ventilation :</p>
+                        <input type="number" name="ventilation" id="<?php echo "ventilation".$room['idRoom']?>"
+                               value="<?php echo $room['ventilation']['value'] ?>">
+                    </div>
+                    <div class="divFactors" style="display: <?php echo $room['volet']['existence'] ?>">
+                        <p>Volets :</p>
+                        <div class="divVolet" class="switchButton">
+                            <input class="switch" name="volet_state" id="<?php echo "volet_state".$room['idRoom']?>"
+                                   type="checkbox" <?php echo $room['volet']['state'] ?> />
+                            <label for="<?php echo "volet_state".$room['idRoom']?>" class="label">
+                                <div class="formeShutter">
+                                    <div class="rondShutter">
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="switchButton">
-                        <input class="switch" name="volet_auto" id="<?php echo "volet_auto".$room['idRoom']?>"
-                               type="checkbox" <?php echo $room['volet']['auto'] ?> />
-                        <label for="<?php echo "volet_auto".$room['idRoom']?>" class="label">
-                            <div class="formeAuto">
-                                <div class="rondAuto">
+                            </label>
+                        </div>
+                        <div class="divVolet" class="switchButton">
+                            <input class="switch" name="volet_auto" id="<?php echo "volet_auto".$room['idRoom']?>"
+                                   type="checkbox" <?php echo $room['volet']['auto'] ?> />
+                            <label for="<?php echo "volet_auto".$room['idRoom']?>" class="label">
+                                <div class="formeAuto">
+                                    <div class="rondAuto">
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
+                            </label>
+                        </div>
+                        <div class="divVolet">
+                            <p>Plage horaire :</p>
+                            <input type="time" name="volet_opening" id="<?php echo "volet_opening".$room['idRoom']?>"
+                                   value="<?php echo $room['volet']['opening'] ?>" />
+                            <P> - </P>
+                            <input type="time" name="volet_closing" id="<?php echo "volet_closing".$room['idRoom']?>"
+                                   value="<?php echo $room['volet']['closing'] ?>" />
+                        </div>
                     </div>
-                    <div>
-                        <p>Plage horaire :</p>
-                        <input type="time" name="volet_opening" id="<?php echo "volet_opening".$room['idRoom']?>"
-                               value="<?php echo $room['volet']['opening'] ?>" />
-                        <P> - </P>
-                        <input type="time" name="volet_closing" id="<?php echo "volet_closing".$room['idRoom']?>"
-                               value="<?php echo $room['volet']['closing'] ?>" />
+                    <div class="divFactors" style="display: <?php echo $room['humidité']['existence'] ?>">
+                        <p>Humidité : <?php echo $room['humidité']['value'] ?> %</p>
                     </div>
-                </div>
-                <div style="display: <?php echo $room['humidité']['existence'] ?>">
-                    <p>Humidité : <?php echo $room['humidité']['value'] ?> %</p>
-                </div>
-                <div style="display: <?php echo $room['CO2']['existence'] ?>">
-                    <p>CO2 : <?php echo $room['CO2']['value'] ?> ppm</p>
-                </div>
-                <div style="display: <?php echo $room['pression']['existence'] ?>">
-                    <p>Pression : <?php echo $room['pression']['value'] ?> bar</p>
-                </div>
-                <div style="display: <?php echo $room['luminosité']['existence'] ?>">
-                    <p>Luminosité : <?php echo $room['luminosité']['value'] ?> lux</p>
+                    <div class="divFactors" style="display: <?php echo $room['CO2']['existence'] ?>">
+                        <p>CO2 : <?php echo $room['CO2']['value'] ?> ppm</p>
+                    </div>
+                    <div class="divFactors" style="display: <?php echo $room['pression']['existence'] ?>">
+                        <p>Pression : <?php echo $room['pression']['value'] ?> bar</p>
+                    </div>
+                    <div class="divFactors" style="display: <?php echo $room['luminosité']['existence'] ?>">
+                        <p>Luminosité : <?php echo $room['luminosité']['value'] ?> lux</p>
+                    </div>
                 </div>
                 <div><a href="index.php?p=statistic&r=<?php echo $room['idRoom'] ?>"><p>Statistiques</p></a></div>
                 <div><a id="modifierPiece" href="index.php?p=sensor&r=<?php echo $room['idRoom'] ?>"><p>Modifier Pièce</p></a></div>
@@ -215,5 +217,3 @@
         <p><a href="index.php?p=absentFactors">Modifier les paramètres</a></p>
     </div>
 </form>
-
-<script type="text/javascript" src="view/js/home.js"></script>

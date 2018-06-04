@@ -100,19 +100,32 @@ h1
 .roomFactors {
     width: 70%;
     display: none;
-    margin-left: 20px;
-    flex-wrap: wrap;
+    margin-left: 50px;
+    justify-content: flex-start;
 }
 
 .factors {
     width: 70%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .factors div {
     display: flex;
     flex-wrap: wrap;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: auto 0px;
+}
+
+.divFactors {
+    padding: 15px;
+}
+
+.divVolet {
+    padding: 5px;
+}
+
+.divVolet p {
+    margin: auto;
 }
 
 input {

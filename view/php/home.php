@@ -212,5 +212,3 @@ foreach ($rooms as $room) {
         <p><a href="index.php?p=absentFactors">Modifier les paramètres</a></p>
     </div>
 </form>
-
-<script type="text/javascript" src="view/js/home.js"></script>

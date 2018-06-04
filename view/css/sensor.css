@@ -1,6 +1,6 @@
 .checkboxSection{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11em, 1fr));
     border: #F4A460 solid;
 }
 .lblButton{
@@ -12,7 +12,7 @@ p{
 }
 label{
     max-width: 11em;
-    margin: 0;
+    margin: 5px;
 }
 #textfield{
 

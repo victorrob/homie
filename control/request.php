@@ -20,6 +20,12 @@ if(isset($_GET['d'])) {
                 }
             }
             break;
+        case 'home':
+            setHome($PDO);
+            break;
+        case 'homeInstallateur':
+            setHome($PDO);
+            break;
         case 'installateurPage':
             installateurPage($PDO);
             $php = 'homeInstallateur';
@@ -49,7 +55,6 @@ if(isset($_GET['d'])) {
 
 
         case "profile":
-        
             $error = "ERROR: test";
             [$error]=profilePOST($PDO);
             echo ($error);
@@ -69,10 +74,10 @@ switch ($php) {
         [$sensorName, $sensorHistoric] = getHistoric($PDO);
         break;
     case "home":
-        [$residences, $absent, $rooms] = home($PDO, $_SESSION['idUser']);
+        [$residences, $absent, $rooms] = getHome($PDO, $_SESSION['idUser']);
         break;
     case "homeInstallateur":
-        [$residences, $absent, $rooms] = home($PDO, $_SESSION['idClient']);
+        [$residences, $absent, $rooms] = getHome($PDO, $_SESSION['idClient']);
         break;
     case "absentFactors":
         $absentFactors = absentFactors($PDO);

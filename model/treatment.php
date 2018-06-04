@@ -106,7 +106,6 @@ function getRoomInfo($actuatorList, $sensorList, $PDO){
     }
     $req->closeCursor();
 
-    echo $roomName;
     return [$sensorList, $sensorCheck, $actuatorList, $actuatorCheck, $roomType, $roomSize, $roomName];
 }
 
@@ -132,6 +131,7 @@ function setRoomInfo($PDO)
         del('actuator', $_GET['r'], $PDO);
     }
     else{
+        echo '<br/> sensor = '.print_r($_REQUEST['sensor']);
         addOrDont('sensor', array_keys($_REQUEST['sensor']), $_GET['r'], $PDO);
         addOrDont('actuator', array_keys($_REQUEST['actuator']), $_GET['r'], $PDO);
         $req = $PDO->prepare("UPDATE room SET name = ?, type = ?, size = ? WHERE idRoom = ?");
@@ -153,11 +153,16 @@ function addOrDont($table, $values, $id, $PDO){
         array_push($exist, $data['type']);
     }
     $req->closeCursor();
-    $doNotExist = array_diff($exist, $values);
-    $add = array_diff($values, $exist);
-    foreach ($add as $value){
-        $PDO->exec('INSERT INTO ' . $table . '(type, idRoom) VALUES(\'' . $value . '\',\'' . $id . '\')');
+    if($values != NULL) {
+        $doNotExist = array_diff($exist, $values);
+        $add = array_diff($values, $exist);
+        foreach ($add as $value) {
+            $PDO->exec('INSERT INTO ' . $table . '(type, idRoom) VALUES(\'' . $value . '\',\'' . $id . '\')');
 
+        }
+    }
+    else{
+        $doNotExist = $exist;
     }
     foreach ($doNotExist as $dont) {
         $req = $PDO->prepare('DELETE FROM ' . $table . ' WHERE idRoom = ? AND type = ?');

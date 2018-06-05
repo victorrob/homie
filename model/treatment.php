@@ -421,71 +421,6 @@ function getHome($PDO, $id) {
 
 function setHome($PDO) {
     if (isset($_SESSION['idResidence'])) {
-        $req = $PDO->prepare('SELECT idRoom FROM room WHERE idResidence = ?');
-        $req->execute([$_SESSION['idResidence']]);
-        while ($idRoom = $req->fetch()['idRoom']) {
-            if (isset($_POST['roomModification' . $idRoom])) {
-                $req1 = $PDO->prepare('SELECT type, idActuator FROM actuator WHERE idRoom = ?');
-                $req1->execute([$idRoom]);
-                while ($actuator = $req1->fetch()) {
-                    if ($actuator['type'] == 'lumière') {
-                        if (isset($_POST['lumière'])) {
-                            $state = 1;
-                        } else {
-                            $state = 0;
-                        }
-                        $req2 = $PDO->prepare('UPDATE actuator SET state = ? WHERE idActuator = ?');
-                        $req2->execute([$state, $actuator['idActuator']]);
-                        $req2->closeCursor();
-                    } else if ($actuator['type'] == 'volet') {
-                        if (isset($_POST['volet_state'])) {
-                            $state = 1;
-                        } else {
-                            $state = 0;
-                        }
-                        if (isset($_POST['volet_auto'])) {
-                            $auto = 1;
-                        } else {
-                            $auto = 0;
-                        }
-                        if (isset($_POST['volet_opening'])) {
-                            $opening = $_POST['volet_opening'];
-                        } else {
-                            $opening = null;
-                        }
-                        if (isset($_POST['volet_closing'])) {
-                            $closing = $_POST['volet_closing'];
-                        } else {
-                            $closing = null;
-                        }
-                        $req2 = $PDO->prepare('UPDATE actuator SET state = ?, auto = ?, opening = ?, closing = ? WHERE idActuator = ?');
-                        $req2->execute([$state, $auto, $opening, $closing, $actuator['idActuator']]);
-                        $req2->closeCursor();
-                    } else if ($actuator['type'] == 'chauffage') {
-                        if (isset($_POST['chauffage'])) {
-                            $value = $_POST['chauffage'];
-                        } else {
-                            $value = null;
-                        }
-                        $req2 = $PDO->prepare('UPDATE actuator SET value = ? WHERE idActuator = ?');
-                        $req2->execute([$value, $actuator['idActuator']]);
-                        $req2->closeCursor();
-                    } else if ($actuator['type'] == 'ventilation') {
-                        if (isset($_POST['ventilation'])) {
-                            $value = $_POST['ventilation'];
-                        } else {
-                            $value = null;
-                        }
-                        $req2 = $PDO->prepare('UPDATE actuator SET value = ? WHERE idActuator = ?');
-                        $req2->execute([$value, $actuator['idActuator']]);
-                        $req2->closeCursor();
-                    }
-                }
-                $req1->closeCursor();
-            }
-        }
-        $req->closeCursor();
-
         if (isset($_POST['habitationLight'])) {
             if (isset($_POST['light'])) {
                 $state = 1;
@@ -500,7 +435,8 @@ function setHome($PDO) {
                 $req1->closeCursor();
             }
             $req->closeCursor();
-        } else if (isset($_POST['habitationShutter'])) {
+        }
+        else if (isset($_POST['habitationShutter'])) {
             if (isset($_POST['shutter'])) {
                 $state = 1;
             } else {
@@ -521,7 +457,8 @@ function setHome($PDO) {
                 $req1->closeCursor();
             }
             $req->closeCursor();
-        } else if (isset($_POST['habitationHeating'])) {
+        }
+        else if (isset($_POST['habitationHeating'])) {
             $heating = $_POST['heating'];
             $req = $PDO->prepare('SELECT idRoom FROM room WHERE idResidence = ?');
             $req->execute([$_SESSION['idResidence']]);
@@ -531,7 +468,8 @@ function setHome($PDO) {
                 $req1->closeCursor();
             }
             $req->closeCursor();
-        } else if (isset($_POST['habitationVentilation'])) {
+        }
+        else if (isset($_POST['habitationVentilation'])) {
             $ventilation = $_POST['ventilation'];
             $req = $PDO->prepare('SELECT idRoom FROM room WHERE idResidence = ?');
             $req->execute([$_SESSION['idResidence']]);
@@ -542,8 +480,7 @@ function setHome($PDO) {
             }
             $req->closeCursor();
         }
-
-        if (isset($_POST['habitationAbsent'])) {
+        else if (isset($_POST['habitationAbsent'])) {
             $req = $PDO->prepare('UPDATE absent SET absent = ? WHERE idResidence = ?');
             if (isset($_POST['absent'])) {
                 $req->execute([1, $_SESSION['idResidence']]);

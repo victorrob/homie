@@ -65,19 +65,32 @@ h1
 .roomFactors {
     width: 70%;
     display: none;
-    margin-left: 20px;
+    margin-left: 50px;
     flex-wrap: wrap;
 }
 
 .factors {
     width: 70%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .factors div {
-	display: flex;
+    display: flex;
     flex-wrap: wrap;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: auto 0px;
+}
+
+.divFactors {
+    padding: 15px;
+}
+
+.divVolet {
+    padding: 5px;
+}
+
+.divVolet p {
+    margin: auto;
 }
 
 input {

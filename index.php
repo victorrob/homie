@@ -51,6 +51,6 @@ if(FALSE == (include 'view/php/' . $php . '.php')){
 }
 
 ?>
-</body>
 <script type="text/javascript" src="view/js/<?php echo $php ?>.js"></script>
+</body>
 </html>

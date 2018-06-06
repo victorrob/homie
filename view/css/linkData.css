@@ -1,0 +1,14 @@
+table, th, td {
+    padding: 5px;
+    text-align: center;
+    border: 1px solid sandybrown;
+    border-collapse: collapse;
+}
+table{
+    margin: 20px auto 80px;
+    width: 80%;
+}
+th{
+    font-weight: bold;
+}
+

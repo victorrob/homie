@@ -4,8 +4,10 @@ session_start();
 <!DOCTYPE HTML>
 <html>
     <head>
+        <meta charset="utf-8" />
 <?php
 include ('control/variable.php');
+include ('model/server.php');
 include('model/treatment.php');
 $php = isset($_GET['p']) ? strip_tags($_GET['p']) : "login";
 $_SESSION['idRoom'] = isset($_GET['r']) ? strip_tags($_GET['r']) : "";

@@ -804,10 +804,46 @@ function profilePut($PDO,$namePut,$firstNamePut,$birthPut,$emailPut,$addressPut,
     }
 }
 
+function verfMail($email){
+    $iarg1 = 0;
+    $iarg2 = 0;
+    if($email == ''){
+        return(true);
+    }
+    for($i = 0; $i <strlen($email);$i++){
+        if($email[$i]=='@'){
+            $iarg1 = $i;
+        }
+        if($email[$i]=='.'){
+            $iarg2 = $i;
+        }
+    }
+    if($iarg2>=2 && ($iarg2-$iarg1)>2 && (strlen($email)-$iarg2)>2){
+        return(true);
+    }
+    return(false);
+}
+
+
+function verfTel($tel) {
+    $number='0123456789';
+    if($tel == ''){
+        return(true);
+    }
+    if(strlen($tel)==10){
+        for ($i = 0; $i < 10; $i++) {
+            if (strpos($number,$tel[$i]) != false) {
+                return(true);
+            }
+        }
+    }
+    return(false);
+}
+
 function profilePOST($PDO){
     $error='';
     if (isset($_POST['name'])|| isset($_POST['firstName'])||isset($_POST['birth'])|| isset($_POST['email'])||isset($_POST['address'])|| isset($_POST['phone'])||isset($_POST['password1'])){
-        if ($_POST['name'] != '' ||$_POST['firstName'] != '' ||$_POST['birth'] != '' ||$_POST['email'] != '' ||$_POST['address'] != '' ||$_POST['phone'] != '' ||$_POST['password1'] != '') {
+        if ($_POST['name'] != '' ||$_POST['firstName'] != '' ||$_POST['birth'] != '' ||$_POST['email1'] != '' ||$_POST['address'] != '' ||$_POST['phone'] != '' ||$_POST['password1'] != '') {
 
             $_POST['password']=hash('sha512',$_POST['password']);
             $id = $_SESSION['idUser'];
@@ -830,7 +866,12 @@ function profilePOST($PDO){
                 }
                 if ($_POST['email1'] != ""){
                     if($_POST['email1'] == $_POST['email2']){
-                        $emailModif=$_POST['email1'];
+                        if(verfMail($_POST['email1'])){
+                            $emailModif=$_POST['email1'];   
+                        }else{
+                            $emailModif="";
+                            $error=$error.'ERREUR : mail invalide </br>';
+                        }
                     }else{
                         $emailModif="";
                         $error=$error.'ERREUR : les nouveaux mails ne sont pas identiques <br/>';
@@ -844,7 +885,12 @@ function profilePOST($PDO){
                     $addressModif="";
                 }
                 if ($_POST['phone'] != ""){
-                    $phoneModif=$_POST['phone'];
+                    if(verfTel($_POST['phone'])){
+                        $phoneModif=$_POST['phone'];
+                    }else{
+                        $phoneModif="";
+                        $error=$error.'ERREUR : numero de telephone invalide';    
+                    }
                 }else{
                     $phoneModif="";
                 }

@@ -36,9 +36,6 @@ fieldset{
     margin: 2%;
 }
 
-fieldset.left {
-    width: 15%;
-}
 
 
 
@@ -73,21 +70,13 @@ legend{
 label{
     text-align: center;
 }
-
-
-@media screen and (max-width: 700px) {
-    .container {
-        flex-direction: column;
-    }
-
-    form {
-        position: relative;
-        left: 50%;
-        transform: translate(-50%);
-        text-align: center;
-    }
-
-    fieldset .left {
-        width: auto;
-    }
+.container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(17em,1fr));
+    margin: 0 auto;
+    width: 80%;
 }
+
+
+
+

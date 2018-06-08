@@ -269,6 +269,25 @@ function addHouse($PDO){
     $_SESSION["idResidence"] = $PDO->lastInsertId();
 }
 
+function deleteHouse($PDO){
+
+    //permet de supprimer une maison, ses pièces, ses capteurs et ses actionneurs
+
+    $req = $PDO -> prepare ("SELECT idRoom FROM room WHERE idResidence = ?");
+    $req -> execute($_SESSION['idResidence']);
+    while ($id = $req->fetch()){
+        del('room', $id, $PDO);
+        del('sensor', $id, $PDO);
+        del('actuator', $id, $PDO);
+    }
+    $req -> closeCursor();
+
+    $req = $PDO->prepare('DELETE FROM residence WHERE idResidence = ?');
+    $req->execute($_SESSION['idResidence']);
+
+    $req->closeCursor();
+}
+
 function getSensorPerRoom($PDO){
     //permet de récupérer le type de pièce, son nom, sa taille, le type de capteur présent pour une pièce donnée
     $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType, 

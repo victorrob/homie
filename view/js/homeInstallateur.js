@@ -1,3 +1,24 @@
+$(function () {
+    $('.sensorValue').each(function () {
+        if ($('.value', this).text() === '') {
+            $('.value', this).text('[Problème]');
+            $('.value', this).css('color', 'red');
+            $('.unité', this).css('visibility', 'hidden');
+            $(this).css('width', '500px');
+            $(('.value', this)).mouseover(function () {
+                $('.value', this).text('La liaison entre le capteur et la base de données est impossible');
+                $('.value', this).css('color', 'white');
+                $('.value', this).css('background', '#da8232');
+            });
+            $(('.value', this)).mouseout(function () {
+                $('.value', this).text('[Problème]');
+                $('.value', this).css('color', 'red');
+                $('.value', this).css('background', '');
+            });
+        }
+    });
+});
+
 function home(id, className) {
     var form = document.getElementById(id);
     var forms = document.getElementsByClassName(className);
@@ -5,12 +26,12 @@ function home(id, className) {
         form.style.display = 'none';
     }
     else {
-        for (var i=0; i<forms.length; i++) {
+        for (var i = 0; i < forms.length; i++) {
             forms[i].style.display = 'none';
         }
         form.style.display = 'flex';
     }
-    $('html,body').animate({scrollTop:$(form).offset().top}, 'slow');
+    $('html,body').animate({scrollTop: $(form).offset().top}, 'slow');
 }
 
 function maj(idRoom, type) {

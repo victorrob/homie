@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -39,11 +40,11 @@ if (in_array($php, $headerLogin)) {
     include('view/php/headerLogin.php');
 }
 else {
-    if (installateur($PDO)) {
-        include('view/php/headerInstallateur.php');
+    if (installateur($PDO) === 'Propriétaire') {
+        include('view/php/header.php');
     }
     else {
-        include('view/php/header.php');
+        include('view/php/headerInstallateur.php');
     }
 }
 if(FALSE == (include 'view/php/' . $php . '.php')){

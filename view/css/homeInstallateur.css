@@ -4,7 +4,7 @@
     justify-content: start;
 }
 
-#addHouse {
+#addHouse, #deleteHouse {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@
     margin-left: 10px;
 }
 
-#addHouse a {
+#addHouse a, #deleteHouse a {
     text-decoration: none;
     width: 100%;
     height: 100%;
@@ -23,12 +23,16 @@
     display: flex;
 }
 
-#addHouse p {
+#addHouse p, #deleteHouse p {
     margin: auto;
 }
 
 #addHouse p, #plus p, #modifierPiece p {
     color: #2196F3;
+}
+
+#deleteHouse p {
+    color: red;
 }
 
 #modifierPiece {
@@ -118,6 +122,10 @@ h1
 
 .divFactors {
     padding: 15px;
+}
+
+.divFactors p {
+    margin: auto 5px;
 }
 
 .divVolet {

@@ -13,6 +13,7 @@
 
             </select>
             <div id="addHouse"><a href="index.php?p=addHouse"><p>+</p></a></div>
+            <div id="deleteHouse"><a href="index.php?d=deleteHouse"><p>-</p></a></div>
         </div>
     </form>
 </div>
@@ -61,7 +62,11 @@
                         <p>°C</p>
                     </div>
                     <div class="divFactors" style="display: <?php echo $room['température']['existence'] ?>">
-                        <p>Température actuelle : <?php echo $room['température']['value'] ?> °C</p>
+                        <p>Température actuelle :</p>
+                        <div class="sensorValue">
+                            <p class="value"><?php echo $room['température']['value'] ?></p>
+                            <p class="unité">°C</p>
+                        </div>
                     </div>
                     <div class="divFactors" style="display: <?php echo $room['ventilation']['existence'] ?>">
                         <p>Ventilation :</p>
@@ -100,16 +105,32 @@
                         </div>
                     </div>
                     <div class="divFactors" style="display: <?php echo $room['humidité']['existence'] ?>">
-                        <p>Humidité : <?php echo $room['humidité']['value'] ?> %</p>
+                        <p>Humidité :</p>
+                        <div class="sensorValue">
+                            <p class="value"><?php echo $room['humidité']['value'] ?></p>
+                            <p class="unité">%</p>
+                        </div>
                     </div>
                     <div class="divFactors" style="display: <?php echo $room['CO2']['existence'] ?>">
-                        <p>CO2 : <?php echo $room['CO2']['value'] ?> ppm</p>
+                        <p>CO2 :</p>
+                        <div class="sensorValue">
+                            <p class="value"><?php echo $room['CO2']['value'] ?></p>
+                            <p class="unité">ppm</p>
+                        </div>
                     </div>
                     <div class="divFactors" style="display: <?php echo $room['pression']['existence'] ?>">
-                        <p>Pression : <?php echo $room['pression']['value'] ?> bar</p>
+                        <p>Pression :</p>
+                        <div class="sensorValue">
+                            <p class="value"><?php echo $room['pression']['value'] ?></p>
+                            <p class="unité">bar</p>
+                        </div>
                     </div>
                     <div class="divFactors" style="display: <?php echo $room['luminosité']['existence'] ?>">
-                        <p>Luminosité : <?php echo $room['luminosité']['value'] ?> lux</p>
+                        <p>Luminosité :</p>
+                        <div class="sensorValue">
+                            <p class="value"><?php echo $room['luminosité']['value'] ?></p>
+                            <p class="unité">lux</p>
+                        </div>
                     </div>
                 </div>
                 <div><a href="index.php?p=statistic&r=<?php echo $room['idRoom'] ?>"><p>Statistiques</p></a></div>

@@ -1,4 +1,4 @@
-window.onload = function header() {
+function header() {
     var parametre = document.getElementById('parametre');
     parametre.onclick = function menu() {
         var d = document.getElementById('menu');

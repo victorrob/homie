@@ -12,8 +12,12 @@ if(isset($_GET['d'])) {
 
         case 'login':
             if (verify($PDO)){
-                if (installateur($PDO)) {
+                createCookie();
+                if (installateur($PDO) === 'Installateur') {
                     $php = 'installateurPage';
+                }
+                else if (installateur($PDO) === 'Administrateur') {
+                    $php = 'homeAdmin';
                 }
                 else {
                     $php = 'home';
@@ -31,9 +35,10 @@ if(isset($_GET['d'])) {
             $php = 'homeInstallateur';
             break;
         case 'logout':
+            $_SESSION = array();
             session_destroy();
+            destroyCookie();
             break;
-
         case 'resetPassword':
 
            if (egalPswd()){
@@ -52,8 +57,8 @@ if(isset($_GET['d'])) {
         case 'addHouse':
             addHouse($PDO);
             break;
-
-
+        case 'deleteHouse':
+            deleteHouse($PDO);
         case "profile":
             $error = "ERROR: test";
             [$error]=profilePOST($PDO);
@@ -87,6 +92,19 @@ $erreurMail='';
 
 // Action to perform when loading the page
 switch ($php) {
+    case 'login':
+        if (verifCookie($PDO)) {
+            if (installateur($PDO) === 'Installateur') {
+                $php = 'installateurPage';
+            }
+            else if (installateur($PDO) === 'Administrateur') {
+                $php = 'homeAdmin';
+            }
+            else {
+                $php = 'home';
+            }
+        }
+        break;
     case "statistic":
         [$sensorName, $sensorHistoric] = getHistoric($PDO);
         break;
@@ -110,8 +128,6 @@ switch ($php) {
         if (!isset($error)) {
             $error = '';
         }
-        break;
-    case "login":
         break;
     case "forgottenPswd":
         $reponse = mailSend($PDO);

@@ -919,12 +919,7 @@ function installateur($PDO) {
     $req->execute([$_SESSION['idUser']]);
     $type = $req->fetch()['type'];
     $req->closeCursor();
-    if ($type == 'Installateur') {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return $type;
 }
 
 function installateurPage($PDO) {
@@ -953,6 +948,7 @@ function randomString($length){
     }
     return $string;
 }
+
 
 
 // FONCTIONS NICOLAS
@@ -1317,4 +1313,31 @@ function discuss_id($bdd,$user_id,$admin){
 
 
 
+function createCookie() {
+    if (isset($_POST['cookie'])) {
+        setcookie('mail', $_POST['mail'], time() + 30*24*3600, null, null, false, true);
+        $password = hash("sha512",$_POST['password']);
+        setcookie('password', $password, time() + 30*24*3600, null, null, false, true);
+    }
+}
 
+function verifCookie($PDO) {
+    if (isset($_COOKIE['mail'])) {
+        $req = $PDO->prepare('SELECT idUser FROM user WHERE mail = ? AND password = ?');
+        $req->execute([$_COOKIE['mail'], $_COOKIE['password']]);
+        if ($req->rowCount() == 1) {
+            $_SESSION['idUser'] = $req->fetch()['idUser'];
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
+
+function destroyCookie() {
+    setcookie('mail', '', time(), null, null, false, true);
+    setcookie('password', '', time(), null, null, false, true);
+    unset($_COOKIE['mail']);
+    unset($_COOKIE['password']);
+}

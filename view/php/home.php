@@ -28,7 +28,6 @@
         <div onclick="home(<?php echo $room['idRoom'] ?>, 'roomFactors')"><a class="carre" href="<?php echo '#'.$room['idRoom'] ?>"><p><?php echo $room['name'] ?></p></a></div>
     <?php  }
     ?>
-    <div id="plus"><a href="index.php?p=sensor&r=-1"><p>+</p></a></div>
 
 </section>
 
@@ -60,7 +59,11 @@ foreach ($rooms as $room) {
                     <p>°C</p>
                 </div>
                 <div class="divFactors" style="display: <?php echo $room['température']['existence'] ?>">
-                    <p>Température actuelle : <?php echo $room['température']['value'] ?> °C</p>
+                    <p>Température actuelle :</p>
+                    <div class="sensorValue">
+                        <p class="value"><?php echo $room['température']['value'] ?></p>
+                        <p class="unité">°C</p>
+                    </div>
                 </div>
                 <div class="divFactors" style="display: <?php echo $room['ventilation']['existence'] ?>">
                     <p>Ventilation :</p>
@@ -99,19 +102,36 @@ foreach ($rooms as $room) {
                     </div>
                 </div>
                 <div class="divFactors" style="display: <?php echo $room['humidité']['existence'] ?>">
-                    <p>Humidité : <?php echo $room['humidité']['value'] ?> %</p>
+                    <p>Humidité :</p>
+                    <div class="sensorValue">
+                        <p class="value"><?php echo $room['humidité']['value'] ?></p>
+                        <p class="unité">%</p>
+                    </div>
                 </div>
                 <div class="divFactors" style="display: <?php echo $room['CO2']['existence'] ?>">
-                    <p>CO2 : <?php echo $room['CO2']['value'] ?> ppm</p>
+                    <p>CO2 :</p>
+                    <div class="sensorValue">
+                        <p class="value"><?php echo $room['CO2']['value'] ?></p>
+                        <p class="unité">ppm</p>
+                    </div>
                 </div>
                 <div class="divFactors" style="display: <?php echo $room['pression']['existence'] ?>">
-                    <p>Pression : <?php echo $room['pression']['value'] ?> bar</p>
+                    <p>Pression :</p>
+                    <div class="sensorValue">
+                        <p class="value"><?php echo $room['pression']['value'] ?></p>
+                        <p class="unité">bar</p>
+                    </div>
                 </div>
                 <div class="divFactors" style="display: <?php echo $room['luminosité']['existence'] ?>">
-                    <p>Luminosité : <?php echo $room['luminosité']['value'] ?> lux</p>
+                    <p>Luminosité :</p>
+                    <div class="sensorValue">
+                        <p class="value"><?php echo $room['luminosité']['value'] ?></p>
+                        <p class="unité">lux</p>
+                    </div>
                 </div>
             </div>
             <div><a href="index.php?p=statistic&r=<?php echo $room['idRoom'] ?>"><p>Statistiques</p></a></div>
+            <div><a id="modifierPiece" href="index.php?p=sensor&r=<?php echo $room['idRoom'] ?>"><p>Modifier Pièce</p></a></div>
         </div>
     </section>
     <?php
@@ -215,4 +235,4 @@ foreach ($rooms as $room) {
     </div>
 </form>
 
-<script type="text/javascript" src="lib/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="lib/jquery-3.3.1.min.js"></script>

@@ -1,8 +1,7 @@
 <?php
-
 function getData()
 {
-    $ch = curl_init("http://projets-tomcat.isep.fr:8080/appService?ACTION=GETLOG&TEAM=0111");
+    $ch = curl_init("http://projets-tomcat.isep.fr:8080/appService?ACTION=GETLOG&TEAM=G10E");
 
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
 
@@ -21,8 +20,8 @@ function getData()
                 $i += 33;
                 break;
             case 3:
-                array_push($data_tab, substr($data, $i, 26));
-                $i += 26;
+                array_push($data_tab, substr($data, $i, 25));
+                $i += 25;
                 break;
             default:
                 $i += 80;
@@ -43,19 +42,18 @@ function getData()
             $j += $len;
         }
         $linkData[substr($trame, 0, 1)] += [count($linkData[substr($trame, 0, 1)]) => $list];
-
     }
     return $linkData;
 }
+
 $linkData = getData();
 function sendData($TYP, $NUM, $VAL){
 
-    [$TRA,$OBJ,$REQ,$TIM] = setBasics();
-    $thread = [$TRA , $OBJ , $REQ , $TYP , $NUM , $VAL , $TIM];
-    array_push($thread,CHK(implode($thread)));
+    [$TRA,$OBJ,$REQ] = setBasics();
+    $thread = [$TRA , $OBJ , $REQ , fill($TYP, 1) , fill($NUM,2) , fill($VAL, 4)];
+    array_push($thread,fill(CHK(implode($thread)), 2));
     $thread = implode($thread);
-    echo '<br/> trame = '.$thread.'<br/>';
-    $ch = curl_init('http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=0111&TRAME='.$thread);
+    $ch = curl_init('http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=G10E&TRAME='.$thread);
 
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
 
@@ -66,35 +64,32 @@ function sendData($TYP, $NUM, $VAL){
 }
 
 function fill($data, $len){
-    if(gettype($data)== 'integer');
+    if(gettype($data)== 'integer'){
+
+    }
     else if(gettype($data) == 'double'){
         $data = round($data * 10) /10;
     }
-    else if(gettype($data) == 'string');
+    else if(gettype($data) == 'string'){
+    }
     else{
-        return 'error invalid argument $data';
+        echo 'error invalid argument $data';
     }
     $data = strval($data);
     if(strlen($data)>$len){
         return 'error $data is too large';
     }
     else{
-        $len = $len - strlen($data);
-        return sprintf('%\'.0'.$len.'d', $data);
+        $data = strval($data);
+        return sprintf('%\'.0'.$len.'s', $data);
     }
 }
 
 function setBasics(){
     $TRA = '1';
-    $OBJ = '0111';
+    $OBJ = 'G10E';
     $REQ = '1';
-
-    $time = getdate(time());
-    $TIM = fill($time['minutes'],2).fill($time['seconds'],2);
-    if(strlen($TIM)>4){
-        echo $TIM;
-    }
-    return [$TRA,$OBJ,$REQ,$TIM];
+    return [$TRA,$OBJ,$REQ];
 }
 
 function CHK($thread){

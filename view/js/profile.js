@@ -1,3 +1,6 @@
+start();
+setInterval('checkForm();', 1000);
+
 function start(){
 	var parametre = ["name","firstName","birth","email","address","phone","password"];
 	for (var i = parametre.length - 1; i >= 0; i--) {

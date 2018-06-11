@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-
+<?php
+	include('model/profile.php');
+?>
 
 <body id="bodyProfile">
 	<div id = error><?php echo($error) ?></div>
@@ -68,10 +70,3 @@
 	</fieldset>
 </body>
 </html>
-
-    <script type="text/javascript" src="view/js/profile.js"></script>
-    <script type="text/javascript">
-      	start();
-      	setInterval('checkForm();', 1000);
-      	
-    </script>

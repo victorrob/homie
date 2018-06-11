@@ -3,13 +3,11 @@
 		<main>
 			<section>
 				<?php 
-				if ($_SESSION['admin']==true){
+				if ($admin==true){
 					echo('<h1> Requêtes à traiter </h1>');
-					$admin=true;
 				}
 				else{
 					echo('<h1> Mes requêtes </h1>');
-					$admin=false;
 				}
 				?>
 				

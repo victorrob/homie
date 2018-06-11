@@ -1309,8 +1309,6 @@ function discuss_id($bdd,$user_id,$admin){
 
 */
 
-?>
-
 
 
 function createCookie() {

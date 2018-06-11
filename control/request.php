@@ -140,8 +140,20 @@ switch ($php) {
     case 'contact':
         break;
     case 'requests':
+        if (installateur($PDO)=='Administrateur'){
+                    $admin=true;
+                }
+                else{
+                    $admin=false;
+                }
         break;
     case 'discuss':
+        if (installateur($PDO)=='Administrateur'){
+                    $admin=true;
+                }
+                else{
+                    $admin=false;
+                }
         break;
     case 'support':
         break;

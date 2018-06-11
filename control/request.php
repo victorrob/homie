@@ -66,6 +66,20 @@ if(isset($_GET['d'])) {
         case 'homeAdmin':
             setUserInfo($PDO);
             break;
+        case 'contact':
+            break;
+        case 'discuss':
+            $answerNumber= discuss_count($bdd,$_SESSION['user_id'],$current_request) +1;
+            discuss_post($bdd,$admin,$current_request,$answer_number);
+            break;
+        case 'support':
+            break;
+        case 'requests':
+            request_post($bdd);
+            break;
+        case 'forum':
+            break;
+
     }
 }
 $erreurEgalPswd='';
@@ -107,6 +121,15 @@ switch ($php) {
         break;
     case "ChangePswdOk":
         break;
-
+    case 'contact':
+        break;
+    case 'requests':
+        break;
+    case 'discuss':
+        break;
+    case 'support':
+        break;
+    case 'forum':
+        break;
 
 }

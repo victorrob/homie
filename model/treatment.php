@@ -953,3 +953,368 @@ function randomString($length){
     }
     return $string;
 }
+
+
+// FONCTIONS NICOLAS
+/*
+<?php
+try
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=requete;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+}
+catch(Exception $e)
+{
+        die('Erreur : '.$e->getMessage());
+}
+*/
+
+
+//QUESTION FUNCTIONS
+
+
+function question_title($bdd){
+    $req = $bdd->query('SELECT title FROM questions ');
+    $title=new ArrayObject(array());
+    while ($donnees = $req->fetch()){
+        $title->append( $donnees['title']);
+    }
+
+    $req->closeCursor();
+return $title;
+}
+
+function question_text($bdd){
+    $req = $bdd->query('SELECT texte FROM questions ');
+    $text=new ArrayObject(array());
+    while ($donnees = $req->fetch()){
+        $text->append( strip_tags($donnees['texte']));
+    }
+
+    $req->closeCursor();
+return $text;
+}
+
+//Nombre de questions à afficher
+
+function question_count($bdd){
+    $count=-1;
+    $title=new ArrayObject(array());
+    $req = $bdd->query('SELECT title FROM questions ');
+    while ($donnees = $req->fetch()){
+        $title->append( $donnees['title']);
+        $count+=1;
+    }
+
+    $req->closeCursor();
+return $count;
+}
+
+
+
+
+
+
+
+//REQUEST FUNCTIONS
+
+
+//date du problème
+
+function request_date($bdd){
+    $req = $bdd->query('SELECT request_date FROM requests ');
+    $date=new ArrayObject(array());
+    while ($donnees = $req->fetch()){
+        $date->append( $donnees['request_date']);
+    }
+
+    $req->closeCursor();
+return $date;
+}
+
+
+
+
+//type du problème
+
+function request_type($bdd,$user_id,$admin){
+    if ($admin==true){
+            
+        $req = $bdd->query('SELECT problem_type FROM requests WHERE answer IS NULL ORDER BY id_user');
+        $type=new ArrayObject(array());
+        while ($donnees = $req->fetch()){
+            $type->append( $donnees['problem_type']);
+        }
+
+        $req->closeCursor();
+        return $type;           
+    }
+
+    else{
+        
+        $req = $bdd->query('SELECT problem_type FROM requests WHERE id_user ='.$user_id.' ');
+        $type=new ArrayObject(array());
+        while ($donnees = $req->fetch()){
+            $type->append( $donnees['problem_type']);
+        }
+
+        $req->closeCursor();
+        return $type;
+    }
+
+
+
+
+}
+
+function request_id($bdd,$user_id,$admin){
+    if ($admin==true){
+            
+        $req = $bdd->query('SELECT id_request FROM requests WHERE answer IS NULL ORDER BY id_user');
+        $id=new ArrayObject(array());
+        while ($donnees = $req->fetch()){
+            $id->append( $donnees['id_request']);
+        }
+
+        $req->closeCursor();
+        return $id;         
+    }
+
+    else{
+        
+        $req = $bdd->query('SELECT id_request FROM requests WHERE id_user ='.$user_id.' ');
+        $id=new ArrayObject(array());
+        while ($donnees = $req->fetch()){
+            $id->append( $donnees['id_request']);
+        }
+
+        $req->closeCursor();
+        return $id;
+    }
+
+
+
+
+}
+
+
+//texte du problème
+
+
+function request_problem($bdd,$user_id,$admin){
+    if ($admin==true){
+        
+        $req = $bdd->query('SELECT problem FROM requests WHERE answer IS NULL ORDER BY id_user');
+        $problem=new ArrayObject(array());
+        while ($donnees = $req->fetch()){
+            $problem->append( strip_tags($donnees['problem']));
+        }
+
+        $req->closeCursor();
+        return $problem;            
+    }
+
+    else{
+        $req = $bdd->query('SELECT problem FROM requests WHERE id_user='.$user_id.' ');
+        $problem=new ArrayObject(array());
+        while ($donnees = $req->fetch()){
+            $problem->append( strip_tags($donnees['problem']));
+        }
+
+        $req->closeCursor();
+        return $problem;
+    }
+
+
+
+
+
+
+    
+}
+
+//nombre de requetes à afficher
+
+function request_count($bdd,$user_id,$admin){
+    if ($admin==true){
+        $count=-1;
+        $type=new ArrayObject(array());
+        $req = $bdd->query('SELECT problem_type FROM requests WHERE answer IS NULL');
+        while ($donnees = $req->fetch()){
+            $type->append( $donnees['problem_type']);
+            $count+=1;
+        }
+
+        $req->closeCursor();
+        return $count;          
+    }
+
+    else{
+        $count=-1;
+        $type=new ArrayObject(array());
+        $req = $bdd->query('SELECT problem_type FROM requests WHERE id_user= '.$user_id.' ');
+        while ($donnees = $req->fetch()){
+            $type->append( $donnees['problem_type']);
+            $count+=1;
+        }
+
+        $req->closeCursor();
+        return $count;      
+    }
+
+
+
+    
+}
+
+function request_post($bdd){
+        if (isset($_POST['type']) AND isset($_POST['problem'])){
+                    $req = $bdd->prepare('INSERT INTO requests(id_user, problem_type, problem) VALUES(:id , :type, :texte)');
+
+                    $req->execute(array(
+
+                     'id' => $_SESSION['user_id'],
+                     'type' => strip_tags($_POST['type']),
+                     'texte' => strip_tags($_POST['problem']),
+
+                    
+
+                     ));
+
+        }
+}
+
+
+//DISCUSS
+
+function discuss_msg_number($bdd,$user_id,$current_request){
+        $req = $bdd->prepare('SELECT answer_number FROM discussion WHERE id_request=? ');
+        $req->execute(array($current_request));
+        $number=new ArrayObject(array());
+        while ($donnees = $req->fetch()){
+            $number->append( $donnees['answer_number']);
+        }
+
+        $req->closeCursor();
+        return $number;         
+
+
+
+
+}
+
+function discuss_message($bdd,$user_id,$current_request){
+    $req = $bdd->prepare('SELECT answers FROM discussion WHERE id_request=? ');
+    $req->execute(array($current_request));
+    $answers=new ArrayObject(array());
+    while ($donnees = $req->fetch()){
+        $answers->append( strip_tags($donnees['answers']));
+    }
+
+    $req->closeCursor();
+    return $answers;            
+
+
+
+
+
+
+    
+}
+
+//nombre de msgs à afficher
+
+function discuss_count($bdd,$user_id,$current_request){
+    
+    $count=-1;
+    $number=new ArrayObject(array());
+    $req = $bdd->prepare('SELECT answer_number FROM discussion WHERE id_request=? ');
+    $req->execute(array($current_request));
+    while ($donnees = $req->fetch()){
+        $number->append( $donnees['answer_number']);
+        $count+=1;
+    }
+
+    $req->closeCursor();
+    return $count;          
+    
+
+
+    
+}
+
+function discuss_post($bdd,$admin,$current_request,$answer_number){
+        if (isset($_POST['answer'])){
+                    $req = $bdd->prepare('INSERT INTO discussion(id_request,answer_number, answers, origin_admin) VALUES(:id , :answer_number, :texte, :admin)');
+
+                    $req->execute(array(
+
+                     'id' => $current_request,
+                     'answer_number' => $answer_number,
+                     'texte' => strip_tags($_POST['answer']),
+                     'admin' => $admin,
+
+                     ));
+
+        }
+}
+
+
+
+
+
+function discuss_request_problem($bdd,$current_request,$admin){
+        $req = $bdd->prepare('SELECT problem FROM requests WHERE id_request=?');
+        $req->execute(array($current_request));
+        $problem=new ArrayObject(array());
+        while ($donnees = $req->fetch()){
+            $problem->append( strip_tags($donnees['problem']));
+        }
+
+        $req->closeCursor();
+        return $problem;            
+
+    
+}
+
+function discuss_request_type($bdd,$current_request,$admin){
+        $req = $bdd->prepare('SELECT problem_type FROM requests WHERE id_request=?');
+        $req->execute(array($current_request));
+        $problem_type=new ArrayObject(array());
+        while ($donnees = $req->fetch()){
+            $problem_type->append( strip_tags($donnees['problem_type']));
+        }
+
+        $req->closeCursor();
+        return $problem_type;           
+
+    
+}
+
+
+
+
+
+
+
+
+
+/*
+function discuss_id($bdd,$user_id,$admin){
+        $req = $bdd->query('SELECT id_answer FROM requests WHERE ?????');
+        $number=new ArrayObject(array());
+        while ($donnees = $req->fetch()){
+            $number->append( $donnees['answer_number']);
+        }
+
+        $req->closeCursor();
+        return $number;         
+
+
+
+*/
+
+?>
+
+
+
+

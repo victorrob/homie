@@ -212,7 +212,6 @@ function signUp($PDO){
             $state = false;
         }
 
-    $type = strip_tags($_POST['type']);
 
     $birthDate = strip_tags($_POST['birthDate']);
 
@@ -227,8 +226,8 @@ function signUp($PDO){
     $productNumber = strip_tags($_POST['productNumber']);
 
     if ($state) {
-        $req = $PDO->prepare("UPDATE user SET name = ?, firstName = ?, phone = ?, password = ?, type = ?, birthDate = ?, address = ?, zipCode = ?, city = ?, country = ? WHERE mail = ? AND productNumber = ?");
-        $req->execute([$name, $firstName, $phone, $password, $type, $birthDate, $address, $zipCode, $city, $country, $mail, $productNumber]);
+        $req = $PDO->prepare("UPDATE user SET name = ?, firstName = ?, type = 'Propriétaire', phone = ?, password = ?, birthDate = ?, address = ?, zipCode = ?, city = ?, country = ? WHERE mail = ? AND productNumber = ?");
+        $req->execute([$name, $firstName, $phone, $password, $birthDate, $address, $zipCode, $city, $country, $mail, $productNumber]);
         if ($req->rowCount() == 0) {
             echo 'Erreur, mail et numéro de produits incompatibles';
             return false;

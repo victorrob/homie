@@ -42,13 +42,6 @@
                     <label>Confirmer votre mot de passe :<br>
                         <input class="complete" type="password" name="confirmPassword" placeholder="Confirmation" required />
                     </label>
-
-                    <label>Type d'utilisateur :
-                        <select class="complete" name="type">
-                            <option value="Propriétaire">Propriétaire</option>
-                            <option value="Invité">Invité</option>
-                        </select>
-                    </label>
                 </fieldset>
 
                 <fieldset>
@@ -68,7 +61,7 @@
                    <label>Pays :
                         <select class="complete" name="country" required>
                             <option value="belgium">Belgique</option>
-                            <option value="france">Fance</option>
+                            <option value="france">France</option>
                             <option value="luxembourg">Luxembourg</option>
                             <option value="switzerland">Suisse</option>
                         </select>

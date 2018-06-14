@@ -12,11 +12,17 @@ catch (Exception $e){
 }
 
 if (isset($_POST['state'])) {
-    if ($_POST['type'] === 'auto') {
+    if ($_POST['type'] === 'volet_auto') {
         $type = 'volet';
         $req = $PDO->prepare('UPDATE actuator SET auto = ? WHERE idRoom = ? AND type = ?');
-    } else {
-        $type = $_POST['type'];
+    }
+    else {
+        if ($_POST['type'] === 'volet_state') {
+            $type = 'volet';
+        }
+        else {
+            $type = 'lumière';
+        }
         $req = $PDO->prepare('UPDATE actuator SET state = ? WHERE idRoom = ? AND type = ?');
     }
     $req->execute([$_POST['state'], $_POST['idRoom'], $type]);
@@ -25,10 +31,10 @@ if (isset($_POST['state'])) {
 
 if (isset($_POST['time'])) {
     $type = 'volet';
-    if ($_POST['type'] === 'opening') {
+    if ($_POST['type'] === 'volet_opening') {
         $req = $PDO->prepare('UPDATE actuator SET opening = ? WHERE idRoom = ? AND type = ?');
     }
-    else if ($_POST['type'] === 'closing') {
+    else if ($_POST['type'] === 'volet_closing') {
         $req = $PDO->prepare('UPDATE actuator SET closing = ? WHERE idRoom = ? AND type = ?');
     }
     $req->execute([$_POST['time'], $_POST['idRoom'], $type]);

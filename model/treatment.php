@@ -212,7 +212,6 @@ function signUp($PDO){
             $state = false;
         }
 
-    $type = strip_tags($_POST['type']);
 
     $birthDate = strip_tags($_POST['birthDate']);
 
@@ -227,8 +226,8 @@ function signUp($PDO){
     $productNumber = strip_tags($_POST['productNumber']);
 
     if ($state) {
-        $req = $PDO->prepare("UPDATE user SET name = ?, firstName = ?, phone = ?, password = ?, type = ?, birthDate = ?, address = ?, zipCode = ?, city = ?, country = ? WHERE mail = ? AND productNumber = ?");
-        $req->execute([$name, $firstName, $phone, $password, $type, $birthDate, $address, $zipCode, $city, $country, $mail, $productNumber]);
+        $req = $PDO->prepare("UPDATE user SET name = ?, firstName = ?, type = 'Propriétaire', phone = ?, password = ?, birthDate = ?, address = ?, zipCode = ?, city = ?, country = ? WHERE mail = ? AND productNumber = ?");
+        $req->execute([$name, $firstName, $phone, $password, $birthDate, $address, $zipCode, $city, $country, $mail, $productNumber]);
         if ($req->rowCount() == 0) {
             echo 'Erreur, mail et numéro de produits incompatibles';
             return false;
@@ -1340,4 +1339,35 @@ function destroyCookie() {
     setcookie('password', '', time(), null, null, false, true);
     unset($_COOKIE['mail']);
     unset($_COOKIE['password']);
+}
+function getNumProduct($PDO){
+    $mail = strip_tags($_POST['mailClient']);
+    $req = $PDO->prepare('SELECT productNumber FROM user WHERE mail = ?');
+    $req->execute([$mail]);
+    $numProduct = $req->fetch()['productNumber'];
+
+    return $numProduct;
+}
+
+function sendNumProduct($PDO) {
+    $numProduct=getNumProduct($PDO);
+    $header="MIME-Version: 1.0\r\n";
+    $header.='From:"gmail.com"<support@gmail.com>'."\n";
+    $header.='Content-Type:text/html; charset=utf-8'."\n";
+    $header.='Content-Transfer-Encoding: 8bit';
+
+    $message='
+<html>
+        <body>
+            <div align="center">
+                   <p>Votre numero de produit est le '. $numProduct.' vous pouvez dés maintenant creer votre compte dans le site de Homie </p> 
+            </div>
+        </body>
+</html>
+
+';
+
+
+    mail($_POST['mailClient'], "Votre numéro de prduit", $message, $header);
+
 }

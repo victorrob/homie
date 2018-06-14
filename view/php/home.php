@@ -25,7 +25,7 @@
     <?php
     foreach ($rooms as $room){
         ?>
-        <div onclick="home(<?php echo $room['idRoom'] ?>, 'roomFactors')"><a class="carre" href="<?php echo '#'.$room['idRoom'] ?>"><p><?php echo $room['name'] ?></p></a></div>
+        <div><a class="carre" href="<?php echo '#'.$room['idRoom'] ?>"><p><?php echo $room['name'] ?></p></a></div>
     <?php  }
     ?>
 
@@ -43,7 +43,7 @@ foreach ($rooms as $room) {
                     <p>Lumière :</p>
                     <div class="switchButton">
                         <input class="switch" name="lumière" id="<?php echo "lumière".$room['idRoom']?>"
-                               type="checkbox" <?php echo $room['lumière']['state'] ?> onchange="maj(<?php echo $room['idRoom']?>, 'lumière');" />
+                               type="checkbox" <?php echo $room['lumière']['state'] ?> />
                         <label for="<?php echo "lumière".$room['idRoom']?>" class="label">
                             <div class="formeLight">
                                 <div class="rondLight">
@@ -55,7 +55,7 @@ foreach ($rooms as $room) {
                 <div class="divFactors" style="display: <?php echo $room['chauffage']['existence'] ?>">
                     <p>Température demandée :</p>
                     <input type="number" name="chauffage" id="<?php echo "chauffage".$room['idRoom']?>"
-                           value="<?php echo $room['chauffage']['value'] ?>" onchange="maj(<?php echo $room['idRoom']?>, 'chauffage');" />
+                           value="<?php echo $room['chauffage']['value'] ?>" />
                     <p>°C</p>
                 </div>
                 <div class="divFactors" style="display: <?php echo $room['température']['existence'] ?>">
@@ -68,13 +68,13 @@ foreach ($rooms as $room) {
                 <div class="divFactors" style="display: <?php echo $room['ventilation']['existence'] ?>">
                     <p>Ventilation :</p>
                     <input type="number" name="ventilation" id="<?php echo "ventilation".$room['idRoom']?>"
-                           value="<?php echo $room['ventilation']['value'] ?>" onchange="maj(<?php echo $room['idRoom']?>, 'ventilation');" />
+                           value="<?php echo $room['ventilation']['value'] ?>" />
                 </div>
                 <div class="divFactors" style="display: <?php echo $room['volet']['existence'] ?>">
                     <p>Volets :</p>
                     <div class="divVolet" class="switchButton">
                         <input class="switch" name="volet_state" id="<?php echo "volet_state".$room['idRoom']?>"
-                               type="checkbox" <?php echo $room['volet']['state'] ?> onchange="maj(<?php echo $room['idRoom']?>, 'volet_state');" />
+                               type="checkbox" <?php echo $room['volet']['state'] ?> />
                         <label for="<?php echo "volet_state".$room['idRoom']?>" class="label">
                             <div class="formeShutter">
                                 <div class="rondShutter">
@@ -84,7 +84,7 @@ foreach ($rooms as $room) {
                     </div>
                     <div class="divVolet" class="switchButton">
                         <input class="switch" name="volet_auto" id="<?php echo "volet_auto".$room['idRoom']?>"
-                               type="checkbox" <?php echo $room['volet']['auto'] ?> onchange="maj(<?php echo $room['idRoom']?>, 'volet_auto');" />
+                               type="checkbox" <?php echo $room['volet']['auto'] ?> />
                         <label for="<?php echo "volet_auto".$room['idRoom']?>" class="label">
                             <div class="formeAuto">
                                 <div class="rondAuto">
@@ -95,10 +95,10 @@ foreach ($rooms as $room) {
                     <div class="divVolet">
                         <p>Plage horaire :</p>
                         <input type="time" name="volet_opening" id="<?php echo "volet_opening".$room['idRoom']?>"
-                               value="<?php echo $room['volet']['opening'] ?>" onchange="maj(<?php echo $room['idRoom']?>, 'volet_opening');" />
+                               value="<?php echo $room['volet']['opening'] ?>" />
                         <P> - </P>
                         <input type="time" name="volet_closing" id="<?php echo "volet_closing".$room['idRoom']?>"
-                               value="<?php echo $room['volet']['closing'] ?>" onchange="maj(<?php echo $room['idRoom']?>, 'volet_closing');" />
+                               value="<?php echo $room['volet']['closing'] ?>" />
                     </div>
                 </div>
                 <div class="divFactors" style="display: <?php echo $room['humidité']['existence'] ?>">
@@ -131,7 +131,6 @@ foreach ($rooms as $room) {
                 </div>
             </div>
             <div><a href="index.php?p=statistic&r=<?php echo $room['idRoom'] ?>"><p>Statistiques</p></a></div>
-            <div><a id="modifierPiece" href="index.php?p=sensor&r=<?php echo $room['idRoom'] ?>"><p>Modifier Pièce</p></a></div>
         </div>
     </section>
     <?php
@@ -144,11 +143,11 @@ foreach ($rooms as $room) {
     <hr />
 </div>
 <section id="habitationSection">
-    <div onclick="home('lumiereForm', 'habitationFactors');"><a href="#lumiereForm" class="carre"><p>Lumières</p></a></div>
-    <div onclick="home('voletForm', 'habitationFactors');"><a href="#voletForm" class="carre"><p>Volets</p></a></div>
-    <div onclick="home('chauffageForm', 'habitationFactors');"><a href="#chauffageForm" class="carre"><p>Chauffage</p></a></div>
-    <div onclick="home('ventilationForm', 'habitationFactors');"><a href="#ventilationForm" class="carre"><p>Ventilation</p></a></div>
-    <div onclick="home('modeAbsentForm', 'habitationFactors');"><a href="#modeAbsentForm" class="carre"><p>Absent</p></a></div>
+    <div><a href="#lumiereForm" class="carre"><p>Lumières</p></a></div>
+    <div><a href="#voletForm" class="carre"><p>Volets</p></a></div>
+    <div><a href="#chauffageForm" class="carre"><p>Chauffage</p></a></div>
+    <div><a href="#ventilationForm" class="carre"><p>Ventilation</p></a></div>
+    <div><a href="#modeAbsentForm" class="carre"><p>Absent</p></a></div>
 </section>
 
 <form method="post" action="index.php?p=homeInstallateur&d=homeInstallateur" class="habitationFactors" id="lumiereForm">

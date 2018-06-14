@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html>
-<?php
-	include('model/profile.php');
-?>
-
 <body id="bodyProfile">
 	<div id = error><?php echo($error) ?></div>
 	<fieldset>
@@ -65,8 +59,7 @@
 			</div>
 		</form>
 		<form method="POST" action="index.php?p=home">
-			<input class="button" type="submit" value="Annuler" id="validateButton"/> <!-- anuler -->
+			<input class="button" type="submit" value="Annuler" id="validateButton"/> <!-- annuler -->
 		</form>
 	</fieldset>
 </body>
-</html>

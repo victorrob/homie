@@ -19,7 +19,6 @@ if (!isset($_SESSION['idUser']) && !in_array($php, $headerLogin)) {
     $php = 'login';
 }
 
-
 include("control/request.php");
 
 if(isset($_SESSION['idUser']) && in_array($php, $headerLogin)){

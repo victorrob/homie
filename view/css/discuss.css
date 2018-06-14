@@ -3,13 +3,10 @@
 p,a, h1, h2{
 	font-family: "Arial";
 }
-a{
-	color:orange;
-}
 
 .cadre{
 	background-color: white;
-	width: 700px;
+	width:290%;
 	border-width: 3px;
 	border-style: solid;
 	border-color: black;
@@ -40,31 +37,12 @@ aside{
 	margin-right: 100px;
 	width: 400px;
 }
-.link{
-	background-color: #9274ac;
-	margin-top: 100px;
-	margin-right: 60px;
-	margin-left:60px;
-	padding: 10px;
-	text-align: center;
-
-
-}
-.link2{
-	background-color: #9274ac;
-	margin-top: 10px;
-	margin-right: 60px;
-	margin-left:60px;
-	padding: 10px;
-	text-align: center;
-
-
-}
 
 #part{
 	margin: auto;
 	text-align: center;
 }
-.linkrequete{
-	color:white;
+
+form{
+	margin-left: 14px;
 }

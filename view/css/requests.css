@@ -4,11 +4,11 @@ p,h1, h2{
 
 .cadre{
 	background-color: white;
-	width: 200%;
+	width: 700px;
 	border-width: 3px;
 	border-style: solid;
 	border-color: black;
-	
+	color:black;
 	margin-top: 10px;
 	
 	padding-left: 5px;
@@ -36,21 +36,28 @@ main{
 	text-align: center;
 }
 
-a{
+.rqt{
 	font-family: "Arial";
 	color: white;
 	background-color: #9274ac;
-	width: 5%;
+	width: 80px;
 	border-width: 3px;
 	box-sizing: border-box;
     border: 2px solid #9274ac;
     border-radius: 4px;
 	margin-top: 10px;
-
+	margin: 60px;
+	text-align: center;
 }
 
 
+.quest{
+	display: flex;
+	justify-content: space-around;
+}
 
+
+/*
 tailoring     mage
 enchanting    mage
 
@@ -67,3 +74,4 @@ leatherworking dh
 skinning       dh
 
 engineering
+*/

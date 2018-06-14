@@ -74,13 +74,13 @@ if(isset($_GET['d'])) {
         case 'contact':
             break;
         case 'discuss':
-            $answerNumber= discuss_count($bdd,$_SESSION['user_id'],$current_request) +1;
-            discuss_post($bdd,$admin,$current_request,$answer_number);
+            $answerNumber= discuss_count($PDO,$_SESSION['idUser'],$_GET['idrequest']) +1;
+            discuss_post($PDO,isAdmin($PDO),$_GET['idrequest'],$answerNumber);
             break;
         case 'support':
             break;
         case 'requests':
-            request_post($bdd);
+            request_post($PDO);
             break;
         case 'forum':
             break;
@@ -148,12 +148,8 @@ switch ($php) {
                 }
         break;
     case 'discuss':
-        if (installateur($PDO)=='Administrateur'){
-                    $admin=true;
-                }
-                else{
-                    $admin=false;
-                }
+        $current_request=$_GET['idrequest'];
+        $admin=isAdmin($PDO);
         break;
     case 'support':
         break;

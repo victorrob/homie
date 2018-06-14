@@ -12,17 +12,16 @@
 				?>
 				
 
-
-				<?php for($i=0;$i<=request_count($bdd,$_SESSION['id_user'],$admin);$i++){
+				<?php for($i=0;$i<=request_count($PDO,$_SESSION['idUser'],$admin);$i++){
 				?>
 				<div class="quest">
 					<article class="cadre">
-						<h2> <?php echo(request_type($bdd,$_SESSION['id_user'],$admin)[$i]); ?> </h2>
-						<p> <?php echo(request_problem($bdd,$_SESSION['id_user'],$admin)[$i]); ?> </p>
-						<?php $id= request_id($bdd,$_SESSION['id_user'],$admin)[$i]; 
+						<h2> <?php echo(request_type($PDO,$_SESSION['idUser'],$admin)[$i]); ?> </h2>
+						<p> <?php echo(request_problem($PDO,$_SESSION['idUser'],$admin)[$i]); ?> </p>
+						<?php $id= request_id($PDO,$_SESSION['idUser'],$admin)[$i]; 
 						echo($id); ?>
 					</article>
-					<a href=<?php echo "discuss.php?idrequest=".$id; ?>>Consulter</a>
+					<a class="rqt" href=<?php echo "index.php?p=discuss&idrequest=".$id; ?>>Consulter</a>
 				</div>
 				<?php } ?>
 

@@ -952,17 +952,19 @@ function randomString($length){
 
 
 // FONCTIONS NICOLAS
-/*
-<?php
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=requete;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
+
+function isAdmin($PDO){
+    if (installateur($PDO)=='Administrateur'){
+        return true;
+    }else{
+        return false;
+    }
 }
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-}
-*/
+
+
+
+
 
 
 //QUESTION FUNCTIONS
@@ -1168,7 +1170,7 @@ function request_post($bdd){
 
                     $req->execute(array(
 
-                     'id' => $_SESSION['user_id'],
+                     'id' => $_SESSION['idUser'],
                      'type' => strip_tags($_POST['type']),
                      'texte' => strip_tags($_POST['problem']),
 

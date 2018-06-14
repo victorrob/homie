@@ -1,7 +1,7 @@
 
 	<body>
 		<main>
-			<form action="request.php" method="POST">
+			<form action="index.php?p=requests&d=requests" method="POST">
 
 				<label> Votre problème :</label>
 				<select name='type'>
@@ -25,9 +25,7 @@
 			
 
 		</main>
-		<footer>
-			
-		</footer>
+
 	</body>
 
 

@@ -32,6 +32,7 @@ if(isset($_GET['d'])) {
             break;
         case 'installateurPage':
             installateurPage($PDO);
+            sendNumProduct($PDO);
             $php = 'homeInstallateur';
             break;
         case 'logout':

@@ -1338,3 +1338,34 @@ function destroyCookie() {
     unset($_COOKIE['mail']);
     unset($_COOKIE['password']);
 }
+function getNumProduct($PDO){
+    $mail = strip_tags($_POST['mailClient']);
+    $req = $PDO->prepare('SELECT productNumber FROM user WHERE mail = ?');
+    $req->execute([$mail]);
+    $numProduct = $req->fetch()['productNumber'];
+
+    return $numProduct;
+}
+
+function sendNumProduct($PDO) {
+    $numProduct=getNumProduct($PDO);
+    $header="MIME-Version: 1.0\r\n";
+    $header.='From:"gmail.com"<support@gmail.com>'."\n";
+    $header.='Content-Type:text/html; charset=utf-8'."\n";
+    $header.='Content-Transfer-Encoding: 8bit';
+
+    $message='
+<html>
+        <body>
+            <div align="center">
+                   <p>Votre numero de produit est le '. $numProduct.' vous pouvez dés maintenant creer votre compte dans le site de Homie </p> 
+            </div>
+        </body>
+</html>
+
+';
+
+
+    mail($_POST['mailClient'], "Votre numéro de prduit", $message, $header);
+
+}

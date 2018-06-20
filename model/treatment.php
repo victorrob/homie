@@ -951,17 +951,19 @@ function randomString($length){
 
 
 // FONCTIONS NICOLAS
-/*
-<?php
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=requete;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
+
+function isAdmin($PDO){
+    if (installateur($PDO)=='Administrateur'){
+        return true;
+    }else{
+        return false;
+    }
 }
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-}
-*/
+
+
+
+
 
 
 //QUESTION FUNCTIONS
@@ -1167,7 +1169,7 @@ function request_post($bdd){
 
                     $req->execute(array(
 
-                     'id' => $_SESSION['user_id'],
+                     'id' => $_SESSION['idUser'],
                      'type' => strip_tags($_POST['type']),
                      'texte' => strip_tags($_POST['problem']),
 
@@ -1337,4 +1339,35 @@ function destroyCookie() {
     setcookie('password', '', time(), null, null, false, true);
     unset($_COOKIE['mail']);
     unset($_COOKIE['password']);
+}
+function getNumProduct($PDO){
+    $mail = strip_tags($_POST['mailClient']);
+    $req = $PDO->prepare('SELECT productNumber FROM user WHERE mail = ?');
+    $req->execute([$mail]);
+    $numProduct = $req->fetch()['productNumber'];
+
+    return $numProduct;
+}
+
+function sendNumProduct($PDO) {
+    $numProduct=getNumProduct($PDO);
+    $header="MIME-Version: 1.0\r\n";
+    $header.='From:"gmail.com"<support@gmail.com>'."\n";
+    $header.='Content-Type:text/html; charset=utf-8'."\n";
+    $header.='Content-Transfer-Encoding: 8bit';
+
+    $message='
+<html>
+        <body>
+            <div align="center">
+                   <p>Votre numero de produit est le '. $numProduct.' vous pouvez dés maintenant creer votre compte dans le site de Homie </p> 
+            </div>
+        </body>
+</html>
+
+';
+
+
+    mail($_POST['mailClient'], "Votre numéro de prduit", $message, $header);
+
 }

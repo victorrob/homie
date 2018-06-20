@@ -11,6 +11,8 @@ catch (Exception $e){
     }
 }
 
+include('server.php');
+
 if (isset($_POST['state'])) {
     if ($_POST['type'] === 'volet_auto') {
         $type = 'volet';
@@ -22,6 +24,7 @@ if (isset($_POST['state'])) {
         }
         else {
             $type = 'lumière';
+            sendData(1,1,$_POST['state']);
         }
         $req = $PDO->prepare('UPDATE actuator SET state = ? WHERE idRoom = ? AND type = ?');
     }

@@ -99,6 +99,6 @@ function CHK($thread){
         $sum += ord($val);
     }
     $CHK = $sum%256;
-    $CHK = ord($CHK);
+    $CHK = dechex($CHK);
     return $CHK;
 }

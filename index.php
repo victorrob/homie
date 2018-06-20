@@ -44,6 +44,9 @@ else {
     if (installateur($PDO) === 'Propriétaire') {
         include('view/php/header.php');
     }
+    else if (installateur($PDO) === 'Administrateur') {
+        include('view/php/headerAdministrateur.php');
+    }
     else {
         include('view/php/headerInstallateur.php');
     }

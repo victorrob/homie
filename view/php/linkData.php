@@ -28,7 +28,7 @@ foreach ($linkData as $data){
                 ?>
             </tr>
 
-            <?
+            <?php
             }
             ?>
         </table>

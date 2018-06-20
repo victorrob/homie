@@ -35,7 +35,10 @@ function setUserInfo($PDO){
         }
     }
     else if($_REQUEST['deleteUser'] == 'add'){
-        echo var_dump($_REQUEST['type']['new']);
+        $req = $PDO->prepare("INSERT INTO user(mail, type) VALUES(?, ?)");
+        $req->execute([$_REQUEST['userMail'], $_REQUEST['type']['new']]);
+        $req->closeCursor();
+        echo ' a = '.$_REQUEST['userMail'].' b = '.$_REQUEST['type']['new'];
     }
     else{
         $keys = array_keys($_REQUEST['type']);
@@ -50,7 +53,7 @@ function setUserInfo($PDO){
 //get all value and date of historic of one specific room
 
 function getHistoric($PDO){
-    $req = $PDO->prepare("SELECT type, date, value FROM sensor INNER JOIN data ON sensor.idSensor = data.idSensor WHERE idRoom = ?");
+    $req = $PDO->prepare("SELECT type, date, value FROM sensor INNER JOIN data ON sensor.idSensor = data.idSensor WHERE idRoom = ? ORDER BY data.date ASC ");
     $req->execute([$_SESSION['idRoom']]);
     $sensorName = [];
     $sensorHistoric =[];

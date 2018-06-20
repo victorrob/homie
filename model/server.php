@@ -1,4 +1,5 @@
 <?php
+
 function getData()
 {
     $ch = curl_init("http://projets-tomcat.isep.fr:8080/appService?ACTION=GETLOG&TEAM=G10E");

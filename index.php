@@ -10,6 +10,8 @@ session_start();
 include ('control/variable.php');
 include ('model/server.php');
 include('model/treatment.php');
+include('model/updateData.php');
+getLog('G10E', $numThread, $PDO);
 $php = isset($_GET['p']) ? strip_tags($_GET['p']) : "login";
 $_SESSION['idRoom'] = isset($_GET['r']) ? strip_tags($_GET['r']) : "";
 

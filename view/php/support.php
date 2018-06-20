@@ -11,12 +11,12 @@
 				</select>
 				<br/>
 				<br/>
-				<label> Description du problème</label>
-				<br/>
+				<label> Description du problème<br/>
 				<textarea name='problem' cols="50" rows="10"></textarea>
+                </label>
 				<br/>
 
-				<input type="submit" name="Valider">
+				<input class="customButton submit" type="submit" name="Valider">
 
 
 

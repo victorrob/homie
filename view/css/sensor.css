@@ -19,20 +19,6 @@ label{
     text-align: center;
 }
 
-.lastButton{
-    margin: 10px;
-    color: white;
-    background-color: transparent;
-    border: 3px solid;
-    border-radius: 5px;
-    font-size: 20px;
-}
-#reset{
-    border-color: #006d91;
-}
-#delete{
-    border-color: red;
-}
 form > section{
     display: flex;
     flex-wrap: wrap;

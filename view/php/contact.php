@@ -39,13 +39,15 @@
 						Mail: contact@homie.fr
 					</p>
 				</div>
-				<div class="link">
-					<a class="linkrequete" href="index.php?p=support"> Envoyer une requête </a>
-					
-				</div>
-				<div class="link2">
-					<a class="linkrequete" href="index.php?p=requests"> Mes requêtes </a>
-				</div>
+                <section id="request">
+                    <div class="link">
+                        <a class="linkrequete customButton submit" href="index.php?p=support"> Envoyer une requête </a>
+
+                    </div>
+                    <div class="link2">
+                        <a class="linkrequete customButton submit" href="index.php?p=requests"> Mes requêtes </a>
+                    </div>
+                </section>
 			</aside>
 		</main>
 

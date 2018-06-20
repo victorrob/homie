@@ -1,18 +1,15 @@
-
-
-p,a, h1, h2{
-	font-family: "Arial";
+article>a{
+	color: sandybrown;
 }
-a{
-	color:orange;
+article > a:visited{
+	color:white;
 }
 
 .cadre{
-	background-color: white;
+	background-color: rgba(255,255,255,0.8);
 	width: 700px;
-	border-width: 3px;
-	border-style: solid;
-	border-color: black;
+	border: 3px solid sandybrown;
+	border-radius: 5px;
 	color:black;
 	margin-top: 10px;
 	
@@ -40,31 +37,20 @@ aside{
 	margin-right: 100px;
 	width: 400px;
 }
-.link{
-	background-color: #9274ac;
-	margin-top: 100px;
-	margin-right: 60px;
-	margin-left:60px;
-	padding: 10px;
-	text-align: center;
 
 
-}
-.link2{
-	background-color: #9274ac;
-	margin-top: 10px;
-	margin-right: 60px;
-	margin-left:60px;
-	padding: 10px;
-	text-align: center;
-
-
-}
 
 #part{
 	margin: auto;
 	text-align: center;
 }
 .linkrequete{
-	color:white;
+	margin: 20px auto;
+	display: block;
+	width: 50%;
+	text-align: center;
+	padding: 5px;
+}
+#request{
+	margin-top: 60px;
 }

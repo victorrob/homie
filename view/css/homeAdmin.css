@@ -9,8 +9,15 @@
     padding: 10px;
     border: 2px solid sandybrown;
     border-radius: 10px;
+    margin: 5px;
+}
+.selectType:hover{
+    background-color: rgba(255,255,255,0.1);
 }
 
+.basic{
+    font-size: 15px;
+}
 table, th, td {
     padding: 5px;
     text-align: center;
@@ -31,12 +38,7 @@ th{
     transform: translate(-50%,-15%);
 }
 
-#delete{
-    color: white;
-    background-color: transparent;
-    border: 3px solid red;
-    border-radius: 5px;
-    font-size: 20px;
+.delete{
     margin: 20px auto;
     display: block;
 }

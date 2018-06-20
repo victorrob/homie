@@ -18,14 +18,7 @@ form{
 	/* text-align: initial;  dépand des choix du client */
 }
 
-input[type=text]{
-    background-color: #eee;
-    border-radius: 5px;
-    padding: 5px;
-    margin-bottom: 10px;
-    margin-top: 5px;
-    border: 2px solid transparent;
-}
+
 #password1Modif:invalid,#password2Modif:invalid,#email1Modif:invalid,#email2Modif:invalid,#phoneModif:invalid{
     border: 2px solid red;
 }
@@ -51,3 +44,9 @@ min-width: 390px;
 	display: flex;
 	justify-content: space-between;
 }
+
+.basic{
+	font-size: 16px;
+	transform: translate(0,-50%);
+}
+

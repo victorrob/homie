@@ -23,7 +23,7 @@ legend{
 }
 
 /* input */
-input[type=text]{
+input[type=text], input[type=password], input[type=email]{
     background-color: #eee;
     border-radius: 5px;
     padding: 5px;
@@ -31,26 +31,42 @@ input[type=text]{
     margin-top: 5px;
     border: 2px solid transparent;
 }
-input[type=text]:invalid{
+input[type=text]:invalid, input[type=password]:invalid, input[type=email]:invalid{
     border: 2px solid red;
 }
-input[type=text]:hover{
+input[type=text]:hover, input[type=password]:hover, input[type=email]:hover{
     background-color: #ccc;
     border: 2px solid blue;
 }
-input[type=text]:focus{
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus{
     border: 2px solid blue;
 }
 
 /* submit */
 
-#submit{
+.customButton{
     margin: 10px;
     color: white;
     background-color: transparent;
-    border: 3px solid sandybrown;
+    border: solid 3px;
     border-radius: 5px;
     font-size: 20px;
+}
+.customButton:hover{
+    background-color: rgba(255,255,255,0.1);
+}
+
+.submit{
+    border-color: sandybrown;
+}
+.basic{
+    border-color: #006d91;
+}
+.delete{
+    border-color: red;
+}
+.reset{
+    border-color: forestgreen;
 }
 
 

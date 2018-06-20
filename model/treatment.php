@@ -292,7 +292,7 @@ function deleteHouse($PDO){
 
 function getSensorPerRoom($PDO){
     //permet de récupérer le type de pièce, son nom, sa taille, le type de capteur présent pour une pièce donnée
-    $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType, 
+    $req = $PDO->prepare("SELECT room.type AS roomType,name, size, sensor.type AS sensorType
                           FROM room INNER JOIN sensor ON room.idRoom = sensor.idRoom 
                           WHERE room.idroom = ?");
     $req->execute([$_SESSION['roomId']]);

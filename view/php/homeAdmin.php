@@ -1,5 +1,6 @@
 <p id="search"><input type="text" id="searchField" onkeyup="search()" placeholder="Recherche par nom de famille"></p>
 <form method="post" action="index.php?p=homeAdmin&d=homeAdmin">
+
     <section id="userType">
     <?php foreach($userType as $type){
         ?>
@@ -104,10 +105,10 @@
         }
         ?>
         <td>
-            <input id="add" type="submit" value="Ajouter" onclick="send('add')" >
+            <input class="customButton basic" id="add" type="submit" value="Ajouter" onclick="send('add')" >
         </td>
 </tr>
 </table>
 <input name="deleteUser" id="hiddenDelete" type="text" value="null">
-<input id="delete" type="submit" value="supprimer" onclick="send('delete');">
+<input class="customButton delete" id="delete" type="submit" value="supprimer" onclick="send('delete');">
 </form>

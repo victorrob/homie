@@ -8,3 +8,10 @@ form{
 	text-align: center;
 	margin-top: 50px;
 }
+
+textarea{
+    border: 1px solid sandybrown;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
